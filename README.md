@@ -10,6 +10,8 @@ via a WebSocket interface by using json format.
 * Java-WebSocket https://github.com/TooTallNate/Java-WebSocket
 * Log4j2 https://github.com/apache/logging-log4j2
 * JUnit5 https://github.com/junit-team/junit5
+* Jackson-core https://github.com/FasterXML/jackson-core
+* Jackson-annotations https://github.com/FasterXML/jackson-annotations
 
 ## Related technologies
 * WebSocket https://sookocheff.com/post/networking/how-do-websockets-work/
