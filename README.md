@@ -1,5 +1,7 @@
 # JMantic Project 
 
+![example workflow](https://github.com/artrayme/JMantic/actions/workflows/build_and_test.yml/badge.svg)
+
 ## Overview
 The goal of this project is to create a java-library for connecting to a sc-machine 
 via a WebSocket interface by using json format. 
