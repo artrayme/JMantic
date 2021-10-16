@@ -42,4 +42,9 @@ public interface ScRequest {
      * @return stream of the payload parts of the current request. See {@link PayloadPart}
      */
     Stream<PayloadPart> getPayload();
+
+    /**
+     * Append the {@link PayloadPart} to end of the payload request section.
+     */
+    boolean addPayloadPart(PayloadPart payloadPart);
 }
