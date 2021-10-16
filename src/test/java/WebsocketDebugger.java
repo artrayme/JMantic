@@ -69,7 +69,7 @@ public class WebsocketDebugger extends JFrame implements ActionListener {
     public static void main(String[] args) {
         String location;
         location = "ws://localhost:8090/ws_json";
-        System.out.println("Default server url not specified: defaulting to \'" + location + "\'");
+        System.out.println("Default server url not specified: defaulting to '" + location + "'");
         new WebsocketDebugger(location);
     }
 
