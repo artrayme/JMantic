@@ -34,18 +34,15 @@ public enum RequestType {
      */
     GENERATE_TEMPLATE,
 
-
     /**
      * With this command you can subscribe to sc-machine events.
      */
     EVENTS,
 
-
     /**
      * With this command you can find/resolve keynodes.
      */
     KEYNODES,
-
 
     /**
      * With this command you can work with sc-link content.
