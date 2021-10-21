@@ -1,3 +1,4 @@
+image![](/home/artrayme/IdeaProjects/JMantic/logo/logo.png)
 # JMantic Project
 
 ![example workflow](https://github.com/artrayme/JMantic/actions/workflows/build_and_test.yml/badge.svg)
