@@ -1,4 +1,4 @@
-package org.jmantic.model;
+package org.jmantic.scmemory.websocket.model;
 
 /**
  * Enum which represents the type a request may be
