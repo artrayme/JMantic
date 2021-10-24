@@ -1,9 +1,14 @@
 package org.jmantic.scmemory.model.element.link;
 
 /**
+ * ScLink for storing a String value
+ *
  * @author artrayme
- * 10/24/21
+ * @since 0.0.1
  */
-public interface ScLinkString extends ScLink{
+public interface ScLinkString extends ScLink {
+    /**
+     * @return content of this ScLink
+     */
     String getContent();
 }

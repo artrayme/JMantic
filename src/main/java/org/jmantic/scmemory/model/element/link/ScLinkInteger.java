@@ -1,9 +1,14 @@
 package org.jmantic.scmemory.model.element.link;
 
 /**
+ * ScLink for storing an integer value
+ *
  * @author artrayme
- * 10/24/21
+ * @since 0.0.1
  */
 public interface ScLinkInteger extends ScLink {
+    /**
+     * @return content of this ScLink
+     */
     int getContent();
 }

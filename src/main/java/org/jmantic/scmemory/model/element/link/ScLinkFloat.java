@@ -1,9 +1,14 @@
 package org.jmantic.scmemory.model.element.link;
 
 /**
+ * ScLink for storing a float value
+ *
  * @author artrayme
- * 10/24/21
+ * @since 0.0.1
  */
-public interface ScLinkFloat extends ScLink{
+public interface ScLinkFloat extends ScLink {
+    /**
+     * @return content of this ScLink
+     */
     float getContent();
 }

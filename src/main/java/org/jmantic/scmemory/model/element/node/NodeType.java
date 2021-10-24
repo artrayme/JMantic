@@ -1,6 +1,12 @@
 package org.jmantic.scmemory.model.element.node;
 
 /**
+ * Enum of available {@link ScNode} types.
+ * <p>
+ * Each type has a unique code.
+ * But this code only for internal use,
+ * and you must not use it in your programs.
+ *
  * @author artrayme
  * @since 0.0.1
  */
@@ -59,6 +65,9 @@ public enum NodeType {
         this.code = code;
     }
 
+    /**
+     * DO NOT USE IT
+     */
     public int getCode() {
         return code;
     }
