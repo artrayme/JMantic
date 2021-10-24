@@ -21,7 +21,4 @@ public class DefaultScContext {
         return (ScNode) memory.createNodes(Optional.of(type).stream()).findFirst().get();
     }
 
-
-
-
 }
