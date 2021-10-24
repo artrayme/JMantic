@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.websocket.model;
+package org.jmantic.scmemory.model.websocket;
 
 import java.util.stream.Stream;
 
