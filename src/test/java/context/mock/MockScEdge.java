@@ -4,6 +4,8 @@ import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 
+import java.util.Objects;
+
 /**
  * @author artrayme
  * 10/24/21
@@ -39,5 +41,20 @@ class MockScEdge implements ScEdge {
     @Override
     public ScElement getSecond() {
         return second;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        MockScEdge that = (MockScEdge) o;
+        return Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
     }
 }
