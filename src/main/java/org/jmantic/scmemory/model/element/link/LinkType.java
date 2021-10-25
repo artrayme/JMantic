@@ -11,11 +11,11 @@ package org.jmantic.scmemory.model.element.link;
  * @since 0.0.1
  */
 public enum LinkType {
-    Link(2),
+    LINK(2),
 
-    LinkConst(34),
+    LINK_CONST(34),
 
-    LinkVar(66);
+    LINK_VAR(66);
 
     private final int code;
 
