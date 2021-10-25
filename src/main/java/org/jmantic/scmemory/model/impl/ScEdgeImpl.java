@@ -32,21 +32,21 @@ class ScEdgeImpl implements ScEdge {
 
     @Override
     public Long getAddress() {
-        return null;
+        return address;
     }
 
     @Override
     public EdgeType getType() {
-        return null;
+        return edgeType;
     }
 
     @Override
     public ScElement getFirst() {
-        return null;
+        return sourceElement;
     }
 
     @Override
     public ScElement getSecond() {
-        return null;
+        return targetElement;
     }
 }
