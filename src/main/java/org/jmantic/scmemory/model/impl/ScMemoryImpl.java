@@ -11,6 +11,10 @@ import org.jmantic.scmemory.model.event.ScEvent;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+
+/**
+ * @author Michael
+ */
 public class ScMemoryImpl implements ScMemory {
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) {

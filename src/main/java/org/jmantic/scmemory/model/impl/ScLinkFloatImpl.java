@@ -3,6 +3,10 @@ package org.jmantic.scmemory.model.impl;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 
+
+/**
+ * @author Michael
+ */
 public class ScLinkFloatImpl implements ScLinkFloat {
     private final LinkType linkType;
     private float content;
