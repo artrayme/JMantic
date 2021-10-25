@@ -34,13 +34,15 @@ public class ScMemoryMock implements ScMemory {
 
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) {
-        logger.info("START CREATE NODES");
-        logger.info(elements.toString());
+        logger.info("START CREATING NODES");
         int initSize = nodes.size();
-        elements.forEach(type -> nodes.add(new MockScNode(random.nextLong(), type)));
+        elements.forEach(type -> {
+            long id = random.nextLong();
+            logger.info("creating node with type {} and id {}", type, id);
+            nodes.add(new MockScNode(id, type));
+        });
         Stream<ScNode> result = nodes.stream().skip(initSize);
-        logger.info(result.toString());
-        logger.info("END CREATE NODES");
+        logger.info("END CREATING NODES");
         return result;
     }
 
@@ -50,32 +52,32 @@ public class ScMemoryMock implements ScMemory {
                                                    Stream<ScElement> secondComponents) {
         List<ScElement> first = firstComponents.toList();
         List<ScElement> second = secondComponents.toList();
-        List<EdgeType> elem = elements.toList();
-        logger.info("START CREATE EDGES");
-        logger.info(elements.toString());
+        List<EdgeType> type = elements.toList();
+        logger.info("START CREATING EDGES");
         int initSize = edges.size();
-        for (int i = 0; i < elem.size(); i++) {
-            edges.add(new MockScEdge(random.nextLong(), elem.get(i), first.get(i), second.get(i)));
+        for (int i = 0; i < type.size(); i++) {
+            long id = random.nextLong();
+            logger.info("creating edge with type {}, first element {}, second element {} and id {}", type.get(i), first.get(i), second.get(i), id);
+            edges.add(new MockScEdge(id, type.get(i), first.get(i), second.get(i)));
         }
         Stream<ScEdge> result = edges.stream().skip(initSize);
-        logger.info(result.toString());
-        logger.info("END CREATE EDGES");
+        logger.info("END CREATING EDGES");
         return result;
     }
 
     @Override
     public Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) {
-        logger.info("START CREATE LINK INTEGER");
+        logger.info("START CREATING LINK INTEGER");
         List<Integer> elem = content.toList();
         List<LinkType> types = elements.toList();
-        logger.info(elements.toString());
         int initSize = links.size();
         for (int i = 0; i < types.size(); i++) {
-        links.add(new MockScLinkInteger(random.nextLong(), types.get(i), elem.get(i)));
+            long id = random.nextLong();
+            logger.info("creating integer link with type {}, content {} and id {}", types.get(i), elem.get(i), id);
+            links.add(new MockScLinkInteger(random.nextLong(), types.get(i), elem.get(i)));
         }
         Stream<ScLink> result = links.stream().skip(initSize);
-        logger.info(result.toString());
-        logger.info("END CREATE LINK INTEGER");
+        logger.info("END CREATING LINK INTEGER");
         return result;
     }
 
