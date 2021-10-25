@@ -15,7 +15,9 @@ import java.util.stream.Stream;
 /**
  * @author Michael
  */
-public class ScMemoryImpl implements ScMemory {
+public enum ScMemoryImpl implements ScMemory {
+    INSTANCE;
+
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) {
         return null;
