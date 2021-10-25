@@ -3,6 +3,9 @@ package org.jmantic.scmemory.model.impl;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 
+/**
+ * @author Michael
+ */
 class ScNodeImpl implements ScNode {
     private final NodeType nodeType;
     private long address;

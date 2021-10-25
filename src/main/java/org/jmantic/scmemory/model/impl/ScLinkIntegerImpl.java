@@ -3,6 +3,10 @@ package org.jmantic.scmemory.model.impl;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 
+
+/**
+ * @author Michael
+ */
 class ScLinkIntegerImpl implements ScLinkInteger {
     private final LinkType linkType;
     private int content;
