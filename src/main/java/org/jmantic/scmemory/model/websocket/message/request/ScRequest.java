@@ -7,4 +7,6 @@ public interface ScRequest {
     long getRequestId();
 
     RequestType getRequestType();
+
+    boolean isEmpty();
 }
