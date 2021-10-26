@@ -4,7 +4,11 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.*;
+import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLink;
+import org.jmantic.scmemory.model.element.link.ScLinkFloat;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
+import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.event.ScEvent;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
@@ -16,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -24,19 +27,13 @@ import java.util.stream.Stream;
 /**
  * @author Michael
  */
-public enum SyncScMemory implements ScMemory {
-    INSTANCE;
+public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
-    private final OstisClient ostisClient;
-    private final RequestSender requestSender;
+    private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
+    private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
 
-    {
-        ostisClient = OstisClientImpl.INSTANCE;
-        requestSender = new RequestSenderImpl(ostisClient);
-    }
-
-    public void configureURI(URI uri) {
-        ostisClient.configure(uri);
+    public SyncScMemory(URI serverUri) {
+        ostisClient.configure(serverUri);
     }
 
     //todo (0(
@@ -49,19 +46,14 @@ public enum SyncScMemory implements ScMemory {
                 .toList();
         nodesToCreate.forEach(request::addElementToRequest);
 
-        try {
-            CreateScElResponse response = requestSender.sendCreateElRequest(request);
-            var addresses = response.getAddresses().toList();
-            for (int i = 0; i < addresses.size(); i++) {
-                ScNodeImpl node = nodesToCreate.get(i);
-                long addr = addresses.get(i);
-                node.setAddress(addr);
-            }
-            return nodesToCreate.stream();
-        } catch (ScMemoryException e) {
-            logger.error("cant create nodes - " + request);
-            throw new ScMemoryException("cant create nodes", e);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().toList();
+        for (int i = 0; i < addresses.size(); i++) {
+            ScNodeImpl node = nodesToCreate.get(i);
+            long addr = addresses.get(i);
+            node.setAddress(addr);
         }
+        return nodesToCreate.stream();
     }
 
     @Override
