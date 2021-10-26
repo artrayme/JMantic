@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.websocket.response;
+package org.jmantic.scmemory.model.websocket.message.response;
 
 /**
  * @author Michael
