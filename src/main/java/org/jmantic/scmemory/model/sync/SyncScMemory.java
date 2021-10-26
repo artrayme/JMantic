@@ -42,7 +42,7 @@ public enum SyncScMemory implements ScMemory {
     //todo (0(
 
     @Override
-    public Optional<Stream<? extends ScElement>> createNodes(Stream<NodeType> elements) throws ScMemoryException {
+    public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
         CreateScElRequest request = new CreateScElRequestImpl();
         var nodesToCreate = elements
                 .map(ScNodeImpl::new)
@@ -57,7 +57,7 @@ public enum SyncScMemory implements ScMemory {
                 long addr = addresses.get(i);
                 node.setAddress(addr);
             }
-            return Optional.of(nodesToCreate.stream());
+            return nodesToCreate.stream();
         } catch (ScMemoryException e) {
             logger.error("cant create nodes - " + request);
             throw new ScMemoryException("cant create nodes", e);
