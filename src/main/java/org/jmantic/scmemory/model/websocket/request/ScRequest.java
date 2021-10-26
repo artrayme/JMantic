@@ -6,5 +6,5 @@ package org.jmantic.scmemory.model.websocket.request;
 public interface ScRequest {
     long getRequestId();
 
-    String getRequestType();
+    RequestType getRequestType();
 }
