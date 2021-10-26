@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 public interface ScMemory {
-    Optional<Stream<? extends ScElement>> createNodes(Stream<NodeType> elements) throws ScMemoryException;
+    Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException;
 
     Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
                                             Stream<ScElement> firstComponents,

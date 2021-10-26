@@ -6,7 +6,9 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
+import org.jmantic.scmemory.model.exception.ScMemoryException;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -21,16 +23,29 @@ public class DefaultScContext {
     }
 
     public ScNode createNode(NodeType type) {
-        var result = memory.createNodes(Stream.of(type)).findFirst();
+        Optional<? extends ScElement> result = null;
+        try {
+            //            ToDo something with exceptions
+            result = memory.createNodes(Stream.of(type)).findFirst();
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
         if (result.isPresent()) {
+            //            ToDo something with exceptions
             return (ScNode) result.get();
         }
+
         //        ToDo normal Exceptions
         throw new RuntimeException("Internal ScError");
     }
 
     public Stream<ScNode> createNodes(Stream<NodeType> types) {
-        var result = memory.createNodes(types);
+        Stream<? extends ScElement> result = null;
+        try {
+            result = memory.createNodes(types);
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
         return result.map(e -> (ScNode) e);
     }
 
