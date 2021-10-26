@@ -1,13 +1,21 @@
 package org.jmantic.scmemory.model.sync;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 
 /**
  * @author Michael
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScNodeImpl implements ScNode {
+    private final String el = "node";
+    @JsonProperty("type")
     private final NodeType nodeType;
+    @JsonProperty("addr")
+    @JsonUnwrapped
     private long address;
 
     public ScNodeImpl(NodeType nodeType) {

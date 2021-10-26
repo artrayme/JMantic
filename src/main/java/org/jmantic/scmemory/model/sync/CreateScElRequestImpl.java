@@ -1,5 +1,6 @@
 package org.jmantic.scmemory.model.sync;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
 import org.jmantic.scmemory.model.websocket.message.request.RequestType;
@@ -11,6 +12,7 @@ import java.util.stream.Stream;
 /**
  * @author Michael
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class CreateScElRequestImpl implements CreateScElRequest {
     private final long requestId;
     private final RequestType requestType;
