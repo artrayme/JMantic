@@ -61,6 +61,7 @@ enum OstisClientImpl implements OstisClient {
         latch = new CountDownLatch(1);
         try {
             client.connectBlocking();
+            logger.info("send msg to server - " + jsonRequest);
             client.send(jsonRequest);
             latch.await();
             client.closeBlocking();
