@@ -18,6 +18,7 @@ import java.util.concurrent.CountDownLatch;
 enum OstisClientImpl implements OstisClient {
     INSTANCE;
     private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private boolean status = false;
     private volatile WebSocketClient client = null;
     private volatile String result;
     private volatile CountDownLatch latch;
@@ -60,7 +61,12 @@ enum OstisClientImpl implements OstisClient {
         }
         latch = new CountDownLatch(1);
         try {
-            client.connectBlocking();
+            if (!status) {
+                client.connectBlocking();
+                status = true;
+            } else {
+                client.reconnectBlocking();
+            }
             logger.info("send msg to server - " + jsonRequest);
             client.send(jsonRequest);
             latch.await();
