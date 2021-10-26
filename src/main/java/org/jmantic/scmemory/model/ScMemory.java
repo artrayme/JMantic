@@ -10,7 +10,9 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.event.ScEvent;
+import org.jmantic.scmemory.model.exception.ScMemoryException;
 
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -19,7 +21,7 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 public interface ScMemory {
-    Stream<? extends ScElement> createNodes(Stream<NodeType> elements);
+    Optional<Stream<? extends ScElement>> createNodes(Stream<NodeType> elements) throws ScMemoryException;
 
     Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
                                             Stream<ScElement> firstComponents,

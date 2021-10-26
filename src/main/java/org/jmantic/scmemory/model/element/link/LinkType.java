@@ -1,5 +1,7 @@
 package org.jmantic.scmemory.model.element.link;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Enum of available {@link ScLink} types.
  * <p>
@@ -17,16 +19,10 @@ public enum LinkType {
 
     LINK_VAR(66);
 
+    @JsonValue
     private final int code;
 
     LinkType(int code) {
         this.code = code;
-    }
-
-    /**
-     * DO NOT USE IT
-     */
-    public int getCode() {
-        return code;
     }
 }

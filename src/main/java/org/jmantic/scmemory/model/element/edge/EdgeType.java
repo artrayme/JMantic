@@ -1,5 +1,7 @@
 package org.jmantic.scmemory.model.element.edge;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Enum of available {@link ScEdge} types.
  * <p>
@@ -50,16 +52,10 @@ public enum EdgeType {
 
     ACCESS_VAR_FUZ_TEMP(1616);
 
+    @JsonValue
     private final int code;
 
     EdgeType(int code) {
         this.code = code;
-    }
-
-    /**
-     * DO NOT USE IT
-     */
-    public int getCode() {
-        return code;
     }
 }

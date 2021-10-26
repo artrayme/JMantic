@@ -1,5 +1,7 @@
 package org.jmantic.scmemory.model.element.node;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Enum of available {@link ScNode} types.
  * <p>
@@ -59,16 +61,10 @@ public enum NodeType {
 
     VarMaterial(8257);
 
+    @JsonValue
     private final int code;
 
     NodeType(int code) {
         this.code = code;
-    }
-
-    /**
-     * DO NOT USE IT
-     */
-    public int getCode() {
-        return code;
     }
 }
