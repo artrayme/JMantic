@@ -1,5 +1,7 @@
 package org.jmantic.scmemory.model.event;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Enum of available {@link ScEvent} types
  *
@@ -15,13 +17,10 @@ public enum EventType {
     ON_CONTENT_CHANGE("content_change"),
     ON_DELETE_ELEMENT("delete_element");
 
+    @JsonValue
     private final String type;
 
     EventType(String type) {
         this.type = type;
-    }
-
-    public String getType() {
-        return type;
     }
 }
