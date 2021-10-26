@@ -14,9 +14,10 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author Michael
  */
+//todo normalno zapili, debil
 enum OstisClientImpl implements OstisClient {
     INSTANCE;
-    private final Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
     private volatile WebSocketClient client;
     private volatile String result;
     private volatile CountDownLatch latch;
@@ -52,8 +53,9 @@ enum OstisClientImpl implements OstisClient {
     @Override
     public synchronized String sendToOstis(String jsonRequest) throws ScMemoryException {
         if (client == null) {
-            logger.info("");
-            throw new ScMemoryException("pls, configure client with URI");
+            String msg = "pls, configure client with URI";
+            logger.info(msg);
+            throw new ScMemoryException(msg);
         }
         latch = new CountDownLatch(1);
         client.connect();
@@ -61,8 +63,9 @@ enum OstisClientImpl implements OstisClient {
         try {
             latch.await();
         } catch (InterruptedException e) {
-            logger.info("smth wrong in OstisClient");
-            throw new ScMemoryException("smth wrong", e);
+            String msg = "smth wrong in OstisClient";
+            logger.info(msg);
+            throw new ScMemoryException(msg, e);
         }
         client.close();
         return result;
