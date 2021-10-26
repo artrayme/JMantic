@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.impl;
+package org.jmantic.scmemory.model.sync;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 enum OstisClientImpl implements OstisClient {
     INSTANCE;
     private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
-    private volatile WebSocketClient client;
+    private volatile WebSocketClient client = null;
     private volatile String result;
     private volatile CountDownLatch latch;
 
@@ -32,6 +32,7 @@ enum OstisClientImpl implements OstisClient {
 
             @Override
             public void onMessage(String message) {
+                logger.info("Msg from server - " + message);
                 result = message;
                 if (latch != null) {
                     latch.countDown();
@@ -54,20 +55,21 @@ enum OstisClientImpl implements OstisClient {
     public synchronized String sendToOstis(String jsonRequest) throws ScMemoryException {
         if (client == null) {
             String msg = "pls, configure client with URI";
-            logger.info(msg);
+            logger.error(msg);
             throw new ScMemoryException(msg);
         }
         latch = new CountDownLatch(1);
-        client.connect();
-        client.send(jsonRequest);
         try {
+            client.connectBlocking();
+            client.send(jsonRequest);
             latch.await();
+            client.closeBlocking();
         } catch (InterruptedException e) {
             String msg = "smth wrong in OstisClient";
-            logger.info(msg);
+            logger.error(msg);
             throw new ScMemoryException(msg, e);
         }
-        client.close();
+        logger.info("return value - " + result);
         return result;
     }
 }

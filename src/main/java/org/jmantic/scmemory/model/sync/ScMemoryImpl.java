@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.impl;
+package org.jmantic.scmemory.model.sync;
 
 import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
