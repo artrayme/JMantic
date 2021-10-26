@@ -7,7 +7,16 @@ import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.link.*;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.event.ScEvent;
+import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.websocket.core.OstisClient;
+import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
+import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
+import org.jmantic.scmemory.model.websocket.sender.RequestSender;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.net.URI;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -17,12 +26,42 @@ import java.util.stream.Stream;
  */
 public enum SyncScMemory implements ScMemory {
     INSTANCE;
+    private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private final OstisClient ostisClient;
+    private final RequestSender requestSender;
+
+    {
+        ostisClient = OstisClientImpl.INSTANCE;
+        requestSender = new RequestSenderImpl(ostisClient);
+    }
+
+    public void configureURI(URI uri) {
+        ostisClient.configure(uri);
+    }
 
     //todo (0(
 
     @Override
-    public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) {
-        return null;
+    public Optional<Stream<? extends ScElement>> createNodes(Stream<NodeType> elements) throws ScMemoryException {
+        CreateScElRequest request = new CreateScElRequestImpl();
+        var nodesToCreate = elements
+                .map(ScNodeImpl::new)
+                .toList();
+        nodesToCreate.forEach(request::addElementToRequest);
+
+        try {
+            CreateScElResponse response = requestSender.sendCreateElRequest(request);
+            var addresses = response.getAddresses().toList();
+            for (int i = 0; i < addresses.size(); i++) {
+                ScNodeImpl node = nodesToCreate.get(i);
+                long addr = addresses.get(i);
+                node.setAddress(addr);
+            }
+            return Optional.of(nodesToCreate.stream());
+        } catch (ScMemoryException e) {
+            logger.error("cant create nodes - " + request);
+            throw new ScMemoryException("cant create nodes", e);
+        }
     }
 
     @Override
@@ -77,7 +116,6 @@ public enum SyncScMemory implements ScMemory {
 
     @Override
     public void removeEventListener(ScEvent event) {
-
     }
 
     @Override
