@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 /**
  * @author Michael
  */
-public enum ScMemoryImpl implements ScMemory {
+public enum SyncScMemory implements ScMemory {
     INSTANCE;
 
     //todo (0(
