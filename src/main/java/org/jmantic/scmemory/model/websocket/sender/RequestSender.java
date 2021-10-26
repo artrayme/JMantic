@@ -10,5 +10,5 @@ import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
 public interface RequestSender {
     CreateScElResponse sendCreateElRequest(CreateScElRequest request) throws ScMemoryException;
 
-    //todo mode requests
+    //todo more requests
 }
