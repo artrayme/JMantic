@@ -2,6 +2,9 @@ package org.jmantic.scmemory.model.websocket.request;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * @author Michael
+ */
 public enum RequestType {
     CREATE_ELEMENTS("create_elements"),
     CHECK_ELEMENTS("check_elements"),
