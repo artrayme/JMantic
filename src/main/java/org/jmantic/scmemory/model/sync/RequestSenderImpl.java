@@ -31,10 +31,10 @@ class RequestSenderImpl implements RequestSender {
     public CreateScElResponse sendCreateElRequest(CreateScElRequest request) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("request to ostis - " + request);
+            logger.info("Request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             CreateScElResponse response = mapper.readValue(msg, CreateScElResponseImpl.class);
-            logger.info("response from ostis - " + response);
+            logger.info("Response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
