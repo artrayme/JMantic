@@ -9,7 +9,6 @@ import org.jmantic.scmemory.model.websocket.message.request.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * @author Michael
@@ -23,10 +22,22 @@ class CreateScElRequestImpl implements CreateScElRequest {
     @JsonProperty("payload")
     private List<ScElement> elementsToCreate;
 
-    public CreateScElRequestImpl() {
+    {
         requestId = 1;
         requestType = RequestType.CREATE_ELEMENTS;
-        this.elementsToCreate = new ArrayList<>(5);
+    }
+
+    public CreateScElRequestImpl() {
+        elementsToCreate = new ArrayList<>(10);
+    }
+
+    public CreateScElRequestImpl(List<ScElement> elementsToCreate) {
+        this.elementsToCreate = elementsToCreate;
+    }
+
+    @Override
+    public void replaceRequest(List<ScElement> elements) {
+        elementsToCreate = elements;
     }
 
     @Override
@@ -35,9 +46,9 @@ class CreateScElRequestImpl implements CreateScElRequest {
     }
 
     @Override
-    public Stream<ScElement> resetRequest() {
-        Stream<ScElement> elements = elementsToCreate.stream();
-        elementsToCreate = new ArrayList<>(5);
+    public List<ScElement> resetRequest() {
+        List<ScElement> elements = elementsToCreate;
+        elementsToCreate = new ArrayList<>(10);
         return elements;
     }
 
