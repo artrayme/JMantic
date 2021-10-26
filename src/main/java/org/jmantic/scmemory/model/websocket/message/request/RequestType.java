@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.websocket.request;
+package org.jmantic.scmemory.model.websocket.message.request;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

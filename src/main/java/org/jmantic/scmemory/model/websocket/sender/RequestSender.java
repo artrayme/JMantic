@@ -1,7 +1,7 @@
 package org.jmantic.scmemory.model.websocket.sender;
 
-import org.jmantic.scmemory.model.websocket.request.CreateScElRequest;
-import org.jmantic.scmemory.model.websocket.response.CreateScElResponse;
+import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
+import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
 
 /**
  * @author Michael
