@@ -6,10 +6,8 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.sync.SyncScMemory;
 import org.junit.jupiter.api.Test;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.stream.Stream;
 
@@ -38,7 +36,7 @@ public class CreateNodeTest {
 
     @Test
     void createNodes() {
-        long size = 10000;
+        long size = 10;
         var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
         long start = System.currentTimeMillis();
         Stream<ScNode> nodes = scContext.createNodes(types);
