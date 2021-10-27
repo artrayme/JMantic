@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.websocket.message;
+package org.jmantic.scmemory.websocketmemory.message;
 
 public abstract class ScMemoryView {
     public abstract static class Request {

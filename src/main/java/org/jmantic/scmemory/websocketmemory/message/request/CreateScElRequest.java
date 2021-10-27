@@ -1,9 +1,8 @@
-package org.jmantic.scmemory.model.websocket.message.request;
+package org.jmantic.scmemory.websocketmemory.message.request;
 
 import org.jmantic.scmemory.model.element.ScElement;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * @author Michael

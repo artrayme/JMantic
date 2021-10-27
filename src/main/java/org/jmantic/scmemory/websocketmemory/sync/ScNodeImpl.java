@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.sync;
+package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.websocket.message.ScMemoryView;
+import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 /**
  * @author Michael

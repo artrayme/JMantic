@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.websocket.message.response;
+package org.jmantic.scmemory.websocketmemory.message.response;
 
 import java.util.stream.Stream;
 

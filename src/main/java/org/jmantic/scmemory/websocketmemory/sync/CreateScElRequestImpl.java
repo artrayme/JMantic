@@ -1,11 +1,11 @@
-package org.jmantic.scmemory.model.sync;
+package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.model.element.ScElement;
-import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
-import org.jmantic.scmemory.model.websocket.message.request.RequestType;
+import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;

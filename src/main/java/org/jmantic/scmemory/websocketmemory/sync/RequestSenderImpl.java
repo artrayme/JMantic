@@ -1,14 +1,14 @@
-package org.jmantic.scmemory.model.sync;
+package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.model.websocket.core.OstisClient;
-import org.jmantic.scmemory.model.websocket.message.ScMemoryView;
-import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
-import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
-import org.jmantic.scmemory.model.websocket.sender.RequestSender;
+import org.jmantic.scmemory.websocketmemory.core.OstisClient;
+import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
+import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

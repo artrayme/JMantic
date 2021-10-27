@@ -1,9 +1,9 @@
-package org.jmantic.scmemory.model.sync;
+package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 
 import java.util.List;
 import java.util.stream.Stream;
