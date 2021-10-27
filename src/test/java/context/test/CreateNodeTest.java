@@ -1,5 +1,6 @@
 package context.test;
 
+import context.mock.ScMemoryMock;
 import org.jmantic.api.context.DefaultScContext;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class CreateNodeTest {
-    DefaultScContext scContext = new DefaultScContext(new SyncScMemory(new URI("ws://localhost:8090/ws_json")));
+    DefaultScContext scContext = new DefaultScContext(new ScMemoryMock());
 
     public CreateNodeTest() throws URISyntaxException {
 
