@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  * @author Michael
  */
 public class SyncScMemory implements ScMemory {
-    private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
     private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
     private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
 
