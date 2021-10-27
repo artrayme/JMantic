@@ -28,7 +28,7 @@ import java.util.stream.Stream;
  * @author Michael
  */
 public class SyncScMemory implements ScMemory {
-    private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
     private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
     private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
 
@@ -46,8 +46,11 @@ public class SyncScMemory implements ScMemory {
                 .toList();
         nodesToCreate.forEach(request::addElementToRequest);
 
+        logger.info("nodes to create - {}", nodesToCreate);
+
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
+        logger.info("sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);
             long addr = addresses.get(i);

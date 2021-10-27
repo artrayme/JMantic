@@ -1,6 +1,7 @@
 package org.jmantic.scmemory.model.sync;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
@@ -48,5 +49,17 @@ class ScEdgeImpl implements ScEdge {
     @Override
     public ScElement getSecond() {
         return targetElement;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScEdgeImpl{");
+        sb.append("edgeType=").append(edgeType);
+        sb.append(", address=").append(address);
+        sb.append(", sourceElement=").append(sourceElement);
+        sb.append(", targetElement=").append(targetElement);
+        sb.append('}');
+        return sb.toString();
     }
 }

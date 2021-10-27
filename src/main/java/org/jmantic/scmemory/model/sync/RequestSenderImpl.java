@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  * @author Michael
  */
 class RequestSenderImpl implements RequestSender {
-    private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
+    private final static Logger logger = LoggerFactory.getLogger(RequestSenderImpl.class);
     private final OstisClient client;
     private final ObjectMapper mapper;
     private final ObjectWriter writer;
