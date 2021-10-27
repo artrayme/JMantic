@@ -1,5 +1,6 @@
 package org.jmantic.scmemory.model.sync;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
@@ -40,6 +41,17 @@ public class ScLinkImpl implements ScLinkFloat {
     public float getContent() {
         return content;
     }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScLinkImpl{");
+        sb.append("linkType=").append(linkType);
+        sb.append(", content=").append(content);
+        sb.append(", address=").append(address);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 
@@ -77,6 +89,17 @@ class ScLinkIntegerImpl implements ScLinkInteger {
     public int getContent() {
         return content;
     }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScLinkIntegerImpl{");
+        sb.append("linkType=").append(linkType);
+        sb.append(", content=").append(content);
+        sb.append(", address=").append(address);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 /**
@@ -112,6 +135,17 @@ class ScLinkStringImpl implements ScLinkString {
     @Override
     public String getContent() {
         return content;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScLinkStringImpl{");
+        sb.append("linkType=").append(linkType);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", address=").append(address);
+        sb.append('}');
+        return sb.toString();
     }
 }
 
