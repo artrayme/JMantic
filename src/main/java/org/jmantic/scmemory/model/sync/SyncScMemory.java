@@ -46,8 +46,11 @@ public class SyncScMemory implements ScMemory {
                 .toList();
         nodesToCreate.forEach(request::addElementToRequest);
 
+        logger.info("nodes to create - {}", nodesToCreate);
+
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
+        logger.info("sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);
             long addr = addresses.get(i);
