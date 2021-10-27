@@ -1,8 +1,8 @@
-package org.jmantic.scmemory.model.websocket.sender;
+package org.jmantic.scmemory.websocketmemory.sender;
 
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.model.websocket.message.request.CreateScElRequest;
-import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 
 /**
  * @author Michael

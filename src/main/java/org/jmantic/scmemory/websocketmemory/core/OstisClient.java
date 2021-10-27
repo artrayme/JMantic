@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.websocket.core;
+package org.jmantic.scmemory.websocketmemory.core;
 
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 

@@ -1,4 +1,4 @@
-package org.jmantic.scmemory.model.sync;
+package org.jmantic.scmemory.websocketmemory.sync;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
