@@ -1,6 +1,7 @@
 package org.jmantic.scmemory.model.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.jmantic.scmemory.model.element.node.NodeType;
@@ -36,5 +37,16 @@ class ScNodeImpl implements ScNode {
     @Override
     public NodeType getType() {
         return nodeType;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScNodeImpl{");
+        sb.append("el='").append(el).append('\'');
+        sb.append(", nodeType=").append(nodeType);
+        sb.append(", address=").append(address);
+        sb.append('}');
+        return sb.toString();
     }
 }

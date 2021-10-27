@@ -1,6 +1,7 @@
 package org.jmantic.scmemory.model.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.model.websocket.message.response.CreateScElResponse;
 
@@ -37,5 +38,17 @@ class CreateScElResponseImpl implements CreateScElResponse {
     @Override
     public boolean getEvent() {
         return event;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("CreateScElResponseImpl{");
+        sb.append("responseId=").append(responseId);
+        sb.append(", status=").append(status);
+        sb.append(", event=").append(event);
+        sb.append(", createdElementAddress=").append(createdElementAddress);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -67,4 +67,15 @@ class CreateScElRequestImpl implements CreateScElRequest {
     public boolean isEmpty() {
         return elementsToCreate.isEmpty();
     }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("CreateScElRequestImpl{");
+        sb.append("requestId=").append(requestId);
+        sb.append(", requestType=").append(requestType);
+        sb.append(", elementsToCreate=").append(elementsToCreate);
+        sb.append('}');
+        return sb.toString();
+    }
 }
