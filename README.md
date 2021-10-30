@@ -1,7 +1,7 @@
 ![](logo/project_logo.png)
 # JMantic Project
 
-[![testing](https://github.com/artrayme/JMantic/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build_and_test.yml)
+[![testing](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml)
 ## Overview
 
 The goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using
