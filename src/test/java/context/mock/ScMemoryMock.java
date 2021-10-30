@@ -83,22 +83,44 @@ public class ScMemoryMock implements ScMemory {
 
     @Override
     public Stream<? extends ScElement> createFloatLink(Stream<LinkType> elements, Stream<Float> content) {
-        return null;
+        logger.info("START CREATING LINK FLOAT");
+        List<Float> elem = content.toList();
+        List<LinkType> types = elements.toList();
+        int initSize = links.size();
+        for (int i = 0; i < types.size(); i++) {
+            long id = random.nextLong();
+            logger.info("creating float link with type {}, content {} and id {}", types.get(i), elem.get(i), id);
+            links.add(new MockScLinkFloat(random.nextLong(), types.get(i), elem.get(i)));
+        }
+        Stream<ScLink> result = links.stream().skip(initSize);
+        logger.info("END CREATING LINK FLOAT");
+        return result;
     }
 
     @Override
     public Stream<? extends ScElement> createStringLink(Stream<LinkType> elements, Stream<String> content) {
-        return null;
-    }
+        logger.info("START CREATING LINK STRING");
+        List<String> elem = content.toList();
+        List<LinkType> types = elements.toList();
+        int initSize = links.size();
+        for (int i = 0; i < types.size(); i++) {
+            long id = random.nextLong();
+            logger.info("creating string link with type {}, content {} and id {}", types.get(i), elem.get(i), id);
+            links.add(new MockScLinkString(random.nextLong(), types.get(i), elem.get(i)));
+        }
+        Stream<ScLink> result = links.stream().skip(initSize);
+        logger.info("END CREATING LINK STRING");
+        return result;    }
 
     @Override
     public Stream<? extends ScElement> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 
     @Override
     public Stream<ScElement> checkElements(Stream<ScElement> elements) {
+
         return null;
     }
 
@@ -154,6 +176,11 @@ public class ScMemoryMock implements ScMemory {
 
     @Override
     public Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content) {
+        return null;
+    }
+
+    @Override
+    public Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content) {
         return null;
     }
 }
