@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Ostis
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           repository: ostis-apps/ostis-example-app
-          run: |
+        run: |
             cd ostis-example-app
             git checkout 0.6.0
             bash ./scripts/install_ostis.sh
@@ -46,7 +46,7 @@ jobs:
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
 
       - name: Build project
-        run: gradle build
+        run: gradle assemble
 
       - name: Run tests
         run: gradle test
