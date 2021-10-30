@@ -1,5 +1,6 @@
 package context.test;
 
+import context.mock.ScMemoryMock;
 import org.jmantic.api.context.DefaultScContext;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class CreateNodeTest {
-    DefaultScContext scContext = new DefaultScContext(new SyncScMemory(new URI("ws://localhost:8090/ws_json")));
+    private final DefaultScContext scContext = new DefaultScContext(new ScMemoryMock());
 
     public CreateNodeTest() throws URISyntaxException {
 
@@ -37,9 +38,7 @@ public class CreateNodeTest {
     void createNodes() {
         long size = 10;
         var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
-        long start = System.currentTimeMillis();
         Stream<ScNode> nodes = scContext.createNodes(types);
-        System.err.println("Time = " + (System.currentTimeMillis() - start));
         nodes.forEach(e -> {
             assertEquals(e.getType(), NodeType.NODE);
         });
