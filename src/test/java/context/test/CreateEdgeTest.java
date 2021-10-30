@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * 10/30/21
  */
 public class CreateEdgeTest {
-    private final DefaultScContext scContext = new DefaultScContext(new ScMemoryMock());
+    private final DefaultScContext scContext = new DefaultScContext(new SyncScMemory(new URI("ws://localhost:8090/ws_json")));
 
     public CreateEdgeTest() throws URISyntaxException {
 
