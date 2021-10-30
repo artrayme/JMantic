@@ -25,18 +25,12 @@ public class DefaultScContext {
     public ScNode createNode(NodeType type) {
         Optional<? extends ScElement> result = null;
         try {
-            //            ToDo something with exceptions
             result = memory.createNodes(Stream.of(type)).findFirst();
         } catch (ScMemoryException e) {
+//            ToDo logger
             e.printStackTrace();
         }
-        if (result.isPresent()) {
-            //            ToDo something with exceptions
-            return (ScNode) result.get();
-        }
-
-        //        ToDo normal Exceptions
-        throw new RuntimeException("Internal ScError");
+        return (ScNode) result.get();
     }
 
     public Stream<ScNode> createNodes(Stream<NodeType> types) {
@@ -44,18 +38,22 @@ public class DefaultScContext {
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
+//            ToDO logger
             e.printStackTrace();
         }
         return result.map(e -> (ScNode) e);
     }
 
     public ScEdge createEdge(EdgeType type, ScElement first, ScElement second) {
-        var edge = memory.createEdges(Stream.of(type), Stream.of(first), Stream.of(second)).findFirst();
-        if (edge.isPresent()) {
-            return (ScEdge) edge.get();
+        Optional<? extends ScElement> edge = null;
+        try {
+            edge = memory.createEdges(Stream.of(type), Stream.of(first), Stream.of(second)).findFirst();
+        } catch (ScMemoryException e) {
+//            ToDo logger
+            e.printStackTrace();
         }
-        //        ToDo normal Exceptions
-        throw new RuntimeException("Internal ScError");
+        return (ScEdge) edge.get();
     }
+
 
 }
