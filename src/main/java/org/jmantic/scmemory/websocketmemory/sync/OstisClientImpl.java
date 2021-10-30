@@ -1,11 +1,11 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
 import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.exceptions.WebsocketNotConnectedException;
 import org.java_websocket.handshake.ServerHandshake;
 import org.jmantic.scmemory.model.exception.OstisClientConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ enum OstisClientImpl implements OstisClient {
     public synchronized void configure(URI uriToServer) {
         this.client = new WebSocketClient(uriToServer) {
             @Override
-            public void onOpen(ServerHandshake handshakedata) {
+            public void onOpen(ServerHandshake handshakeData) {
             }
 
             @Override
@@ -54,7 +54,7 @@ enum OstisClientImpl implements OstisClient {
 
     @Override
     public synchronized String sendToOstis(String jsonRequest) throws ScMemoryException {
-        if (client == null) {
+        if (client == null || !client.isOpen()) {
             String msg = "Ostis client not configured. Call the configure method first";
             logger.error(msg);
             throw new OstisClientConfigurationException(msg);
