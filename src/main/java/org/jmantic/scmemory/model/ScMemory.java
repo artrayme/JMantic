@@ -12,7 +12,6 @@ import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.event.ScEvent;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -25,17 +24,17 @@ public interface ScMemory {
 
     Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
                                             Stream<ScElement> firstComponents,
-                                            Stream<ScElement> secondComponents);
+                                            Stream<ScElement> secondComponents) throws ScMemoryException;
 
-    Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content);
+    Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
 
-    Stream<? extends ScElement> createFloatLink(Stream<LinkType> elements, Stream<Float> content);
+    Stream<? extends ScElement> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
 
-    Stream<? extends ScElement> createStringLink(Stream<LinkType> elements, Stream<String> content);
+    Stream<? extends ScElement> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
 
-    Stream<? extends ScElement> createBinaryLink(Stream<LinkType> elements, Stream<Object> content);
+    Stream<? extends ScElement> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException;
 
-    Stream<ScElement> checkElements(Stream<ScElement> elements);
+    Stream<ScElement> checkElements(Stream<ScElement> elements) throws ScMemoryException;
 
     boolean deleteNode(Stream<ScElement> elements);
 
@@ -62,5 +61,5 @@ public interface ScMemory {
 
     Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content);
 
-    //    ToDO set binary content
+    Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content);
 }
