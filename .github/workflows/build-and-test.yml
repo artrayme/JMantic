@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - uses: docker-practice/actions-setup-docker@master
-      - run:  sudo docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
+      - run:  sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
 
       - uses: actions/checkout@v2
       - name: Set up JDK 16
