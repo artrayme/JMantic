@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: docker-practice/actions-setup-docker@master
       - run: |
-          set -x
 
           docker version
 
