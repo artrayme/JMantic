@@ -10,29 +10,30 @@ jobs:
   start_ostis:
     runs-on: ubuntu-latest
     steps:
-#      - uses: actions/checkout@v2
-#      - name: Run Ostis
-#        uses: actions/checkout@v2
-#        with:
-#          repository: ostis-apps/ostis-example-app
-#          path: './bar'
+      #      - uses: actions/checkout@v2
+      #      - name: Run Ostis
+      #        uses: actions/checkout@v2
+      #        with:
+      #          repository: ostis-apps/ostis-example-app
+      #          path: './bar'
 
-      - name: Run Ostis
-        uses: actions/checkout@v2
-        with:
-          repository: ostis-apps/ostis-example-app
-          path: './ostis-example-app'
-      - run: |
-          cd ostis-example-app
-          git checkout 0.6.0
-          bash ./scripts/install_ostis.sh
-          bash ./ostis-web-platform/scripts/run_scweb.sh
+      #      - name: Run Ostis
+      #        uses: actions/checkout@v2
+      #        with:
+      #          repository: ostis-apps/ostis-example-app
+      #          path: './ostis-example-app'
+      #      - run: |
+      #          cd ostis-example-app
+      #          git checkout 0.6.0
+      #          bash ./scripts/install_ostis.sh
+      #          bash ./ostis-web-platform/scripts/run_scweb.sh
+
+      - uses: docker-practice/actions-setup-docker@master
+      - run: sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
 
   test:
     runs-on: ubuntu-latest
     steps:
-      #      - uses: docker-practice/actions-setup-docker@master
-      #      - run: sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
 
       #      - name: Clone GuillaumeFalourd/poc-github-actions PUBLIC repository
       #        uses: GuillaumeFalourd/clone-github-repo-action@v1
