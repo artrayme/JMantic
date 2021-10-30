@@ -10,15 +10,22 @@ jobs:
   start_ostis:
     runs-on: ubuntu-latest
     steps:
+#      - uses: actions/checkout@v2
+#      - name: Run Ostis
+#        uses: actions/checkout@v2
+#        with:
+#          repository: ostis-apps/ostis-example-app
+#          path: './bar'
+
       - name: Run Ostis
         uses: actions/checkout@v2
         with:
           repository: ostis-apps/ostis-example-app
-        run: |
-            cd ostis-example-app
-            git checkout 0.6.0
-            bash ./scripts/install_ostis.sh
-            bash ./ostis-web-platform/scripts/run_scweb.sh
+      - run: |
+          cd ostis-example-app
+          git checkout 0.6.0
+          bash ./scripts/install_ostis.sh
+          bash ./ostis-web-platform/scripts/run_scweb.sh
 
   test:
     runs-on: ubuntu-latest
