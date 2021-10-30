@@ -142,4 +142,9 @@ public class SyncScMemory implements ScMemory {
     public Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content) {
         return null;
     }
+
+    @Override
+    public Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content) {
+        return null;
+    }
 }
