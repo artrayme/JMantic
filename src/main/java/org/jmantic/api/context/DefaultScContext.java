@@ -55,5 +55,16 @@ public class DefaultScContext {
         return (ScEdge) edge.get();
     }
 
+    public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<ScElement> firstElements, Stream<ScElement> secondElements) {
+        Stream<ScEdge> scEdgeStream = null;
+        try {
+            scEdgeStream = memory.createEdges(types, firstElements, secondElements).map(e -> (ScEdge) e);
+        } catch (ScMemoryException e) {
+            //            ToDo logger
+            e.printStackTrace();
+        }
+        return scEdgeStream;
+    }
+
 
 }
