@@ -43,7 +43,7 @@ jobs:
       - name: Sleep for 10 seconds)0)
         uses: jakejarvis/wait-action@master
         with:
-          time: '10s'
+          time: '200'
 
       - uses: actions/checkout@v2
       - name: Set up JDK 16
