@@ -17,4 +17,5 @@ sc_web() {
 sctp
 sc_web
 
+cd /JMantic
 ./gradlew test
