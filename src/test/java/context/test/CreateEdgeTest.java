@@ -1,6 +1,5 @@
 package context.test;
 
-import context.mock.ScMemoryMock;
 import org.jmantic.api.context.DefaultScContext;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
