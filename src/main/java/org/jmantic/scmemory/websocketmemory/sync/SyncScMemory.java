@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -41,13 +42,13 @@ public class SyncScMemory implements ScMemory {
         CreateScElRequest request = new CreateScElRequestImpl();
         var nodesToCreate = elements
                 .map(ScNodeImpl::new)
-                .toList();
+                .collect(Collectors.toList());
         nodesToCreate.forEach(request::addElementToRequest);
 
         logger.info("nodes to create - {}", nodesToCreate);
 
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().toList();
+        var addresses = response.getAddresses().collect(Collectors.toList());
         logger.info("sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -50,9 +51,9 @@ public class ScMemoryMock implements ScMemory {
     public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
                                                    Stream<ScElement> firstComponents,
                                                    Stream<ScElement> secondComponents) {
-        List<ScElement> first = firstComponents.toList();
-        List<ScElement> second = secondComponents.toList();
-        List<EdgeType> type = elements.toList();
+        List<ScElement> first = firstComponents.collect(Collectors.toList());
+        List<ScElement> second = secondComponents.collect(Collectors.toList());
+        List<EdgeType> type = elements.collect(Collectors.toList());
         logger.info("START CREATING EDGES");
         int initSize = edges.size();
         for (int i = 0; i < type.size(); i++) {
@@ -68,8 +69,8 @@ public class ScMemoryMock implements ScMemory {
     @Override
     public Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) {
         logger.info("START CREATING LINK INTEGER");
-        List<Integer> elem = content.toList();
-        List<LinkType> types = elements.toList();
+        List<Integer> elem = content.collect(Collectors.toList());
+        List<LinkType> types = elements.collect(Collectors.toList());
         int initSize = links.size();
         for (int i = 0; i < types.size(); i++) {
             long id = random.nextLong();
@@ -84,8 +85,8 @@ public class ScMemoryMock implements ScMemory {
     @Override
     public Stream<? extends ScElement> createFloatLink(Stream<LinkType> elements, Stream<Float> content) {
         logger.info("START CREATING LINK FLOAT");
-        List<Float> elem = content.toList();
-        List<LinkType> types = elements.toList();
+        List<Float> elem = content.collect(Collectors.toList());
+        List<LinkType> types = elements.collect(Collectors.toList());
         int initSize = links.size();
         for (int i = 0; i < types.size(); i++) {
             long id = random.nextLong();
@@ -100,8 +101,8 @@ public class ScMemoryMock implements ScMemory {
     @Override
     public Stream<? extends ScElement> createStringLink(Stream<LinkType> elements, Stream<String> content) {
         logger.info("START CREATING LINK STRING");
-        List<String> elem = content.toList();
-        List<LinkType> types = elements.toList();
+        List<String> elem = content.collect(Collectors.toList());
+        List<LinkType> types = elements.collect(Collectors.toList());
         int initSize = links.size();
         for (int i = 0; i < types.size(); i++) {
             long id = random.nextLong();
