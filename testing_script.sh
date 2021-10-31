@@ -17,5 +17,5 @@ sctp
 sc_web
 
 sleep 1
-sh gradlew test
+sh ./gradlew test
 exit 1
