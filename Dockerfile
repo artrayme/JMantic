@@ -71,9 +71,9 @@ RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_s
 #COPY scripts/ostis /ostis/scripts/
 
 
-WORKDIR /jmantic
-RUN git clone https://github.com/artrayme/JMantic.git | ls
-WORKDIR /jmantic/JMantic
+WORKDIR /
+RUN git clone https://github.com/artrayme/JMantic.git
+WORKDIR /JMantic
 RUN sudo bash gradlew
 
 #
