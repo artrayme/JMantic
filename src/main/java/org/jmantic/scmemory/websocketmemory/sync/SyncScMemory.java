@@ -10,7 +10,6 @@ import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.event.ScEvent;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
@@ -20,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 
@@ -102,15 +100,6 @@ public class SyncScMemory implements ScMemory {
     @Override
     public boolean deleteLink(Stream<ScLink> elements) {
         return false;
-    }
-
-    @Override
-    public void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate) {
-
-    }
-
-    @Override
-    public void removeEventListener(ScEvent event) {
     }
 
     @Override
