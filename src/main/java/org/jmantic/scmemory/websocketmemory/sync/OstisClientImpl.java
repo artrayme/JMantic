@@ -1,7 +1,6 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
 import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.exceptions.WebsocketNotConnectedException;
 import org.java_websocket.handshake.ServerHandshake;
 import org.jmantic.scmemory.model.exception.OstisClientConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
@@ -19,7 +18,6 @@ import java.util.concurrent.CountDownLatch;
 enum OstisClientImpl implements OstisClient {
     INSTANCE;
     private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
-    private boolean status = false;
     private volatile WebSocketClient client = null;
     private volatile String result;
     private volatile CountDownLatch latch;
@@ -54,19 +52,14 @@ enum OstisClientImpl implements OstisClient {
 
     @Override
     public synchronized String sendToOstis(String jsonRequest) throws ScMemoryException {
-        if (client == null || !client.isOpen()) {
+        if (client == null) {
             String msg = "Ostis client not configured. Call the configure method first";
             logger.error(msg);
             throw new OstisClientConfigurationException(msg);
         }
         latch = new CountDownLatch(1);
         try {
-            if (!status) {
-                client.connectBlocking();
-                status = true;
-            } else {
-                client.reconnectBlocking();
-            }
+            client.connectBlocking();
             logger.info("send msg to server - " + jsonRequest);
             client.send(jsonRequest);
             latch.await();
