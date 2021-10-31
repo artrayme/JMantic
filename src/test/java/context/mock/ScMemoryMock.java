@@ -140,16 +140,6 @@ public class ScMemoryMock implements ScMemory {
     }
 
     @Override
-    public void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate) {
-
-    }
-
-    @Override
-    public void removeEventListener(ScEvent event) {
-
-    }
-
-    @Override
     public ScElement findKeynode(String identifier) {
         return null;
     }
