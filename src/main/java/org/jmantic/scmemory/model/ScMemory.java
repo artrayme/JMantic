@@ -45,9 +45,9 @@ public interface ScMemory {
     //    ToDO searchTemplate
     //    ToDo generateTemplate
 
-    void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate);
+//    void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate);
 
-    void removeEventListener(ScEvent event);
+//    void removeEventListener(ScEvent event);
 
     ScElement findKeynode(String identifier);
 
