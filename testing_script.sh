@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sctp() {
   cd /ostis/scripts
   ./run_sctp.sh &
