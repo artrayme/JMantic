@@ -11,15 +11,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Java JDK 16
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'zulu'
-          java-version: 16
-
-      - name: Build project
-        run: gradle assemble
-
-      - name: Run tests
-        run: gradle test
+      - uses: docker-practice/actions-setup-docker@master
+      - run: sudo docker run artrayme/jmantic:1.0 sh testing_script.sh
