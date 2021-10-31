@@ -2,10 +2,10 @@ plugins {
     id 'java'
 }
 apply plugin: 'java'
-sourceCompatibility = 16
-targetCompatibility = 16
+sourceCompatibility = 11
+targetCompatibility = 11
 
-group 'org.intelligent-scheduler'
+group 'org.jmantic'
 version '0.0.1'
 
 repositories {
