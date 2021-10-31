@@ -70,7 +70,11 @@ RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_s
 # Copy start container script
 #COPY scripts/ostis /ostis/scripts/
 
-WORKDIR /ostis/scripts
+
+WORKDIR /jmantic
+RUN git clone https://github.com/artrayme/JMantic.git | ls
+WORKDIR /jmantic/JMantic
+RUN sudo bash gradlew
 
 #
 # Image config
