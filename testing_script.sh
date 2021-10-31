@@ -17,4 +17,4 @@ sc_web() {
 sctp
 sc_web
 
-sh ./gradlew test
+./gradlew test
