@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Michael
@@ -33,9 +35,7 @@ enum OstisClientImpl implements OstisClient {
             public void onMessage(String message) {
                 logger.info("Msg from server - " + message);
                 result = message;
-                if (latch != null) {
-                    latch.countDown();
-                }
+                latch.countDown();
             }
 
             @Override
@@ -48,6 +48,11 @@ enum OstisClientImpl implements OstisClient {
 
             }
         };
+        try {
+            client.connectBlocking();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -59,11 +64,9 @@ enum OstisClientImpl implements OstisClient {
         }
         latch = new CountDownLatch(1);
         try {
-            client.connectBlocking();
             logger.info("send msg to server - " + jsonRequest);
             client.send(jsonRequest);
             latch.await();
-            client.closeBlocking();
         } catch (InterruptedException e) {
             String msg = "smth wrong in OstisClient";
             logger.error(msg);
