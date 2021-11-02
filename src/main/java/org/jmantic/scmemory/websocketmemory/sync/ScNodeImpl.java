@@ -39,14 +39,14 @@ class ScNodeImpl implements ScNode {
         return nodeType;
     }
 
+
     @JsonIgnore
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ScNodeImpl{");
-        sb.append("el='").append(el).append('\'');
-        sb.append(", nodeType=").append(nodeType);
-        sb.append(", address=").append(address);
-        sb.append('}');
-        return sb.toString();
+        return "ScNodeImpl{" +
+                "el='" + el + '\'' +
+                ", nodeType=" + nodeType +
+                ", address=" + address +
+                '}';
     }
 }

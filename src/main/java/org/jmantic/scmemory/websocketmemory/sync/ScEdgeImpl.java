@@ -1,65 +1,82 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
+import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 /**
  * @author Michael
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScEdgeImpl implements ScEdge {
-    private final EdgeType edgeType;
+    @JsonProperty("el")
+    @JsonView(ScMemoryView.Request.class)
+    private final String element = "edge";
+
+    @JsonView(ScMemoryView.Address.class)
     private long address;
+
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("src")
     private ScElement sourceElement;
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("trg")
     private ScElement targetElement;
 
-    public ScEdgeImpl(EdgeType edgeType) {
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("type")
+    private final EdgeType edgeType;
+
+    public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement) {
         this.edgeType = edgeType;
-    }
-
-    public void setAddress(long address) {
-        this.address = address;
-    }
-
-    public void setSourceElement(ScElement sourceElement) {
         this.sourceElement = sourceElement;
-    }
-
-    public void setTargetElement(ScElement targetElement) {
         this.targetElement = targetElement;
     }
 
+    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
     }
 
+    @JsonIgnore
+    public void setAddress(long address) {
+        this.address = address;
+    }
+
+    @JsonIgnore
     @Override
     public EdgeType getType() {
         return edgeType;
     }
 
+    @JsonIgnore
     @Override
-    public ScElement getFirst() {
+    public ScElement getSource() {
         return sourceElement;
     }
 
+    @JsonIgnore
     @Override
-    public ScElement getSecond() {
+    public ScElement getTarget() {
         return targetElement;
     }
 
     @JsonIgnore
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ScEdgeImpl{");
-        sb.append("edgeType=").append(edgeType);
-        sb.append(", address=").append(address);
-        sb.append(", sourceElement=").append(sourceElement);
-        sb.append(", targetElement=").append(targetElement);
-        sb.append('}');
-        return sb.toString();
+        return "ScEdgeImpl{" +
+                "el='" + element + '\'' +
+                ", edgeType=" + edgeType +
+                ", address=" + address +
+                ", sourceElement=" + sourceElement +
+                ", targetElement=" + targetElement +
+                '}';
     }
 }

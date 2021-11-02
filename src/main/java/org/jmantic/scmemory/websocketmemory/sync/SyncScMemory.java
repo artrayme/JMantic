@@ -23,6 +23,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -58,11 +60,11 @@ public class SyncScMemory implements ScMemory {
         CreateScElRequest request = new CreateScElRequestImpl();
         request.addToRequest(nodesToCreate);
 
-        logger.info("nodes to create - {}", nodesToCreate);
+        logger.info("Nodes to create - {}", nodesToCreate);
 
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().collect(Collectors.toList());
-        logger.info("sc addresses of nodes - {}", addresses);
+        logger.info("Sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);
             long addr = addresses.get(i);
@@ -72,8 +74,30 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements, Stream<ScElement> firstComponents, Stream<ScElement> secondComponents) {
-        return null;
+    public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
+                                                   Stream<ScElement> firstComponents,
+                                                   Stream<ScElement> secondComponents) throws ScMemoryException {
+        List<ScEdge> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<EdgeType> elementsTypesIter = elements.iterator();
+        Iterator<ScElement> firstComponentsIter = firstComponents.iterator();
+        Iterator<ScElement> secondComponentsIter = secondComponents.iterator();
+        while (elementsTypesIter.hasNext() && firstComponentsIter.hasNext() && secondComponentsIter.hasNext()) {
+            ScEdge edge = new ScEdgeImpl(elementsTypesIter.next(), firstComponentsIter.next(), secondComponentsIter.next());
+            request.addElementToRequest(edge);
+            result.add(edge);
+        }
+        logger.info("Edges to create - {}", request);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of edges - {}", addresses);
+
+        for (int i = 0; i < addresses.size(); i++) {
+            ScEdge e = result.get(i);
+            ((ScEdgeImpl) e).setAddress(addresses.get(i));
+
+        }
+        return result.stream();
     }
 
     @Override
