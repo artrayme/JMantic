@@ -10,6 +10,7 @@ import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
+import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
@@ -35,7 +36,7 @@ public class SyncScMemory implements ScMemory {
 
     private SyncScMemory() {
     }
-    
+
     public static SyncScMemory getSyncScMemory(URI serverUri) {
         instance.ostisClient.configure(serverUri);
         return instance;
@@ -50,12 +51,12 @@ public class SyncScMemory implements ScMemory {
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
 
-        var nodesToCreate = elements
+        List<ScNodeImpl> nodesToCreate = elements
                 .map(ScNodeImpl::new)
                 .collect(Collectors.toList());
 
         CreateScElRequest request = new CreateScElRequestImpl();
-        nodesToCreate.forEach(request::addElementToRequest);
+        request.addToRequest(nodesToCreate);
 
         logger.info("nodes to create - {}", nodesToCreate);
 
