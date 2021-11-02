@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Michael
@@ -23,6 +21,7 @@ enum OstisClientImpl implements OstisClient {
     private volatile WebSocketClient client = null;
     private volatile String result;
     private volatile CountDownLatch latch;
+    private volatile boolean firstConnect = true;
 
     @Override
     public synchronized void configure(URI uriToServer) {
@@ -48,11 +47,6 @@ enum OstisClientImpl implements OstisClient {
 
             }
         };
-        try {
-            client.connectBlocking();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -64,9 +58,16 @@ enum OstisClientImpl implements OstisClient {
         }
         latch = new CountDownLatch(1);
         try {
+            if (firstConnect) {
+                client.connectBlocking();
+                firstConnect = false;
+            } else {
+                client.reconnectBlocking();
+            }
             logger.info("send msg to server - " + jsonRequest);
             client.send(jsonRequest);
             latch.await();
+            client.closeBlocking();
         } catch (InterruptedException e) {
             String msg = "smth wrong in OstisClient";
             logger.error(msg);

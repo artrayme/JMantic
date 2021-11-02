@@ -10,6 +10,7 @@ import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
+import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
@@ -19,11 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -31,22 +32,35 @@ import java.util.stream.Stream;
  */
 public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
-    private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
-    private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
+    private final static SyncScMemory instance = new SyncScMemory();
+    private final OstisClient ostisClient;
+    private final RequestSender requestSender;
 
-    public SyncScMemory(URI serverUri) {
-        ostisClient.configure(serverUri);
+    private SyncScMemory() {
+        ostisClient = OstisClientImpl.INSTANCE;
+        requestSender = new RequestSenderImpl(ostisClient);
+    }
+
+    public static synchronized SyncScMemory getSyncScMemory(URI serverUri) {
+        instance.ostisClient.configure(serverUri);
+        return instance;
+    }
+
+    public static synchronized SyncScMemory getSyncScMemory() {
+        return instance;
     }
 
     //todo (0(
 
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
-        CreateScElRequest request = new CreateScElRequestImpl();
-        var nodesToCreate = elements
+
+        List<ScNodeImpl> nodesToCreate = elements
                 .map(ScNodeImpl::new)
                 .collect(Collectors.toList());
-        nodesToCreate.forEach(request::addElementToRequest);
+
+        CreateScElRequest request = new CreateScElRequestImpl();
+        request.addToRequest(nodesToCreate);
 
         logger.info("Nodes to create - {}", nodesToCreate);
 
