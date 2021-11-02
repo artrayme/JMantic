@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,21 +29,32 @@ import java.util.stream.Stream;
  */
 public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
+    private final static SyncScMemory instance = new SyncScMemory();
     private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
     private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
 
-    public SyncScMemory(URI serverUri) {
-        ostisClient.configure(serverUri);
+    private SyncScMemory() {
+    }
+    
+    public static SyncScMemory getSyncScMemory(URI serverUri) {
+        instance.ostisClient.configure(serverUri);
+        return instance;
+    }
+
+    public static SyncScMemory getSyncScMemory() {
+        return instance;
     }
 
     //todo (0(
 
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
-        CreateScElRequest request = new CreateScElRequestImpl();
+
         var nodesToCreate = elements
                 .map(ScNodeImpl::new)
                 .collect(Collectors.toList());
+
+        CreateScElRequest request = new CreateScElRequestImpl();
         nodesToCreate.forEach(request::addElementToRequest);
 
         logger.info("nodes to create - {}", nodesToCreate);
