@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * 10/30/21
  */
 public class CreateEdgeTest {
-    private final DefaultScContext scContext = new DefaultScContext(new SyncScMemory(new URI("ws://localhost:8090/ws_json")));
+    private final DefaultScContext scContext = new DefaultScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
 
     public CreateEdgeTest() throws URISyntaxException {
 
