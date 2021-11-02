@@ -8,7 +8,7 @@ import java.util.List;
  * @author Michael
  */
 public interface CreateScElRequest extends ScRequest {
-    void replaceRequest(List<ScElement> elements);
+    void addToRequest(List<? extends ScElement> elements);
 
     boolean addElementToRequest(ScElement element);
 

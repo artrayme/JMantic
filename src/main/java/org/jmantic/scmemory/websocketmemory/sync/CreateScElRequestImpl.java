@@ -31,18 +31,19 @@ class CreateScElRequestImpl implements CreateScElRequest {
         elementsToCreate = new ArrayList<>(10);
     }
 
-    public CreateScElRequestImpl(List<ScElement> elementsToCreate) {
-        this.elementsToCreate = elementsToCreate;
+    public CreateScElRequestImpl(List<? extends ScElement> elementsToCreate) {
+        this.elementsToCreate = new ArrayList<>();
+        this.elementsToCreate.addAll(elementsToCreate);
     }
 
     @Override
-    public void replaceRequest(List<ScElement> elements) {
-        elementsToCreate = elements;
+    public void addToRequest(List<? extends ScElement> elements) {
+        elementsToCreate.addAll(elements);
     }
 
     @Override
     public boolean addElementToRequest(ScElement element) {
-        return elementsToCreate.add(element);
+        return false;
     }
 
     @Override
