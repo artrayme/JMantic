@@ -34,12 +34,12 @@ class MockScEdge implements ScEdge {
     }
 
     @Override
-    public ScElement getFirst() {
+    public ScElement getSource() {
         return first;
     }
 
     @Override
-    public ScElement getSecond() {
+    public ScElement getTarget() {
         return second;
     }
 
