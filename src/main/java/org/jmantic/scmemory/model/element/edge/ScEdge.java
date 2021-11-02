@@ -22,10 +22,10 @@ public interface ScEdge extends ScElement {
     /**
      * @return first connected to this edge sc-element
      */
-    ScElement getFirst();
+    ScElement getSource();
 
     /**
      * @return second connected to this edge sc-element
      */
-    ScElement getSecond();
+    ScElement getTarget();
 }
