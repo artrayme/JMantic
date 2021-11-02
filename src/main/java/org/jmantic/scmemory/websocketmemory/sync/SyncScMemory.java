@@ -33,18 +33,20 @@ import java.util.Iterator;
 public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
     private final static SyncScMemory instance = new SyncScMemory();
-    private final OstisClient ostisClient = OstisClientImpl.INSTANCE;
-    private final RequestSender requestSender = new RequestSenderImpl(ostisClient);
+    private final OstisClient ostisClient;
+    private final RequestSender requestSender;
 
     private SyncScMemory() {
+        ostisClient = OstisClientImpl.INSTANCE;
+        requestSender = new RequestSenderImpl(ostisClient);
     }
 
-    public static SyncScMemory getSyncScMemory(URI serverUri) {
+    public static synchronized SyncScMemory getSyncScMemory(URI serverUri) {
         instance.ostisClient.configure(serverUri);
         return instance;
     }
 
-    public static SyncScMemory getSyncScMemory() {
+    public static synchronized SyncScMemory getSyncScMemory() {
         return instance;
     }
 

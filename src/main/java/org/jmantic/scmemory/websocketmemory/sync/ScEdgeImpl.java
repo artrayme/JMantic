@@ -1,10 +1,6 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.*;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
@@ -15,19 +11,28 @@ import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScEdgeImpl implements ScEdge {
-    @JsonProperty("el")
     @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("el")
     private final String element = "edge";
 
     @JsonView(ScMemoryView.Address.class)
     private long address;
 
     @JsonView(ScMemoryView.Request.class)
+    @JsonRawValue
     @JsonProperty("src")
-    private ScElement sourceElement;
+    private final String source;
+
+    @JsonIgnore
+    private final ScElement sourceElement;
+
     @JsonView(ScMemoryView.Request.class)
+    @JsonRawValue
     @JsonProperty("trg")
-    private ScElement targetElement;
+    private final String target;
+
+    @JsonIgnore
+    private final ScElement targetElement;
 
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
@@ -37,6 +42,8 @@ class ScEdgeImpl implements ScEdge {
         this.edgeType = edgeType;
         this.sourceElement = sourceElement;
         this.targetElement = targetElement;
+        source = "{\"type\": \"addr\",\"value\":" + sourceElement.getAddress() + "}";
+        target = "{\"type\": \"addr\",\"value\":" + targetElement.getAddress() + "}";
     }
 
     @JsonIgnore

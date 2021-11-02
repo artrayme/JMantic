@@ -36,16 +36,19 @@ class CreateScElRequestImpl implements CreateScElRequest {
         this.elementsToCreate.addAll(elementsToCreate);
     }
 
+    @JsonIgnore
     @Override
     public void addToRequest(List<? extends ScElement> elements) {
         elementsToCreate.addAll(elements);
     }
 
+    @JsonIgnore
     @Override
     public boolean addElementToRequest(ScElement element) {
-        return false;
+        return elementsToCreate.add(element);
     }
 
+    @JsonIgnore
     @Override
     public List<ScElement> resetRequest() {
         List<ScElement> elements = elementsToCreate;
@@ -53,11 +56,13 @@ class CreateScElRequestImpl implements CreateScElRequest {
         return elements;
     }
 
+    @JsonIgnore
     @Override
     public long getRequestId() {
         return requestId;
     }
 
+    @JsonIgnore
     @Override
     public RequestType getRequestType() {
         return requestType;

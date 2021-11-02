@@ -4,7 +4,7 @@ import org.jmantic.api.context.DefaultScContext;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -21,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class CreateNodeTest {
-    private DefaultScContext scContext;
+    private static DefaultScContext scContext;
 
-    @BeforeEach
-    public void setUp() throws URISyntaxException {
+    @BeforeAll
+    static void setUp() throws URISyntaxException {
         scContext = new DefaultScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 

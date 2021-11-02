@@ -14,10 +14,13 @@ import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScNodeImpl implements ScNode {
     @JsonView(ScMemoryView.Request.class)
-    private final String el = "node";
+    @JsonProperty("el")
+    private final String element = "node";
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final NodeType nodeType;
+
     @JsonView(ScMemoryView.Address.class)
     private long address;
 
@@ -25,26 +28,28 @@ class ScNodeImpl implements ScNode {
         this.nodeType = nodeType;
     }
 
+    @JsonIgnore
     public void setAddress(long address) {
         this.address = address;
     }
 
+    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
     }
 
+    @JsonIgnore
     @Override
     public NodeType getType() {
         return nodeType;
     }
 
-
     @JsonIgnore
     @Override
     public String toString() {
         return "ScNodeImpl{" +
-                "el='" + el + '\'' +
+                "el='" + element + '\'' +
                 ", nodeType=" + nodeType +
                 ", address=" + address +
                 '}';
