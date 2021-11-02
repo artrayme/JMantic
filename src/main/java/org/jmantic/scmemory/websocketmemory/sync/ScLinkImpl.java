@@ -1,21 +1,36 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
+import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 
 /**
  * @author Michael
  */
-public class ScLinkImpl implements ScLinkFloat {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+class ScLinkFloatImpl implements ScLinkFloat {
+    @JsonView(ScMemoryView.Request.class)
+    private final String el = "link";
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("type")
     private final LinkType linkType;
+    @JsonView(ScMemoryView.Request.class)
     private float content;
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("content_type")
+    private final String contentType = "float";
+    @JsonView(ScMemoryView.Address.class)
     private long address;
 
-    public ScLinkImpl(LinkType linkType) {
+    public ScLinkFloatImpl(LinkType linkType) {
         this.linkType = linkType;
     }
 
@@ -59,8 +74,17 @@ public class ScLinkImpl implements ScLinkFloat {
  * @author Michael
  */
 class ScLinkIntegerImpl implements ScLinkInteger {
+    @JsonView(ScMemoryView.Request.class)
+    private final String el = "link";
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("type")
     private final LinkType linkType;
+    @JsonView(ScMemoryView.Request.class)
     private int content;
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("content_type")
+    private final String contentType = "int";
+    @JsonView(ScMemoryView.Address.class)
     private long address;
 
     public ScLinkIntegerImpl(LinkType linkType) {
@@ -106,8 +130,17 @@ class ScLinkIntegerImpl implements ScLinkInteger {
  * @author Michael
  */
 class ScLinkStringImpl implements ScLinkString {
+    @JsonView(ScMemoryView.Request.class)
+    private final String el = "link";
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("type")
     private final LinkType linkType;
+    @JsonView(ScMemoryView.Request.class)
     private String content;
+    @JsonView(ScMemoryView.Request.class)
+    @JsonProperty("content_type")
+    private final String contentType = "string";
+    @JsonView(ScMemoryView.Address.class)
     private long address;
 
     public ScLinkStringImpl(LinkType linkType) {
