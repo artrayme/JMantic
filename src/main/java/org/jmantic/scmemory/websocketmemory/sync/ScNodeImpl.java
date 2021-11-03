@@ -8,6 +8,8 @@ import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
+import java.util.Objects;
+
 /**
  * @author Michael
  * @since 0.0.1
@@ -54,5 +56,22 @@ class ScNodeImpl implements ScNode {
                 ", nodeType=" + nodeType +
                 ", address=" + address +
                 '}';
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ScNodeImpl scNode = (ScNodeImpl) o;
+        return address == scNode.address;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
     }
 }

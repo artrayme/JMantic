@@ -6,6 +6,8 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
+import java.util.Objects;
+
 /**
  * @author Michael
  * @since 0.0.1
@@ -86,5 +88,22 @@ class ScEdgeImpl implements ScEdge {
                 ", sourceElement=" + sourceElement +
                 ", targetElement=" + targetElement +
                 '}';
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ScEdgeImpl scEdge = (ScEdgeImpl) o;
+        return address == scEdge.address;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
     }
 }
