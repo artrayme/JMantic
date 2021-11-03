@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 public enum RequestType {
     CREATE_ELEMENTS("create_elements"),

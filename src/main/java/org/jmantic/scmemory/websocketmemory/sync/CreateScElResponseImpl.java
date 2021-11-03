@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class CreateScElResponseImpl implements CreateScElResponse {

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 /**
  * @author artrayme
- * 10/23/21
+ * @since 0.0.1
  */
 public class DefaultScContext {
     private final ScMemory memory;

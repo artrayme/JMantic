@@ -29,6 +29,7 @@ import java.util.Iterator;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);

@@ -6,6 +6,7 @@ import java.net.URI;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 public interface OstisClient {
 

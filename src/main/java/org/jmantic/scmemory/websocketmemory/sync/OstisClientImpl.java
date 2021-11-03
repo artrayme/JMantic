@@ -13,6 +13,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 //todo normalno zapili, debil
 enum OstisClientImpl implements OstisClient {

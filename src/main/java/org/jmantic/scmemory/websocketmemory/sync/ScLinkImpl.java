@@ -14,6 +14,7 @@ import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScLinkFloatImpl implements ScLinkFloat {
@@ -72,6 +73,7 @@ class ScLinkFloatImpl implements ScLinkFloat {
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonView(ScMemoryView.Request.class)
@@ -128,6 +130,7 @@ class ScLinkIntegerImpl implements ScLinkInteger {
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 class ScLinkStringImpl implements ScLinkString {
     @JsonView(ScMemoryView.Request.class)

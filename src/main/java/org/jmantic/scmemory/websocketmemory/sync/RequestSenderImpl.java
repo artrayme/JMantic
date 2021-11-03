@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 class RequestSenderImpl implements RequestSender {
     private final static Logger logger = LoggerFactory.getLogger(RequestSenderImpl.class);

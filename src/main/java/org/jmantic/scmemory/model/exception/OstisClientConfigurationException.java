@@ -1,8 +1,9 @@
 package org.jmantic.scmemory.model.exception;
 
-/**
+/** This exception is indicating that the user configuration cannot be applied
+ *
  * @author artrayme
- * 10/28/21
+ * @since 0.0.1
  */
 public class OstisClientConfigurationException extends RuntimeException{
     public OstisClientConfigurationException(String message) {

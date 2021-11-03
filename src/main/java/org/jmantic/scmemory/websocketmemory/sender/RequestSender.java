@@ -6,6 +6,7 @@ import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 public interface RequestSender {
     CreateScElResponse sendCreateElRequest(CreateScElRequest request) throws ScMemoryException;

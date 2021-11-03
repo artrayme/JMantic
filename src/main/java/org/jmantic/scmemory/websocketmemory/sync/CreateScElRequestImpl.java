@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class CreateScElRequestImpl implements CreateScElRequest {

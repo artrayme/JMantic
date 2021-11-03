@@ -8,6 +8,7 @@ import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 /**
  * @author Michael
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScEdgeImpl implements ScEdge {
