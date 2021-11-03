@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,12 +32,38 @@ public class CreateEdgeTest {
 
     @Test
     void createEdge() {
-        ScNode first = scContext.createNode(NodeType.NODE);
-        ScNode second = scContext.createNode(NodeType.NODE);
-        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, first, second);
-//        assertEquals(edge.getType(), EdgeType.ACCESS);
-//        assertEquals(edge.getFirst(), first);
-//        assertEquals(edge.getSecond(), second);
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScNode target = scContext.createNode(NodeType.NODE);
+        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
+        assertEquals(edge.getType(), EdgeType.ACCESS);
+        assertEquals(edge.getSource(), source);
+        assertEquals(edge.getTarget(), target);
         assertTrue(true);
+    }
+
+    @Test
+    void createEdgesComplex() {
+        NodeType expectedNodeType = NodeType.NODE;
+        EdgeType expectedEdgeType = EdgeType.ACCESS;
+        int count = 10;
+
+        var sources = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count)).collect(Collectors.toList());
+        var targets = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count)).collect(Collectors.toList());
+        var types = Stream.iterate(expectedEdgeType, e -> expectedEdgeType).limit(count);
+        var edges = scContext.createEdges(types, sources.stream(), targets.stream());
+
+        Iterator<ScEdge> edgeIterator = edges.iterator();
+        Iterator<ScNode> sourceNodeIterator = sources.iterator();
+        Iterator<ScNode> targetNodeIterator = targets.iterator();
+        while (edgeIterator.hasNext() && sourceNodeIterator.hasNext() && targetNodeIterator.hasNext()) {
+            var currentEdge = edgeIterator.next();
+            assertEquals(currentEdge.getType(), expectedEdgeType);
+            assertEquals(currentEdge.getSource(), sourceNodeIterator.next());
+            assertEquals(currentEdge.getTarget(), targetNodeIterator.next());
+        }
+
+        assertEquals(edgeIterator.hasNext(), sourceNodeIterator.hasNext());
+        assertEquals(sourceNodeIterator.hasNext(), targetNodeIterator.hasNext());
+
     }
 }
