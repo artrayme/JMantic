@@ -44,10 +44,10 @@ public class DefaultScContext {
         return result.map(e -> (ScNode) e);
     }
 
-    public ScEdge createEdge(EdgeType type, ScElement first, ScElement second) {
+    public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
         Optional<? extends ScElement> edge = null;
         try {
-            edge = memory.createEdges(Stream.of(type), Stream.of(first), Stream.of(second)).findFirst();
+            edge = memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst();
         } catch (ScMemoryException e) {
 //            ToDo logger
             e.printStackTrace();
@@ -55,10 +55,10 @@ public class DefaultScContext {
         return (ScEdge) edge.get();
     }
 
-    public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<ScElement> firstElements, Stream<ScElement> secondElements) {
+    public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<? extends ScElement> source, Stream<? extends ScElement> target) {
         Stream<ScEdge> scEdgeStream = null;
         try {
-            scEdgeStream = memory.createEdges(types, firstElements, secondElements).map(e -> (ScEdge) e);
+            scEdgeStream = memory.createEdges(types, source, target).map(e -> (ScEdge) e);
         } catch (ScMemoryException e) {
             //            ToDo logger
             e.printStackTrace();
