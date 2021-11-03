@@ -48,6 +48,7 @@ enum OstisClientImpl implements OstisClient {
 
             }
         };
+        firstConnect = true;
     }
 
     @Override
