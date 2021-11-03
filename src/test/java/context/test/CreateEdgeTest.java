@@ -8,10 +8,12 @@ import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +33,8 @@ public class CreateEdgeTest {
     }
 
     @Test
-    void createEdge() {
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleEdge() {
         ScNode source = scContext.createNode(NodeType.NODE);
         ScNode target = scContext.createNode(NodeType.NODE);
         ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
@@ -42,7 +45,8 @@ public class CreateEdgeTest {
     }
 
     @Test
-    void createEdgesComplex() {
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createMultipleEdgesWithOneType() {
         NodeType expectedNodeType = NodeType.NODE;
         EdgeType expectedEdgeType = EdgeType.ACCESS;
         int count = 10;
