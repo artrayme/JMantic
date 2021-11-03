@@ -30,13 +30,13 @@ public class CreateNodeTest {
 
     //    ToDo test timeout
     @Test
-    void createNode() {
+    void createSingleNode() {
         ScNode node = scContext.createNode(NodeType.NODE);
         assertEquals(NodeType.NODE, node.getType());
     }
 
     @Test
-    void createNodes() {
+    void createMultipleNodesWithOneType() {
         long size = 10;
         var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
         Stream<ScNode> nodes = scContext.createNodes(types);
@@ -46,13 +46,22 @@ public class CreateNodeTest {
     }
 
     @Test
-    void createAllNodesTypes() {
+    void createNodesWithAllAvailableTypes() {
         Stream<ScNode> nodes = scContext.createNodes(Arrays.stream(NodeType.values()));
         Iterator<ScNode> iter1 = nodes.iterator();
         Iterator<NodeType> iter2 = Arrays.stream(NodeType.values()).iterator();
         while (iter1.hasNext() && iter2.hasNext())
             assertEquals(iter1.next().getType(), iter2.next());
         assertEquals(iter1.hasNext(), iter2.hasNext());
+    }
+
+    //    ToDo test timeout
+    @Test
+    void createTwoNodesOneByOne() {
+        ScNode firstNode = scContext.createNode(NodeType.NODE);
+        ScNode secondNode = scContext.createNode(NodeType.ABSTRACT);
+        assertEquals(NodeType.NODE, firstNode.getType());
+        assertEquals(NodeType.ABSTRACT, secondNode.getType());
     }
 
 
