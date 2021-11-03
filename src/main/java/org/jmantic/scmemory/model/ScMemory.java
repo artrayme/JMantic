@@ -23,8 +23,8 @@ public interface ScMemory {
     Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException;
 
     Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
-                                            Stream<ScElement> firstComponents,
-                                            Stream<ScElement> secondComponents) throws ScMemoryException;
+                                            Stream<? extends ScElement> firstComponents,
+                                            Stream<? extends ScElement> secondComponents) throws ScMemoryException;
 
     Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
 

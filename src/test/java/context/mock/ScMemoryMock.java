@@ -11,14 +11,12 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.event.ScEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,8 +47,8 @@ public class ScMemoryMock implements ScMemory {
 
     @Override
     public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
-                                                   Stream<ScElement> firstComponents,
-                                                   Stream<ScElement> secondComponents) {
+                                                   Stream<? extends ScElement> firstComponents,
+                                                   Stream<? extends ScElement> secondComponents) {
         List<ScElement> first = firstComponents.collect(Collectors.toList());
         List<ScElement> second = secondComponents.collect(Collectors.toList());
         List<EdgeType> type = elements.collect(Collectors.toList());

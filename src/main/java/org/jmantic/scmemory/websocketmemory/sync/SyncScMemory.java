@@ -10,7 +10,6 @@ import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
@@ -20,11 +19,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 
 /**
@@ -78,13 +77,13 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
-                                                   Stream<ScElement> firstComponents,
-                                                   Stream<ScElement> secondComponents) throws ScMemoryException {
+                                                   Stream<? extends ScElement> firstComponents,
+                                                   Stream<? extends ScElement> secondComponents) throws ScMemoryException {
         List<ScEdge> result = new ArrayList<>();
         CreateScElRequest request = new CreateScElRequestImpl();
         Iterator<EdgeType> elementsTypesIter = elements.iterator();
-        Iterator<ScElement> firstComponentsIter = firstComponents.iterator();
-        Iterator<ScElement> secondComponentsIter = secondComponents.iterator();
+        Iterator<? extends ScElement> firstComponentsIter = firstComponents.iterator();
+        Iterator<? extends ScElement> secondComponentsIter = secondComponents.iterator();
         while (elementsTypesIter.hasNext() && firstComponentsIter.hasNext() && secondComponentsIter.hasNext()) {
             ScEdge edge = new ScEdgeImpl(elementsTypesIter.next(), firstComponentsIter.next(), secondComponentsIter.next());
             request.addElementToRequest(edge);
