@@ -15,51 +15,51 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum NodeType {
     NODE(1),
 
-    Const(33),
+    CONST(33),
 
-    Var(65),
+    VAR(65),
 
-    Struct(257),
+    STRUCT(257),
 
-    Tuple(129),
+    TUPLE(129),
 
-    Role(513),
+    ROLE(513),
 
-    NoRole(1025),
+    NO_ROLE(1025),
 
-    Class(2049),
+    CLASS(2049),
 
-    Abstract(4097),
+    ABSTRACT(4097),
 
-    Material(8193),
+    MATERIAL(8193),
 
-    ConstStruct(289),
+    CONST_STRUCT(289),
 
-    ConstTuple(161),
+    CONST_TUPLE(161),
 
-    ConstRole(545),
+    CONST_ROLE(545),
 
-    ConstNoRole(1057),
+    CONST_NO_ROLE(1057),
 
-    ConstClass(2081),
+    CONST_CLASS(2081),
 
-    ConstAbstract(4129),
+    CONST_ABSTRACT(4129),
 
-    ConstMaterial(8225),
+    CONST_MATERIAL(8225),
 
-    VarStruct(321),
+    VAR_STRUCT(321),
 
-    VarTuple(193),
+    VAR_TUPLE(193),
 
-    VarRole(577),
+    VAR_ROLE(577),
 
-    VarNoRole(1089),
+    VAR_NO_ROLE(1089),
 
-    VarClass(2113),
+    VAR_CLASS(2113),
 
-    VarAbstract(4161),
+    VAR_ABSTRACT(4161),
 
-    VarMaterial(8257);
+    VAR_MATERIAL(8257);
 
     @JsonValue
     private final int code;
