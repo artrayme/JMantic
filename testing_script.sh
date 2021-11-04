@@ -18,4 +18,4 @@ sctp
 sc_web
 
 cd /JMantic
-./gradle test
+gradle test
