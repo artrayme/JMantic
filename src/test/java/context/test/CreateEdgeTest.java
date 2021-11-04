@@ -42,7 +42,6 @@ public class CreateEdgeTest {
         assertEquals(edge.getType(), EdgeType.ACCESS);
         assertEquals(edge.getSource(), source);
         assertEquals(edge.getTarget(), target);
-        assertTrue(true);
     }
 
     @Test
@@ -100,4 +99,20 @@ public class CreateEdgeTest {
         assertEquals(edgeIterator.hasNext(), sourceNodeIterator.hasNext());
         assertEquals(sourceNodeIterator.hasNext(), targetNodeIterator.hasNext());
     }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createTwoEdgesOneByOne() {
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScNode target = scContext.createNode(NodeType.NODE);
+        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
+        ScEdge edge2 = scContext.createEdge(EdgeType.ACCESS, source, target);
+        assertEquals(edge.getType(), EdgeType.ACCESS);
+        assertEquals(edge.getSource(), source);
+        assertEquals(edge.getTarget(), target);
+        assertEquals(edge2.getType(), EdgeType.ACCESS);
+        assertEquals(edge2.getSource(), source);
+        assertEquals(edge2.getTarget(), target);
+    }
+
 }
