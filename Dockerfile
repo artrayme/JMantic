@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-
 #
 # Creating image
 #
@@ -44,14 +43,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
 WORKDIR /ostis/sc-machine/web/client
 RUN sudo yarn
 
-### sc-web
-#WORKDIR /ostis/sc-web/scripts
-
-#Install sc-web dependencies
-# RUN sudo pip install --default-timeout=100 future tornado sqlalchemy redis==2.9 numpy configparser && \
-#    sudo apt-get update && apt-get --no-install-recommends install -y nodejs-dev node-gyp npm libssl1.0-dev && \
-#    sudo rm -rf /var/lib/apt/lists/* && sudo npm install -g grunt-cli && npm install && sudo grunt build
-
 ## Copy server.conf
 WORKDIR /ostis/scripts
 RUN sudo cp -f ../config/server.conf ../sc-web/server/
@@ -62,24 +53,15 @@ RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_s
     sudo mv ./ims.ostis.kb/ui/menu ./kb && echo "kb" | sudo tee -a ./repo.path && sudo mkdir -p problem-solver/cxx && \
     echo "problem-solver" | sudo tee -a ./repo.path
 
-# Include kpm
-#WORKDIR /ostis/sc-machine
-# RUN sudo apt-get update && sudo apt-get --no-install-recommends install -y libcurl4-openssl-dev && \
-#    echo 'add_subdirectory(${SC_MACHINE_ROOT}/../problem-solver/cxx ${SC_MACHINE_ROOT}/bin)' | sudo tee -a ./CMakeLists.txt
-
-# Copy start container script
-#COPY scripts/ostis /ostis/scripts/
-
+FROM gradle:7.2-jdk17
 WORKDIR /
 RUN git clone https://github.com/artrayme/JMantic.git
-WORKDIR /JMantic
-RUN sudo bash gradlew
 
 #
 # Image config
 #
-LABEL version="0.6.0"
+#LABEL version="0.6.0"
 
 EXPOSE 8090
-EXPOSE 8000
-EXPOSE 55770
+#EXPOSE 8000
+#EXPOSE 55770
