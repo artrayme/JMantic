@@ -56,6 +56,7 @@ RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_s
 FROM gradle:7.2-jdk17
 WORKDIR /
 RUN git clone https://github.com/artrayme/JMantic.git
+WORKDIR /JMantic
 
 #
 # Image config
