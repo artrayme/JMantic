@@ -1,9 +1,8 @@
-package org.jmantic.scmemory.model.exception;
+package org.jmantic.scmemory.websocketmemory.sync.exception;
 
-/** This exception is indicating that the user configuration cannot be applied
- *
+/**
  * @author artrayme
- * @since 0.0.1
+ * 11/4/21
  */
 public class OstisClientConfigurationException extends RuntimeException{
     public OstisClientConfigurationException(String message) {
