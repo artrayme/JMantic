@@ -12,4 +12,4 @@ jobs:
 
     steps:
       - uses: docker-practice/actions-setup-docker@master
-      - run: sudo docker run artrayme/jmantic:1.0 sh testing_script.sh
+      - run: sudo docker run artrayme/jmantic:1.1 sh testing_script.sh
