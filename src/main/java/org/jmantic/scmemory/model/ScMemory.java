@@ -9,10 +9,8 @@ import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.event.ScEvent;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 /**
@@ -45,9 +43,9 @@ public interface ScMemory {
     //    ToDO searchTemplate
     //    ToDo generateTemplate
 
-//    void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate);
+    //    void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate);
 
-//    void removeEventListener(ScEvent event);
+    //    void removeEventListener(ScEvent event);
 
     ScElement findKeynode(String identifier);
 

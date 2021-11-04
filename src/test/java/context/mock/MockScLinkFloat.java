@@ -2,7 +2,6 @@ package context.mock;
 
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 
 import java.util.Objects;
 
@@ -36,7 +35,7 @@ class MockScLinkFloat implements ScLinkFloat {
         return content;
     }
 
-    public void setContent(float content){
+    public void setContent(float content) {
         this.content = content;
     }
 

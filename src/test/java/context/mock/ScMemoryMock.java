@@ -109,7 +109,8 @@ public class ScMemoryMock implements ScMemory {
         }
         Stream<ScLink> result = links.stream().skip(initSize);
         logger.info("END CREATING LINK STRING");
-        return result;    }
+        return result;
+    }
 
     @Override
     public Stream<? extends ScElement> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) {

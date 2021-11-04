@@ -1,11 +1,12 @@
 package org.jmantic.scmemory.model.exception;
 
-/** This exception is indicating that the user configuration cannot be applied
+/**
+ * This exception is indicating that the user configuration cannot be applied
  *
  * @author artrayme
  * @since 0.0.1
  */
-public class ScMemoryConfigurationException extends RuntimeException{
+public class ScMemoryConfigurationException extends RuntimeException {
     public ScMemoryConfigurationException(String message) {
         super(message);
     }

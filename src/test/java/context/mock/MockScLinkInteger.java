@@ -35,7 +35,7 @@ class MockScLinkInteger implements ScLinkInteger {
         return content;
     }
 
-    public void setContent(int content){
+    public void setContent(int content) {
         this.content = content;
     }
 

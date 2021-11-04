@@ -27,7 +27,7 @@ public class DefaultScContext {
         try {
             result = memory.createNodes(Stream.of(type)).findFirst();
         } catch (ScMemoryException e) {
-//            ToDo logger
+            //            ToDo logger
             e.printStackTrace();
         }
         return (ScNode) result.get();
@@ -38,7 +38,7 @@ public class DefaultScContext {
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
-//            ToDO logger
+            //            ToDO logger
             e.printStackTrace();
         }
         return result.map(e -> (ScNode) e);
@@ -49,7 +49,7 @@ public class DefaultScContext {
         try {
             edge = memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst();
         } catch (ScMemoryException e) {
-//            ToDo logger
+            //            ToDo logger
             e.printStackTrace();
         }
         return (ScEdge) edge.get();
@@ -65,6 +65,5 @@ public class DefaultScContext {
         }
         return scEdgeStream;
     }
-
 
 }

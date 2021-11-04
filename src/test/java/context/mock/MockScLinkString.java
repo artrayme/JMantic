@@ -1,7 +1,6 @@
 package context.mock;
 
 import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 
 import java.util.Objects;
@@ -36,7 +35,7 @@ class MockScLinkString implements ScLinkString {
         return content;
     }
 
-    public void setContent(String content){
+    public void setContent(String content) {
         this.content = content;
     }
 
