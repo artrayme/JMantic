@@ -16,6 +16,6 @@ sc_web() {
 
 sctp
 sc_web
-
 cd /JMantic
+git pull
 gradle test
