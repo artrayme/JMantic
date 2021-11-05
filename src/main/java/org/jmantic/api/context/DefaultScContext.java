@@ -7,6 +7,7 @@ import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.util.ScTriple;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -23,7 +24,7 @@ public class DefaultScContext {
     }
 
     public ScNode createNode(NodeType type) {
-        Optional<? extends ScElement> result = null;
+        Optional<? extends ScElement> result = Optional.empty();
         try {
             result = memory.createNodes(Stream.of(type)).findFirst();
         } catch (ScMemoryException e) {
@@ -34,7 +35,7 @@ public class DefaultScContext {
     }
 
     public Stream<ScNode> createNodes(Stream<NodeType> types) {
-        Stream<? extends ScElement> result = null;
+        Stream<? extends ScElement> result = Stream.empty();
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
@@ -45,7 +46,7 @@ public class DefaultScContext {
     }
 
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
-        Optional<? extends ScElement> edge = null;
+        Optional<? extends ScElement> edge = Optional.empty();
         try {
             edge = memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst();
         } catch (ScMemoryException e) {
@@ -56,7 +57,7 @@ public class DefaultScContext {
     }
 
     public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<? extends ScElement> source, Stream<? extends ScElement> target) {
-        Stream<ScEdge> scEdgeStream = null;
+        Stream<ScEdge> scEdgeStream = Stream.empty();
         try {
             scEdgeStream = memory.createEdges(types, source, target).map(e -> (ScEdge) e);
         } catch (ScMemoryException e) {
@@ -64,6 +65,28 @@ public class DefaultScContext {
             e.printStackTrace();
         }
         return scEdgeStream;
+    }
+
+    public Stream<ScTriple> findAll(ScElement fixedNode, EdgeType edge, NodeType node) {
+        Stream<ScTriple> result = Stream.empty();
+        try {
+            result = memory.findByTemplateF_A_A(fixedNode, edge, node);
+        } catch (ScMemoryException e) {
+            //            ToDo logger
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public Stream<ScTriple> findAll(ScElement fixedNode, ScElement fixedEdge, NodeType node) {
+        Stream<ScTriple> result = Stream.empty();
+        try {
+            result = memory.findByTemplateF_F_A(fixedNode, fixedEdge, node);
+        } catch (ScMemoryException e) {
+            //            ToDo logger
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

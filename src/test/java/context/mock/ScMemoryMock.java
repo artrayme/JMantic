@@ -11,6 +11,8 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
+import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.util.ScTriple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -137,6 +139,16 @@ public class ScMemoryMock implements ScMemory {
     @Override
     public boolean deleteLink(Stream<ScLink> elements) {
         return false;
+    }
+
+    @Override
+    public Stream<ScTriple> findByTemplateF_A_A(ScElement element, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
+        return null;
+    }
+
+    @Override
+    public Stream<ScTriple> findByTemplateF_F_A(ScElement firstElement, ScElement secondElement, NodeType nodeType) throws ScMemoryException {
+        return null;
     }
 
     @Override

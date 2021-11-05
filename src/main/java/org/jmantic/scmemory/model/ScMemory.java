@@ -10,6 +10,7 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.util.ScTriple;
 
 import java.util.stream.Stream;
 
@@ -34,30 +35,32 @@ public interface ScMemory {
 
     Stream<ScElement> checkElements(Stream<ScElement> elements) throws ScMemoryException;
 
-    boolean deleteNode(Stream<ScElement> elements);
+    boolean deleteNode(Stream<ScElement> elements) throws ScMemoryException;
 
-    boolean deleteEdge(Stream<ScEdge> elements);
+    boolean deleteEdge(Stream<ScEdge> elements) throws ScMemoryException;
 
-    boolean deleteLink(Stream<ScLink> elements);
+    boolean deleteLink(Stream<ScLink> elements) throws ScMemoryException;
 
-    //    ToDO searchTemplate
+    Stream<ScTriple> findByTemplateF_A_A(ScElement element, EdgeType edgeType, NodeType nodeType) throws ScMemoryException;
+
+    Stream<ScTriple> findByTemplateF_F_A(ScElement firstElement, ScElement secondElement, NodeType nodeType) throws ScMemoryException;
+
     //    ToDo generateTemplate
-
+    //    ToDO events
     //    void addEventListener(ScEvent event, Function<ScElement, ScElement> predicate);
-
     //    void removeEventListener(ScEvent event);
 
-    ScElement findKeynode(String identifier);
+    ScElement findKeynode(String identifier) throws ScMemoryException;
 
-    ScElement resolvedKeynode(String identifier, NodeType type);
+    ScElement resolvedKeynode(String identifier, NodeType type) throws ScMemoryException;
 
-    Stream<ScLink> getContent(Stream<ScLink> elements);
+    Stream<ScLink> getContent(Stream<ScLink> elements) throws ScMemoryException;
 
-    Stream<Boolean> setIntegerContent(Stream<ScLinkInteger> links, Stream<Integer> content);
+    Stream<Boolean> setIntegerContent(Stream<ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
-    Stream<Boolean> setFloatContent(Stream<ScLinkFloat> links, Stream<Float> content);
+    Stream<Boolean> setFloatContent(Stream<ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
 
-    Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content);
+    Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
-    Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content);
+    Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content) throws ScMemoryException;
 }
