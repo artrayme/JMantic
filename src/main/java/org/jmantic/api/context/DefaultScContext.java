@@ -4,6 +4,9 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
+import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLink;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
@@ -67,8 +70,48 @@ public class DefaultScContext {
         return scEdgeStream;
     }
 
-    public Stream<ScTriple> findAll(ScElement fixedNode, EdgeType edge, NodeType node) {
-        Stream<ScTriple> result = Stream.empty();
+    public ScLinkInteger createIntegerLink(LinkType type, Integer content){
+        Optional<? extends ScLinkInteger> result = Optional.empty();
+        try {
+            result = memory.createIntegerLink(Stream.of(type), Stream.of(content)).findFirst();
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.get();
+    }
+
+    public ScLinkInteger createFloatLink(LinkType type, Float content){
+        Optional<? extends ScLinkInteger> result = Optional.empty();
+        try {
+            result = memory.createFloatLink(Stream.of(type), Stream.of(content)).findFirst();
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.get();
+    }
+
+    public ScLinkInteger createStringLink(LinkType type, String content){
+        Optional<? extends ScLinkInteger> result = Optional.empty();
+        try {
+            result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.get();
+    }
+
+    public ScLinkInteger createBinaryLink(LinkType type, String content){
+        Optional<? extends ScLinkInteger> result = Optional.empty();
+        try {
+            result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.get();
+    }
+
+    public Stream<ScEdge> findAll(ScElement fixedNode, EdgeType edge, NodeType node) {
+        Stream<ScEdge> result = Stream.empty();
         try {
             result = memory.findByTemplateF_A_A(fixedNode, edge, node);
         } catch (ScMemoryException e) {
@@ -78,15 +121,6 @@ public class DefaultScContext {
         return result;
     }
 
-    public Stream<ScTriple> findAll(ScElement fixedNode, ScElement fixedEdge, NodeType node) {
-        Stream<ScTriple> result = Stream.empty();
-        try {
-            result = memory.findByTemplateF_F_A(fixedNode, fixedEdge, node);
-        } catch (ScMemoryException e) {
-            //            ToDo logger
-            e.printStackTrace();
-        }
-        return result;
-    }
+
 
 }
