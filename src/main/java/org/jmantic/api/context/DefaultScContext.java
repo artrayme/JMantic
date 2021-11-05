@@ -110,6 +110,16 @@ public class DefaultScContext {
         return result.get();
     }
 
+    public boolean deleteElement(ScElement element){
+        boolean result = false;
+        try {
+            result = memory.deleteElements(Stream.of(element));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public Stream<ScEdge> findAll(ScElement fixedNode, EdgeType edge, NodeType node) {
         Stream<ScEdge> result = Stream.empty();
         try {
