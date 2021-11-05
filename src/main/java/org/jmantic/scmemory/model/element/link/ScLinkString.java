@@ -11,4 +11,9 @@ public interface ScLinkString extends ScLink {
      * @return content of this ScLink
      */
     String getContent();
+
+    @Override
+    default LinkContentType getContentType(){
+        return LinkContentType.STRING;
+    }
 }

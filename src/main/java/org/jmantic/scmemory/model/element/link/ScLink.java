@@ -22,4 +22,5 @@ import org.jmantic.scmemory.model.element.ScElement;
 public interface ScLink extends ScElement {
     LinkType getType();
 
+    LinkContentType getContentType();
 }
