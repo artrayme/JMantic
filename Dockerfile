@@ -52,11 +52,10 @@ WORKDIR /ostis/scripts
 RUN sudo cp -f ../config/server.conf ../sc-web/server/
 
 # Include kb
-WORKDIR /ostis
-RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_start_sc_element.scs && \
-    sudo mv ./ims.ostis.kb/ui/menu ./kb && echo "kb" | sudo tee -a ./repo.path && sudo mkdir -p problem-solver/cxx && \
-    echo "problem-solver" | sudo tee -a ./repo.path
-
+#WORKDIR /ostis
+RUN #sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_start_sc_element.scs && \
+#    sudo mv ./ims.ostis.kb/ui/menu ./kb && echo "kb" | sudo tee -a ./repo.path && sudo mkdir -p problem-solver/cxx && \
+#    echo "problem-solver" | sudo tee -a ./repo.path
 
 # Gradle installing
 CMD ["gradle"]
@@ -94,6 +93,7 @@ RUN set -o errexit -o nounset \
     && which hg \
     && which svn
 
+
 ENV GRADLE_VERSION 7.2
 ARG GRADLE_DOWNLOAD_SHA256=f581709a9c35e9cb92e16f585d2c4bc99b2b1a5f85d2badbd3dc6bff59e1e6dd
 RUN set -o errexit -o nounset \
@@ -113,6 +113,7 @@ RUN set -o errexit -o nounset \
     && gradle --version
 
 # JMantic cloning
+ARG CACHE_DATE=2016-01-01
 WORKDIR /
 RUN git clone https://github.com/artrayme/JMantic.git
 WORKDIR /JMantic
