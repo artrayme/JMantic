@@ -1,4 +1,4 @@
-package context.test;
+package context;
 
 import org.jmantic.api.context.DefaultScContext;
 import org.jmantic.scmemory.model.element.edge.EdgeType;

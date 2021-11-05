@@ -1,4 +1,4 @@
-package context.test;
+package context;
 
 import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
