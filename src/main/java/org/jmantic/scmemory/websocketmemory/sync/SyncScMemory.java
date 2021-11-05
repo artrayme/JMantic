@@ -6,13 +6,11 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.model.util.ScTriple;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
@@ -117,22 +115,22 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScElement> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
+    public Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public Stream<? extends ScElement> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
+    public Stream<? extends ScLinkInteger> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public Stream<? extends ScElement> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
+    public Stream<? extends ScLinkInteger> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public Stream<? extends ScElement> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
+    public Stream<? extends ScLinkInteger> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
         return null;
     }
 
@@ -142,27 +140,12 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public boolean deleteNode(Stream<ScElement> elements) throws ScMemoryException {
+    public boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException {
         return false;
     }
 
     @Override
-    public boolean deleteEdge(Stream<ScEdge> elements) throws ScMemoryException {
-        return false;
-    }
-
-    @Override
-    public boolean deleteLink(Stream<ScLink> elements) throws ScMemoryException {
-        return false;
-    }
-
-    @Override
-    public Stream<ScTriple> findByTemplateF_A_A(ScElement element, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public Stream<ScTriple> findByTemplateF_F_A(ScElement firstElement, ScElement secondElement, NodeType nodeType) throws ScMemoryException {
+    public Stream<ScEdge> findByTemplateF_A_A(ScElement element, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
         return null;
     }
 
@@ -177,27 +160,13 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<ScLink> getContent(Stream<ScLink> elements) throws ScMemoryException {
+    public Stream<ScLink> getLinkContent(Stream<ScLink> elements) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public Stream<Boolean> setIntegerContent(Stream<ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException {
+    public Stream<Boolean> setLinkContent(Stream<ScLinkString> links, Stream<Object> content) throws ScMemoryException {
         return null;
     }
 
-    @Override
-    public Stream<Boolean> setFloatContent(Stream<ScLinkFloat> links, Stream<Float> content) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public Stream<Boolean> setStringContent(Stream<ScLinkString> links, Stream<String> content) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public Stream<Boolean> setBinaryContent(Stream<ScLinkString> links, Stream<Object> content) throws ScMemoryException {
-        return null;
-    }
 }
