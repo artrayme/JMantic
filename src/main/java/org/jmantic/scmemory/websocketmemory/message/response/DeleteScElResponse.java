@@ -5,5 +5,4 @@ package org.jmantic.scmemory.websocketmemory.message.response;
  * @since 0.0.1
  */
 public interface DeleteScElResponse extends ScResponse {
-    boolean getStatus();
 }

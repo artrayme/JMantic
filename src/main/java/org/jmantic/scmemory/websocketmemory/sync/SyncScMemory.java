@@ -183,7 +183,7 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkBinary> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
-        // TODO: 6.11.21 mathod to create binary link
+        // TODO: 6.11.21 method to create binary link
         return null;
     }
 

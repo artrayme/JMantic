@@ -3,8 +3,7 @@ package org.jmantic.scmemory.websocketmemory.sync;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jmantic.scmemory.model.element.ScElement;
-import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 
 import java.util.ArrayList;
@@ -15,41 +14,41 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class CreateScElRequestImpl implements CreateScElRequest {
+public class DeleteScElRequestImpl implements DeleteScElRequest {
     @JsonProperty("id")
     private final long requestId;
     @JsonProperty("type")
     private final RequestType requestType;
     @JsonProperty("payload")
-    private List<ScElement> elementsToCreate;
+    private List<Long> addressesToDelete;
 
     {
         requestId = 1;
-        requestType = RequestType.CREATE_ELEMENTS;
+        requestType = RequestType.DELETE_ELEMENTS;
     }
 
-    public CreateScElRequestImpl() {
-        elementsToCreate = new ArrayList<>();
-    }
-
-    @JsonIgnore
-    @Override
-    public void addToRequest(List<? extends ScElement> elements) {
-        elementsToCreate.addAll(elements);
+    public DeleteScElRequestImpl() {
+        addressesToDelete = new ArrayList<>();
     }
 
     @JsonIgnore
     @Override
-    public boolean addElementToRequest(ScElement element) {
-        return elementsToCreate.add(element);
+    public void addToRequest(List<Long> addresses) {
+        addressesToDelete.addAll(addresses);
     }
 
     @JsonIgnore
     @Override
-    public List<ScElement> resetRequest() {
-        List<ScElement> elements = elementsToCreate;
-        elementsToCreate = new ArrayList<>(10);
-        return elements;
+    public boolean addAddressToRequest(Long address) {
+        return addressesToDelete.add(address);
+    }
+
+    @JsonIgnore
+    @Override
+    public List<Long> resetRequest() {
+        List<Long> addresses = addressesToDelete;
+        addressesToDelete = new ArrayList<>();
+        return addresses;
     }
 
     @JsonIgnore
@@ -67,16 +66,16 @@ class CreateScElRequestImpl implements CreateScElRequest {
     @JsonIgnore
     @Override
     public boolean isEmpty() {
-        return elementsToCreate.isEmpty();
+        return addressesToDelete.isEmpty();
     }
 
     @JsonIgnore
     @Override
     public String toString() {
-        return "CreateScElRequestImpl{" +
+        return "DeleteScElRequestImpl{" +
                 "requestId=" + requestId +
                 ", requestType=" + requestType +
-                ", elementsToCreate=" + elementsToCreate +
+                ", addressesToDelete=" + addressesToDelete +
                 '}';
     }
 }

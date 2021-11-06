@@ -1,7 +1,5 @@
 package org.jmantic.scmemory.websocketmemory.message.request;
 
-import org.jmantic.scmemory.model.element.ScElement;
-
 import java.util.List;
 
 /**
@@ -9,9 +7,9 @@ import java.util.List;
  * @since 0.0.1
  */
 public interface DeleteScElRequest extends ScRequest {
-    void addToRequest(List<? extends ScElement> elements);
+    void addToRequest(List<Long> addresses);
 
-    boolean addElementToRequest(ScElement element);
+    boolean addAddressToRequest(Long address);
 
-    List<ScElement> resetRequest();
+    List<Long> resetRequest();
 }
