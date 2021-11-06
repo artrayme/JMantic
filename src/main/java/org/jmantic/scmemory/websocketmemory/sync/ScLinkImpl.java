@@ -10,6 +10,8 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
+import java.util.Objects;
+
 
 /**
  * @author Michael
@@ -18,15 +20,20 @@ import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScLinkFloatImpl implements ScLinkFloat {
     @JsonView(ScMemoryView.Request.class)
-    private final String el = "link";
+    @JsonProperty("el")
+    private final String element = "link";
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final LinkType linkType;
+
     @JsonView(ScMemoryView.Request.class)
     private float content;
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("content_type")
     private final String contentType = "float";
+
     @JsonView(ScMemoryView.Address.class)
     private long address;
 
@@ -34,24 +41,29 @@ class ScLinkFloatImpl implements ScLinkFloat {
         this.linkType = linkType;
     }
 
+    @JsonIgnore
     public void setAddress(long address) {
         this.address = address;
     }
 
+    @JsonIgnore
     public void setContent(int content) {
         this.content = content;
     }
 
+    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
     }
 
+    @JsonIgnore
     @Override
     public LinkType getType() {
         return linkType;
     }
 
+    @JsonIgnore
     @Override
     public float getContent() {
         return content;
@@ -59,13 +71,29 @@ class ScLinkFloatImpl implements ScLinkFloat {
 
     @JsonIgnore
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScLinkFloatImpl that = (ScLinkFloatImpl) o;
+        return address == that.address;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
+    }
+
+    @JsonIgnore
+    @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ScLinkImpl{");
-        sb.append("linkType=").append(linkType);
-        sb.append(", content=").append(content);
-        sb.append(", address=").append(address);
-        sb.append('}');
-        return sb.toString();
+        return "ScLinkFloatImpl{" +
+                "element='" + element + '\'' +
+                ", linkType=" + linkType +
+                ", content=" + content +
+                ", contentType='" + contentType + '\'' +
+                ", address=" + address +
+                '}';
     }
 }
 
@@ -76,15 +104,20 @@ class ScLinkFloatImpl implements ScLinkFloat {
  */
 class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonView(ScMemoryView.Request.class)
-    private final String el = "link";
+    @JsonProperty("el")
+    private final String element = "link";
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final LinkType linkType;
+
     @JsonView(ScMemoryView.Request.class)
     private int content;
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("content_type")
     private final String contentType = "int";
+
     @JsonView(ScMemoryView.Address.class)
     private long address;
 
@@ -92,24 +125,29 @@ class ScLinkIntegerImpl implements ScLinkInteger {
         this.linkType = linkType;
     }
 
+    @JsonIgnore
     public void setAddress(long address) {
         this.address = address;
     }
 
+    @JsonIgnore
     public void setContent(int content) {
         this.content = content;
     }
 
+    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
     }
 
+    @JsonIgnore
     @Override
     public LinkType getType() {
         return linkType;
     }
 
+    @JsonIgnore
     @Override
     public int getContent() {
         return content;
@@ -117,13 +155,29 @@ class ScLinkIntegerImpl implements ScLinkInteger {
 
     @JsonIgnore
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScLinkIntegerImpl that = (ScLinkIntegerImpl) o;
+        return address == that.address;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
+    }
+
+    @JsonIgnore
+    @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ScLinkIntegerImpl{");
-        sb.append("linkType=").append(linkType);
-        sb.append(", content=").append(content);
-        sb.append(", address=").append(address);
-        sb.append('}');
-        return sb.toString();
+        return "ScLinkIntegerImpl{" +
+                "element='" + element + '\'' +
+                ", linkType=" + linkType +
+                ", content=" + content +
+                ", contentType='" + contentType + '\'' +
+                ", address=" + address +
+                '}';
     }
 }
 
@@ -133,15 +187,20 @@ class ScLinkIntegerImpl implements ScLinkInteger {
  */
 class ScLinkStringImpl implements ScLinkString {
     @JsonView(ScMemoryView.Request.class)
-    private final String el = "link";
+    @JsonProperty("el")
+    private final String element = "link";
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final LinkType linkType;
+
     @JsonView(ScMemoryView.Request.class)
     private String content;
+
     @JsonView(ScMemoryView.Request.class)
     @JsonProperty("content_type")
     private final String contentType = "string";
+
     @JsonView(ScMemoryView.Address.class)
     private long address;
 
@@ -149,24 +208,29 @@ class ScLinkStringImpl implements ScLinkString {
         this.linkType = linkType;
     }
 
+    @JsonIgnore
     public void setAddress(long address) {
         this.address = address;
     }
 
+    @JsonIgnore
     public void setContent(String content) {
         this.content = content;
     }
 
+    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
     }
 
+    @JsonIgnore
     @Override
     public LinkType getType() {
         return linkType;
     }
 
+    @JsonIgnore
     @Override
     public String getContent() {
         return content;
@@ -174,13 +238,29 @@ class ScLinkStringImpl implements ScLinkString {
 
     @JsonIgnore
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScLinkStringImpl that = (ScLinkStringImpl) o;
+        return address == that.address;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
+    }
+
+    @JsonIgnore
+    @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ScLinkStringImpl{");
-        sb.append("linkType=").append(linkType);
-        sb.append(", content='").append(content).append('\'');
-        sb.append(", address=").append(address);
-        sb.append('}');
-        return sb.toString();
+        return "ScLinkStringImpl{" +
+                "el='" + element + '\'' +
+                ", linkType=" + linkType +
+                ", content='" + content + '\'' +
+                ", contentType='" + contentType + '\'' +
+                ", address=" + address +
+                '}';
     }
 }
 
