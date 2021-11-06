@@ -161,7 +161,26 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
-        return null;
+        List<ScLinkStringImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<String> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkStringImpl link = new ScLinkStringImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("String links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of string links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkStringImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
