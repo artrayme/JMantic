@@ -2,7 +2,9 @@ package org.jmantic.scmemory.websocketmemory.sender;
 
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 
 /**
  * @author Michael
@@ -11,5 +13,7 @@ import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 public interface RequestSender {
     CreateScElResponse sendCreateElRequest(CreateScElRequest request) throws ScMemoryException;
 
-    //todo more requests
+    DeleteScElResponse sendDeleteElRequest(DeleteScElRequest request) throws ScMemoryException;
+
+    // TODO: 6.11.21 more request
 }
