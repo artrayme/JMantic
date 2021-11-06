@@ -13,7 +13,7 @@ public interface ScLinkBinary<T> extends ScLink {
     T getContent();
 
     @Override
-    default LinkContentType getContentType(){
+    default LinkContentType getContentType() {
         return LinkContentType.BINARY;
     }
 }

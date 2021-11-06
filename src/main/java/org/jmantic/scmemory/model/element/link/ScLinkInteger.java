@@ -13,7 +13,7 @@ public interface ScLinkInteger extends ScLink {
     int getContent();
 
     @Override
-    default LinkContentType getContentType(){
+    default LinkContentType getContentType() {
         return LinkContentType.INTEGER;
     }
 }

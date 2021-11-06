@@ -13,7 +13,7 @@ public interface ScLinkFloat extends ScLink {
     float getContent();
 
     @Override
-    default LinkContentType getContentType(){
+    default LinkContentType getContentType() {
         return LinkContentType.FLOAT;
     }
 }

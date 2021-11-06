@@ -13,7 +13,7 @@ public interface ScLinkString extends ScLink {
     String getContent();
 
     @Override
-    default LinkContentType getContentType(){
+    default LinkContentType getContentType() {
         return LinkContentType.STRING;
     }
 }
