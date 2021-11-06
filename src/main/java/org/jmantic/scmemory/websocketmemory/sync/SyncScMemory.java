@@ -222,12 +222,12 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
+    public Stream<? extends ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public Stream<Boolean> setLinkContent(Stream<? extends ScLinkString> links, Stream<Object> content) throws ScMemoryException {
+    public Stream<Boolean> setLinkContent(Stream<? extends ScLink> links, Stream<Object> content) throws ScMemoryException {
         return null;
     }
 
