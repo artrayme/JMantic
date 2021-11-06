@@ -9,8 +9,10 @@ import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +61,24 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
+            logger.error(msg);
+            throw new ScMemoryException(msg, e);
+        }
+    }
+
+    @Override
+    public SearchByTemplateResponse sendSearchByTemplateRequest(SearchByTemplateRequest request) throws ScMemoryException {
+        SearchByTemplateResponse response = null;
+        try {
+            String jsonRequest = writer.writeValueAsString(request);
+            logger.info("!!!!!!!!!!!!Request to ostis - {}", jsonRequest);
+            String msg = client.sendToOstis(jsonRequest);
+            logger.info("!!!!!!!!!!!!msg - {}", msg);
+            response = mapper.readValue(msg, SearchByTemplateResponseImpl.class);
+            logger.info("Response from ostis - {}", response);
+            return response;
+        } catch (JsonProcessingException e) {
+            String msg = "cant parse response - " + response;
             logger.error(msg);
             throw new ScMemoryException(msg, e);
         }
