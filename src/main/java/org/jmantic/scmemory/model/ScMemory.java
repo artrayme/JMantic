@@ -3,10 +3,7 @@ package org.jmantic.scmemory.model;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
-import org.jmantic.scmemory.model.element.link.ScLinkString;
+import org.jmantic.scmemory.model.element.link.*;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 
@@ -25,11 +22,11 @@ public interface ScMemory {
 
     Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
 
-    Stream<? extends ScLinkInteger> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
+    Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
 
-    Stream<? extends ScLinkInteger> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
+    Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
 
-    Stream<? extends ScLinkInteger> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException;
+    Stream<? extends ScLinkBinary> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException;
 
     Stream<ScElement> checkElements(Stream<ScElement> elements) throws ScMemoryException;
 

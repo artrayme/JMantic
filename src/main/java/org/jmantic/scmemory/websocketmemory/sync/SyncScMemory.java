@@ -4,16 +4,15 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
-import org.jmantic.scmemory.model.element.link.ScLinkString;
+import org.jmantic.scmemory.model.element.link.*;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,8 +60,6 @@ public class SyncScMemory implements ScMemory {
     public static synchronized SyncScMemory getSyncScMemory() {
         return instance;
     }
-
-    //todo (0(
 
     @Override
     public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
@@ -116,21 +113,79 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
-        return null;
+        List<ScLinkIntegerImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<Integer> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkIntegerImpl link = new ScLinkIntegerImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("Integer links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of integer links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkIntegerImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
-    public Stream<? extends ScLinkInteger> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
-        return null;
+    public Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
+        List<ScLinkFloatImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<Float> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkFloatImpl link = new ScLinkFloatImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("Float links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of float links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkFloatImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
-    public Stream<? extends ScLinkInteger> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
-        return null;
+    public Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
+        List<ScLinkStringImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<String> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkStringImpl link = new ScLinkStringImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("String links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of string links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkStringImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
-    public Stream<? extends ScLinkInteger> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
+    public Stream<? extends ScLinkBinary> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
+        // TODO: 6.11.21 method to create binary link
         return null;
     }
 
@@ -141,7 +196,13 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException {
-        return false;
+        DeleteScElRequest request = new DeleteScElRequestImpl();
+        elements.forEach(el -> request.addAddressToRequest(el.getAddress()));
+        logger.info("Elements to delete - {}", request);
+        DeleteScElResponse response = requestSender.sendDeleteElRequest(request);
+        boolean result = response.getResponseStatus();
+        logger.info("delete operation status - {}", result);
+        return result;
     }
 
     @Override
