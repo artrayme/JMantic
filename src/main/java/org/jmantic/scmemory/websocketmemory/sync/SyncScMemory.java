@@ -4,15 +4,23 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.*;
+import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLink;
+import org.jmantic.scmemory.model.element.link.ScLinkBinary;
+import org.jmantic.scmemory.model.element.link.ScLinkFloat;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
+import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
+import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -190,11 +198,6 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<ScElement> checkElements(Stream<ScElement> elements) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
     public boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException {
         DeleteScElRequest request = new DeleteScElRequestImpl();
         elements.forEach(el -> request.addAddressToRequest(el.getAddress()));
@@ -206,27 +209,25 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<ScEdge> findByTemplateF_A_A(ScElement element, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
+    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode node, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
+        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeNodeRequestImpl(node, edgeType, nodeType);
+        SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
+        List<ScEdge> result = new ArrayList<>();
+        response.getFoundAddresses().forEach(e -> {
+            var currentTriple = e.toList();
+            var targetNode = new ScNodeImpl(nodeType, currentTriple.get(2));
+            result.add(new ScEdgeImpl(edgeType, node, targetNode, currentTriple.get(1)));
+        });
+        return result.stream();
+    }
+
+    @Override
+    public Stream<ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         return null;
     }
 
     @Override
-    public ScElement findKeynode(String identifier) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public ScElement resolvedKeynode(String identifier, NodeType type) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public Stream<ScLink> getLinkContent(Stream<ScLink> elements) throws ScMemoryException {
-        return null;
-    }
-
-    @Override
-    public Stream<Boolean> setLinkContent(Stream<ScLinkString> links, Stream<Object> content) throws ScMemoryException {
+    public Stream<Boolean> setLinkContent(Stream<? extends ScLinkString> links, Stream<Object> content) throws ScMemoryException {
         return null;
     }
 

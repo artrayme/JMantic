@@ -4,11 +4,13 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.*;
+import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLinkFloat;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
+import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.model.util.ScTriple;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -98,15 +100,15 @@ public class DefaultScContext {
         return result.get();
     }
 
-    public ScLinkBinary createBinaryLink(LinkType type, String content) {
-        Optional<? extends ScLinkBinary> result = Optional.empty();
-        try {
-            result = memory.createBinaryLink(Stream.of(type), Stream.of(content)).findFirst();
-        } catch (ScMemoryException e) {
-            e.printStackTrace();
-        }
-        return result.get();
-    }
+    //    public ScLinkBinary createBinaryLink(LinkType type, String content) {
+    //        Optional<? extends ScLinkBinary> result = Optional.empty();
+    //        try {
+    //            result = memory.createBinaryLink(Stream.of(type), Stream.of(content)).findFirst();
+    //        } catch (ScMemoryException e) {
+    //            e.printStackTrace();
+    //        }
+    //        return result.get();
+    //    }
 
     public boolean deleteElement(ScElement element) {
         boolean result = false;
@@ -118,10 +120,10 @@ public class DefaultScContext {
         return result;
     }
 
-    public Stream<ScEdge> findAll(ScElement fixedNode, EdgeType edge, NodeType node) {
-        Stream<ScEdge> result = Stream.empty();
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
+        Stream<? extends ScEdge> result = Stream.empty();
         try {
-            result = memory.findByTemplateF_A_A(fixedNode, edge, node);
+            result = memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
         } catch (ScMemoryException e) {
             //            ToDo logger
             e.printStackTrace();
