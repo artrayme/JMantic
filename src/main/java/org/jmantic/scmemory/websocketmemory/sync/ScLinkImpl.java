@@ -47,7 +47,7 @@ class ScLinkFloatImpl implements ScLinkFloat {
     }
 
     @JsonIgnore
-    public void setContent(int content) {
+    public void setContent(float content) {
         this.content = content;
     }
 

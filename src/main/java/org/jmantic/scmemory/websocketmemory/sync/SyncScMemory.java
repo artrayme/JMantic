@@ -137,7 +137,26 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
-        return null;
+        List<ScLinkFloatImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<Float> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkFloatImpl link = new ScLinkFloatImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("Float links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of float links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkFloatImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
