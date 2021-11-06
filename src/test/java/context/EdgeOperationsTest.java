@@ -19,12 +19,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
  * 10/30/21
  */
-public class CreateEdgeTest {
+public class EdgeOperationsTest {
     private DefaultScContext scContext;
 
     @BeforeEach
@@ -114,4 +115,14 @@ public class CreateEdgeTest {
         assertEquals(edge2.getTarget(), target);
     }
 
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void deleteNode() {
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScNode target = scContext.createNode(NodeType.NODE);
+        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
+        boolean result = scContext.deleteElement(edge);
+        assertTrue(result);
+    }
 }

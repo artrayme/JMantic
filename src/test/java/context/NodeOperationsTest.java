@@ -16,13 +16,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
  * 10/24/21
  */
 
-public class CreateNodeTest {
+public class NodeOperationsTest {
     private DefaultScContext scContext;
 
     @BeforeEach
@@ -66,6 +68,14 @@ public class CreateNodeTest {
         ScNode secondNode = scContext.createNode(NodeType.ABSTRACT);
         assertEquals(NodeType.NODE, firstNode.getType());
         assertEquals(NodeType.ABSTRACT, secondNode.getType());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void deleteNode() {
+        ScNode node = scContext.createNode(NodeType.NODE);
+        boolean result = scContext.deleteElement(node);
+        assertTrue(result);
     }
 
 }
