@@ -10,7 +10,9 @@ import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -194,7 +196,13 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException {
-        return false;
+        DeleteScElRequest request = new DeleteScElRequestImpl();
+        elements.forEach(el -> request.addAddressToRequest(el.getAddress()));
+        logger.info("Elements to delete - {}", request);
+        DeleteScElResponse response = requestSender.sendDeleteElRequest(request);
+        boolean result = response.getResponseStatus();
+        logger.info("delete operation status - {}", result);
+        return result;
     }
 
     @Override
