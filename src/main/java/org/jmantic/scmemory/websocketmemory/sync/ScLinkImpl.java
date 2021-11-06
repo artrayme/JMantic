@@ -72,8 +72,10 @@ class ScLinkFloatImpl implements ScLinkFloat {
     @JsonIgnore
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ScLinkFloatImpl that = (ScLinkFloatImpl) o;
         return address == that.address;
     }
@@ -156,8 +158,10 @@ class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonIgnore
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ScLinkIntegerImpl that = (ScLinkIntegerImpl) o;
         return address == that.address;
     }
@@ -239,8 +243,10 @@ class ScLinkStringImpl implements ScLinkString {
     @JsonIgnore
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ScLinkStringImpl that = (ScLinkStringImpl) o;
         return address == that.address;
     }

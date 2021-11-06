@@ -31,6 +31,11 @@ class ScNodeImpl implements ScNode {
         this.nodeType = nodeType;
     }
 
+    public ScNodeImpl(NodeType nodeType, Long address) {
+        this.nodeType = nodeType;
+        this.address = address;
+    }
+
     @JsonIgnore
     public void setAddress(long address) {
         this.address = address;

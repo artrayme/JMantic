@@ -53,6 +53,15 @@ class ScEdgeImpl implements ScEdge {
         target = "{\"type\": \"addr\",\"value\":" + targetElement.getAddress() + "}";
     }
 
+    public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement, Long address) {
+        this.edgeType = edgeType;
+        this.sourceElement = sourceElement;
+        this.targetElement = targetElement;
+        source = "{\"type\": \"addr\",\"value\":" + sourceElement.getAddress() + "}";
+        target = "{\"type\": \"addr\",\"value\":" + targetElement.getAddress() + "}";
+        this.address = address;
+    }
+
     @JsonIgnore
     @Override
     public Long getAddress() {
