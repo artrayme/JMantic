@@ -19,10 +19,10 @@ class CreateScElResponseImpl implements CreateScElResponse {
     private boolean status;
     private boolean event;
     @JsonProperty("payload")
-    private List<Integer> createdElementAddress;
+    private List<Long> createdElementAddress;
 
     @Override
-    public Stream<Integer> getAddresses() {
+    public Stream<Long> getAddresses() {
         return createdElementAddress.stream();
     }
 
