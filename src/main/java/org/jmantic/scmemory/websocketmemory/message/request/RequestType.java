@@ -10,7 +10,7 @@ public enum RequestType {
     CREATE_ELEMENTS("create_elements"),
     CHECK_ELEMENTS("check_elements"),
     DELETE_ELEMENTS("delete_elements"),
-    SEARCH_TEMPLATE("search_elements"),
+    SEARCH_TEMPLATE("search_template"),
     GENERATE_TEMPLATE("generate_template"),
     EVENTS("events"),
     KEYNODES("keynodes"),

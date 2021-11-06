@@ -13,5 +13,5 @@ public interface CreateScElRequest extends ScRequest {
 
     boolean addElementToRequest(ScElement element);
 
-    List<ScElement> resetRequest();
+    List<? extends ScElement> resetRequest();
 }

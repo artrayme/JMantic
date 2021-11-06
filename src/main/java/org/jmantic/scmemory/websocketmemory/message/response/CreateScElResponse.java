@@ -7,5 +7,5 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 public interface CreateScElResponse extends ScResponse {
-    Stream<Integer> getAddresses();
+    Stream<Long> getAddresses();
 }
