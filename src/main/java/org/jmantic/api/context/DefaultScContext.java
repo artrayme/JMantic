@@ -4,9 +4,7 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
+import org.jmantic.scmemory.model.element.link.*;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
@@ -70,7 +68,7 @@ public class DefaultScContext {
         return scEdgeStream;
     }
 
-    public ScLinkInteger createIntegerLink(LinkType type, Integer content){
+    public ScLinkInteger createIntegerLink(LinkType type, Integer content) {
         Optional<? extends ScLinkInteger> result = Optional.empty();
         try {
             result = memory.createIntegerLink(Stream.of(type), Stream.of(content)).findFirst();
@@ -80,8 +78,8 @@ public class DefaultScContext {
         return result.get();
     }
 
-    public ScLinkInteger createFloatLink(LinkType type, Float content){
-        Optional<? extends ScLinkInteger> result = Optional.empty();
+    public ScLinkFloat createFloatLink(LinkType type, Float content) {
+        Optional<? extends ScLinkFloat> result = Optional.empty();
         try {
             result = memory.createFloatLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
@@ -90,8 +88,8 @@ public class DefaultScContext {
         return result.get();
     }
 
-    public ScLinkInteger createStringLink(LinkType type, String content){
-        Optional<? extends ScLinkInteger> result = Optional.empty();
+    public ScLinkString createStringLink(LinkType type, String content) {
+        Optional<? extends ScLinkString> result = Optional.empty();
         try {
             result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
@@ -100,17 +98,17 @@ public class DefaultScContext {
         return result.get();
     }
 
-    public ScLinkInteger createBinaryLink(LinkType type, String content){
-        Optional<? extends ScLinkInteger> result = Optional.empty();
+    public ScLinkBinary createBinaryLink(LinkType type, String content) {
+        Optional<? extends ScLinkBinary> result = Optional.empty();
         try {
-            result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createBinaryLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
             e.printStackTrace();
         }
         return result.get();
     }
 
-    public boolean deleteElement(ScElement element){
+    public boolean deleteElement(ScElement element) {
         boolean result = false;
         try {
             result = memory.deleteElements(Stream.of(element));
