@@ -264,4 +264,4 @@ class ScLinkStringImpl implements ScLinkString {
     }
 }
 
-//todo binary link
+// TODO: 6.11.21 binary link

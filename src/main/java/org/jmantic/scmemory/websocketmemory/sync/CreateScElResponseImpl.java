@@ -44,12 +44,11 @@ class CreateScElResponseImpl implements CreateScElResponse {
     @JsonIgnore
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("CreateScElResponseImpl{");
-        sb.append("responseId=").append(responseId);
-        sb.append(", status=").append(status);
-        sb.append(", event=").append(event);
-        sb.append(", createdElementAddress=").append(createdElementAddress);
-        sb.append('}');
-        return sb.toString();
+        return "CreateScElResponseImpl{" +
+                "responseId=" + responseId +
+                ", status=" + status +
+                ", event=" + event +
+                ", createdElementAddress=" + createdElementAddress +
+                '}';
     }
 }
