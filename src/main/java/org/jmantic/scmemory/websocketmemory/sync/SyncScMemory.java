@@ -116,7 +116,26 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
-        return null;
+        List<ScLinkIntegerImpl> result = new ArrayList<>();
+        CreateScElRequest request = new CreateScElRequestImpl();
+        Iterator<LinkType> linkTypeIter = elements.iterator();
+        Iterator<Integer> linkContentIter = content.iterator();
+        while (linkTypeIter.hasNext() && linkContentIter.hasNext()) {
+            ScLinkIntegerImpl link = new ScLinkIntegerImpl(linkTypeIter.next());
+            link.setContent(linkContentIter.next());
+            result.add(link);
+            request.addElementToRequest(link);
+        }
+        logger.info("Integer links to create - {}", result);
+        CreateScElResponse response = requestSender.sendCreateElRequest(request);
+        var addresses = response.getAddresses().collect(Collectors.toList());
+        logger.info("Sc addresses of integer links - {}", addresses);
+        for (int i = 0; i < addresses.size(); i++) {
+            long address = addresses.get(i);
+            ScLinkIntegerImpl link = result.get(i);
+            link.setAddress(address);
+        }
+        return result.stream();
     }
 
     @Override
