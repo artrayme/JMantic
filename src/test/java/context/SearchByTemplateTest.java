@@ -33,17 +33,19 @@ public class SearchByTemplateTest {
     void createSingleTriple() {
         ScNode source = scContext.createNode(NodeType.NODE);
         ScNode target1 = scContext.createNode(NodeType.NODE);
-        //        ScNode target2 = scContext.createNode(NodeType.NODE);
+//        ScNode target2 = scContext.createNode(NodeType.NODE);
         ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, target1);
-        //        ScEdge edge2 = scContext.createEdge(EdgeType.ACCESS, source, target2);
+//        ScEdge edge2 = scContext.createEdge(EdgeType.ACCESS, source, target2);
         var result = scContext.findAllConstructionsNodeEdgeNode(source, EdgeType.ACCESS, NodeType.NODE).toList();
         assertEquals(source, result.get(0).getSource());
         assertEquals(target1, result.get(0).getTarget());
         assertEquals(edge1, result.get(0));
 
-        //        assertEquals(source, result.get(1).getSource());
-        //        assertEquals(target2, result.get(1).getTarget());
-        //        assertEquals(edge2, result.get(1));
+//        assertEquals(source, result.get(1).getSource());
+//        assertEquals(target2, result.get(1).getTarget());
+//        assertEquals(edge2, result.get(1));
+
+
 
     }
 }
