@@ -33,10 +33,10 @@ class RequestSenderImpl implements RequestSender {
     public CreateScElResponse sendCreateElRequest(CreateScElRequest request) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("!!!!!!!Request to ostis - {}", request);
+            logger.info("request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             CreateScElResponse response = mapper.readValue(msg, CreateScElResponseImpl.class);
-            logger.info("!!!!!!!Response from ostis - {}", response);
+            logger.info("response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
@@ -49,13 +49,13 @@ class RequestSenderImpl implements RequestSender {
     public DeleteScElResponse sendDeleteElRequest(DeleteScElRequest request) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("!!!!!!!Request to ostis - {}", request);
+            logger.info("request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             DeleteScElResponseImpl response = mapper.readValue(msg, DeleteScElResponseImpl.class);
-            logger.info("!!!!!!!Response from ostis - {}", response);
+            logger.info("response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
-            String msg = "!!!!!!!cant parse request - " + request;
+            String msg = "cant parse request - " + request;
             logger.error(msg);
             throw new ScMemoryException(msg, e);
         }
@@ -63,17 +63,16 @@ class RequestSenderImpl implements RequestSender {
 
     @Override
     public SearchByTemplateResponse sendSearchByTemplateRequest(SearchByTemplateRequest request) throws ScMemoryException {
-        SearchByTemplateResponse response = null;
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("!!!!!!!!!!!!Request to ostis - {}", jsonRequest);
+            logger.info("request to ostis - {}", jsonRequest);
             String msg = client.sendToOstis(jsonRequest);
-            logger.info("!!!!!!!!!!!!msg - {}", msg);
-            response = mapper.readValue(msg, SearchByTemplateResponseImpl.class);
+            logger.info("msg - {}", msg);
+            SearchByTemplateResponse response = mapper.readValue(msg, SearchByTemplateResponseImpl.class);
             logger.info("Response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
-            String msg = "cant parse response - " + response;
+            String msg = "cant parse request - " + request;
             logger.error(msg);
             throw new ScMemoryException(msg, e);
         }
@@ -83,10 +82,10 @@ class RequestSenderImpl implements RequestSender {
     public SetLinkContentResponse sendSetLinkContentRequest(SetLinkContentRequest request) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("!!!!!!!Request to ostis - {}", request);
+            logger.info("request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             SetLinkContentResponse response = mapper.readValue(msg, SetLinkContentResponseImpl.class);
-            logger.info("!!!!!!!Response from ostis - {}", response);
+            logger.info("response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
@@ -99,10 +98,10 @@ class RequestSenderImpl implements RequestSender {
     public GetLinkContentResponse sendGetLinkContentRequest(GetLinkContentRequest request) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);
-            logger.info("!!!!!!!Request to ostis - {}", request);
+            logger.info("request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             GetLinkContentResponse response = mapper.readValue(msg, GetLinkContentResponseImpl.class);
-            logger.info("!!!!!!!Response from ostis - {}", response);
+            logger.info("response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
