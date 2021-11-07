@@ -86,9 +86,55 @@ public class ScLinkOperationsTest {
     void getContentFromIntegerLink() {
         int content = 5;
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
-        assertEquals(LinkType.LINK, link.getType());
-        assertEquals(LinkContentType.INTEGER, link.getContentType());
-        assertEquals(content, link.getContent());
+        assertEquals(content, scContext.getIntegerLinkContent(link));
     }
 
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromFloatLink() {
+        float content = 42.1f;
+        ScLinkFloat link = scContext.createFloatLink(LinkType.LINK, content);
+        assertEquals(content, scContext.getFloatLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromStringLink() {
+        String content = "Hello";
+        ScLinkString link = scContext.createStringLink(LinkType.LINK, content);
+        assertEquals(content, scContext.getStringLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToIntegerLink() {
+        int oldContent = 5;
+        int newContent = 13;
+        ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, oldContent);
+        scContext.setIntegerLinkContent(link, newContent);
+        assertEquals(newContent, link.getContent());
+        assertEquals(newContent, scContext.getIntegerLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToFloatLink() {
+        float oldContent = 42.1f;
+        float newContent = 123.456f;
+        ScLinkFloat link = scContext.createFloatLink(LinkType.LINK, oldContent);
+        scContext.setFloatLinkContent(link, newContent);
+        assertEquals(newContent, link.getContent());
+        assertEquals(newContent, scContext.getFloatLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToStringLink() {
+        String oldContent = "Hello";
+        String newContent = "World";
+        ScLinkString link = scContext.createStringLink(LinkType.LINK, oldContent);
+        scContext.setStringLinkContent(link, newContent);
+        assertEquals(newContent, link.getContent());
+        assertEquals(newContent, scContext.getStringLinkContent(link));
+    }
 }
