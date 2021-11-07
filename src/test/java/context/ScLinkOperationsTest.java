@@ -1,6 +1,6 @@
 package context;
 
-import org.jmantic.api.context.DefaultScContext;
+import org.jmantic.api.context.UncheckedScContext;
 import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
@@ -23,11 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * 11/6/21
  */
 public class ScLinkOperationsTest {
-    private DefaultScContext scContext;
+    private UncheckedScContext scContext;
 
     @BeforeEach
     public void setUp() throws URISyntaxException {
-        scContext = new DefaultScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 
     @Test
@@ -79,6 +79,16 @@ public class ScLinkOperationsTest {
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
         boolean result = scContext.deleteElement(link);
         assertTrue(result);
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromIntegerLink() {
+        int content = 5;
+        ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
+        assertEquals(LinkType.LINK, link.getType());
+        assertEquals(LinkContentType.INTEGER, link.getContentType());
+        assertEquals(content, link.getContent());
     }
 
 }

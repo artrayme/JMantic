@@ -1,6 +1,6 @@
 package context;
 
-import org.jmantic.api.context.DefaultScContext;
+import org.jmantic.api.context.UncheckedScContext;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
@@ -26,11 +26,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * 10/30/21
  */
 public class EdgeOperationsTest {
-    private DefaultScContext scContext;
+    private UncheckedScContext scContext;
 
     @BeforeEach
     public void setUp() throws URISyntaxException {
-        scContext = new DefaultScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 
     @Test

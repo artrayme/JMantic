@@ -19,10 +19,10 @@ import java.util.stream.Stream;
  * @author artrayme
  * @since 0.0.1
  */
-public class DefaultScContext {
+public class UncheckedScContext {
     private final ScMemory memory;
 
-    public DefaultScContext(ScMemory memory) {
+    public UncheckedScContext(ScMemory memory) {
         this.memory = memory;
     }
 
@@ -130,5 +130,6 @@ public class DefaultScContext {
         }
         return result;
     }
+
 
 }

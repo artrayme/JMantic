@@ -1,6 +1,6 @@
 package context;
 
-import org.jmantic.api.context.DefaultScContext;
+import org.jmantic.api.context.UncheckedScContext;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
@@ -25,11 +25,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 
 public class NodeOperationsTest {
-    private DefaultScContext scContext;
+    private UncheckedScContext scContext;
 
     @BeforeEach
     void setUp() throws URISyntaxException {
-        scContext = new DefaultScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 
     @Test
