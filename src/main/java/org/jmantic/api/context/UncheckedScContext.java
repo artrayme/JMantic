@@ -131,5 +131,90 @@ public class UncheckedScContext {
         return result;
     }
 
+    public Boolean setIntegerLinkContent(ScLinkInteger link, Integer content) {
+        Stream<Boolean> result = Stream.empty();
+        try {
+            result = memory.setIntegerLinkContent(Stream.of(link), Stream.of(content));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
 
+    public Boolean setFloatLinkContent(ScLinkFloat link, Float content) {
+        Stream<Boolean> result = Stream.empty();
+        try {
+            result = memory.setFloatLinkContent(Stream.of(link), Stream.of(content));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
+
+    public Boolean setStringLinkContent(ScLinkString link, String content) {
+        Stream<Boolean> result = Stream.empty();
+        try {
+            result = memory.setStringLinkContent(Stream.of(link), Stream.of(content));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
+
+    //    Uncomment when the project updated to java 17
+    //    public <T> Boolean setAnyLinkContent(ScLink link, T content) {
+    //        Stream<Boolean> result = Stream.empty();
+    //        try {
+    //            result = switch (content) {
+    //                case String str -> {
+    //                    if (!link.getContentType().equals(LinkContentType.STRING))
+    //                        throw new IllegalArgumentException("You should pass link with String content type");
+    //                    memory.setStringLinkContent(Stream.of((ScLinkString) link), Stream.of(str));
+    //                }
+    //                case Integer integer -> {
+    //                    if (!link.getContentType().equals(LinkContentType.INTEGER))
+    //                        throw new IllegalArgumentException("You should pass link with Integer content type");
+    //                    memory.setIntegerLinkContent(Stream.of((ScLinkInteger) link), Stream.of(integer));
+    //                }
+    //                case Float flt -> {
+    //                    if (!link.getContentType().equals(LinkContentType.FLOAT))
+    //                        throw new IllegalArgumentException("You should pass link with Float content type");
+    //                    memory.setFloatLinkContent(Stream.of((ScLinkFloat) link), Stream.of(flt));
+    //                }
+    //            };
+    //        } catch (ScMemoryException e) {
+    //            e.printStackTrace();
+    //        }
+    //        return result.findFirst().get();
+    //    }
+
+    public Integer getIntegerLinkContent(ScLinkInteger link) {
+        Stream<Integer> result = Stream.empty();
+        try {
+            result = memory.getIntegerLinkContent(Stream.of(link));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
+
+    public Float getFloatLinkContent(ScLinkFloat link) {
+        Stream<Float> result = Stream.empty();
+        try {
+            result = memory.getFloatLinkContent(Stream.of(link));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
+
+    public String getStringLinkContent(ScLinkString link) {
+        Stream<String> result = Stream.empty();
+        try {
+            result = memory.getStringLinkContent(Stream.of(link));
+        } catch (ScMemoryException e) {
+            e.printStackTrace();
+        }
+        return result.findFirst().get();
+    }
 }
