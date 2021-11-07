@@ -31,7 +31,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -75,7 +74,7 @@ public class SyncScMemory implements ScMemory {
 
         List<ScNodeImpl> nodesToCreate = elements
                 .map(ScNodeImpl::new)
-                .collect(Collectors.toList());
+                .toList();
 
         CreateScElRequest request = new CreateScElRequestImpl();
         request.addToRequest(nodesToCreate);
@@ -83,7 +82,7 @@ public class SyncScMemory implements ScMemory {
         logger.info("Nodes to create - {}", nodesToCreate);
 
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().collect(Collectors.toList());
+        var addresses = response.getAddresses().toList();
         logger.info("Sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);
@@ -95,8 +94,8 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
-                                                   Stream<? extends ScElement> sources,
-                                                   Stream<? extends ScElement> targets) throws ScMemoryException {
+                                                Stream<? extends ScElement> sources,
+                                                Stream<? extends ScElement> targets) throws ScMemoryException {
         List<ScEdge> result = new ArrayList<>();
         CreateScElRequest request = new CreateScElRequestImpl();
         Iterator<EdgeType> elementsTypesIter = elements.iterator();
@@ -107,12 +106,12 @@ public class SyncScMemory implements ScMemory {
             request.addElementToRequest(edge);
             result.add(edge);
         }
-        if (elementsTypesIter.hasNext()!=firstComponentsIter.hasNext() || elementsTypesIter.hasNext()!=secondComponentsIter.hasNext()){
+        if (elementsTypesIter.hasNext() != firstComponentsIter.hasNext() || elementsTypesIter.hasNext() != secondComponentsIter.hasNext()) {
             throw new IllegalArgumentException("All passed streams must have same length");
         }
         logger.info("Edges to create - {}", request);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().collect(Collectors.toList());
+        var addresses = response.getAddresses().toList();
         logger.info("Sc addresses of edges - {}", addresses);
 
         for (int i = 0; i < addresses.size(); i++) {
@@ -137,7 +136,7 @@ public class SyncScMemory implements ScMemory {
         }
         logger.info("Integer links to create - {}", result);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().collect(Collectors.toList());
+        var addresses = response.getAddresses().toList();
         logger.info("Sc addresses of integer links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
@@ -161,7 +160,7 @@ public class SyncScMemory implements ScMemory {
         }
         logger.info("Float links to create - {}", result);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().collect(Collectors.toList());
+        var addresses = response.getAddresses().toList();
         logger.info("Sc addresses of float links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
@@ -185,7 +184,7 @@ public class SyncScMemory implements ScMemory {
         }
         logger.info("String links to create - {}", result);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
-        var addresses = response.getAddresses().collect(Collectors.toList());
+        var addresses = response.getAddresses().toList();
         logger.info("Sc addresses of string links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
@@ -301,12 +300,12 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
+    public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkIntegerImpl> links = elements.map(l -> {
             request.addToRequest(l.getAddress());
             return (ScLinkIntegerImpl) l;
-        }).collect(Collectors.toList());
+        }).toList();
 
         GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
         List<Object> values = response.getContent();
@@ -318,16 +317,16 @@ public class SyncScMemory implements ScMemory {
             }
         }
 
-        return links.stream();
+        return links.stream().map(ScLinkIntegerImpl::getContent);
     }
 
     @Override
-    public Stream<? extends ScLinkFloat> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
+    public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkFloatImpl> links = elements.map(l -> {
             request.addToRequest(l.getAddress());
             return (ScLinkFloatImpl) l;
-        }).collect(Collectors.toList());
+        }).toList();
 
         GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
         List<Object> values = response.getContent();
@@ -339,16 +338,16 @@ public class SyncScMemory implements ScMemory {
             }
         }
 
-        return links.stream();
+        return links.stream().map(ScLinkFloatImpl::getContent);
     }
 
     @Override
-    public Stream<? extends ScLinkString> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
+    public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkStringImpl> links = elements.map(l -> {
             request.addToRequest(l.getAddress());
             return (ScLinkStringImpl) l;
-        }).collect(Collectors.toList());
+        }).toList();
 
         GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
         List<Object> values = response.getContent();
@@ -360,6 +359,6 @@ public class SyncScMemory implements ScMemory {
             }
         }
 
-        return links.stream();
+        return links.stream().map(ScLinkStringImpl::getContent);
     }
 }

@@ -109,9 +109,9 @@ public interface ScMemory {
 
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
-    Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException;
+    Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException;
 
-    Stream<? extends ScLinkFloat> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
+    Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
 
-    Stream<? extends ScLinkString> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
+    Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
 }
