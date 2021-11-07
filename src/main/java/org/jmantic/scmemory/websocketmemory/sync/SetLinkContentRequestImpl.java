@@ -44,6 +44,17 @@ public class SetLinkContentRequestImpl implements SetLinkContentRequest {
             this.content = content;
             this.address = address;
         }
+
+        @JsonIgnore
+        @Override
+        public String toString() {
+            return "SetContentStruct{" +
+                    "command='" + command + '\'' +
+                    ", contentType=" + contentType +
+                    ", content=" + content +
+                    ", address=" + address +
+                    '}';
+        }
     }
 
     public SetLinkContentRequestImpl() {
@@ -79,5 +90,15 @@ public class SetLinkContentRequestImpl implements SetLinkContentRequest {
     @Override
     public void resetRequest() {
         contentStructs.clear();
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        return "SetLinkContentRequestImpl{" +
+                "requestId=" + requestId +
+                ", requestType=" + requestType +
+                ", contentStructs=" + contentStructs +
+                '}';
     }
 }

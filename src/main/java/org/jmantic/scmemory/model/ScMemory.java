@@ -49,8 +49,6 @@ public interface ScMemory {
 
     //    ScElement resolvedKeynode(String identifier, NodeType type) throws ScMemoryException;
 
-    Stream<? extends ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException;
-
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
     Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
@@ -58,4 +56,6 @@ public interface ScMemory {
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
     Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links, Stream<Object> content) throws ScMemoryException;
+
+    Stream<? extends ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException;
 }

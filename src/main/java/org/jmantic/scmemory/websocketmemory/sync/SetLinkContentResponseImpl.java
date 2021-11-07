@@ -1,6 +1,7 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 
@@ -35,7 +36,18 @@ public class SetLinkContentResponseImpl implements SetLinkContentResponse {
     }
 
     @Override
-    public List<Boolean> getStatusOfOperation() {
+    public List<Boolean> getOperationStatus() {
         return statusOfOperations;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        return "SetLinkContentResponseImpl{" +
+                "responseId=" + responseId +
+                ", status=" + status +
+                ", event=" + event +
+                ", statusOfOperations=" + statusOfOperations +
+                '}';
     }
 }

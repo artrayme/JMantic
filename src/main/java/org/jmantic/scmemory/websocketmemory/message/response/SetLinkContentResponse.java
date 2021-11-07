@@ -7,5 +7,5 @@ import java.util.List;
  * @since 0.0.1
  */
 public interface SetLinkContentResponse extends ScResponse {
-    List<Boolean> getStatusOfOperation();
+    List<Boolean> getOperationStatus();
 }
