@@ -3,7 +3,6 @@ package org.jmantic.scmemory.websocketmemory.sync;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 
 import java.util.List;
@@ -22,9 +21,12 @@ class GetLinkContentResponseImpl implements GetLinkContentResponse {
     @JsonProperty("payload")
     private List<GetContentStruct> linkContent;
 
+    @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     private static class GetContentStruct {
-        LinkContentType type;
+        @JsonProperty("value")
         Object value;
+        @JsonProperty("type")
+        String type;
 
         @JsonIgnore
         @Override

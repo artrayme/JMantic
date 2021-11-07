@@ -29,7 +29,7 @@ class GetLinkContentRequestImpl implements GetLinkContentRequest {
 
     private static class GetContentStruct {
         @JsonProperty("command")
-        String command = "set";
+        String command = "get";
         @JsonProperty("addr")
         long address;
 

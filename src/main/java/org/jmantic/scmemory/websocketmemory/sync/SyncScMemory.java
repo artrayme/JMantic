@@ -17,11 +17,9 @@ import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
-import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.*;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -311,17 +309,65 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
-        return null;
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkIntegerImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkIntegerImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkIntegerImpl link = links.get(i);
+                link.setContent((Integer) value);
+            }
+        }
+
+        return links.stream();
     }
 
     @Override
     public Stream<? extends ScLinkFloat> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
-        return null;
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkFloatImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkFloatImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkFloatImpl link = links.get(i);
+                link.setContent((Float) value);
+            }
+        }
+
+        return links.stream();
     }
 
     @Override
     public Stream<? extends ScLinkString> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
-        return null;
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkStringImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkStringImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkStringImpl link = links.get(i);
+                link.setContent((String) value);
+            }
+        }
+
+        return links.stream();
     }
 
     @Override

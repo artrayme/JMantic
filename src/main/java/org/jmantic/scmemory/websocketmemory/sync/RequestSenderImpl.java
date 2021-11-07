@@ -6,14 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
-import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
-import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
-import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
-import org.jmantic.scmemory.websocketmemory.message.request.SetLinkContentRequest;
-import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
+import org.jmantic.scmemory.websocketmemory.message.request.*;
+import org.jmantic.scmemory.websocketmemory.message.response.*;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,6 +86,22 @@ class RequestSenderImpl implements RequestSender {
             logger.info("!!!!!!!Request to ostis - {}", request);
             String msg = client.sendToOstis(jsonRequest);
             SetLinkContentResponse response = mapper.readValue(msg, SetLinkContentResponseImpl.class);
+            logger.info("!!!!!!!Response from ostis - {}", response);
+            return response;
+        } catch (JsonProcessingException e) {
+            String msg = "cant parse request - " + request;
+            logger.error(msg);
+            throw new ScMemoryException(msg, e);
+        }
+    }
+
+    @Override
+    public GetLinkContentResponse sendGetLinkContentRequest(GetLinkContentRequest request) throws ScMemoryException {
+        try {
+            String jsonRequest = writer.writeValueAsString(request);
+            logger.info("!!!!!!!Request to ostis - {}", request);
+            String msg = client.sendToOstis(jsonRequest);
+            GetLinkContentResponse response = mapper.readValue(msg, GetLinkContentResponseImpl.class);
             logger.info("!!!!!!!Response from ostis - {}", response);
             return response;
         } catch (JsonProcessingException e) {
