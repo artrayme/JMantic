@@ -83,7 +83,6 @@ ScEdge edge=scContext.createEdge(EdgeType.ACCESS,source,target);
 ## Used libraries
 
 * Java-WebSocket https://github.com/TooTallNate/Java-WebSocket
-* Log4j2 https://github.com/apache/logging-log4j2
 * JUnit5 https://github.com/junit-team/junit5
 * Jackson-databind https://github.com/FasterXML/jackson-databind
 

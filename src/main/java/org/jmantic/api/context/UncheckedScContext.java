@@ -11,6 +11,8 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -20,6 +22,7 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 public class UncheckedScContext {
+    private final static Logger logger = LoggerFactory.getLogger(UncheckedScContext.class);
     private final ScMemory memory;
 
     public UncheckedScContext(ScMemory memory) {
