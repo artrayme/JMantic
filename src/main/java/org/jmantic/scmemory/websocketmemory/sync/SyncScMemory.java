@@ -334,7 +334,7 @@ public class SyncScMemory implements ScMemory {
             Object value = values.get(i);
             if (value != null) {
                 ScLinkFloatImpl link = links.get(i);
-                link.setContent((Float) value);
+                link.setContent(((Double) value).floatValue());
             }
         }
 

@@ -40,7 +40,7 @@ class GetLinkContentResponseImpl implements GetLinkContentResponse {
 
     @Override
     public List<Object> getContent() {
-        return linkContent.stream().map(s -> s.value).collect(Collectors.toList());
+        return linkContent.stream().map(s -> s.value).toList();
     }
 
     @Override
