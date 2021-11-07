@@ -17,10 +17,9 @@ import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
-import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.*;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -222,13 +221,158 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
+    public Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException {
+        SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
+        Iterator<? extends ScLinkInteger> linksIter = links.iterator();
+        Iterator<Integer> contentIter = content.iterator();
+        List<ScLinkIntegerImpl> linksWithoutContent = new ArrayList<>();
+        List<Integer> contentWithoutLink = new ArrayList<>();
+        while (linksIter.hasNext() && contentIter.hasNext()) {
+            ScLinkIntegerImpl link = (ScLinkIntegerImpl) linksIter.next();
+            linksWithoutContent.add(link);
+            Integer data = contentIter.next();
+            contentWithoutLink.add(data);
+            request.addToRequest(link, data);
+        }
+        SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
+        List<Boolean> statusOfOperation = response.getOperationStatus();
+        for (int i = 0; i < statusOfOperation.size(); i++) {
+            boolean status = statusOfOperation.get(i);
+            if (status) {
+                ScLinkIntegerImpl link = linksWithoutContent.get(i);
+                Integer data = contentWithoutLink.get(i);
+                link.setContent(data);
+            }
+        }
+        return statusOfOperation.stream();
+    }
+
+    @Override
+    public Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException {
+        SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
+        Iterator<? extends ScLinkFloat> linksIter = links.iterator();
+        Iterator<Float> contentIter = content.iterator();
+        List<ScLinkFloatImpl> linksWithoutContent = new ArrayList<>();
+        List<Float> contentWithoutLink = new ArrayList<>();
+        while (linksIter.hasNext() && contentIter.hasNext()) {
+            ScLinkFloatImpl link = (ScLinkFloatImpl) linksIter.next();
+            linksWithoutContent.add(link);
+            Float data = contentIter.next();
+            contentWithoutLink.add(data);
+            request.addToRequest(link, data);
+        }
+        SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
+        List<Boolean> statusOfOperation = response.getOperationStatus();
+        for (int i = 0; i < statusOfOperation.size(); i++) {
+            boolean status = statusOfOperation.get(i);
+            if (status) {
+                ScLinkFloatImpl link = linksWithoutContent.get(i);
+                Float data = contentWithoutLink.get(i);
+                link.setContent(data);
+            }
+        }
+        return statusOfOperation.stream();
+    }
+
+    @Override
+    public Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException {
+        SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
+        Iterator<? extends ScLinkString> linksIter = links.iterator();
+        Iterator<String> contentIter = content.iterator();
+        List<ScLinkStringImpl> linksWithoutContent = new ArrayList<>();
+        List<String> contentWithoutLink = new ArrayList<>();
+        while (linksIter.hasNext() && contentIter.hasNext()) {
+            ScLinkStringImpl link = (ScLinkStringImpl) linksIter.next();
+            linksWithoutContent.add(link);
+            String data = contentIter.next();
+            contentWithoutLink.add(data);
+            request.addToRequest(link, data);
+        }
+        SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
+        List<Boolean> statusOfOperation = response.getOperationStatus();
+        for (int i = 0; i < statusOfOperation.size(); i++) {
+            boolean status = statusOfOperation.get(i);
+            if (status) {
+                ScLinkStringImpl link = linksWithoutContent.get(i);
+                String data = contentWithoutLink.get(i);
+                link.setContent(data);
+            }
+        }
+        return statusOfOperation.stream();
+    }
+
+    @Override
+    public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links, Stream<Object> content) throws ScMemoryException {
+        // TODO: 7.11.21 binary link content
         return null;
     }
 
     @Override
-    public Stream<Boolean> setLinkContent(Stream<? extends ScLink> links, Stream<Object> content) throws ScMemoryException {
-        return null;
+    public Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkIntegerImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkIntegerImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkIntegerImpl link = links.get(i);
+                link.setContent((Integer) value);
+            }
+        }
+
+        return links.stream();
     }
 
+    @Override
+    public Stream<? extends ScLinkFloat> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkFloatImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkFloatImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkFloatImpl link = links.get(i);
+                link.setContent((Float) value);
+            }
+        }
+
+        return links.stream();
+    }
+
+    @Override
+    public Stream<? extends ScLinkString> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<ScLinkStringImpl> links = elements.map(l -> {
+            request.addToRequest(l.getAddress());
+            return (ScLinkStringImpl) l;
+        }).collect(Collectors.toList());
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+        List<Object> values = response.getContent();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLinkStringImpl link = links.get(i);
+                link.setContent((String) value);
+            }
+        }
+
+        return links.stream();
+    }
+
+    @Override
+    public Stream<? extends ScLinkBinary> getBinaryLinkContent(Stream<? extends ScLinkBinary> elements) throws ScMemoryException {
+        // TODO: 7.11.21  binary link content
+        return null;
+    }
 }

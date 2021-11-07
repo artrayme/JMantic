@@ -10,7 +10,7 @@ import java.util.List;
  * 11/6/21
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class PayloadFoundByTemplateStruct {
+class PayloadFoundByTemplateStruct {
 
     //    ToDo aliases
     @JsonProperty("aliases")

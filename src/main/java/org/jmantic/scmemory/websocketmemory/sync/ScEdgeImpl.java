@@ -4,11 +4,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 import java.util.Objects;
 
@@ -18,14 +16,12 @@ import java.util.Objects;
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScEdgeImpl implements ScEdge {
-    @JsonView(ScMemoryView.Request.class)
     @JsonProperty("el")
     private final String element = "edge";
 
-    @JsonView(ScMemoryView.Address.class)
+    @JsonIgnore
     private long address;
 
-    @JsonView(ScMemoryView.Request.class)
     @JsonRawValue
     @JsonProperty("src")
     private final String source;
@@ -33,7 +29,6 @@ class ScEdgeImpl implements ScEdge {
     @JsonIgnore
     private final ScElement sourceElement;
 
-    @JsonView(ScMemoryView.Request.class)
     @JsonRawValue
     @JsonProperty("trg")
     private final String target;
@@ -41,7 +36,6 @@ class ScEdgeImpl implements ScEdge {
     @JsonIgnore
     private final ScElement targetElement;
 
-    @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final EdgeType edgeType;
 

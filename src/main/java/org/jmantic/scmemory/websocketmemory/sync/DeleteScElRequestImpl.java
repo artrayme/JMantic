@@ -14,7 +14,7 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class DeleteScElRequestImpl implements DeleteScElRequest {
+class DeleteScElRequestImpl implements DeleteScElRequest {
     @JsonProperty("id")
     private final long requestId;
     @JsonProperty("type")

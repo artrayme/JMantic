@@ -3,10 +3,8 @@ package org.jmantic.scmemory.websocketmemory.sync;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 
 import java.util.Objects;
 
@@ -16,15 +14,13 @@ import java.util.Objects;
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScNodeImpl implements ScNode {
-    @JsonView(ScMemoryView.Request.class)
     @JsonProperty("el")
     private final String element = "node";
 
-    @JsonView(ScMemoryView.Request.class)
     @JsonProperty("type")
     private final NodeType nodeType;
 
-    @JsonView(ScMemoryView.Address.class)
+    @JsonIgnore
     private long address;
 
     public ScNodeImpl(NodeType nodeType) {
