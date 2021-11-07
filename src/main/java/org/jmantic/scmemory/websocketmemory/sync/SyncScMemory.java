@@ -206,14 +206,14 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode node, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
-        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeNodeRequestImpl(node, edgeType, nodeType);
+    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
+        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeNodeRequestImpl(fixedNode, edgeType, nodeType);
         SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
         List<ScEdge> result = new ArrayList<>();
         response.getFoundAddresses().forEach(e -> {
             var currentTriple = e.toList();
             var targetNode = new ScNodeImpl(nodeType, currentTriple.get(2));
-            result.add(new ScEdgeImpl(edgeType, node, targetNode, currentTriple.get(1)));
+            result.add(new ScEdgeImpl(edgeType, fixedNode, targetNode, currentTriple.get(1)));
         });
         return result.stream();
     }

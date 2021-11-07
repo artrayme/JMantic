@@ -90,18 +90,19 @@ public interface ScMemory {
      * Method to remove any sc-element in sc-machine.
      * You should pass a stream of sc-elements that you want to remove.
      *
-     * @return the status of the request. Always true ¯\_(ツ)_/¯
+     * @return the status of the request
      */
     boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException;
 
     /**
-     * Method to search for sc-constructions from pattern Node-Edge-Node.
-     * This pattern is a variation of F_A_A pattern
-     * You should pass a stream of sc-elements that you want to remove.
-     *
-     * @return the status of the request. Always true ¯\_(ツ)_/¯
+     * Method to search for sc-constructions by pattern Node-Edge-Node.
+     * This pattern is a variation of the F_A_A pattern.
+     * You must pass one particular sc-node,
+     * the type of the edge you are looking for,
+     * and the type of the node you are looking for.
+     * @return stream of edges (source of each edge will have address of fixed node)
      */
-    Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode node, EdgeType edgeType, NodeType nodeType) throws ScMemoryException;
+    Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode, EdgeType edgeType, NodeType nodeType) throws ScMemoryException;
 
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
