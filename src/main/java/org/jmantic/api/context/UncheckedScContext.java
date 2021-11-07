@@ -30,75 +30,78 @@ public class UncheckedScContext {
     }
 
     public ScNode createNode(NodeType type) {
-        Optional<? extends ScElement> result = Optional.empty();
+        Optional<? extends ScElement> result;
         try {
             result = memory.createNodes(Stream.of(type)).findFirst();
         } catch (ScMemoryException e) {
-            //            ToDo logger
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return (ScNode) result.get();
     }
 
     public Stream<ScNode> createNodes(Stream<NodeType> types) {
-        Stream<? extends ScElement> result = Stream.empty();
+        Stream<? extends ScElement> result;
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
-            //            ToDO logger
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.map(e -> (ScNode) e);
     }
 
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
-        Optional<? extends ScElement> edge = Optional.empty();
+        Optional<? extends ScElement> edge;
         try {
             edge = memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst();
         } catch (ScMemoryException e) {
-            //            ToDo logger
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return (ScEdge) edge.get();
     }
 
     public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<? extends ScElement> source, Stream<? extends ScElement> target) {
-        Stream<ScEdge> scEdgeStream = Stream.empty();
+        Stream<ScEdge> scEdgeStream;
         try {
             scEdgeStream = memory.createEdges(types, source, target).map(e -> (ScEdge) e);
         } catch (ScMemoryException e) {
-            //            ToDo logger
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return scEdgeStream;
     }
 
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) {
-        Optional<? extends ScLinkInteger> result = Optional.empty();
+        Optional<? extends ScLinkInteger> result;
         try {
             result = memory.createIntegerLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.get();
     }
 
     public ScLinkFloat createFloatLink(LinkType type, Float content) {
-        Optional<? extends ScLinkFloat> result = Optional.empty();
+        Optional<? extends ScLinkFloat> result;
         try {
             result = memory.createFloatLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.get();
     }
 
     public ScLinkString createStringLink(LinkType type, String content) {
-        Optional<? extends ScLinkString> result = Optional.empty();
+        Optional<? extends ScLinkString> result;
         try {
             result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.get();
     }
@@ -114,52 +117,56 @@ public class UncheckedScContext {
     //    }
 
     public boolean deleteElement(ScElement element) {
-        boolean result = false;
+        boolean result;
         try {
             result = memory.deleteElements(Stream.of(element));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result;
     }
 
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
-        Stream<? extends ScEdge> result = Stream.empty();
+        Stream<? extends ScEdge> result;
         try {
             result = memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
         } catch (ScMemoryException e) {
-            //            ToDo logger
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result;
     }
 
     public Boolean setIntegerLinkContent(ScLinkInteger link, Integer content) {
-        Stream<Boolean> result = Stream.empty();
+        Stream<Boolean> result;
         try {
             result = memory.setIntegerLinkContent(Stream.of(link), Stream.of(content));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
 
     public Boolean setFloatLinkContent(ScLinkFloat link, Float content) {
-        Stream<Boolean> result = Stream.empty();
+        Stream<Boolean> result;
         try {
             result = memory.setFloatLinkContent(Stream.of(link), Stream.of(content));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
 
     public Boolean setStringLinkContent(ScLinkString link, String content) {
-        Stream<Boolean> result = Stream.empty();
+        Stream<Boolean> result;
         try {
             result = memory.setStringLinkContent(Stream.of(link), Stream.of(content));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
@@ -192,31 +199,34 @@ public class UncheckedScContext {
     //    }
 
     public Integer getIntegerLinkContent(ScLinkInteger link) {
-        Stream<Integer> result = Stream.empty();
+        Stream<Integer> result;
         try {
             result = memory.getIntegerLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
 
     public Float getFloatLinkContent(ScLinkFloat link) {
-        Stream<Float> result = Stream.empty();
+        Stream<Float> result;
         try {
             result = memory.getFloatLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
 
     public String getStringLinkContent(ScLinkString link) {
-        Stream<String> result = Stream.empty();
+        Stream<String> result;
         try {
             result = memory.getStringLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            e.printStackTrace();
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
         }
         return result.findFirst().get();
     }
