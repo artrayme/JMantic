@@ -57,5 +57,11 @@ public interface ScMemory {
 
     Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links, Stream<Object> content) throws ScMemoryException;
 
-    Stream<? extends ScLink> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException;
+    Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException;
+
+    Stream<? extends ScLinkFloat> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
+
+    Stream<? extends ScLinkString> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
+
+    Stream<? extends ScLinkBinary> getBinaryLinkContent(Stream<? extends ScLinkBinary> elements) throws ScMemoryException;
 }
