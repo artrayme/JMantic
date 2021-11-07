@@ -1,4 +1,4 @@
-![](logo/project_logo.png)
+![](docs/logo/project_logo.png)
 # JMantic Project
 
 [![testing](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml)
