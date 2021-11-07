@@ -23,6 +23,7 @@ class ScLinkFloatImpl implements ScLinkFloat {
     @JsonProperty("type")
     private final LinkType linkType;
 
+    @JsonProperty("content")
     private float content;
 
     @JsonProperty("content_type")
@@ -98,6 +99,7 @@ class ScLinkFloatImpl implements ScLinkFloat {
  * @author Michael
  * @since 0.0.1
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonProperty("el")
     private final String element = "link";
@@ -105,6 +107,7 @@ class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonProperty("type")
     private final LinkType linkType;
 
+    @JsonProperty("content")
     private int content;
 
     @JsonProperty("content_type")
@@ -179,6 +182,7 @@ class ScLinkIntegerImpl implements ScLinkInteger {
  * @author Michael
  * @since 0.0.1
  */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScLinkStringImpl implements ScLinkString {
     @JsonProperty("el")
     private final String element = "link";
@@ -186,6 +190,7 @@ class ScLinkStringImpl implements ScLinkString {
     @JsonProperty("type")
     private final LinkType linkType;
 
+    @JsonProperty("content")
     private String content;
 
     @JsonProperty("content_type")
