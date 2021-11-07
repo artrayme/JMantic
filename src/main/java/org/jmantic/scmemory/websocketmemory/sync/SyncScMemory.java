@@ -326,6 +326,7 @@ public class SyncScMemory implements ScMemory {
 
     @Override
     public Stream<? extends ScLinkBinary> getBinaryLinkContent(Stream<? extends ScLinkBinary> elements) throws ScMemoryException {
+        // TODO: 7.11.21  binary link content
         return null;
     }
 }
