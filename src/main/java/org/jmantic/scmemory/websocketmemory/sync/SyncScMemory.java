@@ -5,8 +5,6 @@ import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.link.ScLinkBinary;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
@@ -19,7 +17,11 @@ import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
-import org.jmantic.scmemory.websocketmemory.message.response.*;
+import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +71,7 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScElement> createNodes(Stream<NodeType> elements) throws ScMemoryException {
+    public Stream<? extends ScNode> createNodes(Stream<NodeType> elements) throws ScMemoryException {
 
         List<ScNodeImpl> nodesToCreate = elements
                 .map(ScNodeImpl::new)
@@ -92,18 +94,21 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScElement> createEdges(Stream<EdgeType> elements,
-                                                   Stream<? extends ScElement> firstComponents,
-                                                   Stream<? extends ScElement> secondComponents) throws ScMemoryException {
+    public Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
+                                                   Stream<? extends ScElement> sources,
+                                                   Stream<? extends ScElement> targets) throws ScMemoryException {
         List<ScEdge> result = new ArrayList<>();
         CreateScElRequest request = new CreateScElRequestImpl();
         Iterator<EdgeType> elementsTypesIter = elements.iterator();
-        Iterator<? extends ScElement> firstComponentsIter = firstComponents.iterator();
-        Iterator<? extends ScElement> secondComponentsIter = secondComponents.iterator();
+        Iterator<? extends ScElement> firstComponentsIter = sources.iterator();
+        Iterator<? extends ScElement> secondComponentsIter = targets.iterator();
         while (elementsTypesIter.hasNext() && firstComponentsIter.hasNext() && secondComponentsIter.hasNext()) {
             ScEdge edge = new ScEdgeImpl(elementsTypesIter.next(), firstComponentsIter.next(), secondComponentsIter.next());
             request.addElementToRequest(edge);
             result.add(edge);
+        }
+        if (elementsTypesIter.hasNext()!=firstComponentsIter.hasNext() || elementsTypesIter.hasNext()!=secondComponentsIter.hasNext()){
+            throw new IllegalArgumentException("All passed streams must have same length");
         }
         logger.info("Edges to create - {}", request);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
@@ -188,12 +193,6 @@ public class SyncScMemory implements ScMemory {
             link.setAddress(address);
         }
         return result.stream();
-    }
-
-    @Override
-    public Stream<? extends ScLinkBinary> createBinaryLink(Stream<LinkType> elements, Stream<Object> content) throws ScMemoryException {
-        // TODO: 6.11.21 method to create binary link
-        return null;
     }
 
     @Override
@@ -302,12 +301,6 @@ public class SyncScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links, Stream<Object> content) throws ScMemoryException {
-        // TODO: 7.11.21 binary link content
-        return null;
-    }
-
-    @Override
     public Stream<? extends ScLinkInteger> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkIntegerImpl> links = elements.map(l -> {
@@ -368,11 +361,5 @@ public class SyncScMemory implements ScMemory {
         }
 
         return links.stream();
-    }
-
-    @Override
-    public Stream<? extends ScLinkBinary> getBinaryLinkContent(Stream<? extends ScLinkBinary> elements) throws ScMemoryException {
-        // TODO: 7.11.21  binary link content
-        return null;
     }
 }
