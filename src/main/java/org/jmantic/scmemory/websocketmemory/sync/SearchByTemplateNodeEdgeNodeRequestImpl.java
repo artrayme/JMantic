@@ -17,7 +17,7 @@ import java.util.List;
  * 11/6/21
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class SearchByTemplateNodeEdgeNodeRequestImpl implements SearchByTemplateRequest {
+class SearchByTemplateNodeEdgeNodeRequestImpl implements SearchByTemplateRequest {
     @JsonProperty("id")
     private Long id = 1L;
     @JsonProperty("type")

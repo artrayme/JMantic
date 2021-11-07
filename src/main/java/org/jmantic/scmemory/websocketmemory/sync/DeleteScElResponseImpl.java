@@ -10,7 +10,7 @@ import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class DeleteScElResponseImpl implements DeleteScElResponse {
+class DeleteScElResponseImpl implements DeleteScElResponse {
     @JsonProperty("id")
     private long responseId;
     private boolean status;

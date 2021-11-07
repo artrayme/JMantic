@@ -16,7 +16,7 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class SetLinkContentRequestImpl implements SetLinkContentRequest {
+class SetLinkContentRequestImpl implements SetLinkContentRequest {
     @JsonProperty("id")
     private final long requestId;
     @JsonProperty("type")

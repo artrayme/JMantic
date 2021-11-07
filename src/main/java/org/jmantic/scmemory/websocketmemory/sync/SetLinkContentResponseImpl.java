@@ -12,7 +12,7 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class SetLinkContentResponseImpl implements SetLinkContentResponse {
+class SetLinkContentResponseImpl implements SetLinkContentResponse {
     @JsonProperty("id")
     private long responseId;
     private boolean status;

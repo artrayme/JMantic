@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * 11/6/21
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class SearchByTemplateResponseImpl implements SearchByTemplateResponse {
+class SearchByTemplateResponseImpl implements SearchByTemplateResponse {
     @JsonProperty("id")
     private long responseId;
     @JsonProperty("event")
