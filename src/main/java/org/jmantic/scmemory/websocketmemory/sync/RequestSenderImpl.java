@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
-import org.jmantic.scmemory.websocketmemory.message.ScMemoryView;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
@@ -31,7 +30,7 @@ class RequestSenderImpl implements RequestSender {
         this.client = client;
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        writer = mapper.writerWithView(ScMemoryView.Request.class);
+        writer = mapper.writer();
     }
 
     @Override
