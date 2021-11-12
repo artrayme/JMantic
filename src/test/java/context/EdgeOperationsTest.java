@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -124,5 +125,34 @@ public class EdgeOperationsTest {
         ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
         boolean result = scContext.deleteElement(edge);
         assertTrue(result);
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingWithPausesEdges() throws InterruptedException {
+        int count = 100;
+        for (int i = 0; i < count; i++) {
+            ScNode source = scContext.createNode(NodeType.NODE);
+            ScNode target = scContext.createNode(NodeType.NODE);
+            ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
+            Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
+            assertEquals(edge.getType(), EdgeType.ACCESS);
+            assertEquals(edge.getSource(), source);
+            assertEquals(edge.getTarget(), target);
+        }
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingEdges() {
+        int count = 100;
+        for (int i = 0; i < count; i++) {
+            ScNode source = scContext.createNode(NodeType.NODE);
+            ScNode target = scContext.createNode(NodeType.NODE);
+            ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
+            assertEquals(edge.getType(), EdgeType.ACCESS);
+            assertEquals(edge.getSource(), source);
+            assertEquals(edge.getTarget(), target);
+        }
     }
 }

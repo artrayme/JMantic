@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -136,5 +137,32 @@ public class ScLinkOperationsTest {
         scContext.setStringLinkContent(link, newContent);
         assertEquals(newContent, link.getContent());
         assertEquals(newContent, scContext.getStringLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingWithPausesLinks() throws InterruptedException {
+        int count = 100;
+        int content = 5;
+        for (int i = 0; i < count; i++) {
+            ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
+            Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
+            assertEquals(LinkType.LINK, link.getType());
+            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(content, link.getContent());
+        }
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingLinks() {
+        int count = 100;
+        int content = 5;
+        for (int i = 0; i < count; i++) {
+            ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
+            assertEquals(LinkType.LINK, link.getType());
+            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(content, link.getContent());
+        }
     }
 }

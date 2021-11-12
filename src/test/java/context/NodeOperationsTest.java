@@ -12,11 +12,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -76,6 +76,27 @@ public class NodeOperationsTest {
         ScNode node = scContext.createNode(NodeType.NODE);
         boolean result = scContext.deleteElement(node);
         assertTrue(result);
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingWithPausesNodes() throws InterruptedException {
+        int count = 100;
+        for (int i = 0; i < count; i++) {
+            ScNode node = scContext.createNode(NodeType.NODE);
+            Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
+            assertEquals(NodeType.NODE, node.getType());
+        }
+    }
+
+    @Test
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
+    void benchmarkingNodes() {
+        int count = 100;
+        for (int i = 0; i < count; i++) {
+            ScNode node = scContext.createNode(NodeType.NODE);
+            assertEquals(NodeType.NODE, node.getType());
+        }
     }
 
 }
