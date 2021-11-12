@@ -10,7 +10,6 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
@@ -26,8 +25,6 @@ import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,33 +37,10 @@ import java.util.stream.Stream;
  */
 public class SyncScMemory implements ScMemory {
     private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
-    private final static SyncScMemory instance = new SyncScMemory();
-    private final OstisClient ostisClient;
     private final RequestSender requestSender;
 
-    private SyncScMemory() {
-        ostisClient = OstisClientImpl.INSTANCE;
+    public SyncScMemory(OstisClient ostisClient) {
         requestSender = new RequestSenderImpl(ostisClient);
-    }
-
-    public static synchronized SyncScMemory getSyncScMemory(URI serverUri) {
-        instance.ostisClient.configure(serverUri);
-        return instance;
-    }
-
-    public static synchronized SyncScMemory getSyncScMemory(String uri) {
-        try {
-            instance.ostisClient.configure(new URI(uri));
-        } catch (URISyntaxException e) {
-            String msg = "error in uri";
-            logger.error(msg);
-            throw new ScMemoryConfigurationException(msg, e);
-        }
-        return instance;
-    }
-
-    public static synchronized SyncScMemory getSyncScMemory() {
-        return instance;
     }
 
     @Override
