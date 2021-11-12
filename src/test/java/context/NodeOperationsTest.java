@@ -3,6 +3,7 @@ package context;
 import org.jmantic.api.context.UncheckedScContext;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
+import org.jmantic.scmemory.websocketmemory.sync.OstisClientSync;
 import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,8 @@ public class NodeOperationsTest {
 
     @BeforeEach
     void setUp() throws URISyntaxException {
-        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(new SyncScMemory(new OstisClientSync(new URI("ws://localhost:8090/ws_json"))));
+
     }
 
     @Test
