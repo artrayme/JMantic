@@ -1,12 +1,8 @@
 package context;
 
-import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
-import org.jmantic.scmemory.websocketmemory.sync.OstisClientSync;
-import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

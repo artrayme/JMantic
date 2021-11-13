@@ -11,7 +11,6 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
@@ -25,6 +24,7 @@ import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,12 +35,12 @@ import java.util.stream.Stream;
  * @author Michael
  * @since 0.0.1
  */
-public class SyncScMemory implements ScMemory {
-    private final static Logger logger = LoggerFactory.getLogger(SyncScMemory.class);
+public class SyncOstisScMemory implements ScMemory {
+    private final static Logger logger = LoggerFactory.getLogger(SyncOstisScMemory.class);
     private final RequestSender requestSender;
 
-    public SyncScMemory(OstisClient ostisClient) {
-        requestSender = new RequestSenderImpl(ostisClient);
+    public SyncOstisScMemory(URI serverURI) {
+        requestSender = new RequestSenderImpl(new OstisClientSync(serverURI));
     }
 
     @Override
