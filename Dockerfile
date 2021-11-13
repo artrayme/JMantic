@@ -53,7 +53,7 @@ RUN sudo cp -f ../config/server.conf ../sc-web/server/
 
 # Include kb
 #WORKDIR /ostis
-RUN #sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_start_sc_element.scs && \
+# RUN sudo mkdir kb && sudo mv ./ims.ostis.kb/ui/ui_start_sc_element.scs ./kb/ui_start_sc_element.scs && \
 #    sudo mv ./ims.ostis.kb/ui/menu ./kb && echo "kb" | sudo tee -a ./repo.path && sudo mkdir -p problem-solver/cxx && \
 #    echo "problem-solver" | sudo tee -a ./repo.path
 
@@ -115,7 +115,7 @@ RUN set -o errexit -o nounset \
 # JMantic cloning
 ARG CACHE_DATE=2016-01-01
 WORKDIR /
-RUN git clone https://github.com/artrayme/JMantic.git
+RUN git clone -b new_ostis_client https://github.com/artrayme/JMantic.git
 WORKDIR /JMantic
 
 EXPOSE 8090

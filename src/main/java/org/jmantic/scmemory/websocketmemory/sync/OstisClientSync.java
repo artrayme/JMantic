@@ -15,7 +15,7 @@ import java.util.concurrent.CountDownLatch;
  * @author artrayme
  * 11/12/21
  */
-public class OstisClientSync implements OstisClient {
+class OstisClientSync implements OstisClient {
 
     private final static Logger logger = LoggerFactory.getLogger(OstisClientSync.class);
     private WebSocketClient webSocketClient;
