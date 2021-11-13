@@ -6,6 +6,7 @@ import org.jmantic.scmemory.model.exception.ScMemoryConfigurationException;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.sync.exception.OstisClientConfigurationException;
+import org.jmantic.scmemory.websocketmemory.sync.exception.OstisConnectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
  * @author Michael
  * @since 0.0.1
  */
-//todo normalno zapili, debil
+@Deprecated (forRemoval = true, since = "0.2.0")
 enum OstisClientImpl implements OstisClient {
     INSTANCE;
     private final static Logger logger = LoggerFactory.getLogger(OstisClient.class);
@@ -32,7 +33,12 @@ enum OstisClientImpl implements OstisClient {
     }
 
     @Override
-    public synchronized String sendToOstis(String jsonRequest) throws ScMemoryException {
+    public void open() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public synchronized String sendToOstis(String jsonRequest) throws OstisConnectionException {
         checkWebsocketClient();
         latch = new CountDownLatch(1);
         try {
@@ -49,11 +55,11 @@ enum OstisClientImpl implements OstisClient {
         } catch (InterruptedException e) {
             String msg = "something wrong with Threads in OstisClient";
             logger.error(msg);
-            throw new ScMemoryException(msg, e);
+            throw new OstisConnectionException(msg, e);
         } catch (Exception e) {
             String msg = "unknown error in OstisClient";
             logger.error(msg);
-            throw new ScMemoryException(msg, e);
+            throw new OstisConnectionException(msg, e);
         }
         logger.info("return value - " + result);
         return result;
@@ -65,6 +71,11 @@ enum OstisClientImpl implements OstisClient {
             logger.error(msg);
             throw new ScMemoryConfigurationException(new OstisClientConfigurationException(msg));
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        throw new UnsupportedOperationException("This Ostis client is deprecated");
     }
 
     private class OstisWebSocketClient extends WebSocketClient {

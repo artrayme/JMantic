@@ -6,9 +6,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
-import org.jmantic.scmemory.websocketmemory.message.request.*;
-import org.jmantic.scmemory.websocketmemory.message.response.*;
+import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SetLinkContentRequest;
+import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
+import org.jmantic.scmemory.websocketmemory.sync.exception.OstisConnectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +49,11 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
-            logger.error(msg);
+            logger.error(msg, e);
+            throw new ScMemoryException(msg, e);
+        } catch (OstisConnectionException e) {
+            String msg = "something wrong with ostis websocket client";
+            logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         }
     }
@@ -56,9 +69,14 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
-            logger.error(msg);
+            logger.error(msg, e);
+            throw new ScMemoryException(msg, e);
+        } catch (OstisConnectionException e) {
+            String msg = "something wrong with ostis websocket client";
+            logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         }
+
     }
 
     @Override
@@ -73,7 +91,11 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
-            logger.error(msg);
+            logger.error(msg, e);
+            throw new ScMemoryException(msg, e);
+        } catch (OstisConnectionException e) {
+            String msg = "something wrong with ostis websocket client";
+            logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         }
     }
@@ -89,7 +111,11 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
-            logger.error(msg);
+            logger.error(msg, e);
+            throw new ScMemoryException(msg, e);
+        } catch (OstisConnectionException e) {
+            String msg = "something wrong with ostis websocket client";
+            logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         }
     }
@@ -105,7 +131,11 @@ class RequestSenderImpl implements RequestSender {
             return response;
         } catch (JsonProcessingException e) {
             String msg = "cant parse request - " + request;
-            logger.error(msg);
+            logger.error(msg, e);
+            throw new ScMemoryException(msg, e);
+        } catch (OstisConnectionException e) {
+            String msg = "something wrong with ostis websocket client";
+            logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         }
     }

@@ -6,7 +6,8 @@ import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
-import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
+import org.jmantic.scmemory.websocketmemory.sync.OstisClientSync;
+import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -28,7 +29,7 @@ public class ScLinkOperationsTest {
 
     @BeforeEach
     public void setUp() throws URISyntaxException {
-        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 
     @Test

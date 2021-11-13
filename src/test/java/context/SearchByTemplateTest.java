@@ -5,7 +5,7 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.websocketmemory.sync.SyncScMemory;
+import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -25,7 +25,7 @@ public class SearchByTemplateTest {
 
     @BeforeEach
     public void setUp() throws URISyntaxException {
-        scContext = new UncheckedScContext(SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json")));
+        scContext = new UncheckedScContext(new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json")));
     }
 
     @Test
