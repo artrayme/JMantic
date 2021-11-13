@@ -6,7 +6,6 @@ import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
-import org.jmantic.scmemory.websocketmemory.sync.OstisClientSync;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
