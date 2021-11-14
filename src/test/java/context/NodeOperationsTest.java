@@ -80,6 +80,16 @@ public class NodeOperationsTest {
     }
 
     @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void deleteMultipleNodesWithOneType() {
+        long size = 10;
+        var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
+        Stream<ScNode> nodes = scContext.createNodes(types);
+        boolean result = scContext.deleteElements(nodes);
+        assertTrue(result);
+    }
+
+    @Test
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
     void benchmarkingWithPausesNodes() throws InterruptedException {
         int count = 100;

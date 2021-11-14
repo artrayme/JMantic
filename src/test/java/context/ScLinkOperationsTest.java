@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -79,6 +80,17 @@ public class ScLinkOperationsTest {
         int content = 5;
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
         boolean result = scContext.deleteElement(link);
+        assertTrue(result);
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void deleteMultipleLinks() {
+        int content1 = 2;
+        int content2 = 3;
+        ScLinkInteger link1 = scContext.createIntegerLink(LinkType.LINK, content1);
+        ScLinkInteger link2 = scContext.createIntegerLink(LinkType.LINK, content2);
+        boolean result = scContext.deleteElements(Stream.of(link1, link2));
         assertTrue(result);
     }
 

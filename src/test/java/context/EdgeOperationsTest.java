@@ -116,10 +116,24 @@ public class EdgeOperationsTest {
         assertEquals(edge2.getTarget(), target);
     }
 
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void deleteMultipleEdgesWithOneType() {
+        NodeType expectedNodeType = NodeType.NODE;
+        EdgeType expectedEdgeType = EdgeType.ACCESS;
+        int count = 10;
+
+        var sources = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count)).collect(Collectors.toList());
+        var targets = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count)).collect(Collectors.toList());
+        var types = Stream.iterate(expectedEdgeType, e -> expectedEdgeType).limit(count);
+        var edges = scContext.createEdges(types, sources.stream(), targets.stream());
+
+        scContext.deleteElements(edges);
+    }
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void deleteNode() {
+    void deleteEdge() {
         ScNode source = scContext.createNode(NodeType.NODE);
         ScNode target = scContext.createNode(NodeType.NODE);
         ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target);
