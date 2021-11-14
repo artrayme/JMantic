@@ -124,7 +124,7 @@ public class ScLinkOperationsTest {
         int oldContent = 5;
         int newContent = 13;
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, oldContent);
-        scContext.setIntegerLinkContent(link, newContent);
+        assertTrue(scContext.setIntegerLinkContent(link, newContent));
         assertEquals(newContent, link.getContent());
         assertEquals(newContent, scContext.getIntegerLinkContent(link));
     }
@@ -135,7 +135,7 @@ public class ScLinkOperationsTest {
         float oldContent = 42.1f;
         float newContent = 123.456f;
         ScLinkFloat link = scContext.createFloatLink(LinkType.LINK, oldContent);
-        scContext.setFloatLinkContent(link, newContent);
+        assertTrue(scContext.setFloatLinkContent(link, newContent));
         assertEquals(newContent, link.getContent());
         assertEquals(newContent, scContext.getFloatLinkContent(link));
     }
@@ -146,7 +146,7 @@ public class ScLinkOperationsTest {
         String oldContent = "Hello";
         String newContent = "World";
         ScLinkString link = scContext.createStringLink(LinkType.LINK, oldContent);
-        scContext.setStringLinkContent(link, newContent);
+        assertTrue(scContext.setStringLinkContent(link, newContent));
         assertEquals(newContent, link.getContent());
         assertEquals(newContent, scContext.getStringLinkContent(link));
     }
