@@ -53,7 +53,7 @@ First, you have to choose the ScMemory implementation you want to use. The simpl
 which is a websocket client that is not designed to work in a multithreading environment.
 
 ```java
-ScMemory memory=SyncScMemory.getSyncScMemory(new URI("ws://localhost:8090/ws_json"));
+ScMemory memory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
 ```
 
 After creating a ScMemory, you can use it immediately, but you can wrap it in a ScContext. For this example we will take
@@ -61,7 +61,7 @@ UncheckedScContext because it helps us not to handle exceptions (this is a very 
 implementation is just an example)
 
 ```java
-UncheckedScContext scContext=new UncheckedScContext(memory);
+UncheckedScContext scContext = new UncheckedScContext(memory);
 ```
 
 Now that we have the ScContext, we can do some actions on the ScMemory. For example, creating a node
