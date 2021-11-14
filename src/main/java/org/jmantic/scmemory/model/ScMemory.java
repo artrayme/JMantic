@@ -92,7 +92,7 @@ public interface ScMemory {
      *
      * @return the status of the request
      */
-    boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException;
+    boolean deleteElements(Stream<? extends ScElement> elements) throws ScMemoryException;
 
     /**
      * Method to search for sc-constructions by pattern Node-Edge-Node.

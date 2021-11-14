@@ -169,7 +169,7 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public boolean deleteElements(Stream<ScElement> elements) throws ScMemoryException {
+    public boolean deleteElements(Stream<? extends ScElement> elements) throws ScMemoryException {
         DeleteScElRequest request = new DeleteScElRequestImpl();
         elements.forEach(el -> request.addAddressToRequest(el.getAddress()));
         logger.info("Elements to delete - {}", request);

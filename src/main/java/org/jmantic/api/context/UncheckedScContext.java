@@ -116,10 +116,21 @@ public class UncheckedScContext {
     //        return result.get();
     //    }
 
-    public boolean deleteElement(ScElement element) {
+    public Boolean deleteElement(ScElement element) {
         boolean result;
         try {
             result = memory.deleteElements(Stream.of(element));
+        } catch (ScMemoryException e) {
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public Boolean deleteElements(Stream<? extends ScElement> elements) {
+        boolean result;
+        try {
+            result = memory.deleteElements(elements);
         } catch (ScMemoryException e) {
             logger.error("It's really bad", e);
             throw new RuntimeException(e);
