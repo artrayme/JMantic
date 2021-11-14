@@ -1,4 +1,4 @@
-package context;
+package context.unchecked;
 
 import org.jmantic.api.context.UncheckedScContext;
 import org.jmantic.scmemory.model.element.edge.EdgeType;

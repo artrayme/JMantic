@@ -1,4 +1,4 @@
-package context;
+package scmemory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
