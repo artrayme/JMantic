@@ -9,9 +9,9 @@ import java.util.List;
  * @since 0.0.1
  */
 public interface CreateScElRequest extends ScRequest {
-    void addToRequest(List<? extends ScElement> elements);
+    boolean addToRequest(List<? extends ScElement> elements);
 
     boolean addElementToRequest(ScElement element);
 
-    List<? extends ScElement> resetRequest();
+    void resetRequest();
 }

@@ -12,28 +12,9 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class SetLinkContentResponseImpl implements SetLinkContentResponse {
-    @JsonProperty("id")
-    private long responseId;
-    private boolean status;
-    private boolean event;
+class SetLinkContentResponseImpl extends AbstractScResponse implements SetLinkContentResponse {
     @JsonProperty("payload")
     private List<Boolean> statusOfOperations;
-
-    @Override
-    public long getResponseId() {
-        return responseId;
-    }
-
-    @Override
-    public boolean getResponseStatus() {
-        return status;
-    }
-
-    @Override
-    public boolean getEvent() {
-        return event;
-    }
 
     @Override
     public List<Boolean> getOperationStatus() {
@@ -44,9 +25,9 @@ class SetLinkContentResponseImpl implements SetLinkContentResponse {
     @Override
     public String toString() {
         return "SetLinkContentResponseImpl{" +
-                "responseId=" + responseId +
-                ", status=" + status +
-                ", event=" + event +
+                "responseId=" + getResponseId() +
+                ", status=" + getResponseStatus() +
+                ", event=" + getEvent() +
                 ", statusOfOperations=" + statusOfOperations +
                 '}';
     }

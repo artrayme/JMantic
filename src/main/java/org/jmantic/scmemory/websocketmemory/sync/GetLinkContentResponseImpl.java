@@ -6,18 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Michael
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class GetLinkContentResponseImpl implements GetLinkContentResponse {
-    @JsonProperty("id")
-    private long responseId;
-    private boolean status;
-    private boolean event;
+class GetLinkContentResponseImpl extends AbstractScResponse implements GetLinkContentResponse {
     @JsonProperty("payload")
     private List<GetContentStruct> linkContent;
 
@@ -43,28 +38,13 @@ class GetLinkContentResponseImpl implements GetLinkContentResponse {
         return linkContent.stream().map(s -> s.value).toList();
     }
 
-    @Override
-    public long getResponseId() {
-        return responseId;
-    }
-
-    @Override
-    public boolean getResponseStatus() {
-        return status;
-    }
-
-    @Override
-    public boolean getEvent() {
-        return event;
-    }
-
     @JsonIgnore
     @Override
     public String toString() {
         return "GetLinkContentResponseImpl{" +
-                "responseId=" + responseId +
-                ", status=" + status +
-                ", event=" + event +
+                "responseId=" + getResponseId() +
+                ", status=" + getResponseStatus() +
+                ", event=" + getEvent() +
                 ", statusOfOperations=" + linkContent +
                 '}';
     }

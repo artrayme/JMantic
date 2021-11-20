@@ -15,27 +15,19 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class CreateScElRequestImpl implements CreateScElRequest {
-    @JsonProperty("id")
-    private final long requestId;
-    @JsonProperty("type")
-    private final RequestType requestType;
+class CreateScElRequestImpl extends AbstractScRequest implements CreateScElRequest {
     @JsonProperty("payload")
     private List<ScElement> elementsToCreate;
 
-    {
-        requestId = 1;
-        requestType = RequestType.CREATE_ELEMENTS;
-    }
-
     public CreateScElRequestImpl() {
+        super(1, RequestType.CREATE_ELEMENTS);
         elementsToCreate = new ArrayList<>();
     }
 
     @JsonIgnore
     @Override
-    public void addToRequest(List<? extends ScElement> elements) {
-        elementsToCreate.addAll(elements);
+    public boolean addToRequest(List<? extends ScElement> elements) {
+        return elementsToCreate.addAll(elements);
     }
 
     @JsonIgnore
@@ -46,22 +38,8 @@ class CreateScElRequestImpl implements CreateScElRequest {
 
     @JsonIgnore
     @Override
-    public List<ScElement> resetRequest() {
-        List<ScElement> elements = elementsToCreate;
-        elementsToCreate = new ArrayList<>(10);
-        return elements;
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return requestType;
+    public void resetRequest() {
+        elementsToCreate.clear();
     }
 
     @JsonIgnore
@@ -74,8 +52,8 @@ class CreateScElRequestImpl implements CreateScElRequest {
     @Override
     public String toString() {
         return "CreateScElRequestImpl{" +
-                "requestId=" + requestId +
-                ", requestType=" + requestType +
+                "requestId=" + getRequestId() +
+                ", requestType=" + getRequestType() +
                 ", elementsToCreate=" + elementsToCreate +
                 '}';
     }

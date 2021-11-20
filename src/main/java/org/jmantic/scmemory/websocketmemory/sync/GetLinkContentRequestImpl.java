@@ -8,24 +8,16 @@ import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Michael
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class GetLinkContentRequestImpl implements GetLinkContentRequest {
-    @JsonProperty("id")
-    private final long requestId;
-    @JsonProperty("type")
-    private final RequestType requestType;
+class GetLinkContentRequestImpl extends AbstractScRequest implements GetLinkContentRequest {
     @JsonProperty("payload")
     private List<GetContentStruct> contentStructs;
-
-    {
-        requestId = 1;
-        requestType = RequestType.CONTENT;
-    }
 
     private static class GetContentStruct {
         @JsonProperty("command")
@@ -48,32 +40,28 @@ class GetLinkContentRequestImpl implements GetLinkContentRequest {
     }
 
     public GetLinkContentRequestImpl() {
+        super(1, RequestType.CONTENT);
         contentStructs = new ArrayList<>();
     }
 
     @JsonIgnore
     @Override
-    public void addToRequest(long address) {
+    public boolean addToRequest(List<Long> addresses) {
+        List<GetContentStruct> structs = addresses.stream().map(GetContentStruct::new).collect(Collectors.toList());
+        return contentStructs.addAll(structs);
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean addAddressToRequest(long address) {
         GetContentStruct struct = new GetContentStruct(address);
-        contentStructs.add(struct);
+        return contentStructs.add(struct);
     }
 
     @JsonIgnore
     @Override
     public void resetRequest() {
         contentStructs.clear();
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return requestType;
     }
 
     @JsonIgnore
@@ -86,8 +74,8 @@ class GetLinkContentRequestImpl implements GetLinkContentRequest {
     @Override
     public String toString() {
         return "GetLinkContentRequestImpl{" +
-                "requestId=" + requestId +
-                ", requestType=" + requestType +
+                "requestId=" + getRequestId() +
+                ", requestType=" + getRequestType() +
                 ", contentStructs=" + contentStructs +
                 '}';
     }

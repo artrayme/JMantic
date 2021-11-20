@@ -12,30 +12,9 @@ import java.util.stream.Stream;
  * 11/6/21
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class SearchByTemplateResponseImpl implements SearchByTemplateResponse {
-    @JsonProperty("id")
-    private long responseId;
-    @JsonProperty("event")
-    private boolean event;
-    @JsonProperty("status")
-    private boolean status;
+class SearchByTemplateResponseImpl extends AbstractScResponse implements SearchByTemplateResponse {
     @JsonProperty("payload")
     private PayloadFoundByTemplateStruct payloadFoundByTemplateStruct;
-
-    @Override
-    public long getResponseId() {
-        return responseId;
-    }
-
-    @Override
-    public boolean getResponseStatus() {
-        return status;
-    }
-
-    @Override
-    public boolean getEvent() {
-        return event;
-    }
 
     @Override
     public Stream<Stream<Long>> getFoundAddresses() {
@@ -45,9 +24,9 @@ class SearchByTemplateResponseImpl implements SearchByTemplateResponse {
     @Override
     public String toString() {
         return "SearchByTemplateResponseImpl{" +
-                "responseId=" + responseId +
-                ", event=" + event +
-                ", status=" + status +
+                "responseId=" + getResponseId() +
+                ", event=" + getEvent() +
+                ", status=" + getResponseStatus() +
                 ", payloadFoundByTemplateStruct=" + payloadFoundByTemplateStruct +
                 '}';
     }

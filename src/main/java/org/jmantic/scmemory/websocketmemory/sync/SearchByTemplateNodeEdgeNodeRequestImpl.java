@@ -17,28 +17,13 @@ import java.util.List;
  * 11/6/21
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class SearchByTemplateNodeEdgeNodeRequestImpl implements SearchByTemplateRequest {
-    @JsonProperty("id")
-    private Long id = 1L;
-    @JsonProperty("type")
-    RequestType searchTemplate = RequestType.SEARCH_TEMPLATE;
+class SearchByTemplateNodeEdgeNodeRequestImpl extends AbstractScRequest implements SearchByTemplateRequest {
     @JsonProperty("payload")
     private List<NodeEdgeNodeStruct> struct = new ArrayList<>();
 
     public SearchByTemplateNodeEdgeNodeRequestImpl(ScElement fixed, EdgeType edgeType, NodeType nodeType) {
+        super(1, RequestType.SEARCH_TEMPLATE);
         struct.add(new NodeEdgeNodeStruct(fixed, edgeType, nodeType));
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return id;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return searchTemplate;
     }
 
     @JsonIgnore
@@ -50,8 +35,8 @@ class SearchByTemplateNodeEdgeNodeRequestImpl implements SearchByTemplateRequest
     @Override
     public String toString() {
         return "SearchByTemplateNodeEdgeNodeRequestImpl{" +
-                "id=" + id +
-                ", searchTemplate=" + searchTemplate +
+                "id=" + getRequestId() +
+                ", searchTemplate=" + getRequestType() +
                 ", struct=" + struct +
                 '}';
     }
