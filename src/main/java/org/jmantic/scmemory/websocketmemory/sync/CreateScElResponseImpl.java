@@ -13,11 +13,7 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class CreateScElResponseImpl implements CreateScElResponse {
-    @JsonProperty("id")
-    private long responseId;
-    private boolean status;
-    private boolean event;
+class CreateScElResponseImpl extends AbstractScResponse implements CreateScElResponse {
     @JsonProperty("payload")
     private List<Long> createdElementAddress;
 
@@ -26,28 +22,13 @@ class CreateScElResponseImpl implements CreateScElResponse {
         return createdElementAddress.stream();
     }
 
-    @Override
-    public long getResponseId() {
-        return responseId;
-    }
-
-    @Override
-    public boolean getResponseStatus() {
-        return status;
-    }
-
-    @Override
-    public boolean getEvent() {
-        return event;
-    }
-
     @JsonIgnore
     @Override
     public String toString() {
         return "CreateScElResponseImpl{" +
-                "responseId=" + responseId +
-                ", status=" + status +
-                ", event=" + event +
+                "responseId=" + getResponseId() +
+                ", status=" + getResponseStatus() +
+                ", event=" + getEvent() +
                 ", createdElementAddress=" + createdElementAddress +
                 '}';
     }
