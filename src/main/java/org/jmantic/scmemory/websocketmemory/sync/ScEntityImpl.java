@@ -20,23 +20,25 @@ import java.util.Objects;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class ScNodeImpl implements ScNode {
+abstract class ScEntity implements ScElement{
     @JsonProperty("el")
-    private final String element = "node";
-
-    @JsonProperty("type")
-    private final NodeType nodeType;
+    private final String element;
 
     @JsonIgnore
     private long address;
 
-    public ScNodeImpl(NodeType nodeType) {
-        this.nodeType = nodeType;
+    public ScEntity(String element){
+        this.element = element;
     }
 
-    public ScNodeImpl(NodeType nodeType, Long address) {
-        this.nodeType = nodeType;
+    public ScEntity(String element, long address){
+        this.element = element;
         this.address = address;
+    }
+
+    @JsonIgnore
+    public String getElement() {
+        return element;
     }
 
     @JsonIgnore
@@ -48,6 +50,26 @@ class ScNodeImpl implements ScNode {
     @Override
     public Long getAddress() {
         return address;
+    }
+}
+
+/**
+ * @author Michael
+ * @since 0.0.1
+ */
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+class ScNodeImpl extends ScEntity implements ScNode {
+    @JsonProperty("type")
+    private final NodeType nodeType;
+
+    public ScNodeImpl(NodeType nodeType) {
+        super("node");
+        this.nodeType = nodeType;
+    }
+
+    public ScNodeImpl(NodeType nodeType, Long address) {
+        super("node", address);
+        this.nodeType = nodeType;
     }
 
     @JsonIgnore
@@ -60,9 +82,9 @@ class ScNodeImpl implements ScNode {
     @Override
     public String toString() {
         return "ScNodeImpl{" +
-                "el='" + element + '\'' +
+                "el='" + getElement() + '\'' +
                 ", nodeType=" + nodeType +
-                ", address=" + address +
+                ", address=" + getAddress() +
                 '}';
     }
 
@@ -74,13 +96,13 @@ class ScNodeImpl implements ScNode {
         if (o == null || getClass() != o.getClass())
             return false;
         ScNodeImpl scNode = (ScNodeImpl) o;
-        return address == scNode.address;
+        return Objects.equals(getAddress(), scNode.getAddress());
     }
 
     @JsonIgnore
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(getAddress());
     }
 }
 
@@ -89,10 +111,7 @@ class ScNodeImpl implements ScNode {
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class ScLinkFloatImpl implements ScLinkFloat {
-    @JsonProperty("el")
-    private final String element = "link";
-
+class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     @JsonProperty("type")
     private final LinkType linkType;
 
@@ -102,27 +121,19 @@ class ScLinkFloatImpl implements ScLinkFloat {
     @JsonProperty("content_type")
     private final String contentType = "float";
 
-    @JsonIgnore
-    private long address;
-
     public ScLinkFloatImpl(LinkType linkType) {
+        super("link");
         this.linkType = linkType;
     }
 
-    @JsonIgnore
-    public void setAddress(long address) {
-        this.address = address;
+    public ScLinkFloatImpl(LinkType linkType, Long address) {
+        super("link", address);
+        this.linkType = linkType;
     }
 
     @JsonIgnore
     public void setContent(float content) {
         this.content = content;
-    }
-
-    @JsonIgnore
-    @Override
-    public Long getAddress() {
-        return address;
     }
 
     @JsonIgnore
@@ -145,24 +156,24 @@ class ScLinkFloatImpl implements ScLinkFloat {
         if (o == null || getClass() != o.getClass())
             return false;
         ScLinkFloatImpl that = (ScLinkFloatImpl) o;
-        return address == that.address;
+        return Objects.equals(getAddress(), that.getAddress());
     }
 
     @JsonIgnore
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(getAddress());
     }
 
     @JsonIgnore
     @Override
     public String toString() {
         return "ScLinkFloatImpl{" +
-                "element='" + element + '\'' +
+                "element='" + getElement() + '\'' +
                 ", linkType=" + linkType +
                 ", content=" + content +
                 ", contentType='" + contentType + '\'' +
-                ", address=" + address +
+                ", address=" + getAddress() +
                 '}';
     }
 }
@@ -173,10 +184,7 @@ class ScLinkFloatImpl implements ScLinkFloat {
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class ScLinkIntegerImpl implements ScLinkInteger {
-    @JsonProperty("el")
-    private final String element = "link";
-
+class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
     @JsonProperty("type")
     private final LinkType linkType;
 
@@ -186,27 +194,19 @@ class ScLinkIntegerImpl implements ScLinkInteger {
     @JsonProperty("content_type")
     private final String contentType = "int";
 
-    @JsonIgnore
-    private long address;
-
     public ScLinkIntegerImpl(LinkType linkType) {
+        super("link");
         this.linkType = linkType;
     }
 
-    @JsonIgnore
-    public void setAddress(long address) {
-        this.address = address;
+    public ScLinkIntegerImpl(LinkType linkType, Long address) {
+        super("link", address);
+        this.linkType = linkType;
     }
 
     @JsonIgnore
     public void setContent(int content) {
         this.content = content;
-    }
-
-    @JsonIgnore
-    @Override
-    public Long getAddress() {
-        return address;
     }
 
     @JsonIgnore
@@ -229,24 +229,24 @@ class ScLinkIntegerImpl implements ScLinkInteger {
         if (o == null || getClass() != o.getClass())
             return false;
         ScLinkIntegerImpl that = (ScLinkIntegerImpl) o;
-        return address == that.address;
+        return Objects.equals(getAddress(), that.getAddress());
     }
 
     @JsonIgnore
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(getAddress());
     }
 
     @JsonIgnore
     @Override
     public String toString() {
         return "ScLinkIntegerImpl{" +
-                "element='" + element + '\'' +
+                "element='" + getElement() + '\'' +
                 ", linkType=" + linkType +
                 ", content=" + content +
                 ", contentType='" + contentType + '\'' +
-                ", address=" + address +
+                ", address=" + getAddress() +
                 '}';
     }
 }
@@ -256,10 +256,7 @@ class ScLinkIntegerImpl implements ScLinkInteger {
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class ScLinkStringImpl implements ScLinkString {
-    @JsonProperty("el")
-    private final String element = "link";
-
+class ScLinkStringImpl extends ScEntity implements ScLinkString {
     @JsonProperty("type")
     private final LinkType linkType;
 
@@ -269,27 +266,19 @@ class ScLinkStringImpl implements ScLinkString {
     @JsonProperty("content_type")
     private final String contentType = "string";
 
-    @JsonIgnore
-    private long address;
-
     public ScLinkStringImpl(LinkType linkType) {
+        super("link");
         this.linkType = linkType;
     }
 
-    @JsonIgnore
-    public void setAddress(long address) {
-        this.address = address;
+    public ScLinkStringImpl(LinkType linkType, Long address) {
+        super("link", address);
+        this.linkType = linkType;
     }
 
     @JsonIgnore
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @JsonIgnore
-    @Override
-    public Long getAddress() {
-        return address;
     }
 
     @JsonIgnore
@@ -312,24 +301,24 @@ class ScLinkStringImpl implements ScLinkString {
         if (o == null || getClass() != o.getClass())
             return false;
         ScLinkStringImpl that = (ScLinkStringImpl) o;
-        return address == that.address;
+        return Objects.equals(getAddress(), that.getAddress());
     }
 
     @JsonIgnore
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(getAddress());
     }
 
     @JsonIgnore
     @Override
     public String toString() {
         return "ScLinkStringImpl{" +
-                "el='" + element + '\'' +
+                "el='" + getElement() + '\'' +
                 ", linkType=" + linkType +
                 ", content='" + content + '\'' +
                 ", contentType='" + contentType + '\'' +
-                ", address=" + address +
+                ", address=" + getAddress() +
                 '}';
     }
 }
@@ -339,9 +328,7 @@ class ScLinkStringImpl implements ScLinkString {
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class ScEdgeImpl implements ScEdge {
-    @JsonProperty("el")
-    private final String element = "edge";
+class ScEdgeImpl extends ScEntity implements ScEdge {
     @JsonProperty("src")
     private final EdgeSourceStruct source;
     @JsonIgnore
@@ -352,10 +339,9 @@ class ScEdgeImpl implements ScEdge {
     private final ScElement targetElement;
     @JsonProperty("type")
     private final EdgeType edgeType;
-    @JsonIgnore
-    private long address;
 
     public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement) {
+        super("edge");
         this.edgeType = edgeType;
         this.sourceElement = sourceElement;
         this.targetElement = targetElement;
@@ -365,10 +351,11 @@ class ScEdgeImpl implements ScEdge {
 
     public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement, Long address) {
         this(edgeType, sourceElement, targetElement);
-        this.address = address;
+        setAddress(address);
     }
 
     public ScEdgeImpl(EdgeType edgeType, long sourceRef, ScElement targetElement) {
+        super("edge");
         this.edgeType = edgeType;
         this.sourceElement = null;
         this.targetElement = targetElement;
@@ -377,22 +364,12 @@ class ScEdgeImpl implements ScEdge {
     }
 
     public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, long targetRef) {
+        super("edge");
         this.edgeType = edgeType;
         this.sourceElement = sourceElement;
         this.targetElement = null;
         source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
         target = new EdgeSourceStruct(EdgeEndpointType.REF, targetRef);
-    }
-
-    @JsonIgnore
-    @Override
-    public Long getAddress() {
-        return address;
-    }
-
-    @JsonIgnore
-    public void setAddress(long address) {
-        this.address = address;
     }
 
     @JsonIgnore
@@ -416,7 +393,7 @@ class ScEdgeImpl implements ScEdge {
     @JsonIgnore
     @Override
     public int hashCode() {
-        return Objects.hash(address);
+        return Objects.hash(getAddress());
     }
 
     @JsonIgnore
@@ -427,16 +404,16 @@ class ScEdgeImpl implements ScEdge {
         if (o == null || getClass() != o.getClass())
             return false;
         ScEdgeImpl scEdge = (ScEdgeImpl) o;
-        return address == scEdge.address;
+        return Objects.equals(getAddress(), scEdge.getAddress());
     }
 
     @JsonIgnore
     @Override
     public String toString() {
         return "ScEdgeImpl{" +
-                "el='" + element + '\'' +
+                "el='" + getElement() + '\'' +
                 ", edgeType=" + edgeType +
-                ", address=" + address +
+                ", address=" + getAddress() +
                 ", sourceElement=" + sourceElement +
                 ", targetElement=" + targetElement +
                 '}';
