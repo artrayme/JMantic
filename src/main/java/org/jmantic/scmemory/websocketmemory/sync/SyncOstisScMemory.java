@@ -36,7 +36,6 @@ import java.util.stream.Stream;
  * @since 0.0.1
  */
 public class SyncOstisScMemory implements ScMemory {
-    private final static Logger logger = LoggerFactory.getLogger(SyncOstisScMemory.class);
     private final RequestSender requestSender;
 
     public SyncOstisScMemory(URI serverURI) {
@@ -53,11 +52,8 @@ public class SyncOstisScMemory implements ScMemory {
         CreateScElRequest request = new CreateScElRequestImpl();
         request.addToRequest(nodesToCreate);
 
-        logger.info("Nodes to create - {}", nodesToCreate);
-
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
-        logger.info("Sc addresses of nodes - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             ScNodeImpl node = nodesToCreate.get(i);
             long addr = addresses.get(i);
@@ -83,10 +79,8 @@ public class SyncOstisScMemory implements ScMemory {
         if (elementsTypesIter.hasNext() != firstComponentsIter.hasNext() || elementsTypesIter.hasNext() != secondComponentsIter.hasNext()) {
             throw new IllegalArgumentException("All passed streams must have same length");
         }
-        logger.info("Edges to create - {}", request);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
-        logger.info("Sc addresses of edges - {}", addresses);
 
         for (int i = 0; i < addresses.size(); i++) {
             ScEdge e = result.get(i);
@@ -108,10 +102,9 @@ public class SyncOstisScMemory implements ScMemory {
             result.add(link);
             request.addElementToRequest(link);
         }
-        logger.info("Integer links to create - {}", result);
+
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
-        logger.info("Sc addresses of integer links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
             ScLinkIntegerImpl link = result.get(i);
@@ -132,10 +125,8 @@ public class SyncOstisScMemory implements ScMemory {
             result.add(link);
             request.addElementToRequest(link);
         }
-        logger.info("Float links to create - {}", result);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
-        logger.info("Sc addresses of float links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
             ScLinkFloatImpl link = result.get(i);
@@ -156,10 +147,8 @@ public class SyncOstisScMemory implements ScMemory {
             result.add(link);
             request.addElementToRequest(link);
         }
-        logger.info("String links to create - {}", result);
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
         var addresses = response.getAddresses().toList();
-        logger.info("Sc addresses of string links - {}", addresses);
         for (int i = 0; i < addresses.size(); i++) {
             long address = addresses.get(i);
             ScLinkStringImpl link = result.get(i);
@@ -172,10 +161,8 @@ public class SyncOstisScMemory implements ScMemory {
     public boolean deleteElements(Stream<? extends ScElement> elements) throws ScMemoryException {
         DeleteScElRequest request = new DeleteScElRequestImpl();
         elements.forEach(el -> request.addAddressToRequest(el.getAddress()));
-        logger.info("Elements to delete - {}", request);
         DeleteScElResponse response = requestSender.sendDeleteElRequest(request);
         boolean result = response.getResponseStatus();
-        logger.info("delete operation status - {}", result);
         return result;
     }
 
