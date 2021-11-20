@@ -65,13 +65,11 @@ class RequestSenderImpl implements RequestSender {
             String msg = client.sendToOstis(jsonRequest);
             return mapper.readValue(msg, responseClassType);
         } catch (JsonProcessingException e) {
-            String msg = "cant parse request - " + request;
+            String msg = "cant parse request/response - " + request;
             logger.error(msg, e);
             throw new ScMemoryException(msg, e);
         } catch (OstisConnectionException e) {
-            String msg = "something wrong with ostis websocket client";
-            logger.error(msg, e);
-            throw new ScMemoryException(msg, e);
+            throw new ScMemoryException(e);
         }
     }
 }
