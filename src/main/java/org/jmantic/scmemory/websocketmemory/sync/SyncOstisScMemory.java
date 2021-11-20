@@ -277,7 +277,7 @@ public class SyncOstisScMemory implements ScMemory {
     public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkIntegerImpl> links = elements.map(l -> {
-            request.addToRequest(l.getAddress());
+            request.addAddressToRequest(l.getAddress());
             return (ScLinkIntegerImpl) l;
         }).toList();
 
@@ -298,7 +298,7 @@ public class SyncOstisScMemory implements ScMemory {
     public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkFloatImpl> links = elements.map(l -> {
-            request.addToRequest(l.getAddress());
+            request.addAddressToRequest(l.getAddress());
             return (ScLinkFloatImpl) l;
         }).toList();
 
@@ -319,7 +319,7 @@ public class SyncOstisScMemory implements ScMemory {
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<ScLinkStringImpl> links = elements.map(l -> {
-            request.addToRequest(l.getAddress());
+            request.addAddressToRequest(l.getAddress());
             return (ScLinkStringImpl) l;
         }).toList();
 

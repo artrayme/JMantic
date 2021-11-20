@@ -26,8 +26,8 @@ class CreateScElRequestImpl extends AbstractScRequest implements CreateScElReque
 
     @JsonIgnore
     @Override
-    public void addToRequest(List<? extends ScElement> elements) {
-        elementsToCreate.addAll(elements);
+    public boolean addToRequest(List<? extends ScElement> elements) {
+        return elementsToCreate.addAll(elements);
     }
 
     @JsonIgnore
@@ -38,10 +38,8 @@ class CreateScElRequestImpl extends AbstractScRequest implements CreateScElReque
 
     @JsonIgnore
     @Override
-    public List<ScElement> resetRequest() {
-        List<ScElement> elements = elementsToCreate;
-        elementsToCreate = new ArrayList<>(10);
-        return elements;
+    public void resetRequest() {
+        elementsToCreate.clear();
     }
 
     @JsonIgnore

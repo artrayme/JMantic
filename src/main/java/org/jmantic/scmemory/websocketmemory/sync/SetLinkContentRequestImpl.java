@@ -16,18 +16,9 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class SetLinkContentRequestImpl implements SetLinkContentRequest {
-    @JsonProperty("id")
-    private final long requestId;
-    @JsonProperty("type")
-    private final RequestType requestType;
+class SetLinkContentRequestImpl extends AbstractScRequest implements SetLinkContentRequest {
     @JsonProperty("payload")
     private List<SetContentStruct> contentStructs;
-
-    {
-        requestId = 1;
-        requestType = RequestType.CONTENT;
-    }
 
     private static class SetContentStruct {
         @JsonProperty("command")
@@ -58,19 +49,8 @@ class SetLinkContentRequestImpl implements SetLinkContentRequest {
     }
 
     public SetLinkContentRequestImpl() {
+        super(1, RequestType.CONTENT);
         contentStructs = new ArrayList<>();
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return requestType;
     }
 
     @JsonIgnore
@@ -96,8 +76,8 @@ class SetLinkContentRequestImpl implements SetLinkContentRequest {
     @Override
     public String toString() {
         return "SetLinkContentRequestImpl{" +
-                "requestId=" + requestId +
-                ", requestType=" + requestType +
+                "requestId=" + getRequestId() +
+                ", requestType=" + getRequestType() +
                 ", contentStructs=" + contentStructs +
                 '}';
     }

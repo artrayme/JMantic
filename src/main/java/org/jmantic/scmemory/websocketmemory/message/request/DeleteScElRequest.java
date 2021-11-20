@@ -7,9 +7,9 @@ import java.util.List;
  * @since 0.0.1
  */
 public interface DeleteScElRequest extends ScRequest {
-    void addToRequest(List<Long> addresses);
+    boolean addToRequest(List<Long> addresses);
 
     boolean addAddressToRequest(Long address);
 
-    List<Long> resetRequest();
+    void resetRequest();
 }

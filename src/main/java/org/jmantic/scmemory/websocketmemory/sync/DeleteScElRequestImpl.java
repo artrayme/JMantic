@@ -14,27 +14,19 @@ import java.util.List;
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class DeleteScElRequestImpl implements DeleteScElRequest {
-    @JsonProperty("id")
-    private final long requestId;
-    @JsonProperty("type")
-    private final RequestType requestType;
+class DeleteScElRequestImpl extends AbstractScRequest implements DeleteScElRequest {
     @JsonProperty("payload")
     private List<Long> addressesToDelete;
 
-    {
-        requestId = 1;
-        requestType = RequestType.DELETE_ELEMENTS;
-    }
-
     public DeleteScElRequestImpl() {
+        super(1, RequestType.DELETE_ELEMENTS);
         addressesToDelete = new ArrayList<>();
     }
 
     @JsonIgnore
     @Override
-    public void addToRequest(List<Long> addresses) {
-        addressesToDelete.addAll(addresses);
+    public boolean addToRequest(List<Long> addresses) {
+        return addressesToDelete.addAll(addresses);
     }
 
     @JsonIgnore
@@ -45,22 +37,8 @@ class DeleteScElRequestImpl implements DeleteScElRequest {
 
     @JsonIgnore
     @Override
-    public List<Long> resetRequest() {
-        List<Long> addresses = addressesToDelete;
-        addressesToDelete = new ArrayList<>();
-        return addresses;
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return requestType;
+    public void resetRequest() {
+        addressesToDelete.clear();
     }
 
     @JsonIgnore
@@ -73,8 +51,8 @@ class DeleteScElRequestImpl implements DeleteScElRequest {
     @Override
     public String toString() {
         return "DeleteScElRequestImpl{" +
-                "requestId=" + requestId +
-                ", requestType=" + requestType +
+                "requestId=" + getRequestId() +
+                ", requestType=" + getRequestType() +
                 ", addressesToDelete=" + addressesToDelete +
                 '}';
     }

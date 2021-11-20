@@ -1,13 +1,15 @@
 package org.jmantic.scmemory.websocketmemory.message.request;
 
-import org.jmantic.scmemory.model.element.link.ScLink;
+import java.util.List;
 
 /**
  * @author Michael
  * @since 0.0.1
  */
 public interface GetLinkContentRequest extends ScRequest {
-    void addToRequest(long address);
+    boolean addToRequest(List<Long> addresses);
+
+    boolean addAddressToRequest(long address);
 
     void resetRequest();
 }
