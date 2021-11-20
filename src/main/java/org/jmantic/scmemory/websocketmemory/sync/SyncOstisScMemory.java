@@ -142,68 +142,17 @@ public class SyncOstisScMemory implements ScMemory {
 
     @Override
     public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
-        GetLinkContentRequest request = new GetLinkContentRequestImpl();
-        List<ScLinkIntegerImpl> links = elements.map(l -> {
-            request.addAddressToRequest(l.getAddress());
-            return (ScLinkIntegerImpl) l;
-        }).toList();
-
-        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
-
-        List<Object> values = response.getContent();
-        for (int i = 0; i < links.size(); i++) {
-            Object value = values.get(i);
-            if (value != null) {
-                ScLinkIntegerImpl link = links.get(i);
-                link.setContent((Integer) value);
-            }
-        }
-
-        return links.stream().map(ScLinkIntegerImpl::getContent);
+        return (Stream<Integer>) getLinkContent(elements);
     }
 
     @Override
     public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
-        GetLinkContentRequest request = new GetLinkContentRequestImpl();
-        List<ScLinkFloatImpl> links = elements.map(l -> {
-            request.addAddressToRequest(l.getAddress());
-            return (ScLinkFloatImpl) l;
-        }).toList();
-
-        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
-
-        List<Object> values = response.getContent();
-        for (int i = 0; i < links.size(); i++) {
-            Object value = values.get(i);
-            if (value != null) {
-                ScLinkFloatImpl link = links.get(i);
-                link.setContent(((Double) value).floatValue());
-            }
-        }
-
-        return links.stream().map(ScLinkFloatImpl::getContent);
+        return (Stream<Float>) getLinkContent(elements);
     }
 
     @Override
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
-        GetLinkContentRequest request = new GetLinkContentRequestImpl();
-        List<ScLinkStringImpl> links = elements.map(l -> {
-            request.addAddressToRequest(l.getAddress());
-            return (ScLinkStringImpl) l;
-        }).toList();
-
-        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
-
-        List<Object> values = response.getContent();
-        for (int i = 0; i < links.size(); i++) {
-            Object value = values.get(i);
-            if (value != null) {
-                ScLinkStringImpl link = links.get(i);
-                link.setContent((String) value);
-            }
-        }
-
-        return links.stream().map(ScLinkStringImpl::getContent);
+        return (Stream<String>) getLinkContent(elements);
     }
 
     private <C> Stream<? extends ScEntity> createLink(Stream<LinkType> elements, Stream<C> content
@@ -287,5 +236,41 @@ public class SyncOstisScMemory implements ScMemory {
             }
         }
         return statusOfOperation.stream();
+    }
+
+    private Stream<?> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<? extends ScLink> links = elements.peek(l -> request.addAddressToRequest(l.getAddress())).toList();
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+
+        List<Object> values = response.getContent();
+        List<Object> result = new ArrayList<>();
+        for (int i = 0; i < links.size(); i++) {
+            Object value = values.get(i);
+            if (value != null) {
+                ScLink link = links.get(i);
+                switch (link.getContentType()) {
+                    case INTEGER -> {
+                        Integer content = (Integer) value;
+                        result.add(content);
+                        ((ScLinkIntegerImpl) link).setContent(content);
+                    }
+                    case FLOAT -> {
+                        float content = ((Double) value).floatValue();
+                        result.add(content);
+                        ((ScLinkFloatImpl) link).setContent(content);
+                    }
+                    case STRING -> {
+                        String content = (String) value;
+                        result.add(content);
+                        ((ScLinkStringImpl) link).setContent(content);
+                    }
+                    default -> throw new IllegalArgumentException("unknown type of content");
+                }
+            }
+        }
+
+        return result.stream();
     }
 }
