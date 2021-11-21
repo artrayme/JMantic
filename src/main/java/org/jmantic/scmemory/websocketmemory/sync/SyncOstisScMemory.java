@@ -87,19 +87,19 @@ public class SyncOstisScMemory implements ScMemory {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
+    public Stream<? extends ScLinkInteger> createIntegerLinks(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
         return (Stream<? extends ScLinkInteger>) createLink(elements, content, LinkContentType.INTEGER);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
+    public Stream<? extends ScLinkFloat> createFloatLinks(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
         return (Stream<? extends ScLinkFloat>) createLink(elements, content, LinkContentType.FLOAT);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
+    public Stream<? extends ScLinkString> createStringLinks(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
         return (Stream<? extends ScLinkString>) createLink(elements, content, LinkContentType.STRING);
     }
 

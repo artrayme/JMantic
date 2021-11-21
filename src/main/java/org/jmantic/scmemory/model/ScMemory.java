@@ -62,7 +62,7 @@ public interface ScMemory {
      *
      * @return stream of created integer sc-links
      */
-    Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
+    Stream<? extends ScLinkInteger> createIntegerLinks(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and float content in sc-machine.
@@ -73,7 +73,7 @@ public interface ScMemory {
      *
      * @return stream of created float sc-links
      */
-    Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
+    Stream<? extends ScLinkFloat> createFloatLinks(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and string content in sc-machine.
@@ -84,7 +84,7 @@ public interface ScMemory {
      *
      * @return stream of created string sc-links
      */
-    Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
+    Stream<? extends ScLinkString> createStringLinks(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
 
     /**
      * Method to remove any sc-element in sc-machine.

@@ -97,7 +97,7 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) throws ScMemoryException {
-        return memory.createIntegerLink(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createIntegerLinks(Stream.of(type), Stream.of(content)).findFirst().get();
     }
 
     /**
@@ -110,7 +110,7 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkFloat createFloatLink(LinkType type, Float content) throws ScMemoryException {
-        return memory.createFloatLink(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createFloatLinks(Stream.of(type), Stream.of(content)).findFirst().get();
     }
 
     /**
@@ -123,7 +123,7 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkString createStringLink(LinkType type, String content) throws ScMemoryException {
-        return memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createStringLinks(Stream.of(type), Stream.of(content)).findFirst().get();
     }
 
     /**

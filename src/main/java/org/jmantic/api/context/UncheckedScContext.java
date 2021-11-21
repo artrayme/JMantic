@@ -76,7 +76,7 @@ public class UncheckedScContext {
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) {
         Optional<? extends ScLinkInteger> result;
         try {
-            result = memory.createIntegerLink(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createIntegerLinks(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
             logger.error("It's really bad", e);
             throw new RuntimeException(e);
@@ -87,7 +87,7 @@ public class UncheckedScContext {
     public ScLinkFloat createFloatLink(LinkType type, Float content) {
         Optional<? extends ScLinkFloat> result;
         try {
-            result = memory.createFloatLink(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createFloatLinks(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
             logger.error("It's really bad", e);
             throw new RuntimeException(e);
@@ -98,7 +98,7 @@ public class UncheckedScContext {
     public ScLinkString createStringLink(LinkType type, String content) {
         Optional<? extends ScLinkString> result;
         try {
-            result = memory.createStringLink(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createStringLinks(Stream.of(type), Stream.of(content)).findFirst();
         } catch (ScMemoryException e) {
             logger.error("It's really bad", e);
             throw new RuntimeException(e);
