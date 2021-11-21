@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
- * 11/14/21
+ * @since 0.2.0
  */
 
 //ToDO multithreading tests

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 /**
  * @author artrayme
- * 11/6/21
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class SearchByTemplateResponseImpl extends AbstractScResponse implements SearchByTemplateResponse {

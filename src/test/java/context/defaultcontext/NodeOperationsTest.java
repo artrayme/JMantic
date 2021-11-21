@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
- * 11/21/21
+ * @since 0.2.0
  */
 
 //ToDO exceptions test

@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 /**
  * @author artrayme
- * 11/6/21
+ * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class NodeEdgeNodeStruct {

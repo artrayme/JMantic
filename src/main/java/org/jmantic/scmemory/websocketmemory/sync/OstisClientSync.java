@@ -13,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @author artrayme
- * 11/12/21
+ * @since 0.2.0
  */
 class OstisClientSync implements OstisClient {
 

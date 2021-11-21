@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
- * 10/30/21
+ * @since 0.0.1
  */
 public class EdgeOperationsTest {
     private UncheckedScContext scContext;

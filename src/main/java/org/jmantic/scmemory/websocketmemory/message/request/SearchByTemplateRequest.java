@@ -2,7 +2,7 @@ package org.jmantic.scmemory.websocketmemory.message.request;
 
 /**
  * @author artrayme
- * 11/6/21
+ * @since 0.0.1
  */
 public interface SearchByTemplateRequest extends ScRequest {
 

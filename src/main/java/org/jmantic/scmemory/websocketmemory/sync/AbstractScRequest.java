@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 import org.jmantic.scmemory.websocketmemory.message.request.ScRequest;
 
+/**
+ * @author Michael
+ * @since 0.2.0
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 abstract class AbstractScRequest implements ScRequest {
     @JsonProperty("id")

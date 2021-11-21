@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author artrayme
- * 11/4/21
+ * @since 0.0.1
  */
 public class ScMemoryTest {
 

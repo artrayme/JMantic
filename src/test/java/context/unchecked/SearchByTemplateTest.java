@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author artrayme
- * 11/6/21
+ * @since 0.0.1
  */
 public class SearchByTemplateTest {
     private UncheckedScContext scContext;

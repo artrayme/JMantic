@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @author artrayme
- * 11/5/21
+ * @since 0.0.1
  */
 public enum LinkContentType {
     INTEGER("int"),

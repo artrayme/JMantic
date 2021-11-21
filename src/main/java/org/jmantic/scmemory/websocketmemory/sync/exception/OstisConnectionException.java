@@ -2,7 +2,7 @@ package org.jmantic.scmemory.websocketmemory.sync.exception;
 
 /**
  * @author artrayme
- * 11/12/21
+ * @since 0.2.0
  */
 public class OstisConnectionException extends Exception{
     public OstisConnectionException() {

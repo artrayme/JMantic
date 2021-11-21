@@ -6,7 +6,7 @@ import org.jmantic.scmemory.model.element.ScElement;
  * This class describes any sc-edge (and arc) in the sc-machine.
  * Each edge has an address (because node is a sc-elements), a type and two other sc-elements:
  * <p>
- * (first sc-element) -------(sc-edge)------> (second sc-element)
+ * (source sc-element) -------(sc-edge)------> (target sc-element)
  * <p>
  * You can find available edge types in the {@link EdgeType};
  *
