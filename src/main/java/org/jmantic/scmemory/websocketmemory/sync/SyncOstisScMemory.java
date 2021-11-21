@@ -86,16 +86,19 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<? extends ScLinkInteger> createIntegerLink(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
         return (Stream<? extends ScLinkInteger>) createLink(elements, content, LinkContentType.INTEGER);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<? extends ScLinkFloat> createFloatLink(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException {
         return (Stream<? extends ScLinkFloat>) createLink(elements, content, LinkContentType.FLOAT);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<? extends ScLinkString> createStringLink(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException {
         return (Stream<? extends ScLinkString>) createLink(elements, content, LinkContentType.STRING);
     }
@@ -141,16 +144,19 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
         return (Stream<Integer>) getLinkContent(elements);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
         return (Stream<Float>) getLinkContent(elements);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
         return (Stream<String>) getLinkContent(elements);
     }
