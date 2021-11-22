@@ -1,0 +1,614 @@
+\section{Ostis}
+\label{sec:ostis}
+В данном разделе описывается протокол и формат обмена сообщений. Раздел предназначен, в первую очередь, для разработчиков JMantic, и описывает внутренние механизмы работы библиотеки. 
+
+\subsection{Обзор}
+Запросы и ответы к sc-machine работают по протоколу WebSocket, и представляют из себя текст в формате json с одним корневым блоком. Каждый запрос содержит идентификатор, тип запроса и полезную нагрузку. Ответ содержит идентификатор, который соответствует идентификатору запроса, статус и полезную нагрузку. 
+
+\subsection{Структура запрос}
+\begin{itemize}
+\item id --- идентификатор запроса. 
+\item type --- тип запроса. Задаёт команду, которую нужно выполнить sc-machine. 
+\item payload --- последовательность данных запроса/ответа. Для разных типов запросов/ответов содержание данной секции будут отличаться. Может содержать как один набор данных, так и массив наборов данных. 
+\end{itemize}
+
+\subsection{Структура ответ}
+\begin{itemize}
+\item id --- идентификатор ответа.
+\item status --- состояние ответа. Может принимать значения true и false. При успешном выполнении запроса данное поле будет содержать true. В ином случае -  false. Если данный ответ сгенерирован событием sc-machine, данного поля может не быть.
+\item event --- флаг ответа. Показывает, сгенерирован ли данный ответ событием. Если да --- поле будет иметь значение true. В ином случае этого поля может не быть или значение равно false.
+\item payload --- последовательность данных запроса/ответа. Для разных типов запросов/ответов содержание данной секции будут отличаться. Может содержать как один набор данных, так и массив наборов данных. 
+\end{itemize}
+
+\subsection{id}
+Идентификатор представляет из себя целое число, которое служит для сопоставления ответа запросу при асинхронном режиме работы. То есть, на запросу с определённым id придёт ответ с таким же id.
+
+Запрос:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 1,
+  "type": "request type",
+  "payload": {
+    ...
+  }
+}
+\end{lstlisting}
+Ответ:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+{
+  "id": 1,
+  "status": true,
+  "event": false, 
+  "payload": {
+    ...
+  }
+}
+}
+\end{lstlisting}
+
+
+\subsection{type}
+Тип запроса --- это строка из набора допустимых запросов. Возможно использовать следующие типы запросов: 
+\subsubsection{create\_elements}
+create\_elements --- запрос на создание sc-элементов.  Запрос может содержать набор элементов, которые нужно создать, но каждый элемент должен представлять один из трёх допустимых вариантов: 
+\begin{itemize}
+\item node --- sc-узел;
+\item edge --- sc-дуга;
+\item link --- sc-ссылка.
+\end{itemize}
+Каждый элемент должен иметь тип. Допустимые типы описаны в таблице(\ref{all_types}).
+В секции payload можно указать как один элемент, так и несколько. В ответе на запрос в секции payload будут указаны адреса созданных объектов. При этом каждый адрес будет соответствовать элементу запроса в том же порядке (первый элемент - первый адрес). 
+Пример:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 2,
+  "type": "create_elements",
+  "payload": [
+    {
+      "el": "node",
+      "type": 1
+    },
+    {
+      "el": "link",
+      "type": 2,
+      "content": 45.4
+    },
+    {
+      "el": "edge",
+      "src": {
+        "type": "ref",
+        "value": 0
+      },
+      "trg": {
+        "type": "ref",
+        "value": 1
+      },
+      "type": 32
+    }
+  ]
+}
+\end{lstlisting}
+
+При создания sc-ссылки можно также указать тип содержимого (см. описание запроса content). 
+
+Пример секции с указанием типа:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "el": "link",
+  "type": 2,         
+  "content": "data", 
+  "content_type": "string"  
+}
+\end{lstlisting}
+
+\subsubsection{check\_elements}
+check\_elements --- запрос на проверку существования sc-элементов. В payload указываются адреса sc-элементов, существование которых необходимо проверить . В секции payload ответа будут указаны числа, которые соответствуют типу sc-элемента в случае существования элемента. Если элемент не найден, в ответе будет указано число 0, иначе будет указан числовой код найденного элемента. Порядок элементов в ответе соответствует порядку элементов в запросе.
+
+Пример  запроса:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 3,
+  "type": "check_elements",
+  "payload": [
+    23123,
+    432,
+    ...
+  ]
+}
+\end{lstlisting}
+
+Пример ответа: 
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 3,
+  "payload": [
+    32, 
+    0,  
+    ...
+  ]
+}
+
+\end{lstlisting}
+
+\subsubsection{delete\_elements}
+delete\_elements --- запрос на удаление sc-элементов. Работает аналогично с запросом проверки существования.
+Пример:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 4,
+  "type": "delete_elements",
+  "payload": [
+    23123,
+    432,
+    ...
+  ]
+}
+\end{lstlisting}
+
+\subsubsection{search\_template}
+search\_template --- запрос на поиск sc-конструкции по шаблону. Шаблон представляет из себя список, каждый из элементов которого является тройкой элементов, часть из которых известны. В ответе, если шаблон найден, будут подставлены адреса неизвестных ранее элементов. Также можно указать некоторые тройки шаблона как необязательные. Тогда в ответе, если такие тройки не найдены, на их месте будут нули, но остальным тройкам шаблона будут подставлены адреса соответствующих элементов. Это можно сделать указав после блоков элементов тройки дополнительный блок is\_requied, присвоив ему значение false. 
+
+Пример:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 5,
+  "type": "search_template",
+  "payload": [
+    [
+      {
+        "type": "addr",
+        "value": 23123  
+      },
+      {
+        "type": "type",
+        "value": 32,    
+        "alias": "_edge1"
+      },
+      {
+        "type": "type",
+        "value": 2, 
+        "alias": "_trg"  
+      }
+    ],
+    [
+      {
+        "type": "addr",
+        "value": 231342
+      },
+      {
+        "type": "type",
+        "value": 2000,
+        "alias": "_edge2"
+      },
+      {
+        "type": "alias",
+        "value": "_edge1" 
+      },
+      {
+        "is_required": false
+      }
+    ],
+    ...
+  ]
+}
+\end{lstlisting}
+Ответ для данного запроса будет выглядеть следующим образом:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 5,
+  "payload": {
+    "aliases": {
+      "trg": 2,
+      "edge1": 1,
+      "edge2": 4
+    },
+    "addrs": [
+      [23123, 412, 423, 231342, 282, 412], 
+      [23123, 6734, 85643, 231342, 4234, 6734],
+      [23123, 7256, 252, 0, 0, 0],
+      ...
+    ]
+  }
+}
+\end{lstlisting}
+
+Также существует возможность указать шаблон поиска с помощью текста на языке SCs.
+Пример:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 6,
+  "type": "search_template",
+  "payload": "person _-> .._p (* _=> nrel_email:: _[] *);;"
+}
+\end{lstlisting}
+
+\subsubsection{generate\_template}
+generate\_template --- запрос на создание sc-конструкций по шаблону. Работает по схожему с поиском принципу. 
+
+Пример запроса:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 7,
+  "type": "generate_template",
+  "payload": {
+    "templ":
+    [
+      {
+        "params": [
+          {
+            "type": "addr",
+            "value": 23123  
+          },
+          {
+            "type": "type",
+            "value": 32,    
+            "alias": "_edge1"
+          },
+          {
+            "type": "type",
+            "value": 2,     
+            "alias": "_trg" 
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "type": "addr",
+            "value": 231342
+          },
+          {
+            "type": "type",
+            "value": 2000,
+            "alias": "_edge2"
+          },
+          {
+            "type": "alias",
+            "value": "_edge1"  
+          }
+        ]
+      },
+      ...
+    ],
+    "params": {
+      "_trg": 564
+    }
+  }
+}
+\end{lstlisting}
+Ответ на запрос:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 7,
+  "payload": {
+    "aliases": {
+      "_trg": 2,
+      "_edge1": 1,
+      "_edge2": 4
+    },
+    "addrs": [23123, 4953, 564, 231342, 533, 4953]
+  }
+}
+\end{lstlisting}
+
+Как и в случае поиска, шаблон может быть представлен текстом на языке SCs:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 8,
+  "type": "generate_template",
+  "payload": {
+    "templ": "person _-> .._p (* _=> nrel_email:: _[test@email.com] *);;",
+    "params": {
+      ".._p": 5314
+    }
+  }
+}
+\end{lstlisting}
+
+\subsubsection{events}
+events --- запрос на подпись на события или удалить существующие подписки. Тип события представляет из себя строку и указывается в разделе payload. Существует 6 видов событий, на которые можно подписаться:
+\begin{itemize}
+    \item add\_outgoing\_edge --- генерирует событие, при создании выходящей sc-дуги из наблюдаемого sc-элемента
+    \item add\_ingoing\_edge --- генерирует событие, при создании входящей sc-дуги в наблюдаемый sc-элемент;
+    \item remove\_outgoing\_edge --- генерирует событие, при удалении выходящей sc-дуги из наблюдаемого sc-элемента
+    \item remove\_ingoing\_edge --- генерирует событие, при удалении входящей sc-дуги в наблюдаемый sc-элемент;
+    \item content\_change --- генерирует событие при изменении содержания у наблюдаемой sc-ссылки;
+    \item delete\_element --- генеирует событие при удалении наблюдаемого sc-элемента. 
+\end{itemize}
+Чтобы подписаться на событие, необходимо в разделе payload указать раздел create, в котором перечислить все события, на которые необходимо подписаться. Сам блок описания вида события представлен типом события из списка а также адресом sc-элемента, который будет генерировать ответы при событиях. 
+
+Для удаления подписки на событие необходимо в блоке payload создать блок delete, в котором перечислить идентификаторы запросов, которыми была осуществлена подписка. 
+
+Пример:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 9,
+  "type": "events",
+  "payload": {
+    "create": [
+      {
+        "type": "add_output_edge",  
+        "addr": 324             
+      }
+    ],
+    "delete": [
+      2, 4, 5
+    ]
+  }
+}
+\end{lstlisting}
+
+\subsubsection{keynodes}
+keynodes --- запрос на получение и редактирование ключевых узлов (keynodes).
+С помощью данной команды можно найти адрес узла в памяти sc-machine по его идентификатору или создать новый идентификатор(идентификаторы в рамках sc-machine уникальны). 
+\begin{itemize}
+\item find --- поиск sc-элемента по идентификатору 
+\item resolve --- поиск sc-элемента по идентификатору. Если идентификатора не существует, то будет создан новый, адрес которого будет содержаться в ответе. При этом, кроме идентификатора, в запросе нужно указать тип элемента (должен быть узлом).
+\end{itemize}
+
+Пример запроса:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 11,
+  "type": "keynodes",
+  "payload": [
+    {
+      "command": "find",
+      "idtf": "any system identifier that NOT exist"
+    },
+
+    {
+      "command": "find",
+      "idtf": "any system identifier that exist"
+    },
+
+    {
+      "command": "resolve",
+      "idtf": "NOT exist",
+      "elType": 1
+    },
+
+    {
+      "command": "resolve",
+      "idtf": "exist",
+      "elType": 1
+    }
+  ]
+}
+\end{lstlisting}
+
+Пример ответа:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 11,
+  "status": true,
+  "payload": [
+    0,
+    321,
+    435,
+    324
+  ]
+}
+\end{lstlisting}
+
+
+\subsubsection{content}
+content --- запрос на получение и редактирование содержимого sc-ссылок. Sc-ссылки могут хранить один из 4 типов: 
+\begin{itemize}
+    \item int --- целое число;
+    \item float --- вещественное число;
+    \item string --- строка;
+    \item binary --- бинарные данные.
+\end{itemize}
+
+Для работы с содержимым sc-ссылке используются 2 блока: get и set. Блок set служит для изменения содержимого существующей sc-ссылки, и принимает тип хранимого значения, само значение, адрес sc-ссылки в sc-памяти. Блок get служит для получения содержимого sc-ссылки, принимая адрес этой ссылки в sc-памяти. В ответе на get-блок будет содержаться значение хранимого типа(либо null, если содержимого нет) и сам тип. Ответ на set-запрос представляет из себя одно слово --- true, если значение записалось и false если запись не удалась.  
+
+Пример запроса:
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 10,
+  "type": "content",
+  "payload": [
+    {
+      "command": "set",
+      "type": "int",  
+      "data": 67,     
+      "addr": 3123   
+    },
+    {
+      "command": "get",
+      "addr": 232       
+    },
+  ]
+}
+\end{lstlisting}
+
+Ответ на предыдущий запрос будет следующим: 
+\begin{lstlisting}[language=json,firstnumber=1]
+{
+  "id": 10,
+  "payload": [
+    true,      
+    {
+      "value": 56.7,  
+      "type": "float"
+    },
+  ]
+}
+\end{lstlisting}
+
+
+\subsection{Таблица базовых типов sc-элементов}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{  | l | c | c | }
+		\hline
+		Тип & Шестнадцатеричный & Десятичный  \\
+        \hline
+		sc\_type\_node  & 0x1 & 1  \\
+        \hline
+		sc\_type\_link  & 0x2 & 2  \\
+        \hline
+		sc\_type\_uedge\_common  & 0x4 & 4  \\
+        \hline
+		sc\_type\_dedge\_common  & 0x8 & 8  \\
+        \hline
+		sc\_type\_edge\_access  & 0x10 & 16  \\
+        \hline
+		sc\_type\_const  & 0x20 & 32  \\
+        \hline
+		sc\_type\_var & 0x40 & 64  \\
+        \hline
+		sc\_type\_edge\_pos & 0x80 & 128  \\
+        \hline
+        sc\_type\_edge\_neg & 0x100 & 256  \\
+        \hline
+        sc\_type\_edge\_fuz & 0x200 & 512  \\
+        \hline
+        sc\_type\_edge\_temp & 0x400 & 1024  \\
+        \hline
+        sc\_type\_edge\_perm & 0x800 & 2048  \\
+        \hline
+        sc\_type\_node\_tuple & 0x80 & 128  \\
+        \hline
+        sc\_type\_node\_struct & 0x100 & 256  \\
+        \hline
+        sc\_type\_node\_role  & 0x200 & 512  \\
+        \hline
+        sc\_type\_node\_norole & 0x400 & 1024  \\
+        \hline
+        sc\_type\_node\_class & 0x800 & 2048  \\
+        \hline
+        sc\_type\_node\_abstract & 0x1000 & 4096  \\
+        \hline
+        sc\_type\_node\_material  & 0x2000 & 8192  \\
+        \hline
+        sc\_type\_arc\_pos\_const\_perm & 0x8B0 & 2224  \\
+        \hline
+        sc\_type\_arc\_pos\_var\_perm  & 0x8D0 & 2256  \\
+        \hline
+\end{tabular}
+    \caption{Базовые типы sc-элементов в json-формате}
+    \label{basic_types}
+\end{figure}
+
+Остальные виды sc-элементов получаются комбинированием характеристик из этой таблицы с помощью операции логического ИЛИ. Например, переменная унарная дуга может быть получена комбинацией кода унарной дуги sc\_type\_uedge\_common и кода переменности sc\_type\_var:
+\[sc\_type\_uedge\_common\_var = sc\_type\_uedge\_common | sc\_type\_var\]
+Что будет равно сумме десятичных кодов элементов: \(4 + 64 = 68\).
+
+\subsection{Полная таблица поддерживаемых типов}
+На данный момент jmantic поддерживает 48 типов sc-элементов. 
+\begin{figure}[H]
+    \rowcolors{2}{gray!10}{white}
+    % \rowcolors{1}{gray}{white}
+    \centering
+    \begin{tabular}{  | p{50mm} | c | }
+    \rowcolor{gray!50}
+		\hline
+		Тип элемента & Десятичный код элемента \\
+        \hline
+		EdgeUCommon & 4 \\
+		\hline
+		EdgeDCommon & 8 \\
+		\hline
+		EdgeUCommonConst & 36 \\
+		\hline
+		EdgeDCommonConst & 40 \\
+		\hline
+		EdgeUCommonVar & 68 \\
+		\hline
+		EdgeDCommonVar & 72 \\
+		\hline
+		EdgeAccess & 16 \\
+		\hline
+		EdgeAccessConstPosPerm & 2224 \\
+		\hline
+		EdgeAccessConstNegPerm & 2352 \\
+		\hline
+		EdgeAccessConstFuzPerm & 2608 \\
+		\hline
+		EdgeAccessConstPosTemp & 1200 \\
+		\hline
+		EdgeAccessConstNegTemp & 1328 \\
+		\hline
+		EdgeAccessConstFuzTemp & 1584 \\
+		\hline
+		EdgeAccessVarPosPerm & 2256 \\
+		\hline
+		EdgeAccessVarNegPerm & 2384 \\
+		\hline
+		EdgeAccessVarFuzPerm & 2640 \\
+		\hline
+		EdgeAccessVarPosTemp & 1232 \\
+		\hline
+		EdgeAccessVarNegTemp & 1360 \\
+		\hline
+		EdgeAccessVarFuzTemp & 1616 \\
+		\hline
+		Const & 32 \\
+		\hline
+		Var & 64 \\
+		\hline
+		Node & 1 \\
+		\hline
+		Link & 2 \\
+		\hline
+		Unknown & undefined \\
+		\hline
+		NodeConst & 33 \\
+		\hline
+		NodeVar & 65 \\
+		\hline
+		LinkConst & 34 \\
+		\hline
+		LinkVar & 66 \\
+		\hline
+		NodeStruct & 257 \\
+		\hline
+		NodeTuple & 129 \\
+		\hline
+		NodeRole & 513 \\
+		\hline
+		NodeNoRole & 1025 \\
+		\hline
+		NodeClass & 2049 \\
+		\hline
+		NodeAbstract & 4097 \\
+		\hline
+		NodeMaterial & 8193 \\
+		\hline
+		NodeConstStruct & 289 \\
+		\hline
+		NodeConstTuple & 161 \\
+		\hline
+		NodeConstRole & 545 \\
+		\hline
+		NodeConstNoRole & 1057 \\
+		\hline
+		NodeConstClass & 2081 \\
+		\hline
+		NodeConstAbstract & 4129 \\
+		\hline
+		NodeConstMaterial & 8225 \\
+		\hline
+		NodeVarStruct & 321 \\
+		\hline
+		NodeVarTuple & 193 \\
+		\hline
+		NodeVarRole & 577 \\
+		\hline
+		NodeVarNoRole & 1089 \\
+		\hline
+		NodeVarClass & 2113 \\
+		\hline
+		NodeVarAbstract & 4161 \\
+		\hline
+		NodeVarMaterial & 8257 \\
+		\hline
+\end{tabular}
+    \caption{Список всех типов sc-элементов}
+    \label{all_types}
+
+\end{figure}

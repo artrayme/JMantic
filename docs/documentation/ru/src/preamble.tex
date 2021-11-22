@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+
+% Languages and fonts packages
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+% Pretty much all of the ams maths packages
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+% Allows you to manipulate the page a bit
+\usepackage[a4paper]{geometry}
+
+% Pulls the page out a bit - makes it look better (in my opinion)
+\usepackage{a4wide}
+
+% Allows inclusion of graphics easily and configurably
+\usepackage{float}
+\usepackage{graphicx}
+
+% Provides commands to make subfigures (figures with (a), (b) and (c))
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+
+% Nya
+% \usepackage{draftwatermark}
+% \SetWatermarkLightness{0.98}
+% \SetWatermarkText{Под охраной Шрека}
+% \SetWatermarkScale{2.3}
+
+\usepackage{tocloft}
+
+% Removes paragraph indentation (not needed most of the time now)
+\usepackage{parskip}
+
+% Provides ways to make nice looking tables
+\usepackage{booktabs}
+
+% Allows you to rotate tables and figures
+\usepackage{rotating}
+
+% Allows shading of table cells
+\usepackage{colortbl}
+
+% Define a simple command to use at the start of a table row to make it have a shaded background
+% \newcommand{\gray}{\rowcolor[gray]{.9}}
+
+\usepackage{textcomp}
+
+% Typesets URLs sensibly - with tt font, clickable in PDFs, and not breaking across lines
+\usepackage{url}
+
+% Makes references hyperlinks in PDF output
+\usepackage[hidelinks]{hyperref}
+
+% Provides ways to include syntax-highlighted source code
+\usepackage{listings}
+\lstset{frame=single, basicstyle=\ttfamily}
+
+% Provides Harvard-style referencing
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+% Provides good access to colours
+\usepackage{color}
+% \usepackage{xcolor}
+\usepackage[table]{xcolor}
+
+% Simple command I defined to allow me to mark TODO items in red
+\newcommand{\todo}[1] {\textbf{\textcolor{red}{#1}}}
+
+% Vastly improves the standard formatting of captions
+\usepackage[margin=10pt,font=small,labelfont=bf, labelsep=endash]{caption}
+
+% Start new page with each section
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+% Provides trees building
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+
+% Provides code listings
+\usepackage{listings}
+
+% listing for json
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+\usepackage[shortlabels]{enumitem}
+
+% Allows to print vertical apostrophe
+\usepackage{upquote}
+
+\usepackage{tabularx}
