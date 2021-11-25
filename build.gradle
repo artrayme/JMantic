@@ -30,36 +30,42 @@ test {
     useJUnitPlatform()
 }
 
-//publishing {
-//    repositories {
-//        maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/artrayme/JMantic")
-//            credentials {
-//                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-//                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-//            }
-//        }
-//    }
-//    publications {
-//        gpr(MavenPublication) {
-//            from(components.java)
-//        }
-//    }
-//}
-
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/artrayme/JMantic"
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
+            url = uri("https://maven.pkg.github.com/artrayme/JMantic")
+            credentials.password("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")
+            credentials.username("artrayme")
+//            credentials {
+//                username = project.findProperty("gpr.user") ?: System.getenv("artrayme")
+//                password = project.findProperty("gpr.key") ?: System.getenv("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")
+//            }
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
+
+
+
+//publishing {
+//    repositories {
+//        maven {
+//            name = "GitHubPackages"
+//            url = "https://maven.pkg.github.com/artrayme/JMantic"
+//            credentials {
+//                username = System.getenv("GITHUB_ACTOR")
+//                password = System.getenv("GITHUB_TOKEN")
+//            }
+//        }
+//    }
+//}
 
 // Create jar archive with dependencies
 jar {
