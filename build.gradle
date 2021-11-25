@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.jmantic'
-version '0.2.0'
+version '0.2.1'
 
 sourceCompatibility = 16
 targetCompatibility = 16
@@ -47,3 +47,24 @@ test {
 //        }
 //    }
 //}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/artrayme/JMantic"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+// Create jar archive with dependencies
+jar {
+    from {
+        configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+}
