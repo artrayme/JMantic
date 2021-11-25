@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.jmantic'
-version '0.0.1'
+version '0.2.0'
 
 sourceCompatibility = 16
 targetCompatibility = 16
@@ -30,15 +30,20 @@ test {
     useJUnitPlatform()
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/artrayme/JMantic"
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
+//publishing {
+//    repositories {
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/artrayme/JMantic")
+//            credentials {
+//                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+//                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+//            }
+//        }
+//    }
+//    publications {
+//        gpr(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
