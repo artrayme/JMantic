@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
-import org.jmantic.scmemory.model.element.node.NodeType;
+import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 
@@ -16,16 +16,16 @@ import java.util.List;
 
 /**
  * @author artrayme
- * @since 0.0.1
+ * @since 0.3.0
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-class SearchByTemplateNodeEdgeNodeRequestImpl extends AbstractScRequest implements SearchByTemplateRequest {
+class SearchByTemplateNodeEdgeLinkRequestImpl extends AbstractScRequest implements SearchByTemplateRequest {
     @JsonProperty("payload")
-    private List<NodeEdgeNodeStruct> struct = new ArrayList<>();
+    private List<NodeEdgeLinkStruct> struct = new ArrayList<>();
 
-    public SearchByTemplateNodeEdgeNodeRequestImpl(ScElement fixed, EdgeType edgeType, NodeType nodeType) {
+    public SearchByTemplateNodeEdgeLinkRequestImpl(ScElement fixed, EdgeType edgeType, LinkType linkType) {
         super(1, RequestType.SEARCH_TEMPLATE);
-        struct.add(new NodeEdgeNodeStruct(fixed, edgeType, nodeType));
+        struct.add(new NodeEdgeLinkStruct(fixed, edgeType, linkType));
     }
 
     @JsonIgnore
@@ -36,28 +36,26 @@ class SearchByTemplateNodeEdgeNodeRequestImpl extends AbstractScRequest implemen
 
     @Override
     public String toString() {
-        return "SearchByTemplateNodeEdgeNodeRequestImpl{" +
-                "id=" + getRequestId() +
-                ", searchTemplate=" + getRequestType() +
-                ", struct=" + struct +
+        return "SearchByTemplateNodeEdgeLinkRequestImpl{" +
+                "struct=" + struct +
                 '}';
     }
 
     /**
      * @author artrayme
-     * @since 0.0.1
+     * @since 0.3.0
      */
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     static
-    class NodeEdgeNodeStruct {
+    class NodeEdgeLinkStruct {
 
         @JsonValue
         private final Object[] components = new Object[3];
 
-        public NodeEdgeNodeStruct(ScElement fixedNode, EdgeType edgeType, NodeType nodeType) {
+        public NodeEdgeLinkStruct(ScElement fixedNode, EdgeType edgeType, LinkType linkType) {
             components[0] = new FixedComponent(fixedNode.getAddress());
             components[1] = new EdgeComponent(edgeType);
-            components[2] = new NodeComponent(nodeType);
+            components[2] = new LinkComponent(linkType);
         }
 
         private static class FixedComponent {
@@ -98,21 +96,21 @@ class SearchByTemplateNodeEdgeNodeRequestImpl extends AbstractScRequest implemen
             }
         }
 
-        private static class NodeComponent {
+        private static class LinkComponent {
             @JsonProperty("type")
             private final String type = "type";
             @JsonProperty("value")
-            private final NodeType nodeType;
+            private final LinkType linkType;
 
-            private NodeComponent(NodeType nodeType) {
-                this.nodeType = nodeType;
+            private LinkComponent(LinkType linkType) {
+                this.linkType = linkType;
             }
 
             @Override
             public String toString() {
-                return "NodeComponent{" +
+                return "LinkComponent{" +
                         "type='" + type + '\'' +
-                        ", nodeType=" + nodeType +
+                        ", linkType=" + linkType +
                         '}';
             }
         }
