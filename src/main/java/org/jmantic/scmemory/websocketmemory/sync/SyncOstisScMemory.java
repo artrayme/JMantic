@@ -4,10 +4,16 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.*;
+import org.jmantic.scmemory.model.element.link.LinkContentType;
+import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLink;
+import org.jmantic.scmemory.model.element.link.ScLinkFloat;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
+import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
@@ -32,9 +38,11 @@ import java.util.stream.Stream;
  */
 public class SyncOstisScMemory implements ScMemory {
     private final RequestSender requestSender;
+    private final OstisClient ostisClient;
 
     public SyncOstisScMemory(URI serverURI) {
-        requestSender = new RequestSenderImpl(new OstisClientSync(serverURI));
+        ostisClient = new OstisClientSync(serverURI);
+        requestSender = new RequestSenderImpl(ostisClient);
     }
 
     @Override
@@ -114,7 +122,9 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode, EdgeType edgeType, NodeType nodeType) throws ScMemoryException {
+    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode,
+                                                               EdgeType edgeType,
+                                                               NodeType nodeType) throws ScMemoryException {
         SearchByTemplateRequest request = new SearchByTemplateNodeEdgeNodeRequestImpl(fixedNode, edgeType, nodeType);
 
         SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
@@ -126,6 +136,29 @@ public class SyncOstisScMemory implements ScMemory {
             result.add(new ScEdgeImpl(edgeType, fixedNode, targetNode, currentTriple.get(1)));
         });
         return result.stream();
+    }
+
+    @Override
+    public Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode,
+                                                               EdgeType edgeType,
+                                                               LinkType linkType,
+                                                               LinkContentType contentType) throws ScMemoryException {
+        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeLinkRequestImpl(fixedNode, edgeType, linkType);
+
+        return getScEdgesFromSearchingTemplate(fixedNode, edgeType, linkType, contentType, request);
+    }
+
+    @Override
+    public Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode,
+                                                                           EdgeType edgeType,
+                                                                           LinkType linkType,
+                                                                           LinkContentType contentType,
+                                                                           ScNode fixedRelationNode,
+                                                                           EdgeType relationEdgeType) throws ScMemoryException {
+
+        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeLinkWithRelationRequestImpl(fixedNode, edgeType, linkType, fixedRelationNode, relationEdgeType);
+
+        return getScEdgesFromSearchingTemplate(fixedNode, edgeType, linkType, contentType, request);
     }
 
     @Override
@@ -159,6 +192,58 @@ public class SyncOstisScMemory implements ScMemory {
     @SuppressWarnings("unchecked")
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
         return (Stream<String>) getLinkContent(elements);
+    }
+
+    @Override
+    public void open() {
+        ostisClient.open();
+    }
+
+    @Override
+    public void close() {
+        try {
+            ostisClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Stream<? extends ScEdge> getScEdgesFromSearchingTemplate(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, SearchByTemplateRequest request) throws ScMemoryException {
+        SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
+
+        List<ScEdge> result = new ArrayList<>();
+        response.getFoundAddresses().forEach(e -> {
+            var currentTriple = e.toList();
+            ScLink targetLink = null;
+            try {
+                targetLink = createLinkByContentType(linkType, currentTriple.get(2), contentType);
+            } catch (ScMemoryException ex) {
+                ex.printStackTrace();
+            }
+            result.add(new ScEdgeImpl(edgeType, fixedNode, targetLink, currentTriple.get(1)));
+        });
+        return result.stream();
+    }
+
+    private ScLink createLinkByContentType(LinkType linkType, Long address, LinkContentType contentType) throws ScMemoryException {
+        return switch (contentType) {
+            case INTEGER -> {
+                var result = new ScLinkIntegerImpl(linkType, address);
+                result.setContent(getIntegerLinkContent(Stream.of(result)).findFirst().get());
+                yield result;
+            }
+            case FLOAT -> {
+                var result = new ScLinkFloatImpl(linkType, address);
+                result.setContent(getFloatLinkContent(Stream.of(result)).findFirst().get());
+                yield result;
+            }
+            case STRING -> {
+                var result =  new ScLinkStringImpl(linkType, address);
+                result.setContent(getStringLinkContent(Stream.of(result)).findFirst().get());
+                yield result;
+            }
+            case BINARY -> throw new UnsupportedOperationException("Binary type is not implemented yet");
+        };
     }
 
     private <C> Stream<? extends ScEntity> createLink(Stream<LinkType> elements, Stream<C> content

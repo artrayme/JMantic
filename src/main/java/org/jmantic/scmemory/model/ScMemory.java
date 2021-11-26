@@ -3,6 +3,7 @@ package org.jmantic.scmemory.model;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
+import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
@@ -35,7 +36,8 @@ public interface ScMemory {
      * Method to create nodes with specified type in sc-machine.
      * You should pass a stream of node types that you want to create.
      *
-     * @return stream of created nodes
+     * @param elements - stream of node types.
+     * @return stream of created nodes.
      */
     Stream<? extends ScNode> createNodes(Stream<NodeType> elements) throws ScMemoryException;
 
@@ -47,7 +49,10 @@ public interface ScMemory {
      * Edges will be created between the corresponding source and target with corresponding type
      * All passed streams must have the same length.
      *
-     * @return stream of created edges
+     * @param elements - stream of edge types.
+     * @param sources  - stream of source nodes.
+     * @param targets  - stream of target nodes.
+     * @return stream of created edges.
      */
     Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
                                          Stream<? extends ScElement> sources,
@@ -100,9 +105,61 @@ public interface ScMemory {
      * You must pass one particular sc-node,
      * the type of the edge you are looking for,
      * and the type of the node you are looking for.
+     *
      * @return stream of edges (source of each edge will have address of fixed node)
      */
     Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode, EdgeType edgeType, NodeType nodeType) throws ScMemoryException;
+
+    /**
+     * Method for searching all sc-constructions by the pattern Node-Edge-Link.
+     * This pattern is a variation of the F_A_A pattern.
+     * You must pass one particular sc-node,
+     * the type of the edge you are looking for,
+     * and the type of the sc-link you are looking for.
+     *
+     * @param fixedNode   - known node.
+     * @param edgeType    - type of unknown edge (must be variable)
+     * @param linkType    - type of unknown sc-link (must be variable)
+     * @param contentType - content type of unknown sc-link.
+     * @return stream of edges (source of each edge will have address of fixed node)
+     * @since 0.3.0
+     */
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode,
+                                                        EdgeType edgeType,
+                                                        LinkType linkType,
+                                                        LinkContentType contentType) throws ScMemoryException;
+
+    /**
+     * Method for searching all sc-constructions by the pattern Node-Edge-Link with relation.
+     * This pattern is a variation of the F_A_A_F_A pattern.
+     * You must pass one particular sc-node,
+     * the type of the edge you are looking for,
+     * and the type of the sc-link you are looking for.
+     * Also, you must pass node of relation and type of relation sc-edge
+     *
+     *              (fixedRelationNode)
+     *                      |
+     *                      | relationEdgeType
+     *                      |
+     * (fixedNode)-----------------------(linkType)
+     *                   edgeType
+     *
+     * @param fixedNode   - known node.
+     * @param edgeType    - type of unknown edge (must be variable)
+     * @param linkType    - type of unknown sc-link (must be variable)
+     * @param contentType - content type of unknown sc-link.
+     * @param fixedRelationNode - known relation node
+     * @param relationEdgeType - type of unknown relation sc-link (must be variable)
+     *
+     * @return stream of edges (source of each edge will have address of fixed node)
+     * @since 0.3.0
+     */
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode,
+                                                                    EdgeType edgeType,
+                                                                    LinkType linkType,
+                                                                    LinkContentType contentType,
+                                                                    ScNode fixedRelationNode,
+                                                                    EdgeType relationEdgeType) throws ScMemoryException;
 
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
@@ -115,4 +172,23 @@ public interface ScMemory {
     Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
 
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
+
+
+    /**
+     * Implementation specific!
+     * <p></p>
+     * It is recommended to open ScMemory before use.
+     *
+     * @since 0.3.0
+     */
+    void open() throws Exception;
+
+    /**
+     * Implementation specific!
+     * <p></p>
+     * You must close ScMemory if you have opened it before using the method ({@link #open()})
+     *
+     * @since 0.3.0
+     */
+    void close() throws Exception;
 }

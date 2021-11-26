@@ -28,7 +28,6 @@ class OstisClientSync implements OstisClient {
 
     public OstisClientSync(URI serverUri) {
         configure(serverUri);
-        open();
     }
 
     @Override
