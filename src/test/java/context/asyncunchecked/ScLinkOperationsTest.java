@@ -2,13 +2,16 @@ package context.asyncunchecked;
 
 import org.jmantic.api.context.AsyncUncheckedScContext;
 import org.jmantic.api.context.UncheckedScContext;
+import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
@@ -29,21 +32,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //ToDO multithreading tests
 public class ScLinkOperationsTest {
+    ScMemory memory;
+
     private AsyncUncheckedScContext scContext;
 
     @BeforeEach
-    public void setUp() throws URISyntaxException {
-        scContext = new AsyncUncheckedScContext(new UncheckedScContext(new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"))));
+    public void setUp() throws Exception {
+        memory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
+        scContext = new AsyncUncheckedScContext(new UncheckedScContext(memory));
+        memory.open();
     }
 
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleIntegerLink() throws ExecutionException, InterruptedException {
-        int content = 5;
-        ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content).get();
-        assertEquals(LinkType.LINK, link.getType());
-        assertEquals(LinkContentType.INTEGER, link.getContentType());
-        assertEquals(content, link.getContent());
+    @AfterEach
+    public void closeScMemory() throws Exception {
+        memory.close();
     }
 
     @Test

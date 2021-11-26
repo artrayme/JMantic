@@ -19,4 +19,6 @@ public class ScMemoryTest {
 //        assertThrows(ScMemoryConfigurationException.class, () -> new SyncScMemory(new OstisClientSync(new URI("ws://localhost:8090"))));
 
     }
+
+
 }

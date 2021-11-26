@@ -1,11 +1,13 @@
 package context.unchecked;
 
 import org.jmantic.api.context.UncheckedScContext;
+import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -21,11 +23,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @since 0.0.1
  */
 public class SearchByTemplateTest {
+    ScMemory memory;
+
     private UncheckedScContext scContext;
 
     @BeforeEach
-    public void setUp() throws URISyntaxException {
-        scContext = new UncheckedScContext(new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json")));
+    public void setUp() throws Exception {
+        memory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
+        scContext = new UncheckedScContext(memory);
+        memory.open();
+    }
+
+    @AfterEach
+    public void closeScMemory() throws Exception {
+        memory.close();
     }
 
     @Test

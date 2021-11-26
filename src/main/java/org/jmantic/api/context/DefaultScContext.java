@@ -4,6 +4,7 @@ import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
+import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLinkFloat;
 import org.jmantic.scmemory.model.element.link.ScLinkInteger;
@@ -164,6 +165,14 @@ public class DefaultScContext {
         return memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
     }
 
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLink(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent) throws ScMemoryException {
+        return memory.findByTemplateNodeEdgeLink(fixedNode, edge, link, linkContent);
+    }
+
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent, ScNode relation, EdgeType relationEdgeType) throws ScMemoryException {
+        return memory.findByTemplateNodeEdgeLinkWithRelation(fixedNode, edge, link, linkContent, relation, relationEdgeType);
+    }
+
     /**
      * Link integer content setting.
      * This method sets the content to sc-link.
@@ -238,4 +247,5 @@ public class DefaultScContext {
     public String getStringLinkContent(ScLinkString link) throws ScMemoryException {
         return memory.getStringLinkContent(Stream.of(link)).findFirst().get();
     }
+
 }

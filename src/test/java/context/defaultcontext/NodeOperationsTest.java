@@ -1,16 +1,17 @@
 package context.defaultcontext;
 
 import org.jmantic.api.context.DefaultScContext;
+import org.jmantic.scmemory.model.ScMemory;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,13 +28,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //ToDO exceptions test
 public class NodeOperationsTest {
+    ScMemory memory;
     private DefaultScContext scContext;
 
     @BeforeEach
-    void setUp() throws URISyntaxException {
-        scContext = new DefaultScContext(new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json")));
-
+    public void setUp() throws Exception {
+        memory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
+        scContext = new DefaultScContext(memory);
+        memory.open();
     }
+
+    @AfterEach
+    public void closeScMemory() throws Exception {
+        memory.close();
+    }
+
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
