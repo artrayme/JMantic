@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.jmantic'
-version '0.2.1'
+version '0.3.0'
 
 sourceCompatibility = 16
 targetCompatibility = 16
@@ -45,7 +45,7 @@ publishing {
         gpr(MavenPublication) {
             groupId 'org.jmantic'
             artifactId 'jmantic'
-            version '0.2.1'
+            version '0.3.0'
             from(components.java)
         }
     }
