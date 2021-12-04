@@ -1,4 +1,4 @@
-name: "Build and test"
+name: "Test"
 on:
   push:
     branches: [ master ]
@@ -16,8 +16,8 @@ jobs:
       - name: "Install Java"
         uses: actions/setup-java@v2
         with:
-            distribution: 'temurin'
-            java-version: '17'
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
@@ -33,9 +33,9 @@ jobs:
 
       - name: "Run Tests and Coverage"
         run: |
-            sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web &
-            sleep 10
-            ./gradlew jacocoTestReport
+          sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web &
+          sleep 10
+          ./gradlew jacocoTestReport
 
       - name: Generate JaCoCo Badge
         uses: cicirello/jacoco-badge-generator@v2
