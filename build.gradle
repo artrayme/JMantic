@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'jacoco'
 }
 
 group 'org.jmantic'
@@ -28,6 +29,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 publishing {
@@ -59,3 +61,16 @@ jar {
     }
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 }
+
+jacocoTestReport {
+    dependsOn test
+
+    reports {
+        csv.enabled true
+        xml.required = false
+        csv.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+
+}
+
