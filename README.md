@@ -2,7 +2,9 @@
 
 # JMantic Project
 
-[![testing](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-and-test.yml)
+[![Build and test](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
+
+[![Coverage](https://github.com/artrayme/JMantic/.github/badges/jacoco.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
 ## Overview
 
