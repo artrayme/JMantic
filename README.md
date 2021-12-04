@@ -4,7 +4,7 @@
 
 [![Build and test](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
-[![Coverage](https://github.com/artrayme/JMantic/.github/badges/jacoco.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
+[![Coverage](.github/badges/jacoco.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
 ## Overview
 
