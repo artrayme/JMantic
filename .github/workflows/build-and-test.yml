@@ -31,9 +31,15 @@ jobs:
       - name: "Pull Ostis docker-image"
         run: sudo docker pull ostis/ostis:0.6.0
 
-      - name: "Run Tests"
+      - name: "Run Tests and Coverage"
         run: |
             sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web &
             sleep 10
-            ./gradlew test
+            ./gradlew jacocoTestReport
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
+          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
 
