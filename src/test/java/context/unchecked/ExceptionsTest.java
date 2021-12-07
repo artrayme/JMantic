@@ -67,6 +67,25 @@ public class ExceptionsTest {
         });
     }
 
+    @Test
+    void exceptionAtIntegerLink() {
+        assertThrows(RuntimeException.class, () -> {
+            scContext.createIntegerLink(LinkType.LINK, 5);
+        });
+    }
 
+    @Test
+    void exceptionAtFloatLink() {
+        assertThrows(RuntimeException.class, () -> {
+            scContext.createFloatLink(LinkType.LINK, 5.0f);
+        });
+    }
+
+    @Test
+    void exceptionAtStringLink() {
+        assertThrows(RuntimeException.class, () -> {
+            scContext.createStringLink(LinkType.LINK, "qwe");
+        });
+    }
 
 }
