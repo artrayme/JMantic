@@ -45,6 +45,28 @@ public class ExceptionsTest {
     }
 
 
+    @Test
+    public void exceptionAtEdgeCreating() throws Exception {
+        memory.open();
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScNode target = scContext.createNode(NodeType.NODE);
+        memory.close();
+        assertThrows(RuntimeException.class, () -> {
+            scContext.createEdge(EdgeType.ACCESS, source, target);
+        });
+    }
+
+    @Test
+    public void exceptionAtEdgesCreating() throws Exception {
+        memory.open();
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScNode target = scContext.createNode(NodeType.NODE);
+        memory.close();
+        assertThrows(RuntimeException.class, () -> {
+            scContext.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target));
+        });
+    }
+
 
 
 }
