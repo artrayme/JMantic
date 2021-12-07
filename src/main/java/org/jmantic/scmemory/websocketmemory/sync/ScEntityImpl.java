@@ -355,23 +355,23 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
         setAddress(address);
     }
 
-    public ScEdgeImpl(EdgeType edgeType, long sourceRef, ScElement targetElement) {
-        super("edge");
-        this.edgeType = edgeType;
-        this.sourceElement = null;
-        this.targetElement = targetElement;
-        source = new EdgeSourceStruct(EdgeEndpointType.REF, sourceRef);
-        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
-    }
-
-    public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, long targetRef) {
-        super("edge");
-        this.edgeType = edgeType;
-        this.sourceElement = sourceElement;
-        this.targetElement = null;
-        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
-        target = new EdgeSourceStruct(EdgeEndpointType.REF, targetRef);
-    }
+//    public ScEdgeImpl(EdgeType edgeType, long sourceRef, ScElement targetElement) {
+//        super("edge");
+//        this.edgeType = edgeType;
+//        this.sourceElement = null;
+//        this.targetElement = targetElement;
+//        source = new EdgeSourceStruct(EdgeEndpointType.REF, sourceRef);
+//        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
+//    }
+//
+//    public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, long targetRef) {
+//        super("edge");
+//        this.edgeType = edgeType;
+//        this.sourceElement = sourceElement;
+//        this.targetElement = null;
+//        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
+//        target = new EdgeSourceStruct(EdgeEndpointType.REF, targetRef);
+//    }
 
     @JsonIgnore
     @Override
