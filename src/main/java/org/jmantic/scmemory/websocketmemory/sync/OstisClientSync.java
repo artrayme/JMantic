@@ -1,6 +1,8 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
+import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.exceptions.WebsocketNotConnectedException;
 import org.java_websocket.handshake.ServerHandshake;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.sync.exception.OstisClientConfigurationException;
@@ -55,8 +57,13 @@ class OstisClientSync implements OstisClient {
             webSocketClient.send(jsonRequest);
             latch.await();
         } catch (InterruptedException e) {
-            logger.error("try to send request: {}", jsonRequest);
-            throw new OstisConnectionException();
+            String msg = "some exception in concurrency";
+            logger.error(msg, e);
+            throw new OstisConnectionException(msg, e);
+        } catch (WebsocketNotConnectedException e){
+            String msg = "you should open connection first";
+            logger.error(msg, jsonRequest);
+            throw new OstisConnectionException(msg, e);
         }
         logger.info("ostis client return response {}", responseMassage);
         return responseMassage;
