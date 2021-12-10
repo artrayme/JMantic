@@ -195,17 +195,13 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public void open() {
+    public void open() throws Exception {
         ostisClient.open();
     }
 
     @Override
-    public void close() {
-        try {
-            ostisClient.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void close() throws Exception {
+        ostisClient.close();
     }
 
     private Stream<? extends ScEdge> getScEdgesFromSearchingTemplate(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, SearchByTemplateRequest request) throws ScMemoryException {
@@ -218,6 +214,7 @@ public class SyncOstisScMemory implements ScMemory {
             try {
                 targetLink = createLinkByContentType(linkType, currentTriple.get(2), contentType);
             } catch (ScMemoryException ex) {
+                //                ToDo normal exception throwing
                 ex.printStackTrace();
             }
             result.add(new ScEdgeImpl(edgeType, fixedNode, targetLink, currentTriple.get(1)));
@@ -238,7 +235,7 @@ public class SyncOstisScMemory implements ScMemory {
                 yield result;
             }
             case STRING -> {
-                var result =  new ScLinkStringImpl(linkType, address);
+                var result = new ScLinkStringImpl(linkType, address);
                 result.setContent(getStringLinkContent(Stream.of(result)).findFirst().get());
                 yield result;
             }

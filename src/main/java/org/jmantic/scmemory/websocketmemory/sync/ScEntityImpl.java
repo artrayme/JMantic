@@ -81,16 +81,6 @@ class ScNodeImpl extends ScEntity implements ScNode {
 
     @JsonIgnore
     @Override
-    public String toString() {
-        return "ScNodeImpl{" +
-                "el='" + getElement() + '\'' +
-                ", nodeType=" + nodeType +
-                ", address=" + getAddress() +
-                '}';
-    }
-
-    @JsonIgnore
-    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -166,17 +156,6 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
         return Objects.hash(getAddress());
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "ScLinkFloatImpl{" +
-                "element='" + getElement() + '\'' +
-                ", linkType=" + linkType +
-                ", content=" + content +
-                ", contentType='" + contentType + '\'' +
-                ", address=" + getAddress() +
-                '}';
-    }
 }
 
 
@@ -239,17 +218,6 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
         return Objects.hash(getAddress());
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "ScLinkIntegerImpl{" +
-                "element='" + getElement() + '\'' +
-                ", linkType=" + linkType +
-                ", content=" + content +
-                ", contentType='" + contentType + '\'' +
-                ", address=" + getAddress() +
-                '}';
-    }
 }
 
 /**
@@ -311,17 +279,6 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
         return Objects.hash(getAddress());
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "ScLinkStringImpl{" +
-                "el='" + getElement() + '\'' +
-                ", linkType=" + linkType +
-                ", content='" + content + '\'' +
-                ", contentType='" + contentType + '\'' +
-                ", address=" + getAddress() +
-                '}';
-    }
 }
 
 /**
@@ -354,24 +311,6 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
         this(edgeType, sourceElement, targetElement);
         setAddress(address);
     }
-
-//    public ScEdgeImpl(EdgeType edgeType, long sourceRef, ScElement targetElement) {
-//        super("edge");
-//        this.edgeType = edgeType;
-//        this.sourceElement = null;
-//        this.targetElement = targetElement;
-//        source = new EdgeSourceStruct(EdgeEndpointType.REF, sourceRef);
-//        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
-//    }
-//
-//    public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, long targetRef) {
-//        super("edge");
-//        this.edgeType = edgeType;
-//        this.sourceElement = sourceElement;
-//        this.targetElement = null;
-//        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
-//        target = new EdgeSourceStruct(EdgeEndpointType.REF, targetRef);
-//    }
 
     @JsonIgnore
     @Override
@@ -408,17 +347,6 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
         return Objects.equals(getAddress(), scEdge.getAddress());
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "ScEdgeImpl{" +
-                "el='" + getElement() + '\'' +
-                ", edgeType=" + edgeType +
-                ", address=" + getAddress() +
-                ", sourceElement=" + sourceElement +
-                ", targetElement=" + targetElement +
-                '}';
-    }
 }
 
 /**
@@ -467,14 +395,6 @@ class EdgeSourceStruct {
             return false;
         EdgeSourceStruct that = (EdgeSourceStruct) o;
         return type == that.type && Objects.equals(value, that.value);
-    }
-
-    @Override
-    public String toString() {
-        return "EdgeSourceStruct{" +
-                "type=" + type +
-                ", value=" + value +
-                '}';
     }
 
 }

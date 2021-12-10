@@ -6,6 +6,8 @@ import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.LinkType;
+import org.jmantic.scmemory.model.element.link.ScLinkFloat;
+import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
@@ -57,7 +59,7 @@ public class SearchByTemplateTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleNodeEdgeLink() throws ScMemoryException {
+    void createSingleTripleNodeEdgeStringLink() throws ScMemoryException {
         ScNode source = scContext.createNode(NodeType.NODE);
         ScLinkString link = scContext.createStringLink(LinkType.LINK, "Hello");
         ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, link);
@@ -67,6 +69,34 @@ public class SearchByTemplateTest {
         assertEquals(link.getContent(), ((ScLinkString) result.get(0).getTarget()).getContent());
         assertEquals(edge1, result.get(0));
     }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleTripleNodeIntegerLink() throws ScMemoryException {
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, 5);
+        ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, link);
+        var result = scContext.findAllConstructionsNodeEdgeLink(source, EdgeType.ACCESS, LinkType.LINK_VAR, LinkContentType.INTEGER).toList();
+        assertEquals(source, result.get(0).getSource());
+        assertEquals(link, result.get(0).getTarget());
+        assertEquals(link.getContent(), ((ScLinkInteger) result.get(0).getTarget()).getContent());
+        assertEquals(edge1, result.get(0));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleTripleNodeFloatLink() throws ScMemoryException {
+        ScNode source = scContext.createNode(NodeType.NODE);
+        ScLinkFloat link = scContext.createFloatLink(LinkType.LINK, 5f);
+        ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, link);
+        var result = scContext.findAllConstructionsNodeEdgeLink(source, EdgeType.ACCESS, LinkType.LINK_VAR, LinkContentType.FLOAT).toList();
+        assertEquals(source, result.get(0).getSource());
+        assertEquals(link, result.get(0).getTarget());
+        assertEquals(link.getContent(), ((ScLinkFloat) result.get(0).getTarget()).getContent());
+        assertEquals(edge1, result.get(0));
+    }
+
+
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
