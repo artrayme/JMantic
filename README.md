@@ -16,8 +16,7 @@ json format.
 ## Main project priorities:
 
 * **Easy-to-use**. The public api uses only basic abstractions.All classes and methods are documented. There is a wide
-  list of usage examples. The public api uses only basic abstractions.All classes and methods are documented.There is a
-  wide list of usage examples.
+  list of usage examples.
 * **Easy to support**. The minimum number of required third-party libraries was used for the implementation. The code
   uses modern features of the java language, the files are clearly structured. Also, internal classes and mechanisms are
   partially have documentation.
