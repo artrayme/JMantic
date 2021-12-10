@@ -68,24 +68,56 @@ public class ExceptionsTest {
     }
 
     @Test
-    void exceptionAtIntegerLink() {
+    void exceptionAtIntegerLinkCreating() {
         assertThrows(RuntimeException.class, () -> {
             scContext.createIntegerLink(LinkType.LINK, 5);
         });
     }
 
     @Test
-    void exceptionAtFloatLink() {
+    void exceptionAtFloatLinkCreating() {
         assertThrows(RuntimeException.class, () -> {
             scContext.createFloatLink(LinkType.LINK, 5.0f);
         });
     }
 
     @Test
-    void exceptionAtStringLink() {
+    void exceptionAtStringLinkCreating() {
         assertThrows(RuntimeException.class, () -> {
             scContext.createStringLink(LinkType.LINK, "qwe");
         });
     }
+
+    @Test
+    void exceptionAtIntegerLinkContentSetting() throws Exception {
+        memory.open();
+        var link = scContext.createIntegerLink(LinkType.LINK, 5);
+        memory.close();
+        assertThrows(RuntimeException.class, () -> {
+            scContext.setIntegerLinkContent(link, 10);
+        });
+    }
+
+    @Test
+    void exceptionAtFloatLinkSetting() throws Exception {
+        memory.open();
+        var link = scContext.createFloatLink(LinkType.LINK, 5f);
+        memory.close();
+        assertThrows(RuntimeException.class, () -> {
+            scContext.setFloatLinkContent(link, 10f);
+        });
+    }
+
+    @Test
+    void exceptionAtStringLinkSetting() throws Exception {
+        memory.open();
+        var link = scContext.createStringLink(LinkType.LINK, "qwe");
+        memory.close();
+        assertThrows(RuntimeException.class, () -> {
+            scContext.setStringLinkContent(link, "other");
+        });
+    }
+
+
 
 }
