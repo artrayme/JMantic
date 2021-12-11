@@ -33,6 +33,18 @@ import java.util.stream.Stream;
 
 
 /**
+ * Implementation of the {@link ScMemory} interface. Basic operations
+ * are available: creating elements, deleting, working with links, etc.
+ * Communication with the base is established through the {@link OstisClient} and {@link RequestSender} interfaces.
+ * Requests and responses are implemented using the {@link org.jmantic.scmemory.websocketmemory.message.request.ScRequest}
+ * and {@link org.jmantic.scmemory.websocketmemory.message.response.ScResponse} family of classes.
+ * The entity classes are also used, which store all the information about the sc-element:
+ * <ul>
+ *          <li>{@link ScEdge}</li>
+ *          <li>{@link ScLink}</li>
+ *          <li>{@link ScNode}</li>
+ * </ul>
+ *
  * @author Michael
  * @since 0.0.1
  */
@@ -225,10 +237,20 @@ public class SyncOstisScMemory implements ScMemory {
         return result.stream();
     }
 
+    /**
+     * Method for creating links already existing in the base
+     *
+     * @param linkType    type of sc-link
+     * @param address     address of sc-link in base
+     * @param contentType type of content
+     * @return created sc-link
+     * @throws ScMemoryException
+     */
     private ScLink createLinkByContentType(LinkType linkType, Long address, LinkContentType contentType) throws ScMemoryException {
         return switch (contentType) {
             case INTEGER -> {
                 var result = new ScLinkIntegerImpl(linkType, address);
+
                 result.setContent(getIntegerLinkContent(Stream.of(result)).findFirst().get());
                 yield result;
             }
@@ -238,7 +260,7 @@ public class SyncOstisScMemory implements ScMemory {
                 yield result;
             }
             case STRING -> {
-                var result =  new ScLinkStringImpl(linkType, address);
+                var result = new ScLinkStringImpl(linkType, address);
                 result.setContent(getStringLinkContent(Stream.of(result)).findFirst().get());
                 yield result;
             }
@@ -246,6 +268,17 @@ public class SyncOstisScMemory implements ScMemory {
         };
     }
 
+
+    /**
+     * Method for creating links of different types of content.
+     *
+     * @param elements    type of links
+     * @param content     stream of content
+     * @param contentType type of content
+     * @param <C>         generic for content
+     * @return created sc-link
+     * @throws ScMemoryException
+     */
     private <C> Stream<? extends ScEntity> createLink(Stream<LinkType> elements, Stream<C> content
             , LinkContentType contentType) throws ScMemoryException {
         CreateScElRequest request = new CreateScElRequestImpl();
@@ -291,6 +324,16 @@ public class SyncOstisScMemory implements ScMemory {
         return result.stream();
     }
 
+    /**
+     * Method for replacing content in a link.
+     *
+     * @param links links
+     * @param content new content
+     * @param <L> generic for link
+     * @param <C> generic for content
+     * @return link with new content
+     * @throws ScMemoryException
+     */
     private <L, C> Stream<Boolean> setLinkContent(Stream<L> links, Stream<C> content) throws ScMemoryException {
         SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
         Iterator<L> linksIter = links.iterator();
@@ -329,6 +372,13 @@ public class SyncOstisScMemory implements ScMemory {
         return statusOfOperation.stream();
     }
 
+    /**
+     * Method for getting content from link.
+     *
+     * @param elements links
+     * @return stream of content
+     * @throws ScMemoryException
+     */
     private Stream<?> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<? extends ScLink> links = elements.peek(l -> request.addAddressToRequest(l.getAddress())).toList();
