@@ -182,7 +182,7 @@ public class UncheckedScContext {
         return result.findFirst().get();
     }
 
-    //    Uncomment when the project updated to java 17
+    //    Uncomment when the project updated to java with a pattern matching(((
     //    public <T> Boolean setAnyLinkContent(ScLink link, T content) {
     //        Stream<Boolean> result = Stream.empty();
     //        try {
