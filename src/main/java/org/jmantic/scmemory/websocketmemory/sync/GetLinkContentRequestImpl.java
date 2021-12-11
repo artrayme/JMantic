@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Implementation of the {@link GetLinkContentRequest}. The payload part consists
+ * of a {@link List} of {@link GetContentStruct} elements.
+ *
  * @author Michael
  * @since 0.0.1
  */
@@ -19,6 +22,14 @@ class GetLinkContentRequestImpl extends AbstractScRequest implements GetLinkCont
     @JsonProperty("payload")
     private List<GetContentStruct> contentStructs;
 
+    /**
+     * Class describing the structure of a request to retrieve the content of the {@link org.jmantic.scmemory.model.element.link.ScLink}
+     *
+     *     {
+     *       "command": "get",
+     *       "addr": integer_value
+     *     }
+     */
     private static class GetContentStruct {
         @JsonProperty("command")
         String command = "get";

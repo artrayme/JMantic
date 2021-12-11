@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.websocketmemory.message.response.ScResponse;
 
 /**
+ * An abstract response class that contains information that is inherent in all system responses.
+ * Jackson's annotations are used to further serialize the request.
+ *
  * @author Michael
  * @since 0.2.0
  */

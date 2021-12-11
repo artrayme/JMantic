@@ -8,6 +8,9 @@ import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentRespo
 import java.util.List;
 
 /**
+ * Implementation of the {@link GetLinkContentResponse}. The payload part consists of a {@link List}
+ * of {@link GetContentStruct} elements.
+ *
  * @author Michael
  * @since 0.0.1
  */
@@ -16,6 +19,15 @@ class GetLinkContentResponseImpl extends AbstractScResponse implements GetLinkCo
     @JsonProperty("payload")
     private List<GetContentStruct> linkContent;
 
+    /**
+     * Class describing the structure of the {@link GetLinkContentResponseImpl} to retrieve
+     * {@link org.jmantic.scmemory.model.element.link.ScLink} content
+     *
+     *     {
+     *       "value": 56.7,  // value will be a null, if content doesn't exist
+     *       "type": content_type
+     *     }
+     */
     @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
     private static class GetContentStruct {
         @JsonProperty("value")

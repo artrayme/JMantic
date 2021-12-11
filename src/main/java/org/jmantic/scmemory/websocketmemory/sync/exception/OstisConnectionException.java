@@ -1,10 +1,12 @@
 package org.jmantic.scmemory.websocketmemory.sync.exception;
 
 /**
+ * This exception indicates a malfunction of the connection with the base.
+ *
  * @author artrayme
  * @since 0.2.0
  */
-public class OstisConnectionException extends Exception{
+public class OstisConnectionException extends Exception {
     public OstisConnectionException() {
     }
 

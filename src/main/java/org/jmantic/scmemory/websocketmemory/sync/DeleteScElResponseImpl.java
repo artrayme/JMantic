@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 
 /**
+ * Implementation of the response to the request for
+ * deleting elements in the database. If command processed, then response status is true,
+ * otherwise status - false.
+ * Jackson's annotations are used to further serialize the request.
+ *
  * @author Michael
  * @since 0.0.1
  */
