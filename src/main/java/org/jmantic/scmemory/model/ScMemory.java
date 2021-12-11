@@ -54,9 +54,7 @@ public interface ScMemory {
      * @param targets  - stream of target nodes.
      * @return stream of created edges.
      */
-    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
-                                         Stream<? extends ScElement> sources,
-                                         Stream<? extends ScElement> targets) throws ScMemoryException;
+    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements, Stream<? extends ScElement> sources, Stream<? extends ScElement> targets) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and integer content in sc-machine.
@@ -124,10 +122,7 @@ public interface ScMemory {
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
-    Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode,
-                                                        EdgeType edgeType,
-                                                        LinkType linkType,
-                                                        LinkContentType contentType) throws ScMemoryException;
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType) throws ScMemoryException;
 
     /**
      * Method for searching all sc-constructions by the pattern Node-Edge-Link with relation.
@@ -153,45 +148,63 @@ public interface ScMemory {
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
-    Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode,
-                                                                    EdgeType edgeType,
-                                                                    LinkType linkType,
-                                                                    LinkContentType contentType,
-                                                                    ScNode fixedRelationNode,
-                                                                    EdgeType relationEdgeType) throws ScMemoryException;
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, ScNode fixedRelationNode, EdgeType relationEdgeType) throws ScMemoryException;
 
     /**
-     * A set of methods for changing the content of sc-links of different types
-     * {@link ScLinkInteger}
-     * {@link ScLinkFloat}
-     * {@link ScLinkString}
+     * Methods for changing the content of {@link ScLinkInteger}
+     * All passed streams must have the same length.
      *
-     * @param links   - links that need to change content
-     * @param content - new link content
+     * @param links   links that need to change content
+     * @param content new link content
      * @return a stream of values that reflect the result of an operation.
      * True, there was a successful operation on the link, or a lie, if something went wrong.
-     * @throws ScMemoryException
      */
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
+    /**
+     * Methods for changing the content of {@link ScLinkFloat}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     */
     Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
 
+    /**
+     * Methods for changing the content of {@link ScLinkString}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     */
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
     /**
-     * A set of methods for getting the content of sc-links of different types
-     * {@link ScLinkInteger}
-     * {@link ScLinkFloat}
-     * {@link ScLinkString}
+     * Method for getting the content of {@link ScLinkInteger}
      *
-     * @param links - links whose content you need to get
+     * @param links links whose content you need to get
      * @return stream of received sc-link values
-     * @throws ScMemoryException
      */
     Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException;
 
+    /**
+     * Method for getting the content of {@link ScLinkFloat}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     */
     Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> links) throws ScMemoryException;
 
+    /**
+     * Method for getting the content of {@link ScLinkString}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     */
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
 
