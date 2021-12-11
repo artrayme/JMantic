@@ -169,6 +169,8 @@ public interface ScMemory {
      * @param content new link content
      * @return a stream of values that reflect the result of an operation.
      * True, there was a successful operation on the link, or a lie, if something went wrong.
+     *
+     * @since 0.3.0
      */
     Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
 
@@ -180,6 +182,8 @@ public interface ScMemory {
      * @param content new link content
      * @return a stream of values that reflect the result of an operation.
      * True, there was a successful operation on the link, or a lie, if something went wrong.
+     *
+     * @since 0.3.0
      */
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
@@ -188,6 +192,8 @@ public interface ScMemory {
      *
      * @param links links whose content you need to get
      * @return stream of received sc-link values
+     *
+     * @since 0.3.0
      */
     Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException;
 
@@ -196,6 +202,8 @@ public interface ScMemory {
      *
      * @param links links whose content you need to get
      * @return stream of received sc-link values
+     *
+     * @since 0.3.0
      */
     Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> links) throws ScMemoryException;
 
@@ -204,6 +212,8 @@ public interface ScMemory {
      *
      * @param links links whose content you need to get
      * @return stream of received sc-link values
+     *
+     * @since 0.3.0
      */
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
