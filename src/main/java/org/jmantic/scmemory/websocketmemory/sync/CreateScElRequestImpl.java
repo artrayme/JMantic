@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Implementation of a request to create elements in the database.
+ * A {@link List} of {@link ScElement} is used as a payload part of the request.
+ * Jackson's annotations are used to further serialize the request.
+ *
  * @author Michael
  * @since 0.0.1
  */

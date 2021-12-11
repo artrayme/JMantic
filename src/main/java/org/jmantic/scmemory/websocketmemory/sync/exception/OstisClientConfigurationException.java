@@ -1,6 +1,8 @@
 package org.jmantic.scmemory.websocketmemory.sync.exception;
 
 /**
+ * This exception indicates a violation of the {@link org.jmantic.scmemory.websocketmemory.core.OstisClient} configuration
+ *
  * @author artrayme
  * @since 0.2.0
  */

@@ -7,6 +7,9 @@ import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 import org.jmantic.scmemory.websocketmemory.message.request.ScRequest;
 
 /**
+ * An abstract request class that contains information that is inherent in all system requests.
+ * Jackson's annotations are used to further serialize the request.
+ *
  * @author Michael
  * @since 0.2.0
  */
@@ -17,7 +20,7 @@ abstract class AbstractScRequest implements ScRequest {
     @JsonProperty("type")
     private final RequestType requestType;
 
-    public AbstractScRequest(long requestId, RequestType requestType){
+    public AbstractScRequest(long requestId, RequestType requestType) {
         this.requestId = requestId;
         this.requestType = requestType;
     }

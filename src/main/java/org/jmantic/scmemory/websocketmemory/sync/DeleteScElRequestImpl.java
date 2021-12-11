@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Implementation of a request to remove items from the database.
+ * Payload part is implemented as a {@link List} of addresses of {@link org.jmantic.scmemory.model.element.ScElement}
+ * that need to be removed
+ *
  * @author Michael
  * @since 0.0.1
  */

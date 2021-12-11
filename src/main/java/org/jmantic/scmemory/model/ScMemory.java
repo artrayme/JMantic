@@ -54,9 +54,7 @@ public interface ScMemory {
      * @param targets  - stream of target nodes.
      * @return stream of created edges.
      */
-    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
-                                         Stream<? extends ScElement> sources,
-                                         Stream<? extends ScElement> targets) throws ScMemoryException;
+    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements, Stream<? extends ScElement> sources, Stream<? extends ScElement> targets) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and integer content in sc-machine.
@@ -124,10 +122,7 @@ public interface ScMemory {
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
-    Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode,
-                                                        EdgeType edgeType,
-                                                        LinkType linkType,
-                                                        LinkContentType contentType) throws ScMemoryException;
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType) throws ScMemoryException;
 
     /**
      * Method for searching all sc-constructions by the pattern Node-Edge-Link with relation.
@@ -136,42 +131,91 @@ public interface ScMemory {
      * the type of the edge you are looking for,
      * and the type of the sc-link you are looking for.
      * Also, you must pass node of relation and type of relation sc-edge
-     *
+     * <p>
      *              (fixedRelationNode)
      *                      |
      *                      | relationEdgeType
      *                      |
      * (fixedNode)-----------------------(linkType)
-     *                   edgeType
+     * edgeType
      *
-     * @param fixedNode   - known node.
-     * @param edgeType    - type of unknown edge (must be variable)
-     * @param linkType    - type of unknown sc-link (must be variable)
-     * @param contentType - content type of unknown sc-link.
+     * @param fixedNode         - known node.
+     * @param edgeType          - type of unknown edge (must be variable)
+     * @param linkType          - type of unknown sc-link (must be variable)
+     * @param contentType       - content type of unknown sc-link.
      * @param fixedRelationNode - known relation node
-     * @param relationEdgeType - type of unknown relation sc-link (must be variable)
-     *
+     * @param relationEdgeType  - type of unknown relation sc-link (must be variable)
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
-    Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode,
-                                                                    EdgeType edgeType,
-                                                                    LinkType linkType,
-                                                                    LinkContentType contentType,
-                                                                    ScNode fixedRelationNode,
-                                                                    EdgeType relationEdgeType) throws ScMemoryException;
+    Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, ScNode fixedRelationNode, EdgeType relationEdgeType) throws ScMemoryException;
 
+    /**
+     * Methods for changing the content of {@link ScLinkInteger}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     */
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
+    /**
+     * Methods for changing the content of {@link ScLinkFloat}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     *
+     * @since 0.3.0
+     */
     Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
 
+    /**
+     * Methods for changing the content of {@link ScLinkString}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     *
+     * @since 0.3.0
+     */
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
-    Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException;
+    /**
+     * Method for getting the content of {@link ScLinkInteger}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     *
+     * @since 0.3.0
+     */
+    Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException;
 
-    Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
+    /**
+     * Method for getting the content of {@link ScLinkFloat}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     *
+     * @since 0.3.0
+     */
+    Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> links) throws ScMemoryException;
 
-    Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
+    /**
+     * Method for getting the content of {@link ScLinkString}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     *
+     * @since 0.3.0
+     */
+    Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
 
     /**

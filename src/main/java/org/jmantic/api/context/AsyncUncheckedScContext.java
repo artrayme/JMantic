@@ -19,10 +19,7 @@ import java.util.stream.Stream;
  * @author artrayme
  * @since 0.2.0
  */
-
-// ToDo logger
 public class AsyncUncheckedScContext {
-    //    private final static Logger logger = LoggerFactory.getLogger(AsyncUncheckedScContext.class);
     private final UncheckedScContext context;
     private final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
