@@ -136,21 +136,20 @@ public interface ScMemory {
      * the type of the edge you are looking for,
      * and the type of the sc-link you are looking for.
      * Also, you must pass node of relation and type of relation sc-edge
-     *
-     *              (fixedRelationNode)
-     *                      |
-     *                      | relationEdgeType
-     *                      |
+     * <p>
+     * (fixedRelationNode)
+     * |
+     * | relationEdgeType
+     * |
      * (fixedNode)-----------------------(linkType)
-     *                   edgeType
+     * edgeType
      *
-     * @param fixedNode   - known node.
-     * @param edgeType    - type of unknown edge (must be variable)
-     * @param linkType    - type of unknown sc-link (must be variable)
-     * @param contentType - content type of unknown sc-link.
+     * @param fixedNode         - known node.
+     * @param edgeType          - type of unknown edge (must be variable)
+     * @param linkType          - type of unknown sc-link (must be variable)
+     * @param contentType       - content type of unknown sc-link.
      * @param fixedRelationNode - known relation node
-     * @param relationEdgeType - type of unknown relation sc-link (must be variable)
-     *
+     * @param relationEdgeType  - type of unknown relation sc-link (must be variable)
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
@@ -161,17 +160,39 @@ public interface ScMemory {
                                                                     ScNode fixedRelationNode,
                                                                     EdgeType relationEdgeType) throws ScMemoryException;
 
+    /**
+     * A set of methods for changing the content of sc-links of different types
+     * {@link ScLinkInteger}
+     * {@link ScLinkFloat}
+     * {@link ScLinkString}
+     *
+     * @param links   - links that need to change content
+     * @param content - new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     * @throws ScMemoryException
+     */
     Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
 
     Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
 
     Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
 
-    Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException;
+    /**
+     * A set of methods for getting the content of sc-links of different types
+     * {@link ScLinkInteger}
+     * {@link ScLinkFloat}
+     * {@link ScLinkString}
+     *
+     * @param links - links whose content you need to get
+     * @return stream of received sc-link values
+     * @throws ScMemoryException
+     */
+    Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException;
 
-    Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException;
+    Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> links) throws ScMemoryException;
 
-    Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException;
+    Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
 
     /**

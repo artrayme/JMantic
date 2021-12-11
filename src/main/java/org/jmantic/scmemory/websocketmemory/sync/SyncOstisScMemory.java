@@ -178,20 +178,20 @@ public class SyncOstisScMemory implements ScMemory {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> elements) throws ScMemoryException {
-        return (Stream<Integer>) getLinkContent(elements);
+    public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException {
+        return (Stream<Integer>) getLinkContent(links);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> elements) throws ScMemoryException {
-        return (Stream<Float>) getLinkContent(elements);
+    public Stream<Float> getFloatLinkContent(Stream<? extends ScLinkFloat> links) throws ScMemoryException {
+        return (Stream<Float>) getLinkContent(links);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> elements) throws ScMemoryException {
-        return (Stream<String>) getLinkContent(elements);
+    public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException {
+        return (Stream<String>) getLinkContent(links);
     }
 
     @Override
