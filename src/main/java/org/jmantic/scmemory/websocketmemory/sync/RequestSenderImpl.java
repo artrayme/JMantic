@@ -18,6 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * {@link RequestSender} implementation for serialization and sending requests
+ * using the {@link OstisClient}, as well as for deserializing responses.
+ * Deserialization and serialization occurs using the JACKSON-databind library.
+ *
  * @author Michael
  * @since 0.0.1
  */
@@ -59,6 +63,18 @@ class RequestSenderImpl implements RequestSender {
         return send(request, GetLinkContentResponseImpl.class);
     }
 
+    /**
+     * The method that serializes the {@link ScRequest} object, sends a
+     * request to the database through the {@link OstisClient} and deserializes the response
+     * into a {@link org.jmantic.scmemory.websocketmemory.message.response.ScResponse} object
+     *
+     * @param request request
+     * @param responseClassType type of response
+     * @param <T1> request generic
+     * @param <T2> responseClass generic
+     * @return {@link org.jmantic.scmemory.websocketmemory.message.response.ScResponse} with all the necessary data
+     * @throws ScMemoryException if there is any problem with the {@link OstisClient}
+     */
     private <T1, T2> T2 send(T1 request, Class<T2> responseClassType) throws ScMemoryException {
         try {
             String jsonRequest = writer.writeValueAsString(request);

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.model.element.link.LinkContentType;
 import org.jmantic.scmemory.model.element.link.ScLink;
+import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 import org.jmantic.scmemory.websocketmemory.message.request.SetLinkContentRequest;
 
@@ -12,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Implementation of the {@link SetLinkContentRequest}. The payload part consists
+ * of a {@link List} of {@link SetContentStruct} elements.
+ *
  * @author Michael
  * @since 0.0.1
  */
@@ -20,6 +24,17 @@ class SetLinkContentRequestImpl extends AbstractScRequest implements SetLinkCont
     @JsonProperty("payload")
     private List<SetContentStruct> contentStructs;
 
+    /**
+     * Class describing the structure of a request to set content to the {@link org.jmantic.scmemory.model.element.link.ScLink}
+     *
+     *     {
+     *       // command to set ScLink content
+     *       "command": "set",
+     *       "type": "int",  // content type
+     *       "data": 67,     // content could be a string, number
+     *       "addr": 3123    // ScAddr of ScLink to change content
+     *     }
+     */
     private static class SetContentStruct {
         @JsonProperty("command")
         String command = "set";

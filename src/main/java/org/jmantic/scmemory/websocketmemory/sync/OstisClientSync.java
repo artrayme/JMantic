@@ -12,6 +12,8 @@ import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * {@link OstisClient} implementation for sending requests in JSON format
+ *
  * @author artrayme
  * @since 0.2.0
  */
@@ -69,6 +71,9 @@ class OstisClientSync implements OstisClient {
         logger.info("ostis client closed");
     }
 
+    /**
+     * A class designed to send requests and receive responses from the base
+     */
     private class OstisWebsocketClient extends WebSocketClient {
 
         public OstisWebsocketClient(URI serverUri) {
