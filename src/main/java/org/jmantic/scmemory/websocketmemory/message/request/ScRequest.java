@@ -2,6 +2,14 @@ package org.jmantic.scmemory.websocketmemory.message.request;
 
 /**
  * An interface that is a generic class of system requests.
+ * <p>
+ * Each request has a common structure:
+ * {
+ *      "id": 2,
+ *      "type": "request type",
+ *      "payload": {...}
+ * }
+ * Different requests have different payload structure
  *
  * @author Michael
  * @since 0.0.1

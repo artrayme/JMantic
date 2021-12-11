@@ -3,6 +3,15 @@ package org.jmantic.scmemory.websocketmemory.message.response;
 /**
  * An interface that is a generic class of system responses
  *
+ * Response has a common structure:
+ * {
+ *   "id": 2,
+ *   "status": true,
+ *   "event": false,
+ *   "payload": {...}
+ * }
+ * Different responses have different payload structure
+ *
  * @author Michael
  * @since 0.0.1
  */

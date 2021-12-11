@@ -132,10 +132,10 @@ public interface ScMemory {
      * and the type of the sc-link you are looking for.
      * Also, you must pass node of relation and type of relation sc-edge
      * <p>
-     * (fixedRelationNode)
-     * |
-     * | relationEdgeType
-     * |
+     *              (fixedRelationNode)
+     *                      |
+     *                      | relationEdgeType
+     *                      |
      * (fixedNode)-----------------------(linkType)
      * edgeType
      *
