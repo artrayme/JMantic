@@ -3,6 +3,8 @@ package org.jmantic.scmemory.websocketmemory.message.request;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
+ * Enum of supported {@link ScRequest} types
+ *
  * @author Michael
  * @since 0.0.1
  */
