@@ -128,6 +128,25 @@ Dependency
 
 ****
 
+## Ostis configuration
+
+To use JMantic, you need ostis version 0.6.0. You can run ostis any way you want. For example, you can run ostis in the
+docker with the following command:
+
+```shell
+docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
+```
+
+If you do not need to build the base, you can speed up the startup with the following command
+
+```shell
+docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web
+```
+
+More information about dockerized ostis - [GitHub repository](https://github.com/ostis-apps/dockerized-ostis)
+
+****
+
 ## Used libraries
 
 * [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)
