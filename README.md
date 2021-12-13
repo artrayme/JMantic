@@ -74,36 +74,42 @@ The first step is to change the settings.xml file in the ~/.m2 folder
 
 ```xml
 
-<activeProfiles>
-    <activeProfile>github</activeProfile>
-</activeProfiles>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-<profiles>
-<profile>
-    <id>github</id>
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
+    <activeProfiles>
+        <activeProfile>github</activeProfile>
+    </activeProfiles>
+
+    <profiles>
+        <profile>
             <id>github</id>
-            <url>https://maven.pkg.github.com/artrayme/JMantic</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-</profile>
-</profiles>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://repo1.maven.org/maven2</url>
+                </repository>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/artrayme/JMantic</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 
-<servers>
-<server>
-    <id>github</id>
-    <username>github_username</username>
-    <password>github_PAT_with_access_to_packages_reading</password>
-</server>
-</servers>
+    <servers>
+        <server>
+            <id>github</id>
+            <username>github_username</username>
+            <password>github_PAT_with_access_to_packages_reading</password>
+        </server>
+    </servers>
+</settings>
 ```
 
 Where GitHub_username it is you username in GitHub. Password - your GitHub personal access token. To get such a token,
