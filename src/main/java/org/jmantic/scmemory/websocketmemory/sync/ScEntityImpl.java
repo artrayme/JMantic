@@ -17,22 +17,39 @@ import org.jmantic.scmemory.model.element.node.ScNode;
 import java.util.Objects;
 
 /**
+ * @author artrayme
+ * @since 0.2.0
+ */
+
+enum EdgeEndpointType {
+    ADDR("addr"),
+    REF("ref");
+
+    @JsonValue
+    private final String type;
+
+    EdgeEndpointType(String type) {
+        this.type = type;
+    }
+}
+
+/**
  * @author Michael
  * @since 0.0.1
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-abstract class ScEntity implements ScElement{
+abstract class ScEntity implements ScElement {
     @JsonProperty("el")
     private final String element;
 
     @JsonIgnore
     private long address;
 
-    public ScEntity(String element){
+    public ScEntity(String element) {
         this.element = element;
     }
 
-    public ScEntity(String element, long address){
+    public ScEntity(String element, long address) {
         this.element = element;
         this.address = address;
     }
@@ -43,14 +60,14 @@ abstract class ScEntity implements ScElement{
     }
 
     @JsonIgnore
-    public void setAddress(long address) {
-        this.address = address;
-    }
-
-    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
+    }
+
+    @JsonIgnore
+    public void setAddress(long address) {
+        this.address = address;
     }
 }
 
@@ -81,6 +98,12 @@ class ScNodeImpl extends ScEntity implements ScNode {
 
     @JsonIgnore
     @Override
+    public int hashCode() {
+        return Objects.hash(getAddress());
+    }
+
+    @JsonIgnore
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -88,12 +111,6 @@ class ScNodeImpl extends ScEntity implements ScNode {
             return false;
         ScNodeImpl scNode = (ScNodeImpl) o;
         return Objects.equals(getAddress(), scNode.getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
     }
 }
 
@@ -105,12 +122,10 @@ class ScNodeImpl extends ScEntity implements ScNode {
 class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     @JsonProperty("type")
     private final LinkType linkType;
-
-    @JsonProperty("content")
-    private float content;
-
     @JsonProperty("content_type")
     private final String contentType = "float";
+    @JsonProperty("content")
+    private float content;
 
     public ScLinkFloatImpl(LinkType linkType) {
         super("link");
@@ -120,11 +135,6 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     public ScLinkFloatImpl(LinkType linkType, Long address) {
         super("link", address);
         this.linkType = linkType;
-    }
-
-    @JsonIgnore
-    public void setContent(float content) {
-        this.content = content;
     }
 
     @JsonIgnore
@@ -140,6 +150,17 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     }
 
     @JsonIgnore
+    public void setContent(float content) {
+        this.content = content;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAddress());
+    }
+
+    @JsonIgnore
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -150,14 +171,7 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
         return Objects.equals(getAddress(), that.getAddress());
     }
 
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
 }
-
 
 /**
  * @author Michael
@@ -167,12 +181,10 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
 class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
     @JsonProperty("type")
     private final LinkType linkType;
-
-    @JsonProperty("content")
-    private int content;
-
     @JsonProperty("content_type")
     private final String contentType = "int";
+    @JsonProperty("content")
+    private int content;
 
     public ScLinkIntegerImpl(LinkType linkType) {
         super("link");
@@ -182,11 +194,6 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
     public ScLinkIntegerImpl(LinkType linkType, Long address) {
         super("link", address);
         this.linkType = linkType;
-    }
-
-    @JsonIgnore
-    public void setContent(int content) {
-        this.content = content;
     }
 
     @JsonIgnore
@@ -202,6 +209,17 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
     }
 
     @JsonIgnore
+    public void setContent(int content) {
+        this.content = content;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAddress());
+    }
+
+    @JsonIgnore
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -210,12 +228,6 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
             return false;
         ScLinkIntegerImpl that = (ScLinkIntegerImpl) o;
         return Objects.equals(getAddress(), that.getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
     }
 
 }
@@ -228,12 +240,10 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
 class ScLinkStringImpl extends ScEntity implements ScLinkString {
     @JsonProperty("type")
     private final LinkType linkType;
-
-    @JsonProperty("content")
-    private String content;
-
     @JsonProperty("content_type")
     private final String contentType = "string";
+    @JsonProperty("content")
+    private String content;
 
     public ScLinkStringImpl(LinkType linkType) {
         super("link");
@@ -243,11 +253,6 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
     public ScLinkStringImpl(LinkType linkType, Long address) {
         super("link", address);
         this.linkType = linkType;
-    }
-
-    @JsonIgnore
-    public void setContent(String content) {
-        this.content = content;
     }
 
     @JsonIgnore
@@ -263,6 +268,17 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
     }
 
     @JsonIgnore
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAddress());
+    }
+
+    @JsonIgnore
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -271,12 +287,6 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
             return false;
         ScLinkStringImpl that = (ScLinkStringImpl) o;
         return Objects.equals(getAddress(), that.getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
     }
 
 }
@@ -347,23 +357,6 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
         return Objects.equals(getAddress(), scEdge.getAddress());
     }
 
-}
-
-/**
- * @author artrayme
- * @since 0.2.0
- */
-
-enum EdgeEndpointType {
-    ADDR("addr"),
-    REF("ref");
-
-    @JsonValue
-    private final String type;
-
-    EdgeEndpointType(String type) {
-        this.type = type;
-    }
 }
 
 /**
