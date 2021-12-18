@@ -51,7 +51,7 @@ public class ScLinkOperationsTest {
         int content = 5;
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
         assertEquals(LinkType.LINK, link.getType());
-        assertEquals(LinkContentType.INTEGER, link.getContentType());
+        assertEquals(LinkContentType.INT, link.getContentType());
         assertEquals(content, link.getContent());
     }
 
@@ -173,7 +173,7 @@ public class ScLinkOperationsTest {
             ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
             Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
             assertEquals(LinkType.LINK, link.getType());
-            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(LinkContentType.INT, link.getContentType());
             assertEquals(content, link.getContent());
         }
     }
@@ -186,7 +186,7 @@ public class ScLinkOperationsTest {
         for (int i = 0; i < count; i++) {
             ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content);
             assertEquals(LinkType.LINK, link.getType());
-            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(LinkContentType.INT, link.getContentType());
             assertEquals(content, link.getContent());
         }
     }

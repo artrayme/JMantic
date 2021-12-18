@@ -11,12 +11,10 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -166,7 +164,7 @@ public class ScLinkOperationsTest {
             ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content).get();
             Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
             assertEquals(LinkType.LINK, link.getType());
-            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(LinkContentType.INT, link.getContentType());
             assertEquals(content, link.getContent());
         }
     }
@@ -179,7 +177,7 @@ public class ScLinkOperationsTest {
         for (int i = 0; i < count; i++) {
             ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, content).get();
             assertEquals(LinkType.LINK, link.getType());
-            assertEquals(LinkContentType.INTEGER, link.getContentType());
+            assertEquals(LinkContentType.INT, link.getContentType());
             assertEquals(content, link.getContent());
         }
     }

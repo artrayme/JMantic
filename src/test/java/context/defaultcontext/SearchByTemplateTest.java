@@ -76,7 +76,7 @@ public class SearchByTemplateTest {
         ScNode source = scContext.createNode(NodeType.NODE);
         ScLinkInteger link = scContext.createIntegerLink(LinkType.LINK, 5);
         ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, link);
-        var result = scContext.findAllConstructionsNodeEdgeLink(source, EdgeType.ACCESS, LinkType.LINK_VAR, LinkContentType.INTEGER).toList();
+        var result = scContext.findAllConstructionsNodeEdgeLink(source, EdgeType.ACCESS, LinkType.LINK_VAR, LinkContentType.INT).toList();
         assertEquals(source, result.get(0).getSource());
         assertEquals(link, result.get(0).getTarget());
         assertEquals(link.getContent(), ((ScLinkInteger) result.get(0).getTarget()).getContent());
