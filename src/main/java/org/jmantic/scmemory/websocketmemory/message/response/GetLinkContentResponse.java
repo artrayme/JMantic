@@ -1,5 +1,7 @@
 package org.jmantic.scmemory.websocketmemory.message.response;
 
+import org.jmantic.scmemory.model.element.link.LinkContentType;
+
 import java.util.List;
 
 /**
@@ -17,4 +19,6 @@ public interface GetLinkContentResponse extends ScResponse {
      * @return link data
      */
     List<Object> getContent();
+
+    List<LinkContentType> getType();
 }
