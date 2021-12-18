@@ -17,6 +17,14 @@ public class ScPattern3Factory {
         return new ScPattern3Impl<>(node1, edgeType, node3);
     }
 
+    public static ScPattern3<ScNode, LinkType, ScLink> getFNodeEdgeLinkPattern(ScNode node1, EdgeType edgeType, LinkType linkType) {
+        return new ScPattern3Impl<>(node1, edgeType, linkType);
+    }
+
+    public static ScPattern3<ScNode, ScLink, ScLink> getFNodeEdgeFLinkPattern(ScNode node1, EdgeType edgeType, ScLink link3) {
+        return new ScPattern3Impl<>(node1, edgeType, link3);
+    }
+
     public static ScPattern3<ScLink, NodeType, ScNode> getFLinkEdgeNodePattern(ScLink link1, EdgeType edgeType, NodeType nodeType) {
         return new ScPattern3Impl<>(link1, edgeType, nodeType);
     }

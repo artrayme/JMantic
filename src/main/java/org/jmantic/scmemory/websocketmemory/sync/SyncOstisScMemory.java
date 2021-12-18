@@ -113,7 +113,7 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     @SuppressWarnings("unchecked")
     public Stream<? extends ScLinkInteger> createIntegerLinks(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException {
-        return (Stream<? extends ScLinkInteger>) createLink(elements, content, LinkContentType.INTEGER);
+        return (Stream<? extends ScLinkInteger>) createLink(elements, content, LinkContentType.INT);
     }
 
     @Override
@@ -159,6 +159,8 @@ public class SyncOstisScMemory implements ScMemory {
                 construction.setElement3((T3) new ScNodeImpl(nodeType, currentTriple.get(2)));
             } else if (pattern.get3() instanceof LinkType linkType) {
                 linksAddresses.add(currentTriple.get(2));
+                T3 element3 = (T3) new ScLinkIntegerImpl(LinkType.LINK);
+                construction.setElement3(element3);
             }
             construction.setEdge(new ScEdgeImpl(pattern.get2(), construction.get1(), construction.get3(), currentTriple.get(1)));
             result.add(construction);
@@ -168,8 +170,9 @@ public class SyncOstisScMemory implements ScMemory {
             List<? extends ScLink> links = createLinksByAddresses(linksAddresses.stream(), (LinkType) pattern.get3()).toList();
 
             for (int i = 0; i < result.size(); i++) {
-                ScConstruction3<t1, T3> construction = result.get(i);
-                ((ScEdgeImpl) construction.getEdge()).setAddress(links.get(i).getAddress());
+                ScConstruction3Impl<t1, T3> construction = (ScConstruction3Impl<t1, T3>) result.get(i);
+                ((ScEdgeImpl) construction.getEdge()).setTargetElement(links.get(i));
+                construction.setElement3((T3) links.get(i));
             }
         }
         return result.stream();
@@ -301,7 +304,7 @@ public class SyncOstisScMemory implements ScMemory {
      */
     private ScLink createLinkByContentType(LinkType linkType, Long address, LinkContentType contentType) throws ScMemoryException {
         return switch (contentType) {
-            case INTEGER -> {
+            case INT -> {
                 var result = new ScLinkIntegerImpl(linkType, address);
 
                 result.setContent(getIntegerLinkContent(Stream.of(result)).findFirst().get());
@@ -352,7 +355,7 @@ public class SyncOstisScMemory implements ScMemory {
                     l.setContent((String) linkContentIter.next());
                     link = l;
                 }
-                case INTEGER -> {
+                case INT -> {
                     ScLinkIntegerImpl l = new ScLinkIntegerImpl(type);
                     l.setContent((Integer) linkContentIter.next());
                     link = l;
@@ -417,7 +420,7 @@ public class SyncOstisScMemory implements ScMemory {
                 C data = contentWithoutLink.get(i);
                 switch (link.getContentType()) {
                     case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
-                    case INTEGER -> ((ScLinkIntegerImpl) link).setContent((int) data);
+                    case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
                 }
             }
@@ -445,7 +448,7 @@ public class SyncOstisScMemory implements ScMemory {
             if (value != null) {
                 ScLink link = links.get(i);
                 switch (link.getContentType()) {
-                    case INTEGER -> {
+                    case INT -> {
                         Integer content = (Integer) value;
                         result.add(content);
                         ((ScLinkIntegerImpl) link).setContent(content);
@@ -478,6 +481,7 @@ public class SyncOstisScMemory implements ScMemory {
     private Stream<? extends ScLink> createLinksByAddresses(Stream<Long> addresses, LinkType type) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
         List<Long> links = addresses.toList();
+        request.addToRequest(links);
 
         GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
 
@@ -486,7 +490,7 @@ public class SyncOstisScMemory implements ScMemory {
         List<ScLink> result = new ArrayList<>();
         for (int i = 0; i < links.size(); i++) {
             switch (types.get(i)) {
-                case INTEGER -> {
+                case INT -> {
                     Integer content = (Integer) values.get(i);
                     ScLinkIntegerImpl scLinkInteger = new ScLinkIntegerImpl(type, links.get(i));
                     scLinkInteger.setContent(content);
