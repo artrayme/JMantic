@@ -19,6 +19,7 @@ import java.util.stream.Stream;
  * @author artrayme
  * @since 0.3.0
  */
+@Deprecated(since = "0.3.2", forRemoval = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class SearchByTemplateNodeEdgeLinkWithRelationRequestImpl extends AbstractScRequest implements SearchByTemplateRequest {
     @JsonProperty("payload")

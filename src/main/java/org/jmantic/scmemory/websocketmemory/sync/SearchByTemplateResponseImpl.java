@@ -11,6 +11,7 @@ import java.util.stream.Stream;
  * @author artrayme
  * @since 0.0.1
  */
+@Deprecated(since = "0.3.2", forRemoval = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class SearchByTemplateResponseImpl extends AbstractScResponse implements SearchByTemplateResponse {
     @JsonProperty("payload")
