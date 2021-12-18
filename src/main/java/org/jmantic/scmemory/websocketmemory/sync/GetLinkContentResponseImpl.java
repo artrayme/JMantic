@@ -28,7 +28,7 @@ class GetLinkContentResponseImpl extends AbstractScResponse implements GetLinkCo
 
     @Override
     public List<LinkContentType> getType() {
-        return linkContent.stream().map(s -> LinkContentType.valueOf(s.type.toUpperCase(Locale.ROOT))).toList();
+        return linkContent.stream().map(s -> LinkContentType.valueOf(s.type.toUpperCase())).toList();
     }
 
     @JsonIgnore

@@ -298,15 +298,15 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 class ScEdgeImpl extends ScEntity implements ScEdge {
     @JsonProperty("src")
-    private final EdgeSourceStruct source;
+    private EdgeSourceStruct source;
     @JsonIgnore
-    private final ScElement sourceElement;
+    private ScElement sourceElement;
     @JsonProperty("trg")
-    private final EdgeSourceStruct target;
+    private EdgeSourceStruct target;
     @JsonIgnore
-    private final ScElement targetElement;
+    private ScElement targetElement;
     @JsonProperty("type")
-    private final EdgeType edgeType;
+    private EdgeType edgeType;
 
     public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement) {
         super("edge");
@@ -338,6 +338,16 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
     @Override
     public ScElement getTarget() {
         return targetElement;
+    }
+
+    public void setSourceElement(ScElement sourceElement) {
+        this.sourceElement = sourceElement;
+        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
+    }
+
+    public void setTargetElement(ScElement targetElement) {
+        this.targetElement = targetElement;
+        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
     }
 
     @JsonIgnore
