@@ -6,9 +6,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
-import org.jmantic.scmemory.websocketmemory.message.request.*;
+import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.FindByPatternRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.ScRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.SetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
@@ -54,6 +61,11 @@ class RequestSenderImpl implements RequestSender {
     }
 
     @Override
+    public FindByPatternResponse sendFindByPatternRequest(FindByPatternRequest request) throws ScMemoryException {
+        return send(request, FindByPatternResponseImpl.class);
+    }
+
+    @Override
     public SetLinkContentResponse sendSetLinkContentRequest(SetLinkContentRequest request) throws ScMemoryException {
         return send(request, SetLinkContentResponseImpl.class);
     }
@@ -68,10 +80,10 @@ class RequestSenderImpl implements RequestSender {
      * request to the database through the {@link OstisClient} and deserializes the response
      * into a {@link org.jmantic.scmemory.websocketmemory.message.response.ScResponse} object
      *
-     * @param request request
+     * @param request           request
      * @param responseClassType type of response
-     * @param <T1> request generic
-     * @param <T2> responseClass generic
+     * @param <T1>              request generic
+     * @param <T2>              responseClass generic
      * @return {@link org.jmantic.scmemory.websocketmemory.message.response.ScResponse} with all the necessary data
      * @throws ScMemoryException if there is any problem with the {@link OstisClient}
      */

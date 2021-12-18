@@ -39,7 +39,10 @@ public interface RequestSender {
      * @return response where is the information about the searched elements
      * @throws ScMemoryException if something went wrong with the connection to the base
      */
+    @Deprecated(since = "0.3.2", forRemoval = true)
     SearchByTemplateResponse sendSearchByTemplateRequest(SearchByTemplateRequest request) throws ScMemoryException;
+
+    FindByPatternResponse sendFindByPatternRequest(FindByPatternRequest request) throws ScMemoryException;
 
     /**
      * Method for sending the setLinkContent request

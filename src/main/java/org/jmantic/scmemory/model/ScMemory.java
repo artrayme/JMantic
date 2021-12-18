@@ -11,6 +11,10 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScConstruction5;
+import org.jmantic.scmemory.model.pattern.ScPattern3;
+import org.jmantic.scmemory.model.pattern.ScPattern5;
 
 import java.util.stream.Stream;
 
@@ -97,6 +101,8 @@ public interface ScMemory {
      */
     boolean deleteElements(Stream<? extends ScElement> elements) throws ScMemoryException;
 
+    <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
+
     /**
      * Method to search for sc-constructions by pattern Node-Edge-Node.
      * This pattern is a variation of the F_A_A pattern.
@@ -106,6 +112,7 @@ public interface ScMemory {
      *
      * @return stream of edges (source of each edge will have address of fixed node)
      */
+    @Deprecated(since = "0.3.2", forRemoval = true)
     Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode, EdgeType edgeType, NodeType nodeType) throws ScMemoryException;
 
     /**
@@ -122,6 +129,7 @@ public interface ScMemory {
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
+    @Deprecated(since = "0.3.2", forRemoval = true)
     Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType) throws ScMemoryException;
 
     /**
@@ -149,6 +157,7 @@ public interface ScMemory {
      * @return stream of edges (source of each edge will have address of fixed node)
      * @since 0.3.0
      */
+    @Deprecated(since = "0.3.2", forRemoval = true)
     Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, ScNode fixedRelationNode, EdgeType relationEdgeType) throws ScMemoryException;
 
     /**

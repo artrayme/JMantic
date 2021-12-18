@@ -1,13 +1,14 @@
 package org.jmantic.scmemory.websocketmemory.message.request;
 
 import org.jmantic.scmemory.model.pattern.PatternElement;
+import org.jmantic.scmemory.websocketmemory.sync.BasicPatternTriple;
 
 import java.util.List;
 
 public interface FindByPatternRequest extends ScRequest {
-    List<PatternElement> getComponents();
+    List<BasicPatternTriple> getComponents();
 
-    boolean addComponent(PatternElement component);
+    boolean addComponent(BasicPatternTriple component);
 
-    boolean removeComponent(PatternElement component);
+    boolean removeComponent(BasicPatternTriple component);
 }

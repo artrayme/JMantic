@@ -13,13 +13,18 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.pattern.PatternElement;
+import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScPattern3;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
@@ -134,6 +139,43 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    public <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException {
+        FindByPatternRequest request = new FindByPatternRequestImpl();
+        BasicPatternTriple triple = new BasicPatternTriple(convertToPatternElement(pattern.get1()),
+                convertToPatternElement(pattern.get2()),
+                convertToPatternElement(pattern.get3()));
+        request.addComponent(triple);
+
+        FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
+        List<ScConstruction3<t1, T3>> result = new ArrayList<>();
+        List<Long> linksAddresses = new ArrayList<>();
+        response.getFoundAddresses().forEach(e -> {
+            var currentTriple = e.toList();
+            var construction = new ScConstruction3Impl<t1, T3>();
+            construction.setElement1(pattern.get1());
+            if (pattern.get3() instanceof ScLink || pattern.get3() instanceof ScNode)
+                construction.setElement3((T3) pattern.get3());
+            else if (pattern.get3() instanceof NodeType nodeType) {
+                construction.setElement3((T3) new ScNodeImpl(nodeType, currentTriple.get(2)));
+            } else if (pattern.get3() instanceof LinkType linkType) {
+                linksAddresses.add(currentTriple.get(2));
+            }
+            construction.setEdge(new ScEdgeImpl(pattern.get2(), construction.get1(), construction.get3(), currentTriple.get(1)));
+            result.add(construction);
+        });
+
+        if (!linksAddresses.isEmpty()) {
+            List<? extends ScLink> links = createLinksByAddresses(linksAddresses.stream(), (LinkType) pattern.get3()).toList();
+
+            for (int i = 0; i < result.size(); i++) {
+                ScConstruction3<t1, T3> construction = result.get(i);
+                ((ScEdgeImpl) construction.getEdge()).setAddress(links.get(i).getAddress());
+            }
+        }
+        return result.stream();
+    }
+
+    @Override
     public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode,
                                                                EdgeType edgeType,
                                                                NodeType nodeType) throws ScMemoryException {
@@ -214,6 +256,20 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public void close() throws Exception {
         ostisClient.close();
+    }
+
+    private PatternElement convertToPatternElement(Object object) {
+        if (object instanceof ScElement element) {
+            return new FixedPatternElement(element);
+        } else if (object instanceof NodeType type) {
+            return new TypePatternElement<>(type);
+        } else if (object instanceof EdgeType type) {
+            return new TypePatternElement<>(type);
+        } else if (object instanceof LinkType type) {
+            return new TypePatternElement<>(type);
+        }
+
+        throw new IllegalArgumentException("You should path in ScPatterns only objects of type ScElement or of type NodeType|EdgeType|LinkType");
     }
 
     private Stream<? extends ScEdge> getScEdgesFromSearchingTemplate(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, SearchByTemplateRequest request) throws ScMemoryException {
@@ -324,10 +380,10 @@ public class SyncOstisScMemory implements ScMemory {
     /**
      * Method for replacing content in a link.
      *
-     * @param links links
+     * @param links   links
      * @param content new content
-     * @param <L> generic for link
-     * @param <C> generic for content
+     * @param <L>     generic for link
+     * @param <C>     generic for content
      * @return link with new content
      * @throws ScMemoryException
      */
@@ -406,6 +462,49 @@ public class SyncOstisScMemory implements ScMemory {
                     }
                     default -> throw new IllegalArgumentException("unknown type of content");
                 }
+            }
+        }
+
+        return result.stream();
+    }
+
+    /**
+     * Method for getting content from link.
+     *
+     * @param addresses links
+     * @return stream of content
+     * @throws ScMemoryException
+     */
+    private Stream<? extends ScLink> createLinksByAddresses(Stream<Long> addresses, LinkType type) throws ScMemoryException {
+        GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        List<Long> links = addresses.toList();
+
+        GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
+
+        List<Object> values = response.getContent();
+        List<LinkContentType> types = response.getType();
+        List<ScLink> result = new ArrayList<>();
+        for (int i = 0; i < links.size(); i++) {
+            switch (types.get(i)) {
+                case INTEGER -> {
+                    Integer content = (Integer) values.get(i);
+                    ScLinkIntegerImpl scLinkInteger = new ScLinkIntegerImpl(type, links.get(i));
+                    scLinkInteger.setContent(content);
+                    result.add(scLinkInteger);
+                }
+                case FLOAT -> {
+                    Float content = (Float) values.get(i);
+                    ScLinkFloatImpl scLinkInteger = new ScLinkFloatImpl(type, links.get(i));
+                    scLinkInteger.setContent(content);
+                    result.add(scLinkInteger);
+                }
+                case STRING -> {
+                    String content = (String) values.get(i);
+                    ScLinkStringImpl scLinkInteger = new ScLinkStringImpl(type, links.get(i));
+                    scLinkInteger.setContent(content);
+                    result.add(scLinkInteger);
+                }
+                default -> throw new IllegalArgumentException("unknown type of content");
             }
         }
 
