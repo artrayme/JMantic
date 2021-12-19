@@ -27,18 +27,9 @@ public class ScPattern3Impl<T1 extends ScElement, T3, expectedT3 extends ScEleme
         this.element3 = element3;
     }
 
-    public ScPattern3Impl() {
-
-    }
-
     @Override
     public T1 get1() {
         return element1;
-    }
-
-    @Override
-    public void set1(T1 element) {
-        element1 = element;
     }
 
     @Override
@@ -47,18 +38,8 @@ public class ScPattern3Impl<T1 extends ScElement, T3, expectedT3 extends ScEleme
     }
 
     @Override
-    public void set2(EdgeType edgeType) {
-        this.edgeType = edgeType;
-    }
-
-    @Override
     public T3 get3() {
         return element3;
-    }
-
-    @Override
-    public void set3(T3 element) {
-        element3 = element;
     }
 
 }

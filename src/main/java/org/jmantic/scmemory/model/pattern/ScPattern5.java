@@ -35,18 +35,10 @@ public interface ScPattern5<T1 extends ScElement, T3, T5, expectedT3 extends ScE
 
     EdgeType get2();
 
-    void set2(EdgeType edgeType);
-
     T3 get3();
-
-    void set3(T3 element);
 
     EdgeType get4();
 
-    void set4(EdgeType edgeType);
-
     T5 get5();
-
-    void set5(T5 element);
 
 }

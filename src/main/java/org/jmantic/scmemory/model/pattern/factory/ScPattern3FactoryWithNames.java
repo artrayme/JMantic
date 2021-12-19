@@ -39,6 +39,7 @@ import org.jmantic.scmemory.model.pattern.pattern3.ScPattern3Impl;
  * @since 0.3.2
  */
 
+// ToDO cached pattern Objects because are immutable
 public class ScPattern3FactoryWithNames {
 
     public static ScPattern3<ScNode, NodeType, ScNode> getFNodeAEdgeANodePattern(ScNode node1, EdgeType edgeType, NodeType nodeType) {

@@ -46,18 +46,8 @@ public class ScPattern5Impl<T1 extends ScElement, T3, T5, expectedT3 extends ScE
     }
 
     @Override
-    public void set2(EdgeType edgeType) {
-        edgeType2 = edgeType;
-    }
-
-    @Override
     public T3 get3() {
         return element3;
-    }
-
-    @Override
-    public void set3(T3 element) {
-        element3 = element;
     }
 
     @Override
@@ -66,17 +56,8 @@ public class ScPattern5Impl<T1 extends ScElement, T3, T5, expectedT3 extends ScE
     }
 
     @Override
-    public void set4(EdgeType edgeType) {
-        edgeType4 = edgeType;
-    }
-
-    @Override
     public T5 get5() {
         return element5;
     }
 
-    @Override
-    public void set5(T5 element) {
-        element5 = element;
-    }
 }
