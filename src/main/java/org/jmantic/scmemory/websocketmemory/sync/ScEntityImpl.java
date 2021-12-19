@@ -69,6 +69,23 @@ abstract class ScEntity implements ScElement {
     public void setAddress(long address) {
         this.address = address;
     }
+
+    @JsonIgnore
+    @Override
+    public int hashCode() {
+        return Objects.hash(address);
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ScEntity scEntity = (ScEntity) o;
+        return address == scEntity.address;
+    }
 }
 
 /**
@@ -96,22 +113,6 @@ class ScNodeImpl extends ScEntity implements ScNode {
         return nodeType;
     }
 
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        ScNodeImpl scNode = (ScNodeImpl) o;
-        return Objects.equals(getAddress(), scNode.getAddress());
-    }
 }
 
 /**
@@ -152,23 +153,6 @@ class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     @JsonIgnore
     public void setContent(float content) {
         this.content = content;
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        ScLinkFloatImpl that = (ScLinkFloatImpl) o;
-        return Objects.equals(getAddress(), that.getAddress());
     }
 
 }
@@ -213,23 +197,6 @@ class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
         this.content = content;
     }
 
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        ScLinkIntegerImpl that = (ScLinkIntegerImpl) o;
-        return Objects.equals(getAddress(), that.getAddress());
-    }
-
 }
 
 /**
@@ -270,23 +237,6 @@ class ScLinkStringImpl extends ScEntity implements ScLinkString {
     @JsonIgnore
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        ScLinkStringImpl that = (ScLinkStringImpl) o;
-        return Objects.equals(getAddress(), that.getAddress());
     }
 
 }
@@ -348,23 +298,6 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
     public void setTargetElement(ScElement targetElement) {
         this.targetElement = targetElement;
         target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public int hashCode() {
-        return Objects.hash(getAddress());
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        ScEdgeImpl scEdge = (ScEdgeImpl) o;
-        return Objects.equals(getAddress(), scEdge.getAddress());
     }
 
 }
