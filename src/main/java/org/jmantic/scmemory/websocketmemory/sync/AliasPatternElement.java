@@ -1,18 +1,17 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.jmantic.scmemory.model.pattern.PatternElement;
 
-class TypePatternElement<T> implements PatternElement {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public class AliasPatternElement implements PatternElement {
     @JsonProperty("type")
-    private final String type = "type";
+    private final String type = "alias";
     @JsonProperty("value")
-    private final T scElementType;
-    @JsonProperty("alias")
     private final String alias;
 
-    TypePatternElement(T type, String alias) {
-        this.scElementType = type;
+    AliasPatternElement(String alias) {
         this.alias = alias;
     }
 

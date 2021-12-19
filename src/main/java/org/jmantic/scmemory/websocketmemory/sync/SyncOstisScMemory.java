@@ -15,7 +15,9 @@ import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
 import org.jmantic.scmemory.model.pattern.PatternElement;
 import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScConstruction5;
 import org.jmantic.scmemory.model.pattern.ScPattern3;
+import org.jmantic.scmemory.model.pattern.ScPattern5;
 import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
@@ -141,9 +143,11 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException {
         FindByPatternRequest request = new FindByPatternRequestImpl();
-        BasicPatternTriple triple = new BasicPatternTriple(convertToPatternElement(pattern.get1()),
-                convertToPatternElement(pattern.get2()),
-                convertToPatternElement(pattern.get3()));
+        BasicPatternTriple triple = new BasicPatternTriple(
+                new FixedPatternElement(pattern.get1()),
+                new TypePatternElement<>(pattern.get2(), "edge_2"),
+                convertToPatternElement(pattern.get3(), "node_3")
+        );
         request.addComponent(triple);
 
         FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
@@ -157,7 +161,7 @@ public class SyncOstisScMemory implements ScMemory {
                 construction.setElement3((T3) pattern.get3());
             else if (pattern.get3() instanceof NodeType nodeType) {
                 construction.setElement3((T3) new ScNodeImpl(nodeType, currentTriple.get(2)));
-            } else if (pattern.get3() instanceof LinkType linkType) {
+            } else if (pattern.get3() instanceof LinkType) {
                 linksAddresses.add(currentTriple.get(2));
                 T3 element3 = (T3) new ScLinkIntegerImpl(LinkType.LINK);
                 construction.setElement3(element3);
@@ -173,6 +177,75 @@ public class SyncOstisScMemory implements ScMemory {
                 ScConstruction3Impl<t1, T3> construction = (ScConstruction3Impl<t1, T3>) result.get(i);
                 ((ScEdgeImpl) construction.getEdge()).setTargetElement(links.get(i));
                 construction.setElement3((T3) links.get(i));
+            }
+        }
+        return result.stream();
+    }
+
+    @Override
+    public <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException {
+        FindByPatternRequest request = new FindByPatternRequestImpl();
+        BasicPatternTriple triple = new BasicPatternTriple(
+                new FixedPatternElement(pattern.get1()),
+                new TypePatternElement<>(pattern.get2(), "edge_2"),
+                convertToPatternElement(pattern.get3(), "node_3")
+        );
+        BasicPatternTriple relTriple = new BasicPatternTriple(
+                convertToPatternElement(pattern.get5(), "node_5"),
+                new TypePatternElement<>(pattern.get4(), "edge_4"),
+                new AliasPatternElement("edge_2")
+        );
+        request.addComponent(triple);
+        request.addComponent(relTriple);
+
+        FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
+        List<ScConstruction5<t1, T3, T5>> result = new ArrayList<>();
+        List<Long> linksAddresses3 = new ArrayList<>();
+        List<Long> linksAddresses5 = new ArrayList<>();
+        response.getFoundAddresses().forEach(e -> {
+            var currentGroup = e.toList();
+            var construction = new ScConstruction5Impl<t1, T3, T5>();
+            construction.setElement1(pattern.get1());
+            if (pattern.get3() instanceof ScLink || pattern.get3() instanceof ScNode)
+                construction.setElement3((T3) pattern.get3());
+            else if (pattern.get3() instanceof NodeType nodeType) {
+                construction.setElement3((T3) new ScNodeImpl(nodeType, currentGroup.get(2)));
+            } else if (pattern.get3() instanceof LinkType) {
+                linksAddresses3.add(currentGroup.get(2));
+                T3 element3 = (T3) new ScLinkIntegerImpl(LinkType.LINK);
+                construction.setElement3(element3);
+            }
+            construction.setEdge2(new ScEdgeImpl(pattern.get2(), construction.get1(), construction.get3(), currentGroup.get(1)));
+            if (pattern.get5() instanceof ScLink || pattern.get5() instanceof ScNode)
+                construction.setElement5((T5) pattern.get5());
+            else if (pattern.get5() instanceof NodeType nodeType) {
+                construction.setElement5((T5) new ScNodeImpl(nodeType, currentGroup.get(4)));
+            } else if (pattern.get5() instanceof LinkType) {
+                linksAddresses5.add(currentGroup.get(4));
+                T5 element5 = (T5) new ScLinkIntegerImpl(LinkType.LINK);
+                construction.setElement5(element5);
+            }
+            construction.setEdge4(new ScEdgeImpl(pattern.get4(), construction.get5(), construction.get2(), currentGroup.get(4)));
+            result.add(construction);
+        });
+
+        if (!linksAddresses3.isEmpty()) {
+            List<? extends ScLink> links = createLinksByAddresses(linksAddresses3.stream(), (LinkType) pattern.get3()).toList();
+
+            for (int i = 0; i < result.size(); i++) {
+                ScConstruction5Impl<t1, T3, T5> construction = (ScConstruction5Impl<t1, T3, T5>) result.get(i);
+                ((ScEdgeImpl) construction.get2()).setTargetElement(links.get(i));
+                construction.setElement3((T3) links.get(i));
+            }
+        }
+
+        if (!linksAddresses5.isEmpty()) {
+            List<? extends ScLink> links = createLinksByAddresses(linksAddresses5.stream(), (LinkType) pattern.get5()).toList();
+
+            for (int i = 0; i < result.size(); i++) {
+                ScConstruction5Impl<t1, T3, T5> construction = (ScConstruction5Impl<t1, T3, T5>) result.get(i);
+                ((ScEdgeImpl) construction.get4()).setTargetElement(links.get(i));
+                construction.setElement5((T5) links.get(i));
             }
         }
         return result.stream();
@@ -261,15 +334,15 @@ public class SyncOstisScMemory implements ScMemory {
         ostisClient.close();
     }
 
-    private PatternElement convertToPatternElement(Object object) {
+    private PatternElement convertToPatternElement(Object object, String alias) {
         if (object instanceof ScElement element) {
             return new FixedPatternElement(element);
         } else if (object instanceof NodeType type) {
-            return new TypePatternElement<>(type);
+            return new TypePatternElement<>(type, alias);
         } else if (object instanceof EdgeType type) {
-            return new TypePatternElement<>(type);
+            return new TypePatternElement<>(type, alias);
         } else if (object instanceof LinkType type) {
-            return new TypePatternElement<>(type);
+            return new TypePatternElement<>(type, alias);
         }
 
         throw new IllegalArgumentException("You should path in ScPatterns only objects of type ScElement or of type NodeType|EdgeType|LinkType");
