@@ -4,7 +4,7 @@ import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.pattern.ScPattern3;
 
-class ScPattern3Impl<T1 extends ScElement, T3, expectedT2 extends ScElement> implements ScPattern3<T1, T3, expectedT2> {
+public class ScPattern3Impl<T1 extends ScElement, T3, expectedT3 extends ScElement> implements ScPattern3<T1, T3, expectedT3> {
     private T1 element1;
     private EdgeType edgeType;
     private T3 element3;
