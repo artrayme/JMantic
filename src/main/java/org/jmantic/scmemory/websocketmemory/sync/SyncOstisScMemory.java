@@ -145,7 +145,7 @@ public class SyncOstisScMemory implements ScMemory {
         BasicPatternTriple triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), "edge_2"),
-                convertToPatternElement(pattern.get3(), "node_3")
+                convertToPatternElement(pattern.get3(), "element_3")
         );
         request.addComponent(triple);
 
@@ -187,10 +187,10 @@ public class SyncOstisScMemory implements ScMemory {
         BasicPatternTriple triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), "edge_2"),
-                convertToPatternElement(pattern.get3(), "node_3")
+                convertToPatternElement(pattern.get3(), "element_3")
         );
         BasicPatternTriple relTriple = new BasicPatternTriple(
-                convertToPatternElement(pattern.get5(), "node_5"),
+                convertToPatternElement(pattern.get5(), "element_5"),
                 new TypePatternElement<>(pattern.get4(), "edge_4"),
                 new AliasPatternElement("edge_2")
         );
@@ -218,9 +218,9 @@ public class SyncOstisScMemory implements ScMemory {
             if (pattern.get5() instanceof ScLink || pattern.get5() instanceof ScNode)
                 construction.setElement5((T5) pattern.get5());
             else if (pattern.get5() instanceof NodeType nodeType) {
-                construction.setElement5((T5) new ScNodeImpl(nodeType, currentGroup.get(4)));
+                construction.setElement5((T5) new ScNodeImpl(nodeType, currentGroup.get(3)));
             } else if (pattern.get5() instanceof LinkType) {
-                linksAddresses5.add(currentGroup.get(4));
+                linksAddresses5.add(currentGroup.get(3));
                 T5 element5 = (T5) new ScLinkIntegerImpl(LinkType.LINK);
                 construction.setElement5(element5);
             }
@@ -337,8 +337,6 @@ public class SyncOstisScMemory implements ScMemory {
         if (object instanceof ScElement element) {
             return new FixedPatternElement(element);
         } else if (object instanceof NodeType type) {
-            return new TypePatternElement<>(type, alias);
-        } else if (object instanceof EdgeType type) {
             return new TypePatternElement<>(type, alias);
         } else if (object instanceof LinkType type) {
             return new TypePatternElement<>(type, alias);
@@ -569,7 +567,7 @@ public class SyncOstisScMemory implements ScMemory {
                     result.add(scLinkInteger);
                 }
                 case FLOAT -> {
-                    Float content = (Float) values.get(i);
+                    Float content = ((Double) values.get(i)).floatValue();
                     ScLinkFloatImpl scLinkInteger = new ScLinkFloatImpl(type, links.get(i));
                     scLinkInteger.setContent(content);
                     result.add(scLinkInteger);
