@@ -367,14 +367,6 @@ class ScEdgeImpl extends ScEntity implements ScEdge {
         return Objects.equals(getAddress(), scEdge.getAddress());
     }
 
-    @Override
-    public String toString() {
-        return "ScEdgeImpl{" +
-                "\nsource=" + source +
-                ", \ntarget=" + target +
-                ", \nedgeType=" + edgeType +
-                '}';
-    }
 }
 
 /**
