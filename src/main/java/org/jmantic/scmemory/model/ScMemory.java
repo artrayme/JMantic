@@ -103,6 +103,8 @@ public interface ScMemory {
 
     <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
 
+    <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
+
     /**
      * Method to search for sc-constructions by pattern Node-Edge-Node.
      * This pattern is a variation of the F_A_A pattern.
