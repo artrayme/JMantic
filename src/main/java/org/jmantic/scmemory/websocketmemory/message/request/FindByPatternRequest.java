@@ -1,6 +1,5 @@
 package org.jmantic.scmemory.websocketmemory.message.request;
 
-import org.jmantic.scmemory.model.pattern.PatternElement;
 import org.jmantic.scmemory.websocketmemory.sync.BasicPatternTriple;
 
 import java.util.List;

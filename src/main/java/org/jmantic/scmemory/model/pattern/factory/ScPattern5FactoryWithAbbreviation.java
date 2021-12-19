@@ -7,6 +7,51 @@ import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.pattern.ScPattern5;
 import org.jmantic.scmemory.model.pattern.pattern5.ScPattern5Impl;
+/**
+ * This factory helps to create search templates for 3-elements sc-constructions.
+ * <p></p>
+ * Common structure of request is:
+ * <pre>
+ *     {@code
+ *                      edge2
+ *         element1-----------------------------element3
+ *                                  ^
+ *                                  |
+ *                                  | edge4
+ *                                  |
+ *                                  |
+ *                              element5
+ *     }
+ * </pre>
+ * Where:
+ * <ul>
+ *     <li>
+ *         element1 has type of {@link org.jmantic.scmemory.model.element.node.ScNode}
+ *         or {@link org.jmantic.scmemory.model.element.link.ScLink}
+ *     </li>
+ *     <li>
+ *         edge2 has type {@link org.jmantic.scmemory.model.element.edge.EdgeType}
+ *     </li>
+ *     <li>
+ *         element3 can be {@link org.jmantic.scmemory.model.element.node.ScNode},
+ *         {@link org.jmantic.scmemory.model.element.link.ScLink},
+ *         {@link org.jmantic.scmemory.model.element.node.NodeType}
+ *         or {@link org.jmantic.scmemory.model.element.link.LinkType}
+ *     </li>
+ *     <li>
+ *          edge4 has type {@link org.jmantic.scmemory.model.element.edge.EdgeType}
+ *     </li>
+ *     <li>
+ *         element5 can be {@link org.jmantic.scmemory.model.element.node.ScNode},
+ *         {@link org.jmantic.scmemory.model.element.link.ScLink},
+ *         {@link org.jmantic.scmemory.model.element.node.NodeType}
+ *         or {@link org.jmantic.scmemory.model.element.link.LinkType}
+ *     </li>
+ * </ul>
+ *
+ * @author artrayme
+ * @since 0.3.2
+ */
 
 public class ScPattern5FactoryWithAbbreviation {
     public static ScPattern5<ScNode, NodeType, ScNode, ScNode, ScNode> getFAAAF(ScNode node1,

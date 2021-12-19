@@ -13,7 +13,6 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.model.pattern.PatternElement;
 import org.jmantic.scmemory.model.pattern.ScConstruction3;
 import org.jmantic.scmemory.model.pattern.ScConstruction5;
 import org.jmantic.scmemory.model.pattern.ScPattern3;

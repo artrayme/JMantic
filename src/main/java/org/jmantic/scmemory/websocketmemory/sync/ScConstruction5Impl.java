@@ -4,6 +4,10 @@ import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.ScEdge;
 import org.jmantic.scmemory.model.pattern.ScConstruction5;
 
+/**
+ * @author artrayme
+ * @since 0.3.2
+ */
 public class ScConstruction5Impl<T1 extends ScElement, T3 extends ScElement, T5 extends ScElement> implements ScConstruction5<T1, T3, T5> {
     private T1 element1;
     private ScEdge edge2;

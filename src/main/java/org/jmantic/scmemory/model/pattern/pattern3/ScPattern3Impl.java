@@ -4,6 +4,18 @@ import org.jmantic.scmemory.model.element.ScElement;
 import org.jmantic.scmemory.model.element.edge.EdgeType;
 import org.jmantic.scmemory.model.pattern.ScPattern3;
 
+/**
+ * This class is a search pattern for 3 elements.
+ * <p></p>
+ * It is not recommended creating this class manually. Yau should use one of the factories:
+ * {@link org.jmantic.scmemory.model.pattern.factory.DefaultScPattern3Factory},
+ * {@link org.jmantic.scmemory.model.pattern.factory.ScPattern3FactoryWithNames},
+ * {@link org.jmantic.scmemory.model.pattern.factory.ScPattern3FactoryWithAbbreviation}.
+ *
+ * @author artrayme
+ * @since 0.3.2
+ */
+
 public class ScPattern3Impl<T1 extends ScElement, T3, expectedT3 extends ScElement> implements ScPattern3<T1, T3, expectedT3> {
     private T1 element1;
     private EdgeType edgeType;

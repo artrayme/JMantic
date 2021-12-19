@@ -24,7 +24,6 @@ import java.util.stream.Stream;
  * ToDo:
  * <ul>
  *     <li>Elements generator by template</li>
- *     <li>More searching templates</li>
  *     <li>Sc-machine events</li>
  *     <li>Keynodes finder and resolver</li>
  *     <li>Method for creating sc-link with binary content (and get/set methods)</li>
@@ -101,9 +100,25 @@ public interface ScMemory {
      */
     boolean deleteElements(Stream<? extends ScElement> elements) throws ScMemoryException;
 
-    <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
+    /**
+     * Method to search any sc-constructions by pattern3.
+     * You must pass one object of {@link ScPattern3}.
+     *
+     * @return stream of {@link ScConstruction3} with found elements.
+     * @since 0.3.2
+     */
+    <t1 extends ScElement, t3, T3 extends ScElement>
+    Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
 
-    <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
+    /**
+     * Method to search any sc-constructions by pattern5.
+     * You must pass one object of {@link ScPattern5}.
+     *
+     * @return stream of {@link ScConstruction5} with found elements.
+     * @since 0.3.2
+     */
+    <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement>
+    Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
 
     /**
      * Method to search for sc-constructions by pattern Node-Edge-Node.

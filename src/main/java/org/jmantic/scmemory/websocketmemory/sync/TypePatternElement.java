@@ -1,9 +1,12 @@
 package org.jmantic.scmemory.websocketmemory.sync;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.jmantic.scmemory.model.pattern.PatternElement;
 
-class TypePatternElement<T> implements PatternElement {
+/**
+ * @author artrayme
+ * @since 0.3.2
+ */
+final class TypePatternElement<T> implements PatternElement {
     @JsonProperty("type")
     private final String type = "type";
     @JsonProperty("value")

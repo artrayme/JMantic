@@ -7,6 +7,10 @@ import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternRespon
 import java.util.Collection;
 import java.util.stream.Stream;
 
+/**
+ * @author artrayme
+ * @since 0.3.2
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class FindByPatternResponseImpl extends AbstractScResponse implements FindByPatternResponse {
 

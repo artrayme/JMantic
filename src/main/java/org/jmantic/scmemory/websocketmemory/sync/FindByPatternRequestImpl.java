@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author artrayme
+ * @since 0.3.2
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class FindByPatternRequestImpl extends AbstractScRequest implements FindByPatternRequest {
     @JsonProperty("payload")
