@@ -56,6 +56,10 @@ import org.jmantic.scmemory.model.pattern.pattern5.ScPattern5Impl;
 
 // ToDO cached pattern Objects because are immutable
 public class DefaultScPattern5Factory {
+
+    private DefaultScPattern5Factory() {
+    }
+
     public static ScPattern5<ScNode, NodeType, ScNode, ScNode, ScNode> get(ScNode node1,
                                                                            EdgeType edgeType,
                                                                            NodeType nodeType,
