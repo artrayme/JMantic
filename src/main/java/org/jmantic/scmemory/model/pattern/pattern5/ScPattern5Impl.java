@@ -15,6 +15,7 @@ import org.jmantic.scmemory.model.pattern.ScPattern5;
  * @author artrayme
  * @since 0.3.2
  */
+
 public class ScPattern5Impl<T1 extends ScElement, T3, T5, expectedT3 extends ScElement, expectedT5 extends ScElement> implements ScPattern5<T1, T3, T5, expectedT3, expectedT5> {
     private T1 element1;
     private EdgeType edgeType2;
