@@ -1,11 +1,7 @@
 package scmemory;
 
 import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.element.edge.EdgeType;
-import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.pattern.pattern3.ScPattern3Factory;
+import org.jmantic.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +10,6 @@ import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

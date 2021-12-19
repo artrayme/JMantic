@@ -7,7 +7,7 @@ import org.jmantic.scmemory.model.element.link.LinkType;
 import org.jmantic.scmemory.model.element.link.ScLink;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.pattern.pattern3.ScPattern3Factory;
+import org.jmantic.scmemory.model.pattern.factory.ScPattern3FactoryWithNames;
 import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ScMemoryFindPatternTest {
+public class ScMemoryFindPattern3Test {
     private ScMemory scMemory;
 
     @BeforeEach
@@ -36,11 +36,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFNodeEdgeNode() throws Exception {
+    void findSingleTripleFNodeEdgeNode() throws Exception {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFNodeAEdgeANodePattern(source, EdgeType.ACCESS, NodeType.NODE)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFNodeAEdgeANodePattern(source, EdgeType.ACCESS, NodeType.NODE)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -50,11 +50,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFNodeEdgeLink() throws Exception {
+    void findSingleTripleFNodeEdgeLink() throws Exception {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScLink target = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(5)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFNodeAEdgeALinkPattern(source, EdgeType.ACCESS, LinkType.LINK)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFNodeAEdgeALinkPattern(source, EdgeType.ACCESS, LinkType.LINK)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -64,11 +64,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFNodeEdgeFNode() throws Exception {
+    void findSingleTripleFNodeEdgeFNode() throws Exception {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFNodeAEdgeFNodePattern(source, EdgeType.ACCESS, target)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFNodeAEdgeFNodePattern(source, EdgeType.ACCESS, target)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -78,11 +78,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFNodeEdgeFLink() throws Exception {
+    void findSingleTripleFNodeEdgeFLink() throws Exception {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScLink target = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(5)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFNodeAEdgeFLinkPattern(source, EdgeType.ACCESS, target)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFNodeAEdgeFLinkPattern(source, EdgeType.ACCESS, target)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -92,11 +92,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFLinkEdgeLink() throws Exception {
+    void findSingleTripleFLinkEdgeLink() throws Exception {
         ScLink source = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(10)).findFirst().get();
         ScLink target = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(5)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFLinkAEdgeFLinkPattern(source, EdgeType.ACCESS, target)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFLinkAEdgeFLinkPattern(source, EdgeType.ACCESS, target)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -106,11 +106,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFLinkEdgeFLink() throws Exception {
+    void findSingleTripleFLinkEdgeFLink() throws Exception {
         ScLink source = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(10)).findFirst().get();
         ScLink target = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(5)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFLinkAEdgeALinkPattern(source, EdgeType.ACCESS, LinkType.LINK)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFLinkAEdgeALinkPattern(source, EdgeType.ACCESS, LinkType.LINK)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -120,11 +120,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFLinkEdgeNode() throws Exception {
+    void findSingleTripleFLinkEdgeNode() throws Exception {
         ScLink source = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(10)).findFirst().get();
         ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFLinkAEdgeANodePattern(source, EdgeType.ACCESS, NodeType.NODE)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFLinkAEdgeANodePattern(source, EdgeType.ACCESS, NodeType.NODE)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
@@ -134,11 +134,11 @@ public class ScMemoryFindPatternTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleFLinkEdgeFNode() throws Exception {
+    void findSingleTripleFLinkEdgeFNode() throws Exception {
         ScLink source = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(10)).findFirst().get();
         ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
-        var x = scMemory.findByPattern3(ScPattern3Factory.getFLinkAEdgeFNodePattern(source, EdgeType.ACCESS, target)).findFirst().get();
+        var x = scMemory.findByPattern3(ScPattern3FactoryWithNames.getFLinkAEdgeFNodePattern(source, EdgeType.ACCESS, target)).findFirst().get();
         assertEquals(source, x.get1());
         assertEquals(target, x.get3());
         assertEquals(target, edge.getTarget());
