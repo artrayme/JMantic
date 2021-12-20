@@ -23,15 +23,34 @@ import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.FindKeynodeRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
-import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.FindKeynodeResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
-import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.sender.RequestSender;
+import org.jmantic.scmemory.websocketmemory.sync.core.OstisClientSync;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScEdgeImpl;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScEntity;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScLinkFloatImpl;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScLinkIntegerImpl;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScLinkStringImpl;
+import org.jmantic.scmemory.websocketmemory.sync.element.ScNodeImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.CreateScElRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.DeleteScElRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.FindByPatternRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.FindKeynodeRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.GetLinkContentRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.message.request.SetLinkContentRequestImpl;
+import org.jmantic.scmemory.websocketmemory.sync.pattern.element.AliasPatternElement;
+import org.jmantic.scmemory.websocketmemory.sync.pattern.element.FixedPatternElement;
+import org.jmantic.scmemory.websocketmemory.sync.pattern.element.PatternElement;
+import org.jmantic.scmemory.websocketmemory.sync.pattern.element.TypePatternElement;
+import org.jmantic.scmemory.websocketmemory.sync.sender.RequestSenderImpl;
+import org.jmantic.scmemory.websocketmemory.sync.structures.BasicPatternTriple;
+import org.jmantic.scmemory.websocketmemory.sync.structures.ScConstruction3Impl;
+import org.jmantic.scmemory.websocketmemory.sync.structures.ScConstruction5Impl;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -254,46 +273,6 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScEdge> findByTemplateNodeEdgeNode(ScNode fixedNode,
-                                                               EdgeType edgeType,
-                                                               NodeType nodeType) throws ScMemoryException {
-        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeNodeRequestImpl(fixedNode, edgeType, nodeType);
-
-        SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
-
-        List<ScEdge> result = new ArrayList<>();
-        response.getFoundAddresses().forEach(e -> {
-            var currentTriple = e.toList();
-            var targetNode = new ScNodeImpl(nodeType, currentTriple.get(2));
-            result.add(new ScEdgeImpl(edgeType, fixedNode, targetNode, currentTriple.get(1)));
-        });
-        return result.stream();
-    }
-
-    @Override
-    public Stream<? extends ScEdge> findByTemplateNodeEdgeLink(ScNode fixedNode,
-                                                               EdgeType edgeType,
-                                                               LinkType linkType,
-                                                               LinkContentType contentType) throws ScMemoryException {
-        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeLinkRequestImpl(fixedNode, edgeType, linkType);
-
-        return getScEdgesFromSearchingTemplate(fixedNode, edgeType, linkType, contentType, request);
-    }
-
-    @Override
-    public Stream<? extends ScEdge> findByTemplateNodeEdgeLinkWithRelation(ScNode fixedNode,
-                                                                           EdgeType edgeType,
-                                                                           LinkType linkType,
-                                                                           LinkContentType contentType,
-                                                                           ScNode fixedRelationNode,
-                                                                           EdgeType relationEdgeType) throws ScMemoryException {
-
-        SearchByTemplateRequest request = new SearchByTemplateNodeEdgeLinkWithRelationRequestImpl(fixedNode, edgeType, linkType, fixedRelationNode, relationEdgeType);
-
-        return getScEdgesFromSearchingTemplate(fixedNode, edgeType, linkType, contentType, request);
-    }
-
-    @Override
     public Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException {
         return setLinkContent(links, content);
     }
@@ -367,56 +346,6 @@ public class SyncOstisScMemory implements ScMemory {
 
         throw new IllegalArgumentException("You should path in ScPatterns only objects of type ScElement or of type NodeType|EdgeType|LinkType");
     }
-
-    private Stream<? extends ScEdge> getScEdgesFromSearchingTemplate(ScNode fixedNode, EdgeType edgeType, LinkType linkType, LinkContentType contentType, SearchByTemplateRequest request) throws ScMemoryException {
-        SearchByTemplateResponse response = requestSender.sendSearchByTemplateRequest(request);
-
-        List<ScEdge> result = new ArrayList<>();
-        response.getFoundAddresses().forEach(e -> {
-            var currentTriple = e.toList();
-            ScLink targetLink = null;
-            try {
-                targetLink = createLinkByContentType(linkType, currentTriple.get(2), contentType);
-            } catch (ScMemoryException ex) {
-                //                ToDo normal exception throwing
-                ex.printStackTrace();
-            }
-            result.add(new ScEdgeImpl(edgeType, fixedNode, targetLink, currentTriple.get(1)));
-        });
-        return result.stream();
-    }
-
-    /**
-     * Method for creating links already existing in the base
-     *
-     * @param linkType    type of sc-link
-     * @param address     address of sc-link in base
-     * @param contentType type of content
-     * @return created sc-link
-     * @throws ScMemoryException
-     */
-    private ScLink createLinkByContentType(LinkType linkType, Long address, LinkContentType contentType) throws ScMemoryException {
-        return switch (contentType) {
-            case INT -> {
-                var result = new ScLinkIntegerImpl(linkType, address);
-
-                result.setContent(getIntegerLinkContent(Stream.of(result)).findFirst().get());
-                yield result;
-            }
-            case FLOAT -> {
-                var result = new ScLinkFloatImpl(linkType, address);
-                result.setContent(getFloatLinkContent(Stream.of(result)).findFirst().get());
-                yield result;
-            }
-            case STRING -> {
-                var result = new ScLinkStringImpl(linkType, address);
-                result.setContent(getStringLinkContent(Stream.of(result)).findFirst().get());
-                yield result;
-            }
-            case BINARY -> throw new UnsupportedOperationException("Binary type is not implemented yet");
-        };
-    }
-
 
     /**
      * Method for creating links of different types of content.

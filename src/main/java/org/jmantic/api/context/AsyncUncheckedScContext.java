@@ -69,11 +69,6 @@ public class AsyncUncheckedScContext {
         return executorService.submit(() -> context.deleteElements(element));
     }
 
-    @Deprecated
-    public Future<Stream<? extends ScEdge>> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
-        return executorService.submit(() -> context.findAllConstructionsNodeEdgeNode(fixedNode, edge, node));
-    }
-
     public <t1 extends ScElement, t2, T3 extends ScElement>
     Future<Stream<? extends ScConstruction3<t1, T3>>> find(ScPattern3<t1, t2, T3> pattern) {
         return executorService.submit(() -> context.find(pattern));

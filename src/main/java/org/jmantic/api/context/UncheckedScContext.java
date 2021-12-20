@@ -132,18 +132,6 @@ public class UncheckedScContext {
         return result;
     }
 
-    @Deprecated
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
-        Stream<? extends ScEdge> result;
-        try {
-            result = memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
-        } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
-            throw new RuntimeException(e);
-        }
-        return result;
-    }
-
     public <t1 extends ScElement, t2, T3 extends ScElement>
     Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
         Stream<? extends ScConstruction3<t1, T3>> result;

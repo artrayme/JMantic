@@ -46,18 +46,6 @@ public class SearchByTemplateTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTriple() throws ExecutionException, InterruptedException {
-        ScNode source = scContext.createNode(NodeType.NODE).get();
-        ScNode target1 = scContext.createNode(NodeType.NODE).get();
-        ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, source, target1).get();
-        var result = scContext.findAllConstructionsNodeEdgeNode(source, EdgeType.ACCESS, NodeType.NODE).get().toList();
-        assertEquals(source, result.get(0).getSource());
-        assertEquals(target1, result.get(0).getTarget());
-        assertEquals(edge1, result.get(0));
-    }
-
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void findSingleTripleFNodeEdgeNode() throws Exception {
         ScNode source = scContext.createNode(NodeType.NODE).get();
         ScNode target = scContext.createNode(NodeType.NODE).get();
