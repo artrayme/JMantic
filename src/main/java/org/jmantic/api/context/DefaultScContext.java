@@ -12,7 +12,14 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScConstruction5;
+import org.jmantic.scmemory.model.pattern.ScPattern3;
+import org.jmantic.scmemory.model.pattern.ScPattern5;
+import org.jmantic.scmemory.model.pattern.factory.DefaultScPattern3Factory;
+import org.jmantic.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -162,15 +169,25 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) throws ScMemoryException {
-        return memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
+        return memory.findByPattern3(DefaultScPattern3Factory.get(fixedNode, edge, node)).map(ScConstruction3::getEdge);
     }
 
+    @Deprecated
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLink(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent) throws ScMemoryException {
-        return memory.findByTemplateNodeEdgeLink(fixedNode, edge, link, linkContent);
+        return memory.findByPattern3(DefaultScPattern3Factory.get(fixedNode, edge, link)).map(ScConstruction3::getEdge);
     }
 
+    @Deprecated
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent, ScNode relation, EdgeType relationEdgeType) throws ScMemoryException {
-        return memory.findByTemplateNodeEdgeLinkWithRelation(fixedNode, edge, link, linkContent, relation, relationEdgeType);
+        return memory.findByPattern5(DefaultScPattern5Factory.get(fixedNode, edge, link, relationEdgeType, relation)).map(ScConstruction5::get2);
+    }
+
+    public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
+        return memory.findByPattern3(pattern);
+    }
+
+    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(ScPattern5<t1, t2, t3, T2, T3> pattern) throws ScMemoryException {
+        return memory.findByPattern5(pattern);
     }
 
     /**
@@ -246,6 +263,10 @@ public class DefaultScContext {
      */
     public String getStringLinkContent(ScLinkString link) throws ScMemoryException {
         return memory.getStringLinkContent(Stream.of(link)).findFirst().get();
+    }
+
+    public Optional<? extends ScLinkString> findKeynode(String idtf) throws ScMemoryException {
+        return memory.findKeynodes(Stream.of(idtf)).findFirst().get();
     }
 
 }

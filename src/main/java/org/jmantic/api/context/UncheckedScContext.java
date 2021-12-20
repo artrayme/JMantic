@@ -11,6 +11,10 @@ import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
 import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScConstruction5;
+import org.jmantic.scmemory.model.pattern.ScPattern3;
+import org.jmantic.scmemory.model.pattern.ScPattern5;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -106,16 +110,6 @@ public class UncheckedScContext {
         return result.get();
     }
 
-    //    public ScLinkBinary createBinaryLink(LinkType type, String content) {
-    //        Optional<? extends ScLinkBinary> result = Optional.empty();
-    //        try {
-    //            result = memory.createBinaryLink(Stream.of(type), Stream.of(content)).findFirst();
-    //        } catch (ScMemoryException e) {
-    //            e.printStackTrace();
-    //        }
-    //        return result.get();
-    //    }
-
     public Boolean deleteElement(ScElement element) {
         boolean result;
         try {
@@ -138,10 +132,35 @@ public class UncheckedScContext {
         return result;
     }
 
+    @Deprecated
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
         Stream<? extends ScEdge> result;
         try {
             result = memory.findByTemplateNodeEdgeNode(fixedNode, edge, node);
+        } catch (ScMemoryException e) {
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public <t1 extends ScElement, t2, T3 extends ScElement>
+    Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
+        Stream<? extends ScConstruction3<t1, T3>> result;
+        try {
+            result = memory.findByPattern3(pattern);
+        } catch (ScMemoryException e) {
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement>
+    Stream<? extends ScConstruction5<t1, T2, T3>> find(ScPattern5<t1, t2, t3, T2, T3> pattern) {
+        Stream<? extends ScConstruction5<t1, T2, T3>> result;
+        try {
+            result = memory.findByPattern5(pattern);
         } catch (ScMemoryException e) {
             logger.error("It's really bad", e);
             throw new RuntimeException(e);
@@ -241,4 +260,16 @@ public class UncheckedScContext {
         }
         return result.findFirst().get();
     }
+
+    public Optional<? extends ScLinkString> findKeynode(String idtf) {
+        Optional<? extends ScLinkString> result;
+        try {
+            result = memory.findKeynodes(Stream.of(idtf)).findFirst().get();
+        } catch (ScMemoryException e) {
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
 }

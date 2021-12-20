@@ -9,7 +9,13 @@ import org.jmantic.scmemory.model.element.link.ScLinkInteger;
 import org.jmantic.scmemory.model.element.link.ScLinkString;
 import org.jmantic.scmemory.model.element.node.NodeType;
 import org.jmantic.scmemory.model.element.node.ScNode;
+import org.jmantic.scmemory.model.exception.ScMemoryException;
+import org.jmantic.scmemory.model.pattern.ScConstruction3;
+import org.jmantic.scmemory.model.pattern.ScConstruction5;
+import org.jmantic.scmemory.model.pattern.ScPattern3;
+import org.jmantic.scmemory.model.pattern.ScPattern5;
 
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -63,8 +69,19 @@ public class AsyncUncheckedScContext {
         return executorService.submit(() -> context.deleteElements(element));
     }
 
+    @Deprecated
     public Future<Stream<? extends ScEdge>> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) {
         return executorService.submit(() -> context.findAllConstructionsNodeEdgeNode(fixedNode, edge, node));
+    }
+
+    public <t1 extends ScElement, t2, T3 extends ScElement>
+    Future<Stream<? extends ScConstruction3<t1, T3>>> find(ScPattern3<t1, t2, T3> pattern) {
+        return executorService.submit(() -> context.find(pattern));
+    }
+
+    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement>
+    Future<Stream<? extends ScConstruction5<t1, T2, T3>>> find(ScPattern5<t1, t2, t3, T2, T3> pattern) {
+        return executorService.submit(() -> context.find(pattern));
     }
 
     public Future<Boolean> setIntegerLinkContent(ScLinkInteger link, Integer content) {
@@ -89,6 +106,11 @@ public class AsyncUncheckedScContext {
 
     public Future<String> getStringLinkContent(ScLinkString link) {
         return executorService.submit(() -> context.getStringLinkContent(link));
+    }
+
+    public Future<Optional<? extends ScLinkString>> findKeynode(String idtf) throws ScMemoryException {
+        return executorService.submit(() -> context.findKeynode(idtf));
+
     }
 
 }
