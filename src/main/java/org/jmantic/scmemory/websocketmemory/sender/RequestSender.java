@@ -61,4 +61,6 @@ public interface RequestSender {
      * @throws ScMemoryException if something went wrong with the connection to the base
      */
     GetLinkContentResponse sendGetLinkContentRequest(GetLinkContentRequest request) throws ScMemoryException;
+
+    FindKeynodeResponse sendFindKeynodeRequest(FindKeynodeRequest request) throws ScMemoryException;
 }

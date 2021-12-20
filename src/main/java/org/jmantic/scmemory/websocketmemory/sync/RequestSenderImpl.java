@@ -9,6 +9,7 @@ import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.FindByPatternRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.FindKeynodeRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.ScRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
@@ -16,6 +17,7 @@ import org.jmantic.scmemory.websocketmemory.message.request.SetLinkContentReques
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.FindKeynodeResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
@@ -73,6 +75,11 @@ class RequestSenderImpl implements RequestSender {
     @Override
     public GetLinkContentResponse sendGetLinkContentRequest(GetLinkContentRequest request) throws ScMemoryException {
         return send(request, GetLinkContentResponseImpl.class);
+    }
+
+    @Override
+    public FindKeynodeResponse sendFindKeynodeRequest(FindKeynodeRequest request) throws ScMemoryException {
+        return send(request, FindKeynodeResponseImpl.class);
     }
 
     /**

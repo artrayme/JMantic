@@ -21,11 +21,13 @@ import org.jmantic.scmemory.websocketmemory.core.OstisClient;
 import org.jmantic.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.FindByPatternRequest;
+import org.jmantic.scmemory.websocketmemory.message.request.FindKeynodeRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.jmantic.scmemory.websocketmemory.message.request.SearchByTemplateRequest;
 import org.jmantic.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.FindByPatternResponse;
+import org.jmantic.scmemory.websocketmemory.message.response.FindKeynodeResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SearchByTemplateResponse;
 import org.jmantic.scmemory.websocketmemory.message.response.SetLinkContentResponse;
@@ -35,6 +37,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 
@@ -321,6 +324,31 @@ public class SyncOstisScMemory implements ScMemory {
     @SuppressWarnings("unchecked")
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException {
         return (Stream<String>) getLinkContent(links);
+    }
+
+    @Override
+    public Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException {
+        FindKeynodeRequest request = new FindKeynodeRequestImpl();
+        List<String> content = idtf.toList();
+        request.addAllIdtf(content);
+        FindKeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
+
+        Iterator<String> contentIterator = content.iterator();
+        List<Optional<? extends ScLinkString>> result = new ArrayList<>(content.size());
+        response.getFindAddresses().forEach(e -> {
+            if (e == 0) {
+                ScLinkStringImpl link = new ScLinkStringImpl(LinkType.LINK, e);
+                link.setContent(contentIterator.next());
+                result.add(Optional.of(link));
+            } else
+                result.add(Optional.empty());
+        });
+        return result.stream();
+    }
+
+    @Override
+    public Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) {
+        return null;
     }
 
     @Override
