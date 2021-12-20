@@ -16,6 +16,7 @@ import org.jmantic.scmemory.model.pattern.ScConstruction5;
 import org.jmantic.scmemory.model.pattern.ScPattern3;
 import org.jmantic.scmemory.model.pattern.ScPattern5;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -239,6 +240,7 @@ public interface ScMemory {
      */
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
+    Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException;
 
     /**
      * Implementation specific!
