@@ -240,6 +240,13 @@ public interface ScMemory {
      */
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
 
+    /**
+     * Method for getting the sc-link by content
+     *
+     * @param idtf content for finding
+     * @return stream of found sc-links
+     * @since 0.3.3
+     */
     Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException;
 
     /**
