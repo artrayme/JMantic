@@ -8,7 +8,7 @@ import org.jmantic.scmemory.model.pattern.ScConstruction3;
  * @author artrayme
  * @since 0.3.2
  */
-public class ScConstruction3Impl<T1 extends ScElement, T3 extends ScElement> implements ScConstruction3<T1, T3> {
+class ScConstruction3Impl<T1 extends ScElement, T3 extends ScElement> implements ScConstruction3<T1, T3> {
     private T1 element1;
     private ScEdge edge;
     private T3 element3;

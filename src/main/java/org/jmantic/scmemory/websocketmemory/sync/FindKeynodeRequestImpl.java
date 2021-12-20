@@ -8,8 +8,12 @@ import org.jmantic.scmemory.websocketmemory.message.request.RequestType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author artrayme
+ * @since 0.3.3
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FindKeynodeRequestImpl extends AbstractScRequest implements FindKeynodeRequest {
+class FindKeynodeRequestImpl extends AbstractScRequest implements FindKeynodeRequest {
 
     @JsonProperty("payload")
     private final List<FindKeynodeStruct> keynodeStructs = new ArrayList<>();

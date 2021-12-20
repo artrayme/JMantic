@@ -15,7 +15,7 @@ import java.util.List;
  * @since 0.3.2
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FindByPatternRequestImpl extends AbstractScRequest implements FindByPatternRequest {
+class FindByPatternRequestImpl extends AbstractScRequest implements FindByPatternRequest {
     @JsonProperty("payload")
     private final List<BasicPatternTriple> components = new ArrayList<>();
 

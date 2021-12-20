@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * @author artrayme
+ * @since 0.3.3
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FindKeynodeResponseImpl extends AbstractScResponse implements FindKeynodeResponse {
+class FindKeynodeResponseImpl extends AbstractScResponse implements FindKeynodeResponse {
     @JsonProperty("payload")
     private final List<Long> addresses = new ArrayList<>();
 

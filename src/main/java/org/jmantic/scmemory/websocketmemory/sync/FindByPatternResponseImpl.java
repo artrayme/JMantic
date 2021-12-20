@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * @since 0.3.2
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FindByPatternResponseImpl extends AbstractScResponse implements FindByPatternResponse {
+class FindByPatternResponseImpl extends AbstractScResponse implements FindByPatternResponse {
 
     @JsonProperty("payload")
     private PayloadFoundByTemplateStruct payloadFoundByTemplateStruct;
