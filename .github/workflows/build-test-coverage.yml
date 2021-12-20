@@ -33,7 +33,7 @@ jobs:
 
       - name: "Run Tests and Coverage"
         run: |
-          sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web &
+          sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all &
           sleep 10
           ./gradlew jacocoTestReport
 
