@@ -347,11 +347,6 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) {
-        return null;
-    }
-
-    @Override
     public void open() throws Exception {
         ostisClient.open();
     }
