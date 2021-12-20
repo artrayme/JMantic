@@ -4,6 +4,10 @@ import org.jmantic.scmemory.websocketmemory.sync.BasicPatternTriple;
 
 import java.util.List;
 
+/**
+ * @author artrayme
+ * @since 0.3.2
+ */
 public interface FindByPatternRequest extends ScRequest {
     List<BasicPatternTriple> getComponents();
 
