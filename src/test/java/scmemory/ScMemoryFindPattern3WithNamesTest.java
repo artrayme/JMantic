@@ -1,14 +1,14 @@
 package scmemory;
 
-import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.element.edge.EdgeType;
-import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLink;
-import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.pattern.factory.ScPattern3FactoryWithNames;
-import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.scmemory.model.ScMemory;
+import org.ostis.scmemory.model.element.edge.EdgeType;
+import org.ostis.scmemory.model.element.edge.ScEdge;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLink;
+import org.ostis.scmemory.model.element.node.NodeType;
+import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.pattern.factory.ScPattern3FactoryWithNames;
+import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

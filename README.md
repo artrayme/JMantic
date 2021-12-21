@@ -1,6 +1,6 @@
 ![](docs/logo/project_logo.png)
 
-# JMantic Project
+# java-sc-client (JMantic)
 
 [![Build and test](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
@@ -65,7 +65,7 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.jmantic:jmantic:0.3.1'
+implementation 'org.ostis:jmantic:0.3.1'
 ```
 
 ### Maven
@@ -126,7 +126,7 @@ Dependency
 ```xml
 
 <dependency>
-    <groupId>org.jmantic</groupId>
+    <groupId>org.ostisorg.ostis</groupId>
     <artifactId>jmantic</artifactId>
     <version>0.3.1</version>
 </dependency>

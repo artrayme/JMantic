@@ -1,8 +1,8 @@
 package scmemory;
 
-import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.scmemory.model.ScMemory;
+import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

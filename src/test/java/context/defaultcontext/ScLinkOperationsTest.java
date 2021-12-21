@@ -1,14 +1,14 @@
 package context.defaultcontext;
 
-import org.jmantic.api.context.DefaultScContext;
-import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.element.link.LinkContentType;
-import org.jmantic.scmemory.model.element.link.LinkType;
-import org.jmantic.scmemory.model.element.link.ScLinkFloat;
-import org.jmantic.scmemory.model.element.link.ScLinkInteger;
-import org.jmantic.scmemory.model.element.link.ScLinkString;
-import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.api.context.DefaultScContext;
+import org.ostis.scmemory.model.ScMemory;
+import org.ostis.scmemory.model.element.link.LinkContentType;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkFloat;
+import org.ostis.scmemory.model.element.link.ScLinkInteger;
+import org.ostis.scmemory.model.element.link.ScLinkString;
+import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

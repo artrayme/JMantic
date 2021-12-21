@@ -1,15 +1,15 @@
 package context.asyncunchecked;
 
-import org.jmantic.api.context.AsyncUncheckedScContext;
-import org.jmantic.api.context.UncheckedScContext;
-import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.element.edge.EdgeType;
-import org.jmantic.scmemory.model.element.edge.ScEdge;
-import org.jmantic.scmemory.model.element.node.NodeType;
-import org.jmantic.scmemory.model.element.node.ScNode;
-import org.jmantic.scmemory.model.pattern.factory.DefaultScPattern3Factory;
-import org.jmantic.scmemory.model.pattern.factory.DefaultScPattern5Factory;
-import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.api.context.AsyncUncheckedScContext;
+import org.ostis.api.context.UncheckedScContext;
+import org.ostis.scmemory.model.ScMemory;
+import org.ostis.scmemory.model.element.edge.EdgeType;
+import org.ostis.scmemory.model.element.edge.ScEdge;
+import org.ostis.scmemory.model.element.node.NodeType;
+import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
+import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
+import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

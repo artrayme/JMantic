@@ -1,10 +1,10 @@
 package context.asyncunchecked;
 
-import org.jmantic.api.context.AsyncUncheckedScContext;
-import org.jmantic.api.context.UncheckedScContext;
-import org.jmantic.scmemory.model.ScMemory;
-import org.jmantic.scmemory.model.exception.ScMemoryException;
-import org.jmantic.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.api.context.AsyncUncheckedScContext;
+import org.ostis.api.context.UncheckedScContext;
+import org.ostis.scmemory.model.ScMemory;
+import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

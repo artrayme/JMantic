@@ -4,8 +4,8 @@ plugins {
     id 'jacoco'
 }
 
-group 'org.jmantic'
-version '0.4.0'
+group 'org.ostis'
+version '0.5.0'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -50,9 +50,9 @@ publishing {
     }
     publications {
         gpr(MavenPublication) {
-            groupId 'org.jmantic'
+            groupId 'org.ostis'
             artifactId 'jmantic'
-            version '0.4.0'
+            version '0.5.0'
             from(components.java)
         }
     }
