@@ -6,6 +6,8 @@
 
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
+
 ## Overview
 
 The goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using
@@ -165,4 +167,3 @@ More information about dockerized ostis - [GitHub repository](https://github.com
 * [json](https://www.w3schools.com/whatis/whatis_json.asp)
 * [sc-machine](http://ostis-dev.github.io/sc-machine/)
 * [sc-machine-WebSocket-protocol](http://ostis-dev.github.io/sc-machine/http/websocket/)
-
