@@ -4,9 +4,9 @@
 
 [![Build and test](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
 
-[![Coverage](.github/badges/jacoco.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=coverage)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
 
 ## Overview
 
