@@ -2,33 +2,23 @@
 
 # java-sc-client (JMantic)
 
-[![Build and test](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/artrayme/JMantic/actions/workflows/build-test-coverage.yml)
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=coverage)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
 
 ## Overview
-
-The goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using
-json format.
+The global goal of this project is to create java-interface for using any sc-memory implementations. But for current moment, the goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using json format.
 
 ****
 
 ## Main project priorities:
 
-* **Easy-to-use**. The public api uses only basic abstractions.All classes and methods are documented. There is a wide
-  list of usage examples.
-* **Easy to support**. The minimum number of required third-party libraries was used for the implementation. The code
-  uses modern features of the java language, the files are clearly structured. Also, internal classes and mechanisms are
-  partially have documentation.
-* **Stability and reliability**. High test coverage. Multi-level logging of events in the system. Hierarchy of
-  informative exceptions for each architectural layer.  _(in progress)_
+* **Easy-to-use**. The public api must be easy to understand. All public-api classes should use basic domain abstractions and have comprehensive documentation.
+* **Stability and reliability**. The Project must have high test coverage (80+%). Also, project should have multi-level logging of events in the system and hierarchy of informative exceptions for each architectural layer.
+* **Modern language features**. The project must use the latest lts-versions of java and not limit itself to new features of the language
+* **Easy to support**. The minimum number of required third-party libraries was used for the implementation. 
 
-It is important to note that at this stage of project development there is no goal to make a fast library (due to the
-technical limitations of sc-machine, as well as a deviation from the main goals of the project). Also, right now the
-project does not aim to implement all the available sc-machine functionality due to the small amount of development
-time.
+It is important to note that at this stage of project development there is no goal to make a fast library (due to the technical limitations of sc-machine, as well as a deviation from the main goals of the project).
 
 ****
 
@@ -67,7 +57,7 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.ostis:jmantic:0.3.1'
+implementation 'org.ostis:jmantic:0.5.0'
 ```
 
 ### Maven
@@ -128,9 +118,9 @@ Dependency
 ```xml
 
 <dependency>
-    <groupId>org.ostisorg.ostis</groupId>
+    <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.3.1</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -139,7 +129,7 @@ Dependency
 ## Ostis configuration
 
 To use JMantic, you need ostis version 0.6.0. You can run ostis any way you want. For example, you can run ostis in the
-docker with the following command:
+docker with the following command (you may have to run these commands with sudo):
 
 ```shell
 docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all
@@ -150,6 +140,7 @@ If you do not need to build the base, you can speed up the startup with the foll
 ```shell
 docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web
 ```
+
 
 More information about dockerized ostis - [GitHub repository](https://github.com/ostis-apps/dockerized-ostis)
 
