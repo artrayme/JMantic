@@ -1,4 +1,4 @@
-name: "Building and testing"
+name: CI build
 on:
   push:
     branches: [ master ]

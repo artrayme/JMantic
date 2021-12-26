@@ -1,10 +1,22 @@
-![](docs/logo/project_logo.png)
+<p align="center">
+  <img src="./docs/logo/project_logo.png" alt="drawing" width="400"/>
+</p>
+
+---
+
+<p align="center">
+  <a href="https://github.com/artrayme/JMantic/actions/workflows/ci-build.yml">
+    <img src="https://github.com/artrayme/JMantic/actions/workflows/ci-build.yml/badge.svg"/>
+  </a>
+  <a href="https://sonarcloud.io/summary/new_code?id=artrayme_JMantic">
+    <img src="https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=alert_status"/>
+  </a>
+  <a href="https://sonarcloud.io/summary/new_code?id=artrayme_JMantic">
+    <img src="https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=coverage"/>
+  </a>
+</p>
 
 # java-sc-client (JMantic)
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
-
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=artrayme_JMantic&metric=coverage)](https://sonarcloud.io/summary/new_code?id=artrayme_JMantic)
 
 ## Overview
 The global goal of this project is to create java-interface for using any sc-memory implementations. But for current moment, the goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using json format.
