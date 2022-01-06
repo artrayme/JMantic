@@ -19,7 +19,10 @@
 # java-sc-client (JMantic)
 
 ## Overview
-The global goal of this project is to create java-interface for using any sc-memory implementations. But for current moment, the goal of this project is to create a java-library for connecting to a sc-machine via a WebSocket interface by using json format.
+The global goal of this project is to create java-interface for using any sc-memory implementations.
+But for a current moment,
+the goal of this project is
+to create a java-library for connecting to a sc-machine via a WebSocket interface by using json format.
 
 ****
 
@@ -30,13 +33,13 @@ The global goal of this project is to create java-interface for using any sc-mem
 * **Modern language features**. The project must use the latest lts-versions of java and not limit itself to new features of the language
 * **Easy to support**. The minimum number of required third-party libraries was used for the implementation. 
 
-It is important to note that at this stage of project development there is no goal to make a fast library (due to the technical limitations of sc-machine, as well as a deviation from the main goals of the project).
+It is important to note that at this stage of project development there is no goal to make a fast library (due to the technical limitations of the sc-machine, as well as a deviation from the main goals of the project).
 
 ****
 
 ## Package
 
-If you want to use JMantic in your programs, follow these steps
+If you want to use JMantic in your programs, follow these steps:
 
 ### Gradle
 
@@ -116,7 +119,7 @@ The first step is to change the settings.xml file in the ~/.m2 folder
 </settings>
 ```
 
-Where GitHub_username it is you username in GitHub. Password - your GitHub personal access token. To get such a token,
+Where GitHub_username it is your username in GitHub. Password - your GitHub personal access token. To get such a token,
 you need to go to GitHub settings, then go to Developer settings, where in the Personal Access Token section click
 Generate new token. In the generation menu, you only need to select the read:packages checkbox. The generated token
 needs to be inserted into the password field in the above example.
@@ -155,6 +158,24 @@ docker run -it -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --sctp --web
 
 
 More information about dockerized ostis - [GitHub repository](https://github.com/ostis-apps/dockerized-ostis)
+
+****
+
+## Conventions 
+
+### JMantic versioning 
+In thr project, semantic versioning is used but with a couple of improvisations.
+
+Version has the format: x.y.z 
+
+Where:
+1) x - is a major version. A big difference can be between major versions. Only domain and purpose must be the same in different major versions. 
+2) y - is a minor version. The public api and implementation can be changed between minor versions, but the core interfaces must not be removed.
+3) z - versioning for bug fixing and small features adding. Public api cannot be changed. 
+
+### Sc-elements naming 
+
+ToDo
 
 ****
 
