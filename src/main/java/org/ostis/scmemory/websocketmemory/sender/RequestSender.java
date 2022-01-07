@@ -60,4 +60,6 @@ public interface RequestSender {
     GetLinkContentResponse sendGetLinkContentRequest(GetLinkContentRequest request) throws ScMemoryException;
 
     FindKeynodeResponse sendFindKeynodeRequest(FindKeynodeRequest request) throws ScMemoryException;
+
+    CheckScElTypeResponse sendCheckScElTypeRequest(CheckScElTypeRequest request) throws ScMemoryException;
 }

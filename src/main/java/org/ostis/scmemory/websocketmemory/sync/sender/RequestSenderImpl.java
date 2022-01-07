@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
+import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
@@ -13,6 +14,7 @@ import org.ostis.scmemory.websocketmemory.message.request.FindKeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
 import org.ostis.scmemory.websocketmemory.message.request.SetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.FindByPatternResponse;
@@ -21,6 +23,7 @@ import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentRespons
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 import org.ostis.scmemory.websocketmemory.sync.exception.OstisConnectionException;
+import org.ostis.scmemory.websocketmemory.sync.message.response.CheckScElTypeResponseImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.response.CreateScElResponseImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.response.DeleteScElResponseImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.response.FindByPatternResponseImpl;
@@ -79,6 +82,11 @@ public class RequestSenderImpl implements RequestSender {
     @Override
     public FindKeynodeResponse sendFindKeynodeRequest(FindKeynodeRequest request) throws ScMemoryException {
         return send(request, FindKeynodeResponseImpl.class);
+    }
+
+    @Override
+    public CheckScElTypeResponse sendCheckScElTypeRequest(CheckScElTypeRequest request) throws ScMemoryException {
+        return send(request, CheckScElTypeResponseImpl.class);
     }
 
     /**
