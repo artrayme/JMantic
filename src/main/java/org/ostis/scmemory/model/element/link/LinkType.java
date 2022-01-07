@@ -1,5 +1,6 @@
 package org.ostis.scmemory.model.element.link;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -24,5 +25,11 @@ public enum LinkType {
 
     LinkType(int code) {
         this.code = code;
+    }
+
+    //    Only for internal use
+    @JsonIgnore
+    public int getCode() {
+        return code;
     }
 }

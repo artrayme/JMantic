@@ -1,5 +1,6 @@
 package org.ostis.scmemory.model.element.edge;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -57,5 +58,11 @@ public enum EdgeType {
 
     EdgeType(int code) {
         this.code = code;
+    }
+
+    //    Only for internal use
+    @JsonIgnore
+    public int getCode() {
+        return code;
     }
 }

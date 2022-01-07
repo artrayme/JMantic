@@ -1,5 +1,6 @@
 package org.ostis.scmemory.model.element.node;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
@@ -66,5 +67,11 @@ public enum NodeType {
 
     NodeType(int code) {
         this.code = code;
+    }
+
+    //    Only for internal use
+    @JsonIgnore
+    public int getCode() {
+        return code;
     }
 }
