@@ -1,5 +1,6 @@
 package org.ostis.scmemory.websocketmemory.message.request;
 
+import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.websocketmemory.sync.structures.BasicPatternTriple;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.List;
  * @since 0.3.2
  */
 public interface FindByPatternRequest extends ScRequest {
-    List<BasicPatternTriple> getComponents();
+    List<ScPatternTriplet> getComponents();
 
-    boolean addComponent(BasicPatternTriple component);
+    boolean addComponent(ScPatternTriplet component);
 
-    boolean removeComponent(BasicPatternTriple component);
+    boolean removeComponent(ScPatternTriplet component);
 }

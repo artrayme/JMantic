@@ -13,10 +13,13 @@ import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.model.pattern.ScAliasedElement;
 import org.ostis.scmemory.model.pattern.ScConstruction3;
 import org.ostis.scmemory.model.pattern.ScConstruction5;
 import org.ostis.scmemory.model.pattern.ScPattern3;
 import org.ostis.scmemory.model.pattern.ScPattern5;
+import org.ostis.scmemory.model.pattern.ScPatternElement;
+import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
@@ -45,7 +48,6 @@ import org.ostis.scmemory.websocketmemory.sync.message.request.GetLinkContentReq
 import org.ostis.scmemory.websocketmemory.sync.message.request.SetLinkContentRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.AliasPatternElement;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.FixedPatternElement;
-import org.ostis.scmemory.websocketmemory.sync.pattern.element.PatternElement;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.TypePatternElement;
 import org.ostis.scmemory.websocketmemory.sync.sender.RequestSenderImpl;
 import org.ostis.scmemory.websocketmemory.sync.structures.BasicPatternTriple;
@@ -164,10 +166,11 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException {
         FindByPatternRequest request = new FindByPatternRequestImpl();
-        BasicPatternTriple triple = new BasicPatternTriple(
+
+        ScPatternTriplet triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
-                new TypePatternElement<>(pattern.get2(), "edge_2"),
-                convertToPatternElement(pattern.get3(), "element_3")
+                new TypePatternElement<>(pattern.get2(), new AliasPatternElement("edge_2")),
+                convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
         );
         request.addComponent(triple);
 
@@ -206,15 +209,16 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException {
         FindByPatternRequest request = new FindByPatternRequestImpl();
+        ScAliasedElement edge2Alias = new AliasPatternElement("edge_2");
         BasicPatternTriple triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
-                new TypePatternElement<>(pattern.get2(), "edge_2"),
-                convertToPatternElement(pattern.get3(), "element_3")
+                new TypePatternElement<>(pattern.get2(), edge2Alias),
+                convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
         );
         BasicPatternTriple relTriple = new BasicPatternTriple(
-                convertToPatternElement(pattern.get5(), "element_5"),
-                new TypePatternElement<>(pattern.get4(), "edge_4"),
-                new AliasPatternElement("edge_2")
+                convertToPatternElement(pattern.get5(), new AliasPatternElement("element_5")),
+                new TypePatternElement<>(pattern.get4(), new AliasPatternElement("edge_4")),
+                edge2Alias
         );
         request.addComponent(triple);
         request.addComponent(relTriple);
@@ -335,7 +339,7 @@ public class SyncOstisScMemory implements ScMemory {
         ostisClient.close();
     }
 
-    private PatternElement convertToPatternElement(Object object, String alias) {
+    private ScPatternElement convertToPatternElement(Object object, ScAliasedElement alias) {
         if (object instanceof ScElement element) {
             return new FixedPatternElement(element);
         } else if (object instanceof NodeType type) {

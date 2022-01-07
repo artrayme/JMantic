@@ -1,14 +1,17 @@
 package org.ostis.scmemory.websocketmemory.sync.pattern.element;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.ostis.scmemory.model.pattern.ScAliasedElement;
+import org.ostis.scmemory.model.pattern.ScPatternElement;
 
 /**
  * @author artrayme
  * @since 0.3.2
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public final class AliasPatternElement implements PatternElement {
+public final class AliasPatternElement implements ScAliasedElement {
     @JsonProperty("type")
     private final String type = "alias";
     @JsonProperty("value")
@@ -18,4 +21,9 @@ public final class AliasPatternElement implements PatternElement {
         this.alias = alias;
     }
 
+    @JsonIgnore
+    @Override
+    public String getAlias() {
+        return alias;
+    }
 }
