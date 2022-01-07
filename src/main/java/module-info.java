@@ -20,8 +20,8 @@ module JMantic.main {
     exports org.ostis.scmemory.model.pattern.pattern5;
 
     //    exporting sync sc-memory implementation
-    exports org.ostis.scmemory.websocketmemory.sync;
-    exports org.ostis.scmemory.websocketmemory.sync.pattern;
-    exports org.ostis.scmemory.websocketmemory.sync.pattern.element;
+    exports org.ostis.scmemory.websocketmemory.memory;
+    exports org.ostis.scmemory.websocketmemory.memory.pattern;
+    exports org.ostis.scmemory.websocketmemory.memory.pattern.element;
 
 }

@@ -1,7 +1,7 @@
 package scmemory;
 
 import org.ostis.scmemory.model.ScMemory;
-import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

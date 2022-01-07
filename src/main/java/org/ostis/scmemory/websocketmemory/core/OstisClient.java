@@ -1,6 +1,6 @@
 package org.ostis.scmemory.websocketmemory.core;
 
-import org.ostis.scmemory.websocketmemory.sync.exception.OstisConnectionException;
+import org.ostis.scmemory.websocketmemory.memory.exception.OstisConnectionException;
 
 import java.net.URI;
 

@@ -8,7 +8,7 @@ import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
-import org.ostis.scmemory.websocketmemory.sync.SyncOstisScMemory;
+import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
