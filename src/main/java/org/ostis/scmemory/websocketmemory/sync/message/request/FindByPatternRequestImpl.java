@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.RequestType;
-import org.ostis.scmemory.websocketmemory.sync.structures.BasicPatternTriple;
 
 import java.util.ArrayList;
 import java.util.Collections;

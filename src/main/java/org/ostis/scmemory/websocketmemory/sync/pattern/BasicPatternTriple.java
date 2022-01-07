@@ -1,4 +1,4 @@
-package org.ostis.scmemory.websocketmemory.sync.structures;
+package org.ostis.scmemory.websocketmemory.sync.pattern;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;

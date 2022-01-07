@@ -50,7 +50,7 @@ import org.ostis.scmemory.websocketmemory.sync.pattern.element.AliasPatternEleme
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.FixedPatternElement;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.TypePatternElement;
 import org.ostis.scmemory.websocketmemory.sync.sender.RequestSenderImpl;
-import org.ostis.scmemory.websocketmemory.sync.structures.BasicPatternTriple;
+import org.ostis.scmemory.websocketmemory.sync.pattern.BasicPatternTriple;
 import org.ostis.scmemory.websocketmemory.sync.structures.ScConstruction3Impl;
 import org.ostis.scmemory.websocketmemory.sync.structures.ScConstruction5Impl;
 

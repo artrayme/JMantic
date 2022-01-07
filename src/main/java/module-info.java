@@ -3,9 +3,10 @@ module JMantic.main {
     requires org.slf4j;
     requires com.fasterxml.jackson.databind;
 
+    //    exporting public api
     exports org.ostis.api.context;
-    exports org.ostis.scmemory.websocketmemory.sync;
 
+    //    exporting main interfaces and abstractions
     exports org.ostis.scmemory.model;
     exports org.ostis.scmemory.model.exception;
     exports org.ostis.scmemory.model.event;
@@ -17,5 +18,10 @@ module JMantic.main {
     exports org.ostis.scmemory.model.pattern.factory;
     exports org.ostis.scmemory.model.pattern.pattern3;
     exports org.ostis.scmemory.model.pattern.pattern5;
+
+    //    exporting sync sc-memory implementation
+    exports org.ostis.scmemory.websocketmemory.sync;
+    exports org.ostis.scmemory.websocketmemory.sync.pattern;
+    exports org.ostis.scmemory.websocketmemory.sync.pattern.element;
 
 }
