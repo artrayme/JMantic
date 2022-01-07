@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.pattern.ScAliasedElement;
 import org.ostis.scmemory.model.pattern.ScPatternElement;
 
+import java.util.Objects;
+
 /**
  * @author artrayme
  * @since 0.3.2
@@ -25,5 +27,20 @@ public final class AliasPatternElement implements ScAliasedElement {
     @Override
     public String getAlias() {
         return alias;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        AliasPatternElement that = (AliasPatternElement) o;
+        return Objects.equals(alias, that.alias);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(alias);
     }
 }

@@ -2,6 +2,7 @@ package org.ostis.scmemory.websocketmemory.sync;
 
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.ScElement;
+import org.ostis.scmemory.model.element.UnknownScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkContentType;
@@ -16,16 +17,21 @@ import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.model.pattern.ScAliasedElement;
 import org.ostis.scmemory.model.pattern.ScConstruction3;
 import org.ostis.scmemory.model.pattern.ScConstruction5;
+import org.ostis.scmemory.model.pattern.ScFixedElement;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.ScPattern3;
 import org.ostis.scmemory.model.pattern.ScPattern5;
 import org.ostis.scmemory.model.pattern.ScPatternElement;
 import org.ostis.scmemory.model.pattern.ScPatternTriplet;
+import org.ostis.scmemory.model.pattern.ScTypedElement;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
+import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.FindKeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.FindByPatternResponse;
@@ -40,12 +46,14 @@ import org.ostis.scmemory.websocketmemory.sync.element.ScLinkFloatImpl;
 import org.ostis.scmemory.websocketmemory.sync.element.ScLinkIntegerImpl;
 import org.ostis.scmemory.websocketmemory.sync.element.ScLinkStringImpl;
 import org.ostis.scmemory.websocketmemory.sync.element.ScNodeImpl;
+import org.ostis.scmemory.websocketmemory.sync.message.request.CheckScElTypeRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.CreateScElRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.DeleteScElRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.FindByPatternRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.FindKeynodeRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.GetLinkContentRequestImpl;
 import org.ostis.scmemory.websocketmemory.sync.message.request.SetLinkContentRequestImpl;
+import org.ostis.scmemory.websocketmemory.sync.pattern.DefaultWebsocketScPattern;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.AliasPatternElement;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.FixedPatternElement;
 import org.ostis.scmemory.websocketmemory.sync.pattern.element.TypePatternElement;
@@ -56,8 +64,11 @@ import org.ostis.scmemory.websocketmemory.sync.structures.ScConstruction5Impl;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -274,6 +285,85 @@ public class SyncOstisScMemory implements ScMemory {
             }
         }
         return result.stream();
+    }
+
+    @Override
+    public Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException {
+        FindByPatternRequest request = new FindByPatternRequestImpl();
+        pattern.getElements().forEach(request::addComponent);
+
+        FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
+        List<List<ScElement>> result = new ArrayList<>();
+
+        List<ScPatternElement> patternElements = pattern.getElements().flatMap(e -> Stream.of(e.get1(), e.get2(), e.get3())).toList();
+        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
+        response.getFoundAddresses().forEach(e -> {
+            Iterator<ScPatternElement> patternElementIterator = patternElements.iterator();
+            List<ScElement> tempResult = new ArrayList<>(patternElements.size());
+            Iterator<Long> addressesIterator = e.iterator();
+            while (patternElementIterator.hasNext()) {
+                var el = patternElementIterator.next();
+                switch (el.getType()) {
+                    case ALIAS -> {
+                        tempResult.add(aliases.get(el));
+                        addressesIterator.next();
+                    }
+                    case TYPE -> {
+                        try {
+                            var element = createScElementByType(((ScTypedElement) el).getValue(), addressesIterator.next());
+                            tempResult.add(element);
+                            aliases.put(((ScTypedElement) el).getAlias(), element);
+                        } catch (ScMemoryException ex) {
+                            //                            todo refactoring
+                            ex.printStackTrace();
+                        }
+                    }
+                    case ADDR -> {
+                        tempResult.add(((ScFixedElement) el).getElement());
+                        addressesIterator.next();
+                    }
+                }
+            }
+        });
+
+        return result.stream().map(Collection::stream);
+    }
+
+    private ScElement createScElementByType(Object type, Long addr) throws ScMemoryException {
+        if (type instanceof EdgeType edgeType) {
+            ScPattern pattern = new DefaultWebsocketScPattern();
+            pattern.addElement(new BasicPatternTriple(
+                    new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("1")),
+                    new FixedPatternElement(addr),
+                    new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("2"))
+            ));
+            FindByPatternRequest request = new FindByPatternRequestImpl();
+            pattern.getElements().forEach(request::addComponent);
+
+            FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
+            var triplet = response.getFoundAddresses().findFirst().get().toList();
+            var sourceElementType = checkElementType(triplet.get(0));
+            var targetElementType = checkElementType(triplet.get(2));
+
+            ScElement sourceElement = createScElementByType(sourceElementType, triplet.get(0));
+            ScElement targetElement = createScElementByType(targetElementType, triplet.get(2));
+
+            return new ScEdgeImpl(edgeType, sourceElement, targetElement, addr);
+        } else if (type instanceof NodeType nodeType) {
+            return new ScNodeImpl(nodeType, addr);
+        } else if (type instanceof LinkType linkType) {
+            return createLinksByAddresses(Stream.of(addr), linkType).findFirst().get();
+        } else if (type instanceof UnknownScElement) {
+            createScElementByType(checkElementType(addr), addr);
+        }
+        throw new IllegalArgumentException("Some functionality is not implemented yet");
+    }
+
+    private Object checkElementType(Long addr) throws ScMemoryException {
+        CheckScElTypeRequest request = new CheckScElTypeRequestImpl();
+        request.add(addr);
+        CheckScElTypeResponse response = requestSender.sendCheckScElTypeRequest(request);
+        return response.getTypes().findFirst().get();
     }
 
     @Override

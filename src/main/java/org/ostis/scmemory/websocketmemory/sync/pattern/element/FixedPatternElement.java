@@ -24,6 +24,12 @@ public final class FixedPatternElement implements ScFixedElement {
         this.fixedNode = element.getAddress();
     }
 
+//    Only for internal use
+    public FixedPatternElement(Long addr) {
+        this.element = null;
+        this.fixedNode = addr;
+    }
+
     @JsonIgnore
     @Override
     public ScElement getElement() {

@@ -12,6 +12,7 @@ import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.model.pattern.ScConstruction3;
 import org.ostis.scmemory.model.pattern.ScConstruction5;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.ScPattern3;
 import org.ostis.scmemory.model.pattern.ScPattern5;
 
@@ -119,6 +120,8 @@ public interface ScMemory {
      */
     <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement>
     Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
+
+    Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException;
 
     /**
      * Methods for changing the content of {@link ScLinkInteger}
