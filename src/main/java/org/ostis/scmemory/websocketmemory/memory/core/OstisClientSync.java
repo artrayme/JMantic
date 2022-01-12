@@ -24,6 +24,7 @@ public class OstisClientSync implements OstisClient {
     private WebSocketClient webSocketClient;
     private String responseMassage;
     private CountDownLatch latch;
+    private URI address;
 
     private OstisClientSync() {
 
@@ -36,6 +37,7 @@ public class OstisClientSync implements OstisClient {
     @Override
     public synchronized void configure(URI serverUri) {
         webSocketClient = new OstisWebsocketClient(serverUri);
+        address = serverUri;
         logger.info("ostis client is configured to the uri {}", serverUri);
     }
 
@@ -68,6 +70,11 @@ public class OstisClientSync implements OstisClient {
         }
         logger.info("ostis client return response {}", responseMassage);
         return responseMassage;
+    }
+
+    @Override
+    public URI getAddress() {
+        return address;
     }
 
 

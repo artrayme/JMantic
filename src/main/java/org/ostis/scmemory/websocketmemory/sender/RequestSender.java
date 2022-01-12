@@ -4,6 +4,8 @@ import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.message.request.*;
 import org.ostis.scmemory.websocketmemory.message.response.*;
 
+import java.net.URI;
+
 /**
  * An interface that provides methods for sending various kinds of
  * {@link ScRequest} to the database through the {@link org.ostis.scmemory.websocketmemory.core.OstisClient}
@@ -13,6 +15,8 @@ import org.ostis.scmemory.websocketmemory.message.response.*;
  * @since 0.0.1
  */
 public interface RequestSender {
+
+    URI getAddress();
 
     /**
      * Method for sending the create request

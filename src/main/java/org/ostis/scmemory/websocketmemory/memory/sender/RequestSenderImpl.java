@@ -33,6 +33,8 @@ import org.ostis.scmemory.websocketmemory.memory.message.response.SetLinkContent
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
+
 /**
  * {@link RequestSender} implementation for serialization and sending requests
  * using the {@link OstisClient}, as well as for deserializing responses.
@@ -52,6 +54,11 @@ public class RequestSenderImpl implements RequestSender {
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         writer = mapper.writer();
+    }
+
+    @Override
+    public URI getAddress() {
+        return client.getAddress();
     }
 
     @Override
