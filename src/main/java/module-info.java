@@ -3,7 +3,7 @@ module JMantic.main {
     requires org.slf4j;
     requires com.fasterxml.jackson.databind;
 
-    //    exporting public api
+    //    exporting usable public api
     exports org.ostis.api.context;
 
     //    exporting main interfaces and abstractions

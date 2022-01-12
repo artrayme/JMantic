@@ -70,6 +70,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Stream;
 
 
@@ -93,6 +96,7 @@ public class SyncOstisScMemory implements ScMemory {
     private final RequestSender requestSender;
     private final OstisClient ostisClient;
     private final Map<Long, ScElement> searchedScElements = new HashMap<>();
+    private final ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
     public SyncOstisScMemory(URI serverURI) {
         ostisClient = new OstisClientSync(serverURI);
@@ -302,10 +306,11 @@ public class SyncOstisScMemory implements ScMemory {
 
         List<ScPatternElement> patternElements = pattern.getElements().flatMap(e -> Stream.of(e.get1(), e.get2(), e.get3())).toList();
         Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
-        response.getFoundAddresses().forEach(e -> {
+
+        for (Stream<Long> triplet : response.getFoundAddresses().toList()) {
             Iterator<ScPatternElement> patternElementIterator = patternElements.iterator();
             List<ScElement> tempResult = new ArrayList<>(patternElements.size());
-            Iterator<Long> addressesIterator = e.iterator();
+            Iterator<Long> addressesIterator = triplet.iterator();
             while (patternElementIterator.hasNext()) {
                 var el = patternElementIterator.next();
                 switch (el.getType()) {
@@ -333,41 +338,61 @@ public class SyncOstisScMemory implements ScMemory {
                 }
             }
             result.add(tempResult);
-        });
+        }
+
         return result.stream().map(Collection::stream);
     }
 
     private ScElement createScElementByType(Object type, Long addr) throws ScMemoryException {
         if (type instanceof EdgeType edgeType) {
             ScPattern pattern = new DefaultWebsocketScPattern();
+            ScEdgeImpl edge = new ScEdgeImpl(edgeType, addr);
             pattern.addElement(new BasicPatternTriple(
                     new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("1")),
-                    new FixedPatternElement(addr),
+                    new FixedPatternElement(edge),
                     new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("2"))
             ));
             FindByPatternRequest request = new FindByPatternRequestImpl();
             pattern.getElements().forEach(request::addComponent);
             var triplet = findPattern(pattern).findFirst().get().toList();
 
-            ScElement sourceElement = searchedScElements.get(triplet.get(0));
-            ScElement targetElement = searchedScElements.get(triplet.get(2));
+            ScElement sourceElement = searchedScElements.get(triplet.get(0).getAddress());
+            ScElement targetElement = searchedScElements.get(triplet.get(2).getAddress());
+            edge.setSourceElement(sourceElement);
+            edge.setTargetElement(targetElement);
 
-            return new ScEdgeImpl(edgeType, sourceElement, targetElement, addr);
+            return edge;
         } else if (type instanceof NodeType nodeType) {
             return new ScNodeImpl(nodeType, addr);
         } else if (type instanceof LinkType linkType) {
             return createLinksByAddresses(Stream.of(addr), linkType).findFirst().get();
         } else if (type instanceof UnknownScElement) {
-            searchedScElements.put(addr, createScElementByType(checkElementType(addr), addr));
+            try {
+                Object o = checkElementType(addr);
+                ScElement element = createScElementByType(o, addr);
+                searchedScElements.put(addr, element);
+                return element;
+            } catch (Exception e) {
+                //                todo logging
+                e.printStackTrace();
+            }
         }
         throw new IllegalArgumentException("Some functionality is not implemented yet");
     }
 
-    private Object checkElementType(Long addr) throws ScMemoryException {
-        CheckScElTypeRequest request = new CheckScElTypeRequestImpl();
-        request.add(addr);
-        CheckScElTypeResponse response = requestSender.sendCheckScElTypeRequest(request);
-        return response.getTypes().findFirst().get();
+    private Object checkElementType(Long addr) throws Exception {
+        Callable<CheckScElTypeResponse> task = () -> {
+            OstisClient client = new OstisClientSync(requestSender.getAddress());
+            RequestSender sender = new RequestSenderImpl(client);
+            client.open();
+            CheckScElTypeRequest request = new CheckScElTypeRequestImpl();
+            request.add(addr);
+            CheckScElTypeResponse res = sender.sendCheckScElTypeRequest(request);
+            client.close();
+            return res;
+        };
+        var result = forkJoinPool.submit(task).get();
+        return result.getTypes().findFirst().get();
     }
 
     @Override
@@ -542,6 +567,10 @@ public class SyncOstisScMemory implements ScMemory {
                     case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
+                    case BINARY -> {
+                        throw new UnsupportedOperationException("Binary links are not implemented yet");
+                    }
+                    default -> throw new IllegalStateException("Unexpected value: " + link.getContentType());
                 }
             }
         }
@@ -557,6 +586,7 @@ public class SyncOstisScMemory implements ScMemory {
      */
     private Stream<?> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
+        //        todo change peek to something else (cause peek is used only for debugging)
         List<? extends ScLink> links = elements.peek(l -> request.addAddressToRequest(l.getAddress())).toList();
 
         GetLinkContentResponse response = requestSender.sendGetLinkContentRequest(request);
