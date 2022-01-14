@@ -54,7 +54,6 @@ import org.ostis.scmemory.model.pattern.pattern5.ScPattern5Impl;
  * @since 0.3.2
  */
 
-// ToDO cached pattern Objects because are immutable
 public class DefaultScPattern5Factory {
 
     private DefaultScPattern5Factory() {

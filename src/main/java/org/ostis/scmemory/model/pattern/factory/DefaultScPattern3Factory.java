@@ -39,7 +39,6 @@ import org.ostis.scmemory.model.pattern.pattern3.ScPattern3Impl;
  * @since 0.3.2
  */
 
-// ToDO cached pattern Objects because are immutable
 public class DefaultScPattern3Factory {
 
     private DefaultScPattern3Factory() {
