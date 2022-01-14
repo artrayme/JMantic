@@ -30,17 +30,6 @@ public class GetLinkContentResponseImpl extends AbstractScResponse implements Ge
         return linkContent.stream().map(s -> LinkContentType.valueOf(s.type.toUpperCase())).toList();
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "GetLinkContentResponseImpl{" +
-                "responseId=" + getResponseId() +
-                ", status=" + getResponseStatus() +
-                ", event=" + getEvent() +
-                ", statusOfOperations=" + linkContent +
-                '}';
-    }
-
     /**
      * Class describing the structure of the {@link GetLinkContentResponseImpl} to retrieve
      * {@link org.ostis.scmemory.model.element.link.ScLink} content
@@ -57,13 +46,5 @@ public class GetLinkContentResponseImpl extends AbstractScResponse implements Ge
         @JsonProperty("type")
         String type;
 
-        @JsonIgnore
-        @Override
-        public String toString() {
-            return "GetContentStruct{" +
-                    "type='" + type + '\'' +
-                    ", value=" + value +
-                    '}';
-        }
     }
 }

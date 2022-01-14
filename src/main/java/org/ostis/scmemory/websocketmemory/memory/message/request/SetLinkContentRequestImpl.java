@@ -49,17 +49,6 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
             this.content = content;
             this.address = address;
         }
-
-        @JsonIgnore
-        @Override
-        public String toString() {
-            return "SetContentStruct{" +
-                    "command='" + command + '\'' +
-                    ", contentType=" + contentType +
-                    ", content=" + content +
-                    ", address=" + address +
-                    '}';
-        }
     }
 
     public SetLinkContentRequestImpl() {
@@ -86,13 +75,4 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
         contentStructs.clear();
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "SetLinkContentRequestImpl{" +
-                "requestId=" + getRequestId() +
-                ", requestType=" + getRequestType() +
-                ", contentStructs=" + contentStructs +
-                '}';
-    }
 }

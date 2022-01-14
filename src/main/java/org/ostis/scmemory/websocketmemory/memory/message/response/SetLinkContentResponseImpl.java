@@ -24,14 +24,4 @@ public class SetLinkContentResponseImpl extends AbstractScResponse implements Se
         return statusOfOperations;
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "SetLinkContentResponseImpl{" +
-                "responseId=" + getResponseId() +
-                ", status=" + getResponseStatus() +
-                ", event=" + getEvent() +
-                ", statusOfOperations=" + statusOfOperations +
-                '}';
-    }
 }

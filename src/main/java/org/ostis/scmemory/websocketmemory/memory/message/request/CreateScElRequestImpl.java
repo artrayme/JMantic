@@ -52,13 +52,4 @@ public class CreateScElRequestImpl extends AbstractScRequest implements CreateSc
         return elementsToCreate.isEmpty();
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "CreateScElRequestImpl{" +
-                "requestId=" + getRequestId() +
-                ", requestType=" + getRequestType() +
-                ", elementsToCreate=" + elementsToCreate +
-                '}';
-    }
 }

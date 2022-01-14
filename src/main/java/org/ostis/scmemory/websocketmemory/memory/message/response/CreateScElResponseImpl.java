@@ -27,14 +27,4 @@ public class CreateScElResponseImpl extends AbstractScResponse implements Create
         return createdElementAddress.stream();
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "CreateScElResponseImpl{" +
-                "responseId=" + getResponseId() +
-                ", status=" + getResponseStatus() +
-                ", event=" + getEvent() +
-                ", createdElementAddress=" + createdElementAddress +
-                '}';
-    }
 }

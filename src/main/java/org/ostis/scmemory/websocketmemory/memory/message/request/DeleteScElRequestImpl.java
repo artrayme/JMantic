@@ -51,13 +51,4 @@ public class DeleteScElRequestImpl extends AbstractScRequest implements DeleteSc
         return addressesToDelete.isEmpty();
     }
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "DeleteScElRequestImpl{" +
-                "requestId=" + getRequestId() +
-                ", requestType=" + getRequestType() +
-                ", addressesToDelete=" + addressesToDelete +
-                '}';
-    }
 }

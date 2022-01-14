@@ -16,13 +16,4 @@ import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class DeleteScElResponseImpl extends AbstractScResponse implements DeleteScElResponse {
 
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "CreateScElResponseImpl{" +
-                "responseId=" + getResponseId() +
-                ", status=" + getResponseStatus() +
-                ", event=" + getEvent() +
-                '}';
-    }
 }

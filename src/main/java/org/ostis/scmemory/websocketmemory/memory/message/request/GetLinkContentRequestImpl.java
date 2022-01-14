@@ -39,15 +39,6 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
         public GetContentStruct(long address) {
             this.address = address;
         }
-
-        @JsonIgnore
-        @Override
-        public String toString() {
-            return "GetContentStruct{" +
-                    "command='" + command + '\'' +
-                    ", address=" + address +
-                    '}';
-        }
     }
 
     public GetLinkContentRequestImpl() {
@@ -79,15 +70,5 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
     @Override
     public boolean isEmpty() {
         return contentStructs.isEmpty();
-    }
-
-    @JsonIgnore
-    @Override
-    public String toString() {
-        return "GetLinkContentRequestImpl{" +
-                "requestId=" + getRequestId() +
-                ", requestType=" + getRequestType() +
-                ", contentStructs=" + contentStructs +
-                '}';
     }
 }
