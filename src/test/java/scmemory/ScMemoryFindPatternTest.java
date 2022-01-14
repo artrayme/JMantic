@@ -38,6 +38,14 @@ public class ScMemoryFindPatternTest {
         scMemory.close();
     }
 
+    /**
+     * <pre>
+     *     {@code
+     *                         ?edge(Edge.Access)
+     *         source(Node)----------------------->?target(Node)
+     *     }
+     * </pre>
+     */
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void findSingleTripleFNodeEdgeNode() throws Exception {
@@ -46,7 +54,15 @@ public class ScMemoryFindPatternTest {
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
 
         ScPattern pattern = new DefaultWebsocketScPattern();
-        pattern.addElement(new BasicPatternTriple(new FixedPatternElement(source), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")), new TypePatternElement<>(NodeType.NODE, new AliasPatternElement("node2"))));
+        pattern.addElement(new BasicPatternTriple(
+                new FixedPatternElement(source),
+                new TypePatternElement<>(
+                        EdgeType.ACCESS,
+                        new AliasPatternElement("edge1")),
+                new TypePatternElement<>(
+                        NodeType.NODE,
+                        new AliasPatternElement("node2"))
+        ));
 
         var result = scMemory.find(pattern).findFirst().get().toList();
 
@@ -60,6 +76,28 @@ public class ScMemoryFindPatternTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void findPatternFNodeEdgeNodeEdgeFNode() throws ScMemoryException {
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScNode relNode = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
+
+        ScPattern pattern = new DefaultWebsocketScPattern();
+        pattern.addElement(new BasicPatternTriple(new FixedPatternElement(relNode), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge2"))));
+
+        var result = scMemory.find(pattern).findFirst().get().toList();
+
+        assertEquals(relNode, result.get(0));
+        assertEquals(relEdge, result.get(1));
+        assertEquals(edge, result.get(2));
+        assertEquals(edge.getSource(), ((ScEdge) result.get(2)).getSource());
+        assertEquals(edge.getTarget(), ((ScEdge) result.get(2)).getTarget());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternWithDeepness3() throws ScMemoryException {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();

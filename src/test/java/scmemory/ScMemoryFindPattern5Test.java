@@ -234,4 +234,251 @@ public class ScMemoryFindPattern5Test {
         assertEquals(relEdge, result.get4());
         assertEquals(relNode, result.get5());
     }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFNodeEdgeNodeEdgeFLink() throws ScMemoryException {
+        Integer linkContent = 10;
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScLinkInteger relLink = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relLink), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target.getType(),
+                relEdge.getType(),
+                relLink)
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relLink, result.get5());
+        assertEquals(relLink.getContent(), ((ScLinkInteger) result.get5()).getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFNodeEdgeLinkEdgeFLink() throws ScMemoryException {
+        Integer linkContent = 10;
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScLinkInteger target = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScLinkInteger relLink = scMemory.createIntegerLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relLink), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target.getType(),
+                relEdge.getType(),
+                relLink)
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(target.getContent(), ((ScLinkInteger) result.get3()).getContent());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relLink, result.get5());
+        assertEquals(relLink.getContent(), ((ScLinkInteger) result.get5()).getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFNodeEdgeFLinkEdgeNode() throws ScMemoryException {
+        Float linkContent = 10f;
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScLinkFloat target = scMemory.createFloatLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScNode relNode = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target,
+                relEdge.getType(),
+                relNode.getType())
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(target.getContent(), ((ScLinkFloat) result.get3()).getContent());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relNode, result.get5());
+    }
+
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFNodeEdgeFLinkEdgeLink() throws ScMemoryException {
+        String linkContent = "hello";
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScLinkString target = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScLinkString relLink = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relLink), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target,
+                relEdge.getType(),
+                relLink.getType())
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(target.getContent(), ((ScLinkString) result.get3()).getContent());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relLink, result.get5());
+        assertEquals(relLink.getContent(), ((ScLinkString) result.get5()).getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFNodeEdgeFNodeEdgeNode() throws ScMemoryException {
+        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScNode relNode = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target,
+                relEdge.getType(),
+                relNode.getType())
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relNode, result.get5());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFLinkEdgeNodeEdgeFNode() throws ScMemoryException {
+        String linkContent = "-_-";
+        ScLinkString source = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScNode relNode = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target.getType(),
+                relEdge.getType(),
+                relNode)
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(source.getContent(), ((ScLinkString) result.get1()).getContent());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relNode, result.get5());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFLinkEdgeNodeEdgeFLink() throws ScMemoryException {
+        String linkContent = "-_-";
+        ScLinkString source = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScLinkString relLink = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relLink), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target.getType(),
+                relEdge.getType(),
+                relLink)
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(source.getContent(), ((ScLinkString) result.get1()).getContent());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relLink, result.get5());
+        assertEquals(relLink.getContent(), ((ScLinkString) result.get5()).getContent());
+    }
+
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFLinkEdgeFNodeEdgeLink() throws ScMemoryException {
+        String linkContent = "-_-";
+        ScLinkString source = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScLinkString relLink = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relLink), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target,
+                relEdge.getType(),
+                relLink.getType())
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(source.getContent(), ((ScLinkString) result.get1()).getContent());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relLink, result.get5());
+        assertEquals(relLink.getContent(), ((ScLinkString) result.get5()).getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternFLinkEdgeFNodeEdgeNode() throws ScMemoryException {
+        String linkContent = "-_-";
+        ScLinkString source = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of(linkContent)).findFirst().get();
+        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+
+        ScNode relNode = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+        ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
+
+        var result = scMemory.findByPattern5(DefaultScPattern5Factory.get(
+                source,
+                edge.getType(),
+                target,
+                relEdge.getType(),
+                relNode.getType())
+        ).findFirst().get();
+
+        assertEquals(source, result.get1());
+        assertEquals(source.getContent(), ((ScLinkString) result.get1()).getContent());
+        assertEquals(edge, result.get2());
+        assertEquals(target, result.get3());
+        assertEquals(relEdge, result.get4());
+        assertEquals(relNode, result.get5());
+    }
 }
