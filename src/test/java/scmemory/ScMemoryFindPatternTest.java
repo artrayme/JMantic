@@ -46,11 +46,7 @@ public class ScMemoryFindPatternTest {
         ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
 
         ScPattern pattern = new DefaultWebsocketScPattern();
-        pattern.addElement(new BasicPatternTriple(
-                new FixedPatternElement(source),
-                new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")),
-                new TypePatternElement<>(NodeType.NODE, new AliasPatternElement("node2"))
-        ));
+        pattern.addElement(new BasicPatternTriple(new FixedPatternElement(source), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")), new TypePatternElement<>(NodeType.NODE, new AliasPatternElement("node2"))));
 
         var result = scMemory.find(pattern).findFirst().get().toList();
 
@@ -72,11 +68,7 @@ public class ScMemoryFindPatternTest {
         ScEdge relEdge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(relNode), Stream.of(edge)).findFirst().get();
 
         ScPattern pattern = new DefaultWebsocketScPattern();
-        pattern.addElement(new BasicPatternTriple(
-                new FixedPatternElement(relNode),
-                new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")),
-                new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge2"))
-        ));
+        pattern.addElement(new BasicPatternTriple(new FixedPatternElement(relNode), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge1")), new TypePatternElement<>(EdgeType.ACCESS, new AliasPatternElement("edge2"))));
 
         var result = scMemory.find(pattern).findFirst().get().toList();
 

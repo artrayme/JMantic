@@ -194,6 +194,9 @@ public class ScMemoryFindPattern5Test {
                 relLink.getType())
         ).findFirst().get();
 
+        System.out.println(relEdge);
+        System.out.println(result.get4());
+
         assertEquals(source, result.get1());
         assertEquals(source.getContent(), ((ScLinkInteger) result.get1()).getContent());
         assertEquals(edge, result.get2());

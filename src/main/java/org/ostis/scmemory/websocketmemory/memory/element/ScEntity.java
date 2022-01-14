@@ -17,7 +17,7 @@ public abstract class ScEntity implements ScElement {
     private final String element;
 
     @JsonIgnore
-    private long address;
+    protected long address;
 
     public ScEntity(String element) {
         this.element = element;

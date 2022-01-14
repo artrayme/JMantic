@@ -25,6 +25,7 @@ import org.ostis.scmemory.model.pattern.ScPatternElement;
 import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.model.pattern.ScTypedElement;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
+import org.ostis.scmemory.websocketmemory.memory.exception.ExceptionMessages;
 import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
@@ -320,9 +321,9 @@ public class SyncOstisScMemory implements ScMemory {
                     }
                     case TYPE -> {
                         try {
-                            var element = createScElementByType(((ScTypedElement) el).getValue(), addressesIterator.next());
+                            var element = createScElementByType(((ScTypedElement<?>) el).getValue(), addressesIterator.next());
                             tempResult.add(element);
-                            aliases.put(((ScTypedElement) el).getAlias(), element);
+                            aliases.put(((ScTypedElement<?>) el).getAlias(), element);
                             searchedScElements.put(element.getAddress(), element);
                         } catch (ScMemoryException ex) {
                             //                            todo refactoring
@@ -354,6 +355,8 @@ public class SyncOstisScMemory implements ScMemory {
             ));
             FindByPatternRequest request = new FindByPatternRequestImpl();
             pattern.getElements().forEach(request::addComponent);
+            if (findPattern(pattern).findFirst().isEmpty())
+                throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
             var triplet = findPattern(pattern).findFirst().get().toList();
 
             ScElement sourceElement = searchedScElements.get(triplet.get(0).getAddress());
@@ -365,7 +368,12 @@ public class SyncOstisScMemory implements ScMemory {
         } else if (type instanceof NodeType nodeType) {
             return new ScNodeImpl(nodeType, addr);
         } else if (type instanceof LinkType linkType) {
-            return createLinksByAddresses(Stream.of(addr), linkType).findFirst().get();
+
+            if (createLinksByAddresses(Stream.of(addr), linkType).findFirst().isPresent()) {
+                return createLinksByAddresses(Stream.of(addr), linkType).findFirst().get();
+            } else {
+                throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
+            }
         } else if (type instanceof UnknownScElement) {
             try {
                 Object o = checkElementType(addr);
@@ -377,7 +385,7 @@ public class SyncOstisScMemory implements ScMemory {
                 e.printStackTrace();
             }
         }
-        throw new IllegalArgumentException("Some functionality is not implemented yet");
+        throw new IllegalArgumentException(ExceptionMessages.functionalityNotImplementedYet);
     }
 
     private Object checkElementType(Long addr) throws Exception {
@@ -392,7 +400,11 @@ public class SyncOstisScMemory implements ScMemory {
             return res;
         };
         var result = forkJoinPool.submit(task).get();
-        return result.getTypes().findFirst().get();
+        if (result.getTypes().findFirst().isPresent()) {
+            return result.getTypes().findFirst().get();
+        } else {
+            throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
+        }
     }
 
     @Override
