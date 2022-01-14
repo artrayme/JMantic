@@ -72,7 +72,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Stream;
 
@@ -182,114 +181,67 @@ public class SyncOstisScMemory implements ScMemory {
 
     @Override
     public <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException {
-        FindByPatternRequest request = new FindByPatternRequestImpl();
+
+        ScPattern pattern3 = new DefaultWebsocketScPattern();
 
         ScPatternTriplet triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), new AliasPatternElement("edge_2")),
                 convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
         );
-        request.addComponent(triple);
+        pattern3.addElement(triple);
 
-        FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
-        List<ScConstruction3<t1, T3>> result = new ArrayList<>();
-        List<Long> linksAddresses = new ArrayList<>();
-        response.getFoundAddresses().forEach(e -> {
-            var currentTriple = e.toList();
-            var construction = new ScConstruction3Impl<t1, T3>();
-            construction.setElement1(pattern.get1());
-            if (pattern.get3() instanceof ScLink || pattern.get3() instanceof ScNode)
-                construction.setElement3((T3) pattern.get3());
-            else if (pattern.get3() instanceof NodeType nodeType) {
-                construction.setElement3((T3) new ScNodeImpl(nodeType, currentTriple.get(2)));
-            } else if (pattern.get3() instanceof LinkType) {
-                linksAddresses.add(currentTriple.get(2));
-                T3 element3 = (T3) new ScLinkIntegerImpl(LinkType.LINK);
-                construction.setElement3(element3);
-            }
-            construction.setEdge(new ScEdgeImpl(pattern.get2(), construction.get1(), construction.get3(), currentTriple.get(1)));
-            result.add(construction);
-        });
+        var response = this.find(pattern3);
 
-        if (!linksAddresses.isEmpty()) {
-            List<? extends ScLink> links = createLinksByAddresses(linksAddresses.stream(), (LinkType) pattern.get3()).toList();
-
-            for (int i = 0; i < result.size(); i++) {
-                ScConstruction3Impl<t1, T3> construction = (ScConstruction3Impl<t1, T3>) result.get(i);
-                ((ScEdgeImpl) construction.getEdge()).setTargetElement(links.get(i));
-                construction.setElement3((T3) links.get(i));
-            }
+        List<Stream<? extends ScElement>> streams = response.toList();
+        List<ScConstruction3<t1, T3>> result = new ArrayList<>(streams.size());
+        for (Stream<? extends ScElement> stream : streams) {
+            List<? extends ScElement> currentTriplet = stream.toList();
+            ScConstruction3<t1, T3> temp = new ScConstruction3Impl<>(
+                    ((t1) currentTriplet.get(0)),
+                    ((ScEdge) currentTriplet.get(1)),
+                    ((T3) currentTriplet.get(2)));
+            result.add(temp);
         }
+
         return result.stream();
     }
 
     @Override
     public <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException {
-        FindByPatternRequest request = new FindByPatternRequestImpl();
+
+        ScPattern pattern5 = new DefaultWebsocketScPattern();
+
         ScAliasedElement edge2Alias = new AliasPatternElement("edge_2");
-        BasicPatternTriple triple = new BasicPatternTriple(
+        ScPatternTriplet triple = new BasicPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), edge2Alias),
                 convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
         );
-        BasicPatternTriple relTriple = new BasicPatternTriple(
+        ScPatternTriplet relTriple = new BasicPatternTriple(
                 convertToPatternElement(pattern.get5(), new AliasPatternElement("element_5")),
                 new TypePatternElement<>(pattern.get4(), new AliasPatternElement("edge_4")),
                 edge2Alias
         );
-        request.addComponent(triple);
-        request.addComponent(relTriple);
+        pattern5.addElement(triple);
+        pattern5.addElement(relTriple);
 
-        FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
+        var response = this.find(pattern5);
+
+        List<Stream<? extends ScElement>> streams = response.toList();
         List<ScConstruction5<t1, T3, T5>> result = new ArrayList<>();
-        List<Long> linksAddresses3 = new ArrayList<>();
-        List<Long> linksAddresses5 = new ArrayList<>();
-        response.getFoundAddresses().forEach(e -> {
-            var currentGroup = e.toList();
-            var construction = new ScConstruction5Impl<t1, T3, T5>();
-            construction.setElement1(pattern.get1());
-            if (pattern.get3() instanceof ScLink || pattern.get3() instanceof ScNode)
-                construction.setElement3((T3) pattern.get3());
-            else if (pattern.get3() instanceof NodeType nodeType) {
-                construction.setElement3((T3) new ScNodeImpl(nodeType, currentGroup.get(2)));
-            } else if (pattern.get3() instanceof LinkType) {
-                linksAddresses3.add(currentGroup.get(2));
-                T3 element3 = (T3) new ScLinkIntegerImpl(LinkType.LINK);
-                construction.setElement3(element3);
-            }
-            construction.setEdge2(new ScEdgeImpl(pattern.get2(), construction.get1(), construction.get3(), currentGroup.get(1)));
-            if (pattern.get5() instanceof ScLink || pattern.get5() instanceof ScNode)
-                construction.setElement5((T5) pattern.get5());
-            else if (pattern.get5() instanceof NodeType nodeType) {
-                construction.setElement5((T5) new ScNodeImpl(nodeType, currentGroup.get(3)));
-            } else if (pattern.get5() instanceof LinkType) {
-                linksAddresses5.add(currentGroup.get(3));
-                T5 element5 = (T5) new ScLinkIntegerImpl(LinkType.LINK);
-                construction.setElement5(element5);
-            }
-            construction.setEdge4(new ScEdgeImpl(pattern.get4(), construction.get5(), construction.get2(), currentGroup.get(4)));
-            result.add(construction);
-        });
 
-        if (!linksAddresses3.isEmpty()) {
-            List<? extends ScLink> links = createLinksByAddresses(linksAddresses3.stream(), (LinkType) pattern.get3()).toList();
-
-            for (int i = 0; i < result.size(); i++) {
-                ScConstruction5Impl<t1, T3, T5> construction = (ScConstruction5Impl<t1, T3, T5>) result.get(i);
-                ((ScEdgeImpl) construction.get2()).setTargetElement(links.get(i));
-                construction.setElement3((T3) links.get(i));
-            }
+        for (Stream<? extends ScElement> stream : streams) {
+            List<? extends ScElement> currentElementsSet = stream.toList();
+            ScConstruction5<t1, T3, T5> temp = new ScConstruction5Impl<>(
+                    ((t1) currentElementsSet.get(0)),
+                    ((ScEdge) currentElementsSet.get(1)),
+                    ((T3) currentElementsSet.get(2)),
+                    ((ScEdge) currentElementsSet.get(4)),
+                    ((T5) currentElementsSet.get(3)));
+            result.add(temp);
         }
 
-        if (!linksAddresses5.isEmpty()) {
-            List<? extends ScLink> links = createLinksByAddresses(linksAddresses5.stream(), (LinkType) pattern.get5()).toList();
-
-            for (int i = 0; i < result.size(); i++) {
-                ScConstruction5Impl<t1, T3, T5> construction = (ScConstruction5Impl<t1, T3, T5>) result.get(i);
-                ((ScEdgeImpl) construction.get4()).setTargetElement(links.get(i));
-                construction.setElement5((T5) links.get(i));
-            }
-        }
         return result.stream();
     }
 
@@ -316,19 +268,14 @@ public class SyncOstisScMemory implements ScMemory {
                 var el = patternElementIterator.next();
                 switch (el.getType()) {
                     case ALIAS -> {
-                        tempResult.add(aliases.get(el));
+                        tempResult.add(aliases.get((ScAliasedElement) el));
                         addressesIterator.next();
                     }
                     case TYPE -> {
-                        try {
-                            var element = createScElementByType(((ScTypedElement<?>) el).getValue(), addressesIterator.next());
-                            tempResult.add(element);
-                            aliases.put(((ScTypedElement<?>) el).getAlias(), element);
-                            searchedScElements.put(element.getAddress(), element);
-                        } catch (ScMemoryException ex) {
-                            //                            todo refactoring
-                            ex.printStackTrace();
-                        }
+                        var element = createScElementByType(((ScTypedElement<?>) el).getValue(), addressesIterator.next());
+                        tempResult.add(element);
+                        aliases.put(((ScTypedElement<?>) el).getAlias(), element);
+                        searchedScElements.put(element.getAddress(), element);
                     }
                     case ADDR -> {
                         ScFixedElement fixedElement = (ScFixedElement) el;
@@ -490,7 +437,7 @@ public class SyncOstisScMemory implements ScMemory {
      * @param contentType type of content
      * @param <C>         generic for content
      * @return created sc-link
-     * @throws ScMemoryException
+     * @throws ScMemoryException - see cause for more details.
      */
     private <C> Stream<? extends ScEntity> createLink(Stream<LinkType> elements, Stream<C> content
             , LinkContentType contentType) throws ScMemoryException {
@@ -545,7 +492,7 @@ public class SyncOstisScMemory implements ScMemory {
      * @param <L>     generic for link
      * @param <C>     generic for content
      * @return link with new content
-     * @throws ScMemoryException
+     * @throws ScMemoryException - see cause for more details.
      */
     private <L, C> Stream<Boolean> setLinkContent(Stream<L> links, Stream<C> content) throws ScMemoryException {
         SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
@@ -590,11 +537,11 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     /**
-     * Method for getting content from link.
+     * Method for getting content from a link.
      *
      * @param elements links
      * @return stream of content
-     * @throws ScMemoryException
+     * @throws ScMemoryException - see cause for more details.
      */
     private Stream<?> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
@@ -634,11 +581,11 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     /**
-     * Method for getting content from link.
+     * Method for getting content from a link.
      *
      * @param addresses links
      * @return stream of content
-     * @throws ScMemoryException
+     * @throws ScMemoryException - see cause for more details.
      */
     private Stream<? extends ScLink> createLinksByAddresses(Stream<Long> addresses, LinkType type) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
@@ -659,7 +606,7 @@ public class SyncOstisScMemory implements ScMemory {
                     result.add(scLinkInteger);
                 }
                 case FLOAT -> {
-                    Float content = ((Double) values.get(i)).floatValue();
+                    float content = ((Double) values.get(i)).floatValue();
                     ScLinkFloatImpl scLinkInteger = new ScLinkFloatImpl(type, links.get(i));
                     scLinkInteger.setContent(content);
                     result.add(scLinkInteger);
