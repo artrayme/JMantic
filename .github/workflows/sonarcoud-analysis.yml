@@ -54,6 +54,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all &
-          sleep 60
+          sleep 80
           ./gradlew jacocoTestReport
           ./gradlew build sonarqube --info
