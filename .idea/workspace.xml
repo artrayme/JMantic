@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
+      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ResolveKeynodeStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ResolveKeynodeStruct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/KeynodesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/KeynodesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CheckScElTypeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CheckScElTypeRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/DefaultWebsocketScPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/DefaultWebsocketScPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +96,7 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="scmemory" />
       <recent name="org.ostis.scmemory.websocketmemory.memory.structures" />
     </key>
   </component>
@@ -145,52 +143,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="KeynodesTest.findExistedKeynodes (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.KeynodesTest.findExistedKeynodes&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="KeynodesTest.findExistedKeynodes" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.defaultcontext.KeynodesTest.findExistedKeynodes&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="KeynodesTest.findNotExistedKeynodes (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -228,6 +180,52 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;context.asyncunchecked.KeynodesTest.resolveKeynode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPattern5WithNamesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPattern5WithNamesTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPatternTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -285,19 +283,19 @@
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.Coverage" />
-      <item itemvalue="Gradle.KeynodesTest.findExistedKeynodes" />
-      <item itemvalue="Gradle.KeynodesTest.findExistedKeynodes (1)" />
       <item itemvalue="Gradle.KeynodesTest.findNotExistedKeynodes (1)" />
       <item itemvalue="Gradle.SearchByTemplateTest" />
       <item itemvalue="Gradle.KeynodesTest.resolveKeynode" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest" />
+      <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest" />
         <item itemvalue="Gradle.KeynodesTest.resolveKeynode" />
         <item itemvalue="Gradle.SearchByTemplateTest" />
         <item itemvalue="Gradle.KeynodesTest.findNotExistedKeynodes (1)" />
-        <item itemvalue="Gradle.KeynodesTest.findExistedKeynodes (1)" />
-        <item itemvalue="Gradle.KeynodesTest.findExistedKeynodes" />
       </list>
     </recent_temporary>
   </component>
@@ -319,7 +317,7 @@
       <workItem from="1641925388949" duration="5067000" />
       <workItem from="1642011314196" duration="4321000" />
       <workItem from="1642023544293" duration="3474000" />
-      <workItem from="1642193694817" duration="25893000" />
+      <workItem from="1642193694817" duration="29222000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -482,7 +480,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642273210504</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix: fix api according to the json format">
+      <created>1642274877531</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1642274877531</updated>
+    </task>
+    <task id="LOCAL-00025" summary="test: add tests for finding and resolving keynodes methods">
+      <created>1642274912157</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1642274912157</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docs(readme): fix typos and add section about versioning" />
     <MESSAGE value="feat: add interfaces for n-ary sc-patterns" />
     <MESSAGE value="feat: make enum serializable for jackson-json" />
     <MESSAGE value="feat: implement internal mechanisms according to the new api for patterns" />
@@ -524,7 +535,9 @@
     <MESSAGE value="refactor: move classes that are connected with searching patterns and add documentation for they" />
     <MESSAGE value="refactor: add central id generator for requests id" />
     <MESSAGE value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
+    <MESSAGE value="fix: fix api according to the json format" />
+    <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add tests for finding and resolving keynodes methods" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

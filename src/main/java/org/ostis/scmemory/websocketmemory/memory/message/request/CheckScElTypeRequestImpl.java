@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * @author artrayme
+ * @since 0.6.0
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class CheckScElTypeRequestImpl extends AbstractScRequest implements CheckScElTypeRequest {
     @JsonProperty("payload")

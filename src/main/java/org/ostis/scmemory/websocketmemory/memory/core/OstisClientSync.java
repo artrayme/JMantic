@@ -100,7 +100,7 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onMessage(String message) {
-            logger.info("ostis client catch response {}" + message);
+            logger.info("ostis client catch response {}", message);
             responseMassage = message;
             latch.countDown();
         }

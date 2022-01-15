@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * @author artrayme
+ * @since 0.6.0
+ */
 public class DefaultWebsocketScPattern implements ScPattern {
     private final List<ScPatternTriplet> triplets = new ArrayList<>();
 
