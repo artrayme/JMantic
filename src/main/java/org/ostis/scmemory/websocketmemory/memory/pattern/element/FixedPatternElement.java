@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.element.ScElement;
-import org.ostis.scmemory.model.pattern.ScFixedElement;
+import org.ostis.scmemory.model.pattern.element.ScFixedElement;
 
 /**
  * @author artrayme

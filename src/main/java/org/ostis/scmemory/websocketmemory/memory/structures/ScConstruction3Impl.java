@@ -2,7 +2,7 @@ package org.ostis.scmemory.websocketmemory.memory.structures;
 
 import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.ScEdge;
-import org.ostis.scmemory.model.pattern.ScConstruction3;
+import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
 
 /**
  * @author artrayme

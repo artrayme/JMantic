@@ -3,7 +3,7 @@ package org.ostis.scmemory.websocketmemory.memory.pattern;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.ostis.scmemory.model.pattern.ScPatternElement;
+import org.ostis.scmemory.model.pattern.element.ScPatternElement;
 import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 
 /**

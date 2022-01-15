@@ -5,9 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/PatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/PatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScAliasedElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScAliasedElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScConstruction3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScConstruction3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScConstruction5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScConstruction5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScFixedElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScFixedElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPattern3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPattern5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScTypedElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScTypedElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern3Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern3Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern5Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern5Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern3FactoryWithNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern3FactoryWithNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern5FactoryWithNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern5FactoryWithNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/BasicPatternTriple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/BasicPatternTriple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/FixedPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/FixedPatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/TypePatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/TypePatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction5Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +118,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Coverage">
+  <component name="RunManager" selected="Gradle.ScMemoryFindPatternTest.findAllTripletsNodeEdgeNode">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -201,6 +230,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ScMemoryFindPatternTest.findAllTripletsNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findAllTripletsNodeEdgeNode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -215,29 +267,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -272,19 +301,19 @@
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.Coverage" />
-      <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
       <item itemvalue="Gradle.ScMemoryFindKeynodeTest.findKeynode" />
       <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" />
       <item itemvalue="Gradle.ScMemoryFindPattern5Test" />
       <item itemvalue="Gradle.ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findAllTripletsNodeEdgeNode" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findAllTripletsNodeEdgeNode" />
         <item itemvalue="Gradle.ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink" />
         <item itemvalue="Gradle.ScMemoryFindPattern5Test" />
         <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" />
         <item itemvalue="Gradle.ScMemoryFindKeynodeTest.findKeynode" />
-        <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
       </list>
     </recent_temporary>
   </component>
@@ -306,7 +335,7 @@
       <workItem from="1641925388949" duration="5067000" />
       <workItem from="1642011314196" duration="4321000" />
       <workItem from="1642023544293" duration="3474000" />
-      <workItem from="1642193694817" duration="11540000" />
+      <workItem from="1642193694817" duration="19296000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -441,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642204395900</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix: fix some issues from sonar report">
+      <created>1642205469643</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1642205469643</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +515,8 @@
     <MESSAGE value="test: add tests for pattern5" />
     <MESSAGE value="test: add tests for pattern5 and universal pattern" />
     <MESSAGE value="build: change waiting time while ostis starts" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: change waiting time while ostis starts" />
+    <MESSAGE value="fix: fix some issues from sonar report" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fix some issues from sonar report" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

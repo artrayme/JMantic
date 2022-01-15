@@ -2,15 +2,13 @@ package org.ostis.scmemory.model.pattern.pattern5;
 
 import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
-import org.ostis.scmemory.model.pattern.ScPattern5;
 
 /**
  * This class is a search pattern for 5 elements.
  * <p></p>
  * It is not recommended creating this class manually. Yau should use one of the factories:
  * {@link org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory},
- * {@link org.ostis.scmemory.model.pattern.factory.ScPattern5FactoryWithNames},
- * {@link org.ostis.scmemory.model.pattern.factory.ScPattern5FactoryWithAbbreviation}.
+ * {@link org.ostis.scmemory.model.pattern.factory.ScPattern5FactoryWithNames}.
  *
  * @author artrayme
  * @since 0.3.2

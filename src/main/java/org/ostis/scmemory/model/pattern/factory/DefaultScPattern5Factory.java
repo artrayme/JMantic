@@ -5,7 +5,7 @@ import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLink;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
-import org.ostis.scmemory.model.pattern.ScPattern5;
+import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.ostis.scmemory.model.pattern.pattern5.ScPattern5Impl;
 
 /**

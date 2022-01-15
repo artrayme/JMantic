@@ -2,8 +2,8 @@ package org.ostis.scmemory.websocketmemory.memory.pattern.element;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.ostis.scmemory.model.pattern.ScAliasedElement;
-import org.ostis.scmemory.model.pattern.ScTypedElement;
+import org.ostis.scmemory.model.pattern.element.ScAliasedElement;
+import org.ostis.scmemory.model.pattern.element.ScTypedElement;
 
 /**
  * @author artrayme

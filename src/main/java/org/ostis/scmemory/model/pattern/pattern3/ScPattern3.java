@@ -1,4 +1,4 @@
-package org.ostis.scmemory.model.pattern;
+package org.ostis.scmemory.model.pattern.pattern3;
 
 import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;

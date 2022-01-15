@@ -23,5 +23,6 @@ module JMantic.main {
     exports org.ostis.scmemory.websocketmemory.memory;
     exports org.ostis.scmemory.websocketmemory.memory.pattern;
     exports org.ostis.scmemory.websocketmemory.memory.pattern.element;
+    exports org.ostis.scmemory.model.pattern.element;
 
 }

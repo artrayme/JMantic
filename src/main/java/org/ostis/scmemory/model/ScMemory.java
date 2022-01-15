@@ -10,11 +10,11 @@ import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
-import org.ostis.scmemory.model.pattern.ScConstruction3;
-import org.ostis.scmemory.model.pattern.ScConstruction5;
+import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
+import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.ScPattern;
-import org.ostis.scmemory.model.pattern.ScPattern3;
-import org.ostis.scmemory.model.pattern.ScPattern5;
+import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
+import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -121,6 +121,13 @@ public interface ScMemory {
     <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement>
     Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
 
+    /**
+     * Method to search any sc-constructions by universal pattern.
+     *
+     * @param pattern {@link ScPattern} that store your pattern.
+     * @return stream of streams with found elements. Each nested stream store found sc-elements in sequence of a passed pattern.
+     * @since 0.6.0
+     */
     Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException;
 
     /**

@@ -116,4 +116,28 @@ public class ScMemoryFindPatternTest {
         assertEquals(edge.getSource(), ((ScEdge) result.get(2)).getSource());
         assertEquals(edge.getTarget(), ((ScEdge) result.get(2)).getTarget());
     }
+
+//    @Test
+//    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+//    void findAllTripletsNodeEdgeNode() throws Exception {
+//        ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+//        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
+//        ScEdge edge = scMemory.createEdges(Stream.of(EdgeType.ACCESS), Stream.of(source), Stream.of(target)).findFirst().get();
+//
+//        ScPattern pattern = new DefaultWebsocketScPattern();
+//        pattern.addElement(new BasicPatternTriple(
+//                new TypePatternElement<>(
+//                        NodeType.NODE,
+//                        new AliasPatternElement("node1")),
+//                new TypePatternElement<>(
+//                        EdgeType.ACCESS,
+//                        new AliasPatternElement("edge1")),
+//                new TypePatternElement<>(
+//                        NodeType.NODE,
+//                        new AliasPatternElement("node2"))
+//        ));
+//
+//        var result = scMemory.find(pattern).findFirst().get().toList();
+//
+//    }
 }

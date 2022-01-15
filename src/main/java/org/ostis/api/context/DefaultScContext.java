@@ -12,10 +12,10 @@ import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
-import org.ostis.scmemory.model.pattern.ScConstruction3;
-import org.ostis.scmemory.model.pattern.ScConstruction5;
-import org.ostis.scmemory.model.pattern.ScPattern3;
-import org.ostis.scmemory.model.pattern.ScPattern5;
+import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
+import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
+import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
+import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 
