@@ -19,6 +19,7 @@ import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -269,4 +270,7 @@ public class DefaultScContext {
         return memory.findKeynodes(Stream.of(idtf)).findFirst().get();
     }
 
+    public ScLinkString resolveKeynode(String idtf, NodeType type) throws ScMemoryException {
+        return memory.resolveKeynodes(Stream.of(idtf), Stream.of(type)).findFirst().get();
+    }
 }

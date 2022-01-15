@@ -103,9 +103,12 @@ public class AsyncUncheckedScContext {
         return executorService.submit(() -> context.getStringLinkContent(link));
     }
 
-    public Future<Optional<? extends ScLinkString>> findKeynode(String idtf) throws ScMemoryException {
+    public Future<Optional<? extends ScLinkString>> findKeynode(String idtf) {
         return executorService.submit(() -> context.findKeynode(idtf));
+    }
 
+    public Future<? extends ScLinkString> resolveKeynode(String idtf, NodeType type) {
+        return executorService.submit(()->context.resolveKeynode(idtf, type));
     }
 
 }

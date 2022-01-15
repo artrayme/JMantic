@@ -260,4 +260,14 @@ public class UncheckedScContext {
         return result;
     }
 
+    public ScLinkString resolveKeynode(String idtf, NodeType type) {
+        ScLinkString result;
+        try {
+            result = memory.resolveKeynodes(Stream.of(idtf), Stream.of(type)).findFirst().get();
+        } catch (ScMemoryException e) {
+            logger.error("It's really bad", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 }

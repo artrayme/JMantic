@@ -204,7 +204,7 @@ public interface ScMemory {
     /**
      * @since 0.6.0
      */
-    Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) throws ScMemoryException;
+    Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf, Stream<NodeType> type) throws ScMemoryException;
 
     /**
      * Implementation specific!

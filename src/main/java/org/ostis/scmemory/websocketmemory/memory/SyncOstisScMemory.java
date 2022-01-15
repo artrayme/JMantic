@@ -415,10 +415,16 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
-    public Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) throws ScMemoryException {
+    public Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf, Stream<NodeType> nodeType) throws ScMemoryException {
         KeynodeRequest request = new KeynodeRequestImpl();
+        List<ResolveKeynodeStruct> addToRequest = new ArrayList<>();
         List<String> content = idtf.toList();
-        request.addAllIdtf(content.stream().map(ResolveKeynodeStruct::new).toList());
+        Iterator<String> idtfIterator = content.iterator();
+        Iterator<NodeType> typeIterator = nodeType.toList().iterator();
+        while (idtfIterator.hasNext() || typeIterator.hasNext()){
+            addToRequest.add(new ResolveKeynodeStruct(idtfIterator.next(), typeIterator.next()));
+        }
+        request.addAllIdtf(addToRequest);
         KeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
 
         Iterator<String> contentIterator = content.iterator();
