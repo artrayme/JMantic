@@ -26,17 +26,19 @@ import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.model.pattern.element.ScTypedElement;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.exception.ExceptionMessages;
+import org.ostis.scmemory.websocketmemory.memory.structures.FindKeynodeStruct;
+import org.ostis.scmemory.websocketmemory.memory.structures.ResolveKeynodeStruct;
 import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
-import org.ostis.scmemory.websocketmemory.message.request.FindKeynodeRequest;
+import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.FindByPatternResponse;
-import org.ostis.scmemory.websocketmemory.message.response.FindKeynodeResponse;
+import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
@@ -51,7 +53,7 @@ import org.ostis.scmemory.websocketmemory.memory.message.request.CheckScElTypeRe
 import org.ostis.scmemory.websocketmemory.memory.message.request.CreateScElRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.DeleteScElRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.FindByPatternRequestImpl;
-import org.ostis.scmemory.websocketmemory.memory.message.request.FindKeynodeRequestImpl;
+import org.ostis.scmemory.websocketmemory.memory.message.request.KeynodeRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.GetLinkContentRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.SetLinkContentRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.pattern.DefaultWebsocketScPattern;
@@ -394,20 +396,37 @@ public class SyncOstisScMemory implements ScMemory {
 
     @Override
     public Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException {
-        FindKeynodeRequest request = new FindKeynodeRequestImpl();
+        KeynodeRequest request = new KeynodeRequestImpl();
         List<String> content = idtf.toList();
-        request.addAllIdtf(content);
-        FindKeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
+        request.addAllIdtf(content.stream().map(FindKeynodeStruct::new).toList());
+        KeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
 
         Iterator<String> contentIterator = content.iterator();
         List<Optional<? extends ScLinkString>> result = new ArrayList<>(content.size());
         response.getFindAddresses().forEach(e -> {
-            if (e == 0) {
+            if (e != 0) {
                 ScLinkStringImpl link = new ScLinkStringImpl(LinkType.LINK, e);
                 link.setContent(contentIterator.next());
                 result.add(Optional.of(link));
             } else
                 result.add(Optional.empty());
+        });
+        return result.stream();
+    }
+
+    @Override
+    public Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) throws ScMemoryException {
+        KeynodeRequest request = new KeynodeRequestImpl();
+        List<String> content = idtf.toList();
+        request.addAllIdtf(content.stream().map(ResolveKeynodeStruct::new).toList());
+        KeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
+
+        Iterator<String> contentIterator = content.iterator();
+        List<ScLinkString> result = new ArrayList<>(content.size());
+        response.getFindAddresses().forEach(e -> {
+            ScLinkStringImpl link = new ScLinkStringImpl(LinkType.LINK, e);
+            link.setContent(contentIterator.next());
+            result.add(link);
         });
         return result.stream();
     }

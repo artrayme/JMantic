@@ -202,6 +202,11 @@ public interface ScMemory {
     Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException;
 
     /**
+     * @since 0.6.0
+     */
+    Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf) throws ScMemoryException;
+
+    /**
      * Implementation specific!
      * <p></p>
      * It is recommended to open ScMemory before use.

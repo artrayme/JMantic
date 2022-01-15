@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * @author artrayme
- * @since 0.3.3
+ * @since 0.6.0
  */
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @JsonPropertyOrder({ "command", "idtf" })
-public class FindKeynodeStruct extends KeynodeStruct {
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public class ResolveKeynodeStruct extends KeynodeStruct{
     @JsonProperty("command")
-    private final String command = "find";
+    private final String command = "resolve";
 
-    public FindKeynodeStruct(String idtf) {
+    public ResolveKeynodeStruct(String idtf) {
         super(idtf);
     }
 
