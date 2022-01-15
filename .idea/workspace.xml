@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="pattern_generalization" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23CPAfpirhIwlJuiZiyxI5tDIuc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Coverage">
+    <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Coverage" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jacocoTestReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindKeynodeTest.findKeynode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindKeynodeTest.findKeynode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPattern5Test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPattern5Test&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Test" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.Build" />
+      <item itemvalue="Gradle.Test" />
+      <item itemvalue="Gradle.Coverage" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
+      <item itemvalue="Gradle.ScMemoryFindKeynodeTest.findKeynode" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" />
+      <item itemvalue="Gradle.ScMemoryFindPattern5Test" />
+      <item itemvalue="Gradle.ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ScMemoryFindPattern5Test.findPatternFLinkEdgeFLinkEdgeLink" />
+        <item itemvalue="Gradle.ScMemoryFindPattern5Test" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternFNodeEdgeNodeEdgeFNode" />
+        <item itemvalue="Gradle.ScMemoryFindKeynodeTest.findKeynode" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="" />
+      <created>1641234971602</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641234971602</updated>
+      <workItem from="1641234972613" duration="488000" />
+      <workItem from="1641235546704" duration="360000" />
+      <workItem from="1641498007150" duration="365000" />
+      <workItem from="1641498424096" duration="10733000" />
+      <workItem from="1641518789571" duration="27258000" />
+      <workItem from="1641842723268" duration="6178000" />
+      <workItem from="1641850502336" duration="1154000" />
+      <workItem from="1641925388949" duration="5067000" />
+      <workItem from="1642011314196" duration="4321000" />
+      <workItem from="1642023544293" duration="3474000" />
+      <workItem from="1642193694817" duration="11540000" />
+    </task>
+    <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
+      <created>1641512873177</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641512873177</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: add interfaces for n-ary sc-patterns">
+      <created>1641515161253</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641515161253</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: make enum serializable for jackson-json">
+      <created>1641515295712</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641515295712</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: implement internal mechanisms according to the new api for patterns">
+      <created>1641516577310</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641516577310</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: make some classes for ScPatterns public api">
+      <created>1641519035531</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641519035531</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: add type for searching unknown ScElements">
+      <created>1641591172647</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1641591172647</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: add request for checking ScElements types">
+      <created>1641591315754</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641591315754</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: add map with all sc-types for faster casting from element type code to library element type">
+      <created>1641591451165</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641591451165</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: implement n-ary searching patterns in ScMemory">
+      <created>1641591523520</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1641591523520</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor!: change packages structure">
+      <created>1641596625158</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1641596625158</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat!: add method for getting address of connected server in ostis clients">
+      <created>1642025400660</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642025400660</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
+      <created>1642025482745</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642025482745</updated>
+    </task>
+    <task id="LOCAL-00013" summary="test: add basic tests for searching by pattern method">
+      <created>1642025549712</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642025549712</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor: fix unsafe code and add small improvements">
+      <created>1642197317320</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1642197317320</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor!: rewrite all internal find mechanisms for universal find">
+      <created>1642203488025</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642203488025</updated>
+    </task>
+    <task id="LOCAL-00016" summary="docs: remove bad recommendations">
+      <created>1642203527335</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642203527335</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: remove toString methods from internal classes">
+      <created>1642203726113</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642203726113</updated>
+    </task>
+    <task id="LOCAL-00018" summary="test: add tests for pattern5 and universal pattern">
+      <created>1642203804258</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642203804258</updated>
+    </task>
+    <task id="LOCAL-00019" summary="build: change waiting time while ostis starts">
+      <created>1642204395900</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1642204395900</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="docs(readme): fix typos and add section about versioning" />
+    <MESSAGE value="feat: add interfaces for n-ary sc-patterns" />
+    <MESSAGE value="feat: make enum serializable for jackson-json" />
+    <MESSAGE value="feat: implement internal mechanisms according to the new api for patterns" />
+    <MESSAGE value="feat: make some classes for ScPatterns public api" />
+    <MESSAGE value="feat: add type for searching unknown ScElements" />
+    <MESSAGE value="feat: add request for checking ScElements types" />
+    <MESSAGE value="feat: add map with all sc-types for faster casting from element type code to library element type" />
+    <MESSAGE value="feat: implement n-ary searching patterns in ScMemory" />
+    <MESSAGE value="refactor!: change packages structure" />
+    <MESSAGE value="feat!: add method for getting address of connected server in ostis clients" />
+    <MESSAGE value="refactor: fix bugs in searching by pattern functionality" />
+    <MESSAGE value="test: add basic tests for searching by pattern method" />
+    <MESSAGE value="refactor: fix unsafe code and add small improvements" />
+    <MESSAGE value="refactor!: rewrite all internal find mechanisms for universal find" />
+    <MESSAGE value="docs: remove bad recommendations" />
+    <MESSAGE value="refactor: remove toString methods from internal classes" />
+    <MESSAGE value="test: add tests for pattern5" />
+    <MESSAGE value="test: add tests for pattern5 and universal pattern" />
+    <MESSAGE value="build: change waiting time while ostis starts" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: change waiting time while ostis starts" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement" memberName="element" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

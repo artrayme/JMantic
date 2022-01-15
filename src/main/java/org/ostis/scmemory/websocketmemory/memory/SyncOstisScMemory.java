@@ -283,6 +283,7 @@ public class SyncOstisScMemory implements ScMemory {
                         searchedScElements.put(fixedElement.getElement().getAddress(), fixedElement.getElement());
                         addressesIterator.next();
                     }
+                    default -> throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
                 }
             }
             result.add(tempResult);
@@ -302,10 +303,13 @@ public class SyncOstisScMemory implements ScMemory {
             ));
             FindByPatternRequest request = new FindByPatternRequestImpl();
             pattern.getElements().forEach(request::addComponent);
-            if (findPattern(pattern).findFirst().isEmpty())
+            List<? extends ScElement> triplet;
+            Optional<Stream<? extends ScElement>> first = findPattern(pattern).findFirst();
+            if (first.isPresent()) {
+                triplet = first.get().toList();
+            } else {
                 throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
-            var triplet = findPattern(pattern).findFirst().get().toList();
-
+            }
             ScElement sourceElement = searchedScElements.get(triplet.get(0).getAddress());
             ScElement targetElement = searchedScElements.get(triplet.get(2).getAddress());
             edge.setSourceElement(sourceElement);
@@ -316,8 +320,9 @@ public class SyncOstisScMemory implements ScMemory {
             return new ScNodeImpl(nodeType, addr);
         } else if (type instanceof LinkType linkType) {
 
-            if (createLinksByAddresses(Stream.of(addr), linkType).findFirst().isPresent()) {
-                return createLinksByAddresses(Stream.of(addr), linkType).findFirst().get();
+            Optional<? extends ScLink> first = createLinksByAddresses(Stream.of(addr), linkType).findFirst();
+            if (first.isPresent()) {
+                return first.get();
             } else {
                 throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
             }
@@ -328,8 +333,7 @@ public class SyncOstisScMemory implements ScMemory {
                 searchedScElements.put(addr, element);
                 return element;
             } catch (Exception e) {
-                //                todo logging
-                e.printStackTrace();
+                throw new ScMemoryException(e);
             }
         }
         throw new IllegalArgumentException(ExceptionMessages.functionalityNotImplementedYet);
@@ -347,8 +351,9 @@ public class SyncOstisScMemory implements ScMemory {
             return res;
         };
         var result = forkJoinPool.submit(task).get();
-        if (result.getTypes().findFirst().isPresent()) {
-            return result.getTypes().findFirst().get();
+        Optional<Object> first = result.getTypes().findFirst();
+        if (first.isPresent()) {
+            return first.get();
         } else {
             throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
         }
