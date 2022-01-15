@@ -2,9 +2,9 @@ package org.ostis.scmemory.websocketmemory.memory.message.request;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.ostis.scmemory.websocketmemory.message.request.FindKeynodeRequest;
+import org.ostis.scmemory.websocketmemory.memory.structures.KeynodeStruct;
+import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.RequestType;
-import org.ostis.scmemory.websocketmemory.memory.structures.FindKeynodeStruct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +14,18 @@ import java.util.List;
  * @since 0.3.3
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class FindKeynodeRequestImpl extends AbstractScRequest implements FindKeynodeRequest {
+public class KeynodeRequestImpl extends AbstractScRequest implements KeynodeRequest {
 
     @JsonProperty("payload")
-    private final List<FindKeynodeStruct> keynodeStructs = new ArrayList<>();
+    private final List<KeynodeStruct> keynodeStructs = new ArrayList<>();
 
-    public FindKeynodeRequestImpl() {
-        super(1, RequestType.KEYNODES);
+    public KeynodeRequestImpl() {
+        super(RequestType.KEYNODES);
     }
 
-
     @Override
-    public void addAllIdtf(List<String> idtf) {
-        keynodeStructs.addAll(idtf.stream().map(FindKeynodeStruct::new).toList());
+    public void addAllIdtf(List<?extends KeynodeStruct> idtf) {
+        keynodeStructs.addAll(idtf);
     }
 
     @Override

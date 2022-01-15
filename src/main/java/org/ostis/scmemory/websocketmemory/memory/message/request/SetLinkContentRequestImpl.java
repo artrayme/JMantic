@@ -24,15 +24,17 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
     private List<SetContentStruct> contentStructs;
 
     /**
-     * Class describing the structure of a request to set content to the {@link org.ostis.scmemory.model.element.link.ScLink}
-     *
-     *     {
-     *       // command to set ScLink content
-     *       "command": "set",
-     *       "type": "int",  // content type
-     *       "data": 67,     // content could be a string, number
-     *       "addr": 3123    // ScAddr of ScLink to change content
-     *     }
+     * Class describing the structure of a request
+     * to set content to the {@link org.ostis.scmemory.model.element.link.ScLink}
+     * <pre>
+     * {
+     * // command to set ScLink content
+     * "command": "set",
+     * "type": "int",  // content type
+     * "data": 67,     // content could be a string, number
+     * "addr": 3123    // ScAddr of ScLink to change content
+     * }
+     * </pre>
      */
     private static class SetContentStruct {
         @JsonProperty("command")
@@ -52,7 +54,7 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
     }
 
     public SetLinkContentRequestImpl() {
-        super(1, RequestType.CONTENT);
+        super(RequestType.CONTENT);
         contentStructs = new ArrayList<>();
     }
 

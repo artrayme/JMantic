@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.websocketmemory.message.request.RequestType;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
+import org.ostis.scmemory.websocketmemory.util.RequestIdGenerator;
 
 /**
  * An abstract request class that contains information that is inherent in all system requests.
@@ -19,6 +20,11 @@ public abstract class AbstractScRequest implements ScRequest {
     private final long requestId;
     @JsonProperty("type")
     private final RequestType requestType;
+
+    public AbstractScRequest(RequestType requestType) {
+        this.requestId = RequestIdGenerator.getId();
+        this.requestType = requestType;
+    }
 
     public AbstractScRequest(long requestId, RequestType requestType) {
         this.requestId = requestId;

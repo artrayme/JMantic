@@ -24,7 +24,7 @@ public class CreateScElRequestImpl extends AbstractScRequest implements CreateSc
     private List<ScElement> elementsToCreate;
 
     public CreateScElRequestImpl() {
-        super(1, RequestType.CREATE_ELEMENTS);
+        super(RequestType.CREATE_ELEMENTS);
         elementsToCreate = new ArrayList<>();
     }
 

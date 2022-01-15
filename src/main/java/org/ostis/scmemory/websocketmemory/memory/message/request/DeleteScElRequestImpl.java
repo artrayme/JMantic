@@ -23,7 +23,7 @@ public class DeleteScElRequestImpl extends AbstractScRequest implements DeleteSc
     private List<Long> addressesToDelete;
 
     public DeleteScElRequestImpl() {
-        super(1, RequestType.DELETE_ELEMENTS);
+        super(RequestType.DELETE_ELEMENTS);
         addressesToDelete = new ArrayList<>();
     }
 

@@ -16,7 +16,7 @@ public class CheckScElTypeRequestImpl extends AbstractScRequest implements Check
     private final List<Long> addresses = new ArrayList<>();
 
     public CheckScElTypeRequestImpl() {
-        super(0, RequestType.CHECK_ELEMENTS);
+        super(RequestType.CHECK_ELEMENTS);
     }
 
     @JsonIgnore

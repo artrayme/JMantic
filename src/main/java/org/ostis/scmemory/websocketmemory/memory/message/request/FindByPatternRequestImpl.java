@@ -21,7 +21,7 @@ public class FindByPatternRequestImpl extends AbstractScRequest implements FindB
     private final List<ScPatternTriplet> components = new ArrayList<>();
 
     public FindByPatternRequestImpl() {
-        super(1, RequestType.SEARCH_TEMPLATE);
+        super(RequestType.SEARCH_TEMPLATE);
     }
 
     @JsonIgnore

@@ -24,11 +24,11 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
 
     /**
      * Class describing the structure of a request to retrieve the content of the {@link org.ostis.scmemory.model.element.link.ScLink}
-     *
-     *     {
-     *       "command": "get",
-     *       "addr": integer_value
-     *     }
+     * <p>
+     * {
+     * "command": "get",
+     * "addr": integer_value
+     * }
      */
     private static class GetContentStruct {
         @JsonProperty("command")
@@ -42,7 +42,7 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
     }
 
     public GetLinkContentRequestImpl() {
-        super(1, RequestType.CONTENT);
+        super(RequestType.CONTENT);
         contentStructs = new ArrayList<>();
     }
 
