@@ -23,6 +23,24 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
     @JsonProperty("payload")
     private List<SetContentStruct> contentStructs;
 
+    public SetLinkContentRequestImpl() {
+        super(RequestType.CONTENT);
+        contentStructs = new ArrayList<>();
+    }
+
+    @JsonIgnore
+    @Override
+    public void addToRequest(ScLink link, Object data) {
+        SetContentStruct struct = new SetContentStruct(link.getContentType(), data, link.getAddress());
+        contentStructs.add(struct);
+    }
+
+    @JsonIgnore
+    @Override
+    public void resetRequest() {
+        contentStructs.clear();
+    }
+
     /**
      * Class describing the structure of a request
      * to set content to the {@link org.ostis.scmemory.model.element.link.ScLink}
@@ -51,30 +69,6 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
             this.content = content;
             this.address = address;
         }
-    }
-
-    public SetLinkContentRequestImpl() {
-        super(RequestType.CONTENT);
-        contentStructs = new ArrayList<>();
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean isEmpty() {
-        return contentStructs.isEmpty();
-    }
-
-    @JsonIgnore
-    @Override
-    public void addToRequest(ScLink link, Object data) {
-        SetContentStruct struct = new SetContentStruct(link.getContentType(), data, link.getAddress());
-        contentStructs.add(struct);
-    }
-
-    @JsonIgnore
-    @Override
-    public void resetRequest() {
-        contentStructs.clear();
     }
 
 }

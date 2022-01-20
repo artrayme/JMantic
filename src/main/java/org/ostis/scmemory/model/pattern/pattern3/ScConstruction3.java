@@ -11,6 +11,7 @@ import org.ostis.scmemory.model.element.edge.ScEdge;
  *         get1()-----------------------get3()
  *     }
  * </pre>
+ *
  * @author artrayme
  * @since 0.3.2
  */

@@ -4,22 +4,17 @@ import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
-import org.ostis.scmemory.model.element.link.LinkContentType;
-import org.ostis.scmemory.model.element.link.LinkType;
-import org.ostis.scmemory.model.element.link.ScLinkFloat;
-import org.ostis.scmemory.model.element.link.ScLinkInteger;
-import org.ostis.scmemory.model.element.link.ScLinkString;
+import org.ostis.scmemory.model.element.link.*;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
-import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
-import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
-import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
-import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
+import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
+import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
+import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
+import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -180,7 +175,13 @@ public class DefaultScContext {
 
     @Deprecated
     public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent, ScNode relation, EdgeType relationEdgeType) throws ScMemoryException {
-        return memory.findByPattern5(DefaultScPattern5Factory.get(fixedNode, edge, link, relationEdgeType, relation)).map(ScConstruction5::get2);
+        return memory.findByPattern5(DefaultScPattern5Factory.get(
+                fixedNode,
+                edge,
+                link,
+                relationEdgeType,
+                relation
+        )).map(ScConstruction5::get2);
     }
 
     public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {

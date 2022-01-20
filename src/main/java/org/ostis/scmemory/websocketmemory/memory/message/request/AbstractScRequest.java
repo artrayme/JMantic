@@ -26,20 +26,4 @@ public abstract class AbstractScRequest implements ScRequest {
         this.requestType = requestType;
     }
 
-    public AbstractScRequest(long requestId, RequestType requestType) {
-        this.requestId = requestId;
-        this.requestType = requestType;
-    }
-
-    @JsonIgnore
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    @JsonIgnore
-    @Override
-    public RequestType getRequestType() {
-        return requestType;
-    }
 }

@@ -26,6 +26,7 @@ import org.ostis.scmemory.model.pattern.ScPatternTriplet;
 import org.ostis.scmemory.model.pattern.element.ScTypedElement;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.exception.ExceptionMessages;
+import org.ostis.scmemory.websocketmemory.memory.pattern.SearchingPatternTriple;
 import org.ostis.scmemory.websocketmemory.memory.structures.FindKeynodeStruct;
 import org.ostis.scmemory.websocketmemory.memory.structures.ResolveKeynodeStruct;
 import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
@@ -61,7 +62,6 @@ import org.ostis.scmemory.websocketmemory.memory.pattern.element.AliasPatternEle
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement;
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.TypePatternElement;
 import org.ostis.scmemory.websocketmemory.memory.sender.RequestSenderImpl;
-import org.ostis.scmemory.websocketmemory.memory.pattern.BasicPatternTriple;
 import org.ostis.scmemory.websocketmemory.memory.structures.ScConstruction3Impl;
 import org.ostis.scmemory.websocketmemory.memory.structures.ScConstruction5Impl;
 
@@ -186,7 +186,7 @@ public class SyncOstisScMemory implements ScMemory {
 
         ScPattern pattern3 = new DefaultWebsocketScPattern();
 
-        ScPatternTriplet triple = new BasicPatternTriple(
+        ScPatternTriplet triple = new SearchingPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), new AliasPatternElement("edge_2")),
                 convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
@@ -215,12 +215,12 @@ public class SyncOstisScMemory implements ScMemory {
         ScPattern pattern5 = new DefaultWebsocketScPattern();
 
         ScAliasedElement edge2Alias = new AliasPatternElement("edge_2");
-        ScPatternTriplet triple = new BasicPatternTriple(
+        ScPatternTriplet triple = new SearchingPatternTriple(
                 new FixedPatternElement(pattern.get1()),
                 new TypePatternElement<>(pattern.get2(), edge2Alias),
                 convertToPatternElement(pattern.get3(), new AliasPatternElement("element_3"))
         );
-        ScPatternTriplet relTriple = new BasicPatternTriple(
+        ScPatternTriplet relTriple = new SearchingPatternTriple(
                 convertToPatternElement(pattern.get5(), new AliasPatternElement("element_5")),
                 new TypePatternElement<>(pattern.get4(), new AliasPatternElement("edge_4")),
                 edge2Alias
@@ -298,7 +298,7 @@ public class SyncOstisScMemory implements ScMemory {
         if (type instanceof EdgeType edgeType) {
             ScPattern pattern = new DefaultWebsocketScPattern();
             ScEdgeImpl edge = new ScEdgeImpl(edgeType, addr);
-            pattern.addElement(new BasicPatternTriple(
+            pattern.addElement(new SearchingPatternTriple(
                     new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("1")),
                     new FixedPatternElement(edge),
                     new TypePatternElement<>(UnknownScElement.ELEMENT, new AliasPatternElement("2"))

@@ -41,9 +41,4 @@ public class CheckScElTypeRequestImpl extends AbstractScRequest implements Check
         return addresses.stream();
     }
 
-    @JsonIgnore
-    @Override
-    public boolean isEmpty() {
-        return addresses.isEmpty();
-    }
 }

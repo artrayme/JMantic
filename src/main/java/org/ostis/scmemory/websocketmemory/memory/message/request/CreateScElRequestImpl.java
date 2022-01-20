@@ -46,10 +46,4 @@ public class CreateScElRequestImpl extends AbstractScRequest implements CreateSc
         elementsToCreate.clear();
     }
 
-    @JsonIgnore
-    @Override
-    public boolean isEmpty() {
-        return elementsToCreate.isEmpty();
-    }
-
 }

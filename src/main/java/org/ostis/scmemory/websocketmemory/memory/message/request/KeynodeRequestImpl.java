@@ -25,13 +25,8 @@ public class KeynodeRequestImpl extends AbstractScRequest implements KeynodeRequ
     }
 
     @Override
-    public void addAllIdtf(List<?extends KeynodeStruct> idtf) {
+    public void addAllIdtf(List<? extends KeynodeStruct> idtf) {
         keynodeStructs.addAll(idtf);
     }
 
-    @Override
-    @JsonIgnore
-    public boolean isEmpty() {
-        return keynodeStructs.isEmpty();
-    }
 }

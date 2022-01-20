@@ -177,6 +177,8 @@ Where:
 
 ToDo
 
+[//]: # (Each element when triplet creation should be on new line )
+
 ****
 
 ## Used libraries

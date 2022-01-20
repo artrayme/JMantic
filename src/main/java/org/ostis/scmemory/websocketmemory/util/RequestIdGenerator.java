@@ -1,6 +1,5 @@
 package org.ostis.scmemory.websocketmemory.util;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class RequestIdGenerator {

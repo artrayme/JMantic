@@ -28,17 +28,5 @@ public class PayloadFoundByTemplateStruct {
     }
 
     private static class AliasesStruct {
-        @Override
-        public String toString() {
-            return "AliasesStruct{}";
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "PayloadFoundByTemplateStruct{" +
-                "aliases=" + aliases +
-                ", foundAddresses=" + foundAddresses +
-                '}';
     }
 }

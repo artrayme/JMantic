@@ -38,7 +38,7 @@ public class ScEdgeImpl extends ScEntity implements ScEdge {
         setAddress(address);
     }
 
-//   Very unsafe. Only for specific use
+    //   Very unsafe. Only for specific use
     public ScEdgeImpl(EdgeType edgeType, Long address) {
         super("edge");
         this.edgeType = edgeType;

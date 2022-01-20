@@ -8,7 +8,6 @@ import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.RequestType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,25 +25,7 @@ public class FindByPatternRequestImpl extends AbstractScRequest implements FindB
 
     @JsonIgnore
     @Override
-    public boolean isEmpty() {
-        return components.isEmpty();
-    }
-
-    @JsonIgnore
-    @Override
-    public List<ScPatternTriplet> getComponents() {
-        return Collections.unmodifiableList(components);
-    }
-
-    @JsonIgnore
-    @Override
     public boolean addComponent(ScPatternTriplet component) {
         return components.add(component);
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean removeComponent(ScPatternTriplet component) {
-        return components.remove(component);
     }
 }

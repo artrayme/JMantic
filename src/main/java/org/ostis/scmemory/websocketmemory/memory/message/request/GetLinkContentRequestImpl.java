@@ -22,25 +22,6 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
     @JsonProperty("payload")
     private List<GetContentStruct> contentStructs;
 
-    /**
-     * Class describing the structure of a request to retrieve the content of the {@link org.ostis.scmemory.model.element.link.ScLink}
-     * <p>
-     * {
-     * "command": "get",
-     * "addr": integer_value
-     * }
-     */
-    private static class GetContentStruct {
-        @JsonProperty("command")
-        String command = "get";
-        @JsonProperty("addr")
-        long address;
-
-        public GetContentStruct(long address) {
-            this.address = address;
-        }
-    }
-
     public GetLinkContentRequestImpl() {
         super(RequestType.CONTENT);
         contentStructs = new ArrayList<>();
@@ -66,9 +47,22 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
         contentStructs.clear();
     }
 
-    @JsonIgnore
-    @Override
-    public boolean isEmpty() {
-        return contentStructs.isEmpty();
+    /**
+     * Class describing the structure of a request to retrieve the content of the {@link org.ostis.scmemory.model.element.link.ScLink}
+     * <p>
+     * {
+     * "command": "get",
+     * "addr": integer_value
+     * }
+     */
+    private static class GetContentStruct {
+        @JsonProperty("command")
+        String command = "get";
+        @JsonProperty("addr")
+        long address;
+
+        public GetContentStruct(long address) {
+            this.address = address;
+        }
     }
 }

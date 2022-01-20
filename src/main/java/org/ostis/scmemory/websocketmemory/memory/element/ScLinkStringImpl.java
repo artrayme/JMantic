@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 
-import java.util.Objects;
-
 /**
  * @author Michael
  * @since 0.0.1

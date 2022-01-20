@@ -2,13 +2,13 @@ package org.ostis.scmemory.websocketmemory.message.response;
 
 /**
  * An interface that is a generic class of system responses
- *
+ * <p>
  * Response has a common structure:
  * {
- *   "id": 2,
- *   "status": true,
- *   "event": false,
- *   "payload": {...}
+ * "id": 2,
+ * "status": true,
+ * "event": false,
+ * "payload": {...}
  * }
  * Different responses have different payload structure
  *

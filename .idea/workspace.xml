@@ -5,16 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
-      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScConstruction3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScConstruction3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEdgeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEdgeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/AbstractScRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/AbstractScRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CheckScElTypeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CheckScElTypeRequestImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/DefaultWebsocketScPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/DefaultWebsocketScPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CreateScElRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/CreateScElRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/DeleteScElRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/DeleteScElRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/FindByPatternRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/FindByPatternRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/GetLinkContentRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/GetLinkContentRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/SetLinkContentRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/SetLinkContentRequestImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CreateScElResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CreateScElResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/DeleteScElResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/DeleteScElResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/FindByPatternResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/FindByPatternResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/SetLinkContentResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/SetLinkContentResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/BasicPatternTriple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/SearchingPatternTriple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/FindKeynodeStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/FindKeynodeStruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ResolveKeynodeStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ResolveKeynodeStruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/CheckScElTypeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/CheckScElTypeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/FindByPatternRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/FindByPatternRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/ScRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/ScRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/response/CheckScElTypeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/response/CheckScElTypeResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/response/ScResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/response/ScResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/RequestIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/RequestIdGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +75,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="pattern_generalization" />
+        <entry key="$PROJECT_DIR$" value="pattern_generation_dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,21 +110,26 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/build/jacocoHtml/index.html&#10;/home/artrayme/IdeaProjects/JMantic/.idea/codeStyles/codeStyleConfig.xml&#10;/home/artrayme/IdeaProjects/JMantic/.idea/uiDesigner.xml" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="scmemory" />
-      <recent name="org.ostis.scmemory.websocketmemory.memory.structures" />
+      <recent name="org.ostis.scmemory.websocketmemory.memory.message.response" />
+      <recent name="org.ostis.scmemory.websocketmemory.message.response" />
+      <recent name="org.ostis.scmemory.websocketmemory.message.request" />
+      <recent name="org.ostis.scmemory.websocketmemory.memory.message.request" />
+      <recent name="org.ostis.scmemory.websocketmemory.memory.pattern" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Coverage">
@@ -139,52 +171,6 @@
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="KeynodesTest.findNotExistedKeynodes (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.KeynodesTest.findNotExistedKeynodes&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="KeynodesTest.resolveKeynode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.asyncunchecked.KeynodesTest.resolveKeynode&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -235,7 +221,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="SearchByTemplateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPatternTest.findPatternOf3Edges" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -248,7 +234,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.defaultcontext.SearchByTemplateTest&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternOf3Edges&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -283,19 +315,19 @@
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.Coverage" />
-      <item itemvalue="Gradle.KeynodesTest.findNotExistedKeynodes (1)" />
-      <item itemvalue="Gradle.SearchByTemplateTest" />
-      <item itemvalue="Gradle.KeynodesTest.resolveKeynode" />
       <item itemvalue="Gradle.ScMemoryFindPatternTest" />
       <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternOf3Edges" />
+      <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
+        <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternOf3Edges" />
         <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
         <item itemvalue="Gradle.ScMemoryFindPatternTest" />
-        <item itemvalue="Gradle.KeynodesTest.resolveKeynode" />
-        <item itemvalue="Gradle.SearchByTemplateTest" />
-        <item itemvalue="Gradle.KeynodesTest.findNotExistedKeynodes (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +349,8 @@
       <workItem from="1641925388949" duration="5067000" />
       <workItem from="1642011314196" duration="4321000" />
       <workItem from="1642023544293" duration="3474000" />
-      <workItem from="1642193694817" duration="29222000" />
+      <workItem from="1642193694817" duration="31357000" />
+      <workItem from="1642623372769" duration="16460000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -494,7 +527,35 @@
       <option name="project" value="LOCAL" />
       <updated>1642274912157</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="test: add tests for searching by universal pattern">
+      <created>1642283634782</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1642283634782</updated>
+    </task>
+    <task id="LOCAL-00027" summary="test: add test for construction of 7 elements and add some explanation">
+      <created>1642683483673</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1642683483673</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: implement constructions by pattern generation">
+      <created>1642683890537</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1642683890537</updated>
+    </task>
+    <task id="LOCAL-00029" summary="test: add test for pattern generation">
+      <created>1642683955807</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1642683955808</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,10 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add interfaces for n-ary sc-patterns" />
-    <MESSAGE value="feat: make enum serializable for jackson-json" />
-    <MESSAGE value="feat: implement internal mechanisms according to the new api for patterns" />
-    <MESSAGE value="feat: make some classes for ScPatterns public api" />
     <MESSAGE value="feat: add type for searching unknown ScElements" />
     <MESSAGE value="feat: add request for checking ScElements types" />
     <MESSAGE value="feat: add map with all sc-types for faster casting from element type code to library element type" />
@@ -537,7 +594,11 @@
     <MESSAGE value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
     <MESSAGE value="fix: fix api according to the json format" />
     <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add tests for finding and resolving keynodes methods" />
+    <MESSAGE value="test: add tests for searching by universal pattern" />
+    <MESSAGE value="test: add test for construction of 7 elements and add some explanation" />
+    <MESSAGE value="feat: implement constructions by pattern generation" />
+    <MESSAGE value="test: add test for pattern generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add test for pattern generation" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -545,5 +606,9 @@
         <PinnedItemInfo parentTag="org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement" memberName="element" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -9,9 +9,9 @@ import org.ostis.scmemory.model.element.node.NodeType;
  * @author artrayme
  * @since 0.6.0
  */
-@JsonPropertyOrder({ "command", "idtf", "elType" })
+@JsonPropertyOrder({"command", "idtf", "elType"})
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class ResolveKeynodeStruct extends KeynodeStruct{
+public class ResolveKeynodeStruct extends KeynodeStruct {
     @JsonProperty("command")
     private final String command = "resolve";
     @JsonProperty("elType")

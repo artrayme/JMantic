@@ -32,6 +32,10 @@ public class ScConstruction3Impl<T1 extends ScElement, T3 extends ScElement> imp
         return edge;
     }
 
+    public void setEdge(ScEdge edge) {
+        this.edge = edge;
+    }
+
     @Override
     public T3 get3() {
         return element3;
@@ -39,10 +43,6 @@ public class ScConstruction3Impl<T1 extends ScElement, T3 extends ScElement> imp
 
     public void setElement1(T1 element1) {
         this.element1 = element1;
-    }
-
-    public void setEdge(ScEdge edge) {
-        this.edge = edge;
     }
 
     public void setElement3(T3 element3) {

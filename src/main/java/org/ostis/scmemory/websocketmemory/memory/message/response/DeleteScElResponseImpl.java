@@ -1,7 +1,6 @@
 package org.ostis.scmemory.websocketmemory.memory.message.response;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 
 /**

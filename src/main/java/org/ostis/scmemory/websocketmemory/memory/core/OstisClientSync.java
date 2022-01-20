@@ -107,7 +107,12 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onClose(int code, String reason, boolean remote) {
-            logger.info("ostis closed with code {} and reason {}. Is connection closed by server - {}", code, reason, remote);
+            logger.info(
+                    "ostis closed with code {} and reason {}. Is connection closed by server - {}",
+                    code,
+                    reason,
+                    remote
+            );
         }
 
         @Override
