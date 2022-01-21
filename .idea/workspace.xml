@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
-      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/EdgeOperationsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/NodeOperationsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScLinkOperationsTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/ScLinkOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/ScLinkOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/SearchByTemplateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/SearchByTemplateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/EdgeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/KeynodesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/NodeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/ScLinkOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/ScLinkOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/defaultcontext/SearchByTemplateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/SearchByTemplateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/KeynodesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/ScLinkOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/ScLinkOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/SearchByTemplateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/SearchByTemplateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindKeynodeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3WithNamesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3WithNamesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +315,7 @@
       <workItem from="1642023544293" duration="3474000" />
       <workItem from="1642193694817" duration="31357000" />
       <workItem from="1642623372769" duration="16460000" />
-      <workItem from="1642781199975" duration="13285000" />
+      <workItem from="1642781199975" duration="13639000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -560,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642794755433</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="test: add sc-memory tests and change formatting">
+      <created>1642795111839</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1642795111839</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +559,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add map with all sc-types for faster casting from element type code to library element type" />
     <MESSAGE value="feat: implement n-ary searching patterns in ScMemory" />
     <MESSAGE value="refactor!: change packages structure" />
     <MESSAGE value="feat!: add method for getting address of connected server in ostis clients" />
@@ -603,7 +583,8 @@
     <MESSAGE value="test: add test for pattern generation" />
     <MESSAGE value="build: add comment with a jvm key" />
     <MESSAGE value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
+    <MESSAGE value="test: add sc-memory tests and change formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add sc-memory tests and change formatting" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
