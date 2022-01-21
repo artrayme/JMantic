@@ -36,6 +36,7 @@ test {
 
 compileJava {
     options.compilerArgs += ['--add-reads', 'JMantic.main=ALL-UNNAMED']
+//    options.compilerArgs += ['-Xlint:unchecked'] // use to see more information about compiler warnings
 }
 
 publishing {
