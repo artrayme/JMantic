@@ -9,14 +9,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @since 0.0.1
  */
 public enum RequestType {
-    CREATE_ELEMENTS("create_elements"),
-    CHECK_ELEMENTS("check_elements"),
-    DELETE_ELEMENTS("delete_elements"),
-    SEARCH_TEMPLATE("search_template"),
-    GENERATE_TEMPLATE("generate_template"),
-    EVENTS("events"),
-    KEYNODES("keynodes"),
-    CONTENT("content");
+    CREATE_ELEMENTS("create_elements"), CHECK_ELEMENTS("check_elements"), DELETE_ELEMENTS("delete_elements"), SEARCH_TEMPLATE("search_template"), GENERATE_TEMPLATE("generate_template"), EVENTS("events"), KEYNODES("keynodes"), CONTENT("content");
 
     @JsonValue
     private final String type;

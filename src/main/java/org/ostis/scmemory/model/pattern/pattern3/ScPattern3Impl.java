@@ -15,9 +15,9 @@ import org.ostis.scmemory.model.element.edge.EdgeType;
  */
 
 public class ScPattern3Impl<T1 extends ScElement, T3, expectedT3 extends ScElement> implements ScPattern3<T1, T3, expectedT3> {
-    private T1 element1;
-    private EdgeType edgeType;
-    private T3 element3;
+    private final T1 element1;
+    private final EdgeType edgeType;
+    private final T3 element3;
 
     public ScPattern3Impl(T1 element1, EdgeType edgeType, T3 element3) {
         this.element1 = element1;

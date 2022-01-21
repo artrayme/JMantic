@@ -64,7 +64,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            NodeType nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScNode relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScNode, LinkType, ScNode, ScLink, ScNode> getFNodeAEdgeALinkAEdgeFNodePattern(ScNode node1,
@@ -72,7 +77,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            LinkType linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScNode relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScNode, NodeType, ScLink, ScNode, ScLink> getFNodeAEdgeANodeAEdgeFLinkPattern(ScNode node1,
@@ -80,7 +90,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            NodeType nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScLink relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScNode, LinkType, ScLink, ScLink, ScLink> getFNodeAEdgeALinkAEdgeFLinkPattern(ScNode node1,
@@ -88,7 +103,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            LinkType linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScLink relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScNode, ScNode, NodeType, ScNode, ScNode> getFNodeAEdgeFNodeAEdgeANodePattern(ScNode node1,
@@ -96,7 +116,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScNode nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            NodeType relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScNode, ScLink, NodeType, ScLink, ScNode> getFNodeAEdgeFLinkAEdgeANodePattern(ScNode node1,
@@ -104,7 +129,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScLink linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            NodeType relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScNode, ScNode, LinkType, ScNode, ScLink> getFNodeAEdgeFNodeAEdgeALinkPattern(ScNode node1,
@@ -112,7 +142,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScNode nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            LinkType relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScNode, ScLink, LinkType, ScLink, ScLink> getFNodeAEdgeFLinkAEdgeALinkPattern(ScNode node1,
@@ -120,7 +155,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScLink linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            LinkType relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScLink, NodeType, ScNode, ScNode, ScNode> getFLinkAEdgeANodeAEdgeFNodePattern(ScLink node1,
@@ -128,7 +168,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            NodeType nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScNode relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScLink, LinkType, ScNode, ScLink, ScNode> getFLinkAEdgeALinkAEdgeFNodePattern(ScLink node1,
@@ -136,7 +181,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            LinkType linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScNode relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScLink, NodeType, ScLink, ScNode, ScLink> getFLinkAEdgeANodeAEdgeFLinkPattern(ScLink node1,
@@ -144,7 +194,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            NodeType nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScLink relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScLink, LinkType, ScLink, ScLink, ScLink> getFLinkAEdgeALinkAEdgeFLinkPattern(ScLink node1,
@@ -152,7 +207,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            LinkType linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            ScLink relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScLink, ScNode, NodeType, ScNode, ScNode> getFLinkAEdgeFNodeAEdgeANodePattern(ScLink node1,
@@ -160,7 +220,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScNode nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            NodeType relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScLink, ScLink, NodeType, ScLink, ScNode> getFLinkAEdgeFLinkAEdgeANodePattern(ScLink node1,
@@ -168,7 +233,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScLink linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            NodeType relNode) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relNode);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relNode);
     }
 
     public static ScPattern5<ScLink, ScNode, LinkType, ScNode, ScLink> getFLinkAEdgeFNodeAEdgeALinkPattern(ScLink node1,
@@ -176,7 +246,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScNode nodeType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            LinkType relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, nodeType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                nodeType,
+                relEdgeType,
+                relLink);
     }
 
     public static ScPattern5<ScLink, ScLink, LinkType, ScLink, ScLink> getFLinkAEdgeFLinkAEdgeALinkPattern(ScLink node1,
@@ -184,7 +259,12 @@ public class ScPattern5FactoryWithNames {
                                                                                                            ScLink linkType,
                                                                                                            EdgeType relEdgeType,
                                                                                                            LinkType relLink) {
-        return new ScPattern5Impl<>(node1, edgeType, linkType, relEdgeType, relLink);
+        return new ScPattern5Impl<>(
+                node1,
+                edgeType,
+                linkType,
+                relEdgeType,
+                relLink);
     }
 
 }

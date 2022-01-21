@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 
 public enum PatternElement {
-    ALIAS("alias"),
-    TYPE("type"),
-    ADDR("addr");
+    ALIAS("alias"), TYPE("type"), ADDR("addr");
 
     @JsonValue
     private final String type;

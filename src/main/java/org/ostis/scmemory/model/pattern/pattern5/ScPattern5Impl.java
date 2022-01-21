@@ -15,11 +15,11 @@ import org.ostis.scmemory.model.element.edge.EdgeType;
  */
 
 public class ScPattern5Impl<T1 extends ScElement, T3, T5, expectedT3 extends ScElement, expectedT5 extends ScElement> implements ScPattern5<T1, T3, T5, expectedT3, expectedT5> {
-    private T1 element1;
-    private EdgeType edgeType2;
-    private T3 element3;
-    private EdgeType edgeType4;
-    private T5 element5;
+    private final T1 element1;
+    private final EdgeType edgeType2;
+    private final T3 element3;
+    private final EdgeType edgeType4;
+    private final T5 element5;
 
     public ScPattern5Impl(T1 element1, EdgeType edgeType2, T3 element3, EdgeType edgeType4, T5 element5) {
         this.element1 = element1;
@@ -32,11 +32,6 @@ public class ScPattern5Impl<T1 extends ScElement, T3, T5, expectedT3 extends ScE
     @Override
     public T1 get1() {
         return element1;
-    }
-
-    @Override
-    public void set1(T1 element) {
-        element1 = element;
     }
 
     @Override

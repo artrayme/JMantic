@@ -14,15 +14,24 @@ public enum ScTypesMap {
     private final Map<Integer, Object> types = new HashMap<>();
 
     ScTypesMap() {
-        Arrays.stream(NodeType.values()).forEach(e -> {
-            types.put(e.getCode(), e);
-        });
-        Arrays.stream(EdgeType.values()).forEach(e -> {
-            types.put(e.getCode(), e);
-        });
-        Arrays.stream(LinkType.values()).forEach(e -> {
-            types.put(e.getCode(), e);
-        });
+        Arrays.stream(NodeType.values())
+              .forEach(e -> {
+                  types.put(
+                          e.getCode(),
+                          e);
+              });
+        Arrays.stream(EdgeType.values())
+              .forEach(e -> {
+                  types.put(
+                          e.getCode(),
+                          e);
+              });
+        Arrays.stream(LinkType.values())
+              .forEach(e -> {
+                  types.put(
+                          e.getCode(),
+                          e);
+              });
     }
 
     public Map<Integer, Object> getTypes() {

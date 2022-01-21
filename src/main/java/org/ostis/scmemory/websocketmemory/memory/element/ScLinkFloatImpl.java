@@ -25,7 +25,9 @@ public class ScLinkFloatImpl extends ScEntity implements ScLinkFloat {
     }
 
     public ScLinkFloatImpl(LinkType linkType, Long address) {
-        super("link", address);
+        super(
+                "link",
+                address);
         this.linkType = linkType;
     }
 

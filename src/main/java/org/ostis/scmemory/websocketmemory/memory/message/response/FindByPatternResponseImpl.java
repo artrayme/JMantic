@@ -20,7 +20,9 @@ public class FindByPatternResponseImpl extends AbstractScResponse implements Fin
 
     @Override
     public Stream<Stream<Long>> getFoundAddresses() {
-        return payloadFoundByTemplateStruct.getFoundAddresses().stream().map(Collection::stream);
+        return payloadFoundByTemplateStruct.getFoundAddresses()
+                                           .stream()
+                                           .map(Collection::stream);
     }
 
 }

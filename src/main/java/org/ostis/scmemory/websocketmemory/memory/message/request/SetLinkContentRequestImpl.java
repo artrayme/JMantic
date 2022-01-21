@@ -31,7 +31,10 @@ public class SetLinkContentRequestImpl extends AbstractScRequest implements SetL
     @JsonIgnore
     @Override
     public void addToRequest(ScLink link, Object data) {
-        SetContentStruct struct = new SetContentStruct(link.getContentType(), data, link.getAddress());
+        SetContentStruct struct = new SetContentStruct(
+                link.getContentType(),
+                data,
+                link.getAddress());
         contentStructs.add(struct);
     }
 

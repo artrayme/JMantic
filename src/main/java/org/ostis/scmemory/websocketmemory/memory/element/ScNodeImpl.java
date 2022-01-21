@@ -21,7 +21,9 @@ public class ScNodeImpl extends ScEntity implements ScNode {
     }
 
     public ScNodeImpl(NodeType nodeType, Long address) {
-        super("node", address);
+        super(
+                "node",
+                address);
         this.nodeType = nodeType;
     }
 

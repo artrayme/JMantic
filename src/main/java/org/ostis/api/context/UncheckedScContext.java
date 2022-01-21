@@ -36,9 +36,12 @@ public class UncheckedScContext {
     public ScNode createNode(NodeType type) {
         Optional<? extends ScElement> result;
         try {
-            result = memory.createNodes(Stream.of(type)).findFirst();
+            result = memory.createNodes(Stream.of(type))
+                           .findFirst();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return (ScNode) result.get();
@@ -49,7 +52,9 @@ public class UncheckedScContext {
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result.map(e -> (ScNode) e);
@@ -58,20 +63,34 @@ public class UncheckedScContext {
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
         Optional<? extends ScElement> edge;
         try {
-            edge = memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst();
+            edge = memory.createEdges(
+                                 Stream.of(type),
+                                 Stream.of(source),
+                                 Stream.of(target))
+                         .findFirst();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return (ScEdge) edge.get();
     }
 
-    public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<? extends ScElement> source, Stream<? extends ScElement> target) {
+    public Stream<ScEdge> createEdges(Stream<EdgeType> types,
+                                      Stream<? extends ScElement> source,
+                                      Stream<? extends ScElement> target) {
         Stream<ScEdge> scEdgeStream;
         try {
-            scEdgeStream = memory.createEdges(types, source, target).map(e -> (ScEdge) e);
+            scEdgeStream = memory.createEdges(
+                                         types,
+                                         source,
+                                         target)
+                                 .map(e -> (ScEdge) e);
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return scEdgeStream;
@@ -80,9 +99,14 @@ public class UncheckedScContext {
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) {
         Optional<? extends ScLinkInteger> result;
         try {
-            result = memory.createIntegerLinks(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createIntegerLinks(
+                                   Stream.of(type),
+                                   Stream.of(content))
+                           .findFirst();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result.get();
@@ -91,9 +115,14 @@ public class UncheckedScContext {
     public ScLinkFloat createFloatLink(LinkType type, Float content) {
         Optional<? extends ScLinkFloat> result;
         try {
-            result = memory.createFloatLinks(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createFloatLinks(
+                                   Stream.of(type),
+                                   Stream.of(content))
+                           .findFirst();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result.get();
@@ -102,9 +131,14 @@ public class UncheckedScContext {
     public ScLinkString createStringLink(LinkType type, String content) {
         Optional<? extends ScLinkString> result;
         try {
-            result = memory.createStringLinks(Stream.of(type), Stream.of(content)).findFirst();
+            result = memory.createStringLinks(
+                                   Stream.of(type),
+                                   Stream.of(content))
+                           .findFirst();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result.get();
@@ -115,7 +149,9 @@ public class UncheckedScContext {
         try {
             result = memory.deleteElements(Stream.of(element));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;
@@ -126,31 +162,36 @@ public class UncheckedScContext {
         try {
             result = memory.deleteElements(elements);
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;
     }
 
-    public <t1 extends ScElement, t2, T3 extends ScElement>
-    Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
+    public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
         Stream<? extends ScConstruction3<t1, T3>> result;
         try {
             result = memory.findByPattern3(pattern);
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;
     }
 
-    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement>
-    Stream<? extends ScConstruction5<t1, T2, T3>> find(ScPattern5<t1, t2, t3, T2, T3> pattern) {
+    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(
+            ScPattern5<t1, t2, t3, T2, T3> pattern) {
         Stream<? extends ScConstruction5<t1, T2, T3>> result;
         try {
             result = memory.findByPattern5(pattern);
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;
@@ -159,34 +200,49 @@ public class UncheckedScContext {
     public Boolean setIntegerLinkContent(ScLinkInteger link, Integer content) {
         Stream<Boolean> result;
         try {
-            result = memory.setIntegerLinkContent(Stream.of(link), Stream.of(content));
+            result = memory.setIntegerLinkContent(
+                    Stream.of(link),
+                    Stream.of(content));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
     public Boolean setFloatLinkContent(ScLinkFloat link, Float content) {
         Stream<Boolean> result;
         try {
-            result = memory.setFloatLinkContent(Stream.of(link), Stream.of(content));
+            result = memory.setFloatLinkContent(
+                    Stream.of(link),
+                    Stream.of(content));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
     public Boolean setStringLinkContent(ScLinkString link, String content) {
         Stream<Boolean> result;
         try {
-            result = memory.setStringLinkContent(Stream.of(link), Stream.of(content));
+            result = memory.setStringLinkContent(
+                    Stream.of(link),
+                    Stream.of(content));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
     //    Uncomment when the project updated to java with a pattern matching(((
@@ -221,10 +277,13 @@ public class UncheckedScContext {
         try {
             result = memory.getIntegerLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
     public Float getFloatLinkContent(ScLinkFloat link) {
@@ -232,10 +291,13 @@ public class UncheckedScContext {
         try {
             result = memory.getFloatLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
     public String getStringLinkContent(ScLinkString link) {
@@ -243,29 +305,42 @@ public class UncheckedScContext {
         try {
             result = memory.getStringLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
-        return result.findFirst().get();
+        return result.findFirst()
+                     .get();
     }
 
-    public Optional<? extends ScLinkString> findKeynode(String idtf) {
-        Optional<? extends ScLinkString> result;
+    public Optional<? extends ScNode> findKeynode(String idtf) {
+        Optional<? extends ScNode> result;
         try {
-            result = memory.findKeynodes(Stream.of(idtf)).findFirst().get();
+            result = memory.findKeynodes(Stream.of(idtf))
+                           .findFirst()
+                           .get();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;
     }
 
-    public ScLinkString resolveKeynode(String idtf, NodeType type) {
-        ScLinkString result;
+    public ScNode resolveKeynode(String idtf, NodeType type) {
+        ScNode result;
         try {
-            result = memory.resolveKeynodes(Stream.of(idtf), Stream.of(type)).findFirst().get();
+            result = memory.resolveKeynodes(
+                                   Stream.of(idtf),
+                                   Stream.of(type))
+                           .findFirst()
+                           .get();
         } catch (ScMemoryException e) {
-            logger.error("It's really bad", e);
+            logger.error(
+                    "It's really bad",
+                    e);
             throw new RuntimeException(e);
         }
         return result;

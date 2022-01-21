@@ -44,36 +44,76 @@ public class ScPattern3FactoryWithNames {
     private ScPattern3FactoryWithNames() {
     }
 
-    public static ScPattern3<ScNode, NodeType, ScNode> getFNodeAEdgeANodePattern(ScNode node1, EdgeType edgeType, NodeType nodeType) {
-        return new ScPattern3Impl<>(node1, edgeType, nodeType);
+    public static ScPattern3<ScNode, NodeType, ScNode> getFNodeAEdgeANodePattern(ScNode node1,
+                                                                                 EdgeType edgeType,
+                                                                                 NodeType nodeType) {
+        return new ScPattern3Impl<>(
+                node1,
+                edgeType,
+                nodeType);
     }
 
-    public static ScPattern3<ScNode, ScNode, ScNode> getFNodeAEdgeFNodePattern(ScNode node1, EdgeType edgeType, ScNode node3) {
-        return new ScPattern3Impl<>(node1, edgeType, node3);
+    public static ScPattern3<ScNode, ScNode, ScNode> getFNodeAEdgeFNodePattern(ScNode node1,
+                                                                               EdgeType edgeType,
+                                                                               ScNode node3) {
+        return new ScPattern3Impl<>(
+                node1,
+                edgeType,
+                node3);
     }
 
-    public static ScPattern3<ScNode, LinkType, ScLink> getFNodeAEdgeALinkPattern(ScNode node1, EdgeType edgeType, LinkType linkType) {
-        return new ScPattern3Impl<>(node1, edgeType, linkType);
+    public static ScPattern3<ScNode, LinkType, ScLink> getFNodeAEdgeALinkPattern(ScNode node1,
+                                                                                 EdgeType edgeType,
+                                                                                 LinkType linkType) {
+        return new ScPattern3Impl<>(
+                node1,
+                edgeType,
+                linkType);
     }
 
-    public static ScPattern3<ScNode, ScLink, ScLink> getFNodeAEdgeFLinkPattern(ScNode node1, EdgeType edgeType, ScLink link3) {
-        return new ScPattern3Impl<>(node1, edgeType, link3);
+    public static ScPattern3<ScNode, ScLink, ScLink> getFNodeAEdgeFLinkPattern(ScNode node1,
+                                                                               EdgeType edgeType,
+                                                                               ScLink link3) {
+        return new ScPattern3Impl<>(
+                node1,
+                edgeType,
+                link3);
     }
 
-    public static ScPattern3<ScLink, NodeType, ScNode> getFLinkAEdgeANodePattern(ScLink link1, EdgeType edgeType, NodeType nodeType) {
-        return new ScPattern3Impl<>(link1, edgeType, nodeType);
+    public static ScPattern3<ScLink, NodeType, ScNode> getFLinkAEdgeANodePattern(ScLink link1,
+                                                                                 EdgeType edgeType,
+                                                                                 NodeType nodeType) {
+        return new ScPattern3Impl<>(
+                link1,
+                edgeType,
+                nodeType);
     }
 
-    public static ScPattern3<ScLink, ScNode, ScNode> getFLinkAEdgeFNodePattern(ScLink link1, EdgeType edgeType, ScNode node3) {
-        return new ScPattern3Impl<>(link1, edgeType, node3);
+    public static ScPattern3<ScLink, ScNode, ScNode> getFLinkAEdgeFNodePattern(ScLink link1,
+                                                                               EdgeType edgeType,
+                                                                               ScNode node3) {
+        return new ScPattern3Impl<>(
+                link1,
+                edgeType,
+                node3);
     }
 
-    public static ScPattern3<ScLink, LinkType, ScLink> getFLinkAEdgeALinkPattern(ScLink link1, EdgeType edgeType, LinkType linkType) {
-        return new ScPattern3Impl<>(link1, edgeType, linkType);
+    public static ScPattern3<ScLink, LinkType, ScLink> getFLinkAEdgeALinkPattern(ScLink link1,
+                                                                                 EdgeType edgeType,
+                                                                                 LinkType linkType) {
+        return new ScPattern3Impl<>(
+                link1,
+                edgeType,
+                linkType);
     }
 
-    public static ScPattern3<ScLink, ScLink, ScLink> getFLinkAEdgeFLinkPattern(ScLink link1, EdgeType edgeType, ScLink link3) {
-        return new ScPattern3Impl<>(link1, edgeType, link3);
+    public static ScPattern3<ScLink, ScLink, ScLink> getFLinkAEdgeFLinkPattern(ScLink link1,
+                                                                               EdgeType edgeType,
+                                                                               ScLink link3) {
+        return new ScPattern3Impl<>(
+                link1,
+                edgeType,
+                link3);
     }
 
 }

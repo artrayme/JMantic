@@ -25,7 +25,8 @@ public class CheckScElTypeResponseImpl extends AbstractScResponse implements Che
     public Stream<Object> getTypes() {
         List<Object> result = new ArrayList<>(foundTypes.size());
         foundTypes.forEach(e -> {
-            result.add(ScTypesMap.INSTANCE.getTypes().get(e));
+            result.add(ScTypesMap.INSTANCE.getTypes()
+                                          .get(e));
         });
         return result.stream();
     }

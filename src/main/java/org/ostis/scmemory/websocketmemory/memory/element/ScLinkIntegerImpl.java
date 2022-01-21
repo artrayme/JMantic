@@ -25,7 +25,9 @@ public class ScLinkIntegerImpl extends ScEntity implements ScLinkInteger {
     }
 
     public ScLinkIntegerImpl(LinkType linkType, Long address) {
-        super("link", address);
+        super(
+                "link",
+                address);
         this.linkType = linkType;
     }
 

@@ -30,7 +30,9 @@ public class GetLinkContentRequestImpl extends AbstractScRequest implements GetL
     @JsonIgnore
     @Override
     public boolean addToRequest(List<Long> addresses) {
-        List<GetContentStruct> structs = addresses.stream().map(GetContentStruct::new).collect(Collectors.toList());
+        List<GetContentStruct> structs = addresses.stream()
+                                                  .map(GetContentStruct::new)
+                                                  .toList();
         return contentStructs.addAll(structs);
     }
 

@@ -44,7 +44,9 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScNode createNode(NodeType type) throws ScMemoryException {
-        return memory.createNodes(Stream.of(type)).findFirst().get();
+        return memory.createNodes(Stream.of(type))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -71,7 +73,12 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) throws ScMemoryException {
-        return memory.createEdges(Stream.of(type), Stream.of(source), Stream.of(target)).findFirst().get();
+        return memory.createEdges(
+                             Stream.of(type),
+                             Stream.of(source),
+                             Stream.of(target))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -87,8 +94,14 @@ public class DefaultScContext {
      * @return Stream of some implementation of ScEdge, that is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
-    public Stream<ScEdge> createEdges(Stream<EdgeType> types, Stream<? extends ScElement> sources, Stream<? extends ScElement> targets) throws ScMemoryException {
-        return memory.createEdges(types, sources, targets).map(e -> (ScEdge) e);
+    public Stream<ScEdge> createEdges(Stream<EdgeType> types,
+                                      Stream<? extends ScElement> sources,
+                                      Stream<? extends ScElement> targets) throws ScMemoryException {
+        return memory.createEdges(
+                             types,
+                             sources,
+                             targets)
+                     .map(e -> (ScEdge) e);
     }
 
     /**
@@ -101,7 +114,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) throws ScMemoryException {
-        return memory.createIntegerLinks(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createIntegerLinks(
+                             Stream.of(type),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -114,7 +131,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkFloat createFloatLink(LinkType type, Float content) throws ScMemoryException {
-        return memory.createFloatLinks(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createFloatLinks(
+                             Stream.of(type),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -127,7 +148,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkString createStringLink(LinkType type, String content) throws ScMemoryException {
-        return memory.createStringLinks(Stream.of(type), Stream.of(content)).findFirst().get();
+        return memory.createStringLinks(
+                             Stream.of(type),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -164,31 +189,50 @@ public class DefaultScContext {
      * @return stream of found constructions.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode, EdgeType edge, NodeType node) throws ScMemoryException {
-        return memory.findByPattern3(DefaultScPattern3Factory.get(fixedNode, edge, node)).map(ScConstruction3::getEdge);
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeNode(ScNode fixedNode,
+                                                                     EdgeType edge,
+                                                                     NodeType node) throws ScMemoryException {
+        return memory.findByPattern3(DefaultScPattern3Factory.get(
+                             fixedNode,
+                             edge,
+                             node))
+                     .map(ScConstruction3::getEdge);
     }
 
     @Deprecated
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLink(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent) throws ScMemoryException {
-        return memory.findByPattern3(DefaultScPattern3Factory.get(fixedNode, edge, link)).map(ScConstruction3::getEdge);
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLink(ScNode fixedNode,
+                                                                     EdgeType edge,
+                                                                     LinkType link,
+                                                                     LinkContentType linkContent) throws ScMemoryException {
+        return memory.findByPattern3(DefaultScPattern3Factory.get(
+                             fixedNode,
+                             edge,
+                             link))
+                     .map(ScConstruction3::getEdge);
     }
 
     @Deprecated
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode, EdgeType edge, LinkType link, LinkContentType linkContent, ScNode relation, EdgeType relationEdgeType) throws ScMemoryException {
+    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode,
+                                                                                 EdgeType edge,
+                                                                                 LinkType link,
+                                                                                 LinkContentType linkContent,
+                                                                                 ScNode relation,
+                                                                                 EdgeType relationEdgeType) throws ScMemoryException {
         return memory.findByPattern5(DefaultScPattern5Factory.get(
-                fixedNode,
-                edge,
-                link,
-                relationEdgeType,
-                relation
-        )).map(ScConstruction5::get2);
+                             fixedNode,
+                             edge,
+                             link,
+                             relationEdgeType,
+                             relation))
+                     .map(ScConstruction5::get2);
     }
 
     public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
         return memory.findByPattern3(pattern);
     }
 
-    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(ScPattern5<t1, t2, t3, T2, T3> pattern) throws ScMemoryException {
+    public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(
+            ScPattern5<t1, t2, t3, T2, T3> pattern) throws ScMemoryException {
         return memory.findByPattern5(pattern);
     }
 
@@ -202,7 +246,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Boolean setIntegerLinkContent(ScLinkInteger link, Integer content) throws ScMemoryException {
-        return memory.setIntegerLinkContent(Stream.of(link), Stream.of(content)).findFirst().get();
+        return memory.setIntegerLinkContent(
+                             Stream.of(link),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -215,7 +263,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Boolean setFloatLinkContent(ScLinkFloat link, Float content) throws ScMemoryException {
-        return memory.setFloatLinkContent(Stream.of(link), Stream.of(content)).findFirst().get();
+        return memory.setFloatLinkContent(
+                             Stream.of(link),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -228,7 +280,11 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Boolean setStringLinkContent(ScLinkString link, String content) throws ScMemoryException {
-        return memory.setStringLinkContent(Stream.of(link), Stream.of(content)).findFirst().get();
+        return memory.setStringLinkContent(
+                             Stream.of(link),
+                             Stream.of(content))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -240,7 +296,9 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Integer getIntegerLinkContent(ScLinkInteger link) throws ScMemoryException {
-        return memory.getIntegerLinkContent(Stream.of(link)).findFirst().get();
+        return memory.getIntegerLinkContent(Stream.of(link))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -252,7 +310,9 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Float getFloatLinkContent(ScLinkFloat link) throws ScMemoryException {
-        return memory.getFloatLinkContent(Stream.of(link)).findFirst().get();
+        return memory.getFloatLinkContent(Stream.of(link))
+                     .findFirst()
+                     .get();
     }
 
     /**
@@ -264,14 +324,22 @@ public class DefaultScContext {
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public String getStringLinkContent(ScLinkString link) throws ScMemoryException {
-        return memory.getStringLinkContent(Stream.of(link)).findFirst().get();
+        return memory.getStringLinkContent(Stream.of(link))
+                     .findFirst()
+                     .get();
     }
 
-    public Optional<? extends ScLinkString> findKeynode(String idtf) throws ScMemoryException {
-        return memory.findKeynodes(Stream.of(idtf)).findFirst().get();
+    public Optional<? extends ScNode> findKeynode(String idtf) throws ScMemoryException {
+        return memory.findKeynodes(Stream.of(idtf))
+                     .findFirst()
+                     .get();
     }
 
-    public ScLinkString resolveKeynode(String idtf, NodeType type) throws ScMemoryException {
-        return memory.resolveKeynodes(Stream.of(idtf), Stream.of(type)).findFirst().get();
+    public ScNode resolveKeynode(String idtf, NodeType type) throws ScMemoryException {
+        return memory.resolveKeynodes(
+                             Stream.of(idtf),
+                             Stream.of(type))
+                     .findFirst()
+                     .get();
     }
 }

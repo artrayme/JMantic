@@ -15,9 +15,7 @@ public class SearchingPatternTriple implements ScPatternTriplet {
     @JsonValue
     private final ScPatternElement[] elements = new ScPatternElement[3];
 
-    public SearchingPatternTriple(ScPatternElement element1,
-                                  ScPatternElement element2,
-                                  ScPatternElement element3) {
+    public SearchingPatternTriple(ScPatternElement element1, ScPatternElement element2, ScPatternElement element3) {
         elements[0] = element1;
         elements[1] = element2;
         elements[2] = element3;

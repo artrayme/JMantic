@@ -7,10 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @since 0.0.1
  */
 public enum LinkContentType {
-    INT("int"),
-    FLOAT("float"),
-    STRING("string"),
-    BINARY("binary");
+    INT("int"), FLOAT("float"), STRING("string"), BINARY("binary");
 
     @JsonValue
     private final String type;

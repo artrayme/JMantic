@@ -10,10 +10,10 @@ import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
-import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
-import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.ScPattern;
+import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
 import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
+import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
 import java.util.Optional;
@@ -58,7 +58,9 @@ public interface ScMemory {
      * @param targets  - stream of target nodes.
      * @return stream of created edges.
      */
-    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements, Stream<? extends ScElement> sources, Stream<? extends ScElement> targets) throws ScMemoryException;
+    Stream<? extends ScEdge> createEdges(Stream<EdgeType> elements,
+                                         Stream<? extends ScElement> sources,
+                                         Stream<? extends ScElement> targets) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and integer content in sc-machine.
@@ -69,7 +71,8 @@ public interface ScMemory {
      *
      * @return stream of created integer sc-links
      */
-    Stream<? extends ScLinkInteger> createIntegerLinks(Stream<LinkType> elements, Stream<Integer> content) throws ScMemoryException;
+    Stream<? extends ScLinkInteger> createIntegerLinks(Stream<LinkType> elements,
+                                                       Stream<Integer> content) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and float content in sc-machine.
@@ -80,7 +83,8 @@ public interface ScMemory {
      *
      * @return stream of created float sc-links
      */
-    Stream<? extends ScLinkFloat> createFloatLinks(Stream<LinkType> elements, Stream<Float> content) throws ScMemoryException;
+    Stream<? extends ScLinkFloat> createFloatLinks(Stream<LinkType> elements,
+                                                   Stream<Float> content) throws ScMemoryException;
 
     /**
      * Method to create sc-link with specified type and string content in sc-machine.
@@ -91,7 +95,8 @@ public interface ScMemory {
      *
      * @return stream of created string sc-links
      */
-    Stream<? extends ScLinkString> createStringLinks(Stream<LinkType> elements, Stream<String> content) throws ScMemoryException;
+    Stream<? extends ScLinkString> createStringLinks(Stream<LinkType> elements,
+                                                     Stream<String> content) throws ScMemoryException;
 
     /**
      * Method to remove any sc-element in sc-machine.
@@ -108,8 +113,7 @@ public interface ScMemory {
      * @return stream of {@link ScConstruction3} with found elements.
      * @since 0.3.2
      */
-    <t1 extends ScElement, t3, T3 extends ScElement>
-    Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
+    <t1 extends ScElement, t3, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> findByPattern3(ScPattern3<t1, t3, T3> pattern) throws ScMemoryException;
 
     /**
      * Method to search any sc-constructions by pattern5.
@@ -118,8 +122,8 @@ public interface ScMemory {
      * @return stream of {@link ScConstruction5} with found elements.
      * @since 0.3.2
      */
-    <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement>
-    Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
+    <t1 extends ScElement, t3, t5, T3 extends ScElement, T5 extends ScElement> Stream<? extends ScConstruction5<t1, T3, T5>> findByPattern5(
+            ScPattern5<t1, t3, t5, T3, T5> pattern) throws ScMemoryException;
 
     /**
      * Method to search any sc-constructions by universal pattern.
@@ -139,7 +143,8 @@ public interface ScMemory {
      * @return a stream of values that reflect the result of an operation.
      * True, there was a successful operation on the link, or a lie, if something went wrong.
      */
-    Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links, Stream<Integer> content) throws ScMemoryException;
+    Stream<Boolean> setIntegerLinkContent(Stream<? extends ScLinkInteger> links,
+                                          Stream<Integer> content) throws ScMemoryException;
 
     /**
      * Methods for changing the content of {@link ScLinkFloat}
@@ -151,7 +156,8 @@ public interface ScMemory {
      * True, there was a successful operation on the link, or a lie, if something went wrong.
      * @since 0.3.0
      */
-    Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links, Stream<Float> content) throws ScMemoryException;
+    Stream<Boolean> setFloatLinkContent(Stream<? extends ScLinkFloat> links,
+                                        Stream<Float> content) throws ScMemoryException;
 
     /**
      * Methods for changing the content of {@link ScLinkString}
@@ -163,7 +169,8 @@ public interface ScMemory {
      * True, there was a successful operation on the link, or a lie, if something went wrong.
      * @since 0.3.0
      */
-    Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links, Stream<String> content) throws ScMemoryException;
+    Stream<Boolean> setStringLinkContent(Stream<? extends ScLinkString> links,
+                                         Stream<String> content) throws ScMemoryException;
 
     /**
      * Method for getting the content of {@link ScLinkInteger}
@@ -199,12 +206,12 @@ public interface ScMemory {
      * @return stream of found sc-links
      * @since 0.3.3
      */
-    Stream<Optional<? extends ScLinkString>> findKeynodes(Stream<String> idtf) throws ScMemoryException;
+    Stream<Optional<? extends ScNode>> findKeynodes(Stream<String> idtf) throws ScMemoryException;
 
     /**
      * @since 0.6.0
      */
-    Stream<? extends ScLinkString> resolveKeynodes(Stream<String> idtf, Stream<NodeType> type) throws ScMemoryException;
+    Stream<? extends ScNode> resolveKeynodes(Stream<String> idtf, Stream<NodeType> type) throws ScMemoryException;
 
     /**
      * Implementation specific!

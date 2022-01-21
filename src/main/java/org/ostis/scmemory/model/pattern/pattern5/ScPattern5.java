@@ -31,8 +31,6 @@ import org.ostis.scmemory.model.element.edge.EdgeType;
 public interface ScPattern5<T1 extends ScElement, T3, T5, expectedT3 extends ScElement, expectedT5 extends ScElement> {
     T1 get1();
 
-    void set1(T1 element);
-
     EdgeType get2();
 
     T3 get3();

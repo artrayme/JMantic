@@ -15,6 +15,8 @@ public class OstisConnectionException extends Exception {
     }
 
     public OstisConnectionException(String message, Throwable cause) {
-        super(message, cause);
+        super(
+                message,
+                cause);
     }
 }

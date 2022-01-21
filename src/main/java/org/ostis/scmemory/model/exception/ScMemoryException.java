@@ -17,7 +17,9 @@ public class ScMemoryException extends Exception {
     }
 
     public ScMemoryException(String message, Throwable cause) {
-        super(message, cause);
+        super(
+                message,
+                cause);
     }
 
     public ScMemoryException(Throwable cause) {

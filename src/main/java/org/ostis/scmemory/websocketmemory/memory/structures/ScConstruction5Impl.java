@@ -15,9 +15,6 @@ public class ScConstruction5Impl<T1 extends ScElement, T3 extends ScElement, T5 
     private ScEdge edge4;
     private T5 element5;
 
-    public ScConstruction5Impl() {
-    }
-
     public ScConstruction5Impl(T1 element1, ScEdge edge2, T3 element3, ScEdge edge4, T5 element5) {
         this.element1 = element1;
         this.edge2 = edge2;
@@ -49,26 +46,6 @@ public class ScConstruction5Impl<T1 extends ScElement, T3 extends ScElement, T5 
     @Override
     public T5 get5() {
         return element5;
-    }
-
-    public void setEdge2(ScEdge edge2) {
-        this.edge2 = edge2;
-    }
-
-    public void setElement1(T1 element1) {
-        this.element1 = element1;
-    }
-
-    public void setElement3(T3 element3) {
-        this.element3 = element3;
-    }
-
-    public void setEdge4(ScEdge edge4) {
-        this.edge4 = edge4;
-    }
-
-    public void setElement5(T5 element5) {
-        this.element5 = element5;
     }
 
 }

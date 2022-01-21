@@ -29,12 +29,19 @@ public class ScEdgeImpl extends ScEntity implements ScEdge {
         this.edgeType = edgeType;
         this.sourceElement = sourceElement;
         this.targetElement = targetElement;
-        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
-        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
+        source = new EdgeSourceStruct(
+                EdgeEndpointType.ADDR,
+                sourceElement.getAddress());
+        target = new EdgeSourceStruct(
+                EdgeEndpointType.ADDR,
+                targetElement.getAddress());
     }
 
     public ScEdgeImpl(EdgeType edgeType, ScElement sourceElement, ScElement targetElement, Long address) {
-        this(edgeType, sourceElement, targetElement);
+        this(
+                edgeType,
+                sourceElement,
+                targetElement);
         setAddress(address);
     }
 
@@ -65,12 +72,16 @@ public class ScEdgeImpl extends ScEntity implements ScEdge {
 
     public void setSourceElement(ScElement sourceElement) {
         this.sourceElement = sourceElement;
-        source = new EdgeSourceStruct(EdgeEndpointType.ADDR, sourceElement.getAddress());
+        source = new EdgeSourceStruct(
+                EdgeEndpointType.ADDR,
+                sourceElement.getAddress());
     }
 
     public void setTargetElement(ScElement targetElement) {
         this.targetElement = targetElement;
-        target = new EdgeSourceStruct(EdgeEndpointType.ADDR, targetElement.getAddress());
+        target = new EdgeSourceStruct(
+                EdgeEndpointType.ADDR,
+                targetElement.getAddress());
     }
 
 }

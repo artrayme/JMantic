@@ -25,7 +25,9 @@ public class ScLinkStringImpl extends ScEntity implements ScLinkString {
     }
 
     public ScLinkStringImpl(LinkType linkType, Long address) {
-        super("link", address);
+        super(
+                "link",
+                address);
         this.linkType = linkType;
     }
 

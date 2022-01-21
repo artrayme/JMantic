@@ -12,7 +12,9 @@ public class OstisClientConfigurationException extends RuntimeException {
     }
 
     public OstisClientConfigurationException(String message, Throwable cause) {
-        super(message, cause);
+        super(
+                message,
+                cause);
     }
 
     public OstisClientConfigurationException(Throwable cause) {

@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @since 0.2.0
  */
 public enum EdgeEndpointType {
-    ADDR("addr"),
-    REF("ref");
+    ADDR("addr"), REF("ref");
 
     @JsonValue
     private final String type;

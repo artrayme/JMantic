@@ -12,7 +12,9 @@ public class ScMemoryConfigurationException extends RuntimeException {
     }
 
     public ScMemoryConfigurationException(String message, Throwable cause) {
-        super(message, cause);
+        super(
+                message,
+                cause);
     }
 
     public ScMemoryConfigurationException(Throwable cause) {

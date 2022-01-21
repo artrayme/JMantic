@@ -38,17 +38,25 @@ public class OstisClientSync implements OstisClient {
     public synchronized void configure(URI serverUri) {
         webSocketClient = new OstisWebsocketClient(serverUri);
         address = serverUri;
-        logger.info("ostis client is configured to the uri {}", serverUri);
+        logger.info(
+                "ostis client is configured to the uri {}",
+                serverUri);
     }
 
     @Override
     public synchronized void open() {
         try {
             webSocketClient.connectBlocking();
-            logger.info("ostis client is connected to uri {}", webSocketClient.getURI());
+            logger.info(
+                    "ostis client is connected to uri {}",
+                    webSocketClient.getURI());
         } catch (InterruptedException e) {
-            logger.error("cannot connect to uri {}", webSocketClient.getURI());
-            throw new OstisClientConfigurationException("cannot connect to this uri", e);
+            logger.error(
+                    "cannot connect to uri {}",
+                    webSocketClient.getURI());
+            throw new OstisClientConfigurationException(
+                    "cannot connect to this uri",
+                    e);
         }
     }
 
@@ -56,19 +64,31 @@ public class OstisClientSync implements OstisClient {
     public synchronized String sendToOstis(String jsonRequest) throws OstisConnectionException {
         latch = new CountDownLatch(1);
         try {
-            logger.info("try to send request: {}", jsonRequest);
+            logger.info(
+                    "try to send request: {}",
+                    jsonRequest);
             webSocketClient.send(jsonRequest);
             latch.await();
         } catch (InterruptedException e) {
             String msg = "some exception in concurrency";
-            logger.error(msg, e);
-            throw new OstisConnectionException(msg, e);
+            logger.error(
+                    msg,
+                    e);
+            throw new OstisConnectionException(
+                    msg,
+                    e);
         } catch (WebsocketNotConnectedException e) {
             String msg = "you should open connection first";
-            logger.error(msg, jsonRequest);
-            throw new OstisConnectionException(msg, e);
+            logger.error(
+                    msg,
+                    jsonRequest);
+            throw new OstisConnectionException(
+                    msg,
+                    e);
         }
-        logger.info("ostis client return response {}", responseMassage);
+        logger.info(
+                "ostis client return response {}",
+                responseMassage);
         return responseMassage;
     }
 
@@ -95,12 +115,16 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onOpen(ServerHandshake handshakedata) {
-            logger.info("ostis client received handshake {}", handshakedata);
+            logger.info(
+                    "ostis client received handshake {}",
+                    handshakedata);
         }
 
         @Override
         public void onMessage(String message) {
-            logger.info("ostis client catch response {}", message);
+            logger.info(
+                    "ostis client catch response {}",
+                    message);
             responseMassage = message;
             latch.countDown();
         }
@@ -111,13 +135,14 @@ public class OstisClientSync implements OstisClient {
                     "ostis closed with code {} and reason {}. Is connection closed by server - {}",
                     code,
                     reason,
-                    remote
-            );
+                    remote);
         }
 
         @Override
         public void onError(Exception ex) {
-            logger.error("something wrong at ostis websocket client", ex);
+            logger.error(
+                    "something wrong at ostis websocket client",
+                    ex);
         }
     }
 }

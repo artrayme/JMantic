@@ -53,10 +53,8 @@ public abstract class ScEntity implements ScElement {
     @JsonIgnore
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         ScEntity scEntity = (ScEntity) o;
         return address == scEntity.address;
     }

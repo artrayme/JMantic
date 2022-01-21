@@ -21,12 +21,16 @@ public class GetLinkContentResponseImpl extends AbstractScResponse implements Ge
 
     @Override
     public List<Object> getContent() {
-        return linkContent.stream().map(s -> s.value).toList();
+        return linkContent.stream()
+                          .map(s -> s.value)
+                          .toList();
     }
 
     @Override
     public List<LinkContentType> getType() {
-        return linkContent.stream().map(s -> LinkContentType.valueOf(s.type.toUpperCase())).toList();
+        return linkContent.stream()
+                          .map(s -> LinkContentType.valueOf(s.type.toUpperCase()))
+                          .toList();
     }
 
     /**

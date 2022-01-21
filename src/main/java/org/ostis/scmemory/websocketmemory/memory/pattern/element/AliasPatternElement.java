@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.pattern.element.ScAliasedElement;
 
-import java.util.Objects;
-
 /**
  * @author artrayme
  * @since 0.3.2
