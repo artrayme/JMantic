@@ -1,15 +1,15 @@
 package context.defaultcontext;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.ostis.api.context.DefaultScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @since 0.2.0
  */
 
-//ToDO exceptions test
 public class NodeOperationsTest {
     ScMemory memory;
     private DefaultScContext scContext;
@@ -48,17 +47,24 @@ public class NodeOperationsTest {
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createSingleNode() throws ScMemoryException {
         ScNode node = scContext.createNode(NodeType.NODE);
-        assertEquals(NodeType.NODE, node.getType());
+        assertEquals(
+                NodeType.NODE,
+                node.getType());
     }
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createMultipleNodesWithOneType() throws ScMemoryException {
         long size = 10;
-        var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
+        var types = Stream.iterate(
+                                  NodeType.NODE,
+                                  e -> NodeType.NODE)
+                          .limit(size);
         Stream<? extends ScNode> nodes = scContext.createNodes(types);
         nodes.forEach(e -> {
-            assertEquals(e.getType(), NodeType.NODE);
+            assertEquals(
+                    e.getType(),
+                    NodeType.NODE);
         });
     }
 
@@ -67,10 +73,15 @@ public class NodeOperationsTest {
     void createNodesWithAllAvailableTypes() throws ScMemoryException {
         Stream<? extends ScNode> nodes = scContext.createNodes(Arrays.stream(NodeType.values()));
         Iterator<? extends ScNode> iter1 = nodes.iterator();
-        Iterator<NodeType> iter2 = Arrays.stream(NodeType.values()).iterator();
-        while (iter1.hasNext() && iter2.hasNext())
-            assertEquals(iter1.next().getType(), iter2.next());
-        assertEquals(iter1.hasNext(), iter2.hasNext());
+        Iterator<NodeType> iter2 = Arrays.stream(NodeType.values())
+                                         .iterator();
+        while (iter1.hasNext() && iter2.hasNext()) assertEquals(
+                iter1.next()
+                     .getType(),
+                iter2.next());
+        assertEquals(
+                iter1.hasNext(),
+                iter2.hasNext());
     }
 
     @Test
@@ -78,8 +89,12 @@ public class NodeOperationsTest {
     void createTwoNodesOneByOne() throws ScMemoryException {
         ScNode firstNode = scContext.createNode(NodeType.NODE);
         ScNode secondNode = scContext.createNode(NodeType.ABSTRACT);
-        assertEquals(NodeType.NODE, firstNode.getType());
-        assertEquals(NodeType.ABSTRACT, secondNode.getType());
+        assertEquals(
+                NodeType.NODE,
+                firstNode.getType());
+        assertEquals(
+                NodeType.ABSTRACT,
+                secondNode.getType());
     }
 
     @Test
@@ -94,7 +109,10 @@ public class NodeOperationsTest {
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void deleteMultipleNodesWithOneType() throws ScMemoryException {
         long size = 10;
-        var types = Stream.iterate(NodeType.NODE, e -> NodeType.NODE).limit(size);
+        var types = Stream.iterate(
+                                  NodeType.NODE,
+                                  e -> NodeType.NODE)
+                          .limit(size);
         Stream<? extends ScNode> nodes = scContext.createNodes(types);
         boolean result = scContext.deleteElements(nodes);
         assertTrue(result);
@@ -106,8 +124,13 @@ public class NodeOperationsTest {
         int count = 100;
         for (int i = 0; i < count; i++) {
             ScNode node = scContext.createNode(NodeType.NODE);
-            Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
-            assertEquals(NodeType.NODE, node.getType());
+            Thread.sleep(ThreadLocalRandom.current()
+                                          .nextInt(
+                                                  0,
+                                                  10));
+            assertEquals(
+                    NodeType.NODE,
+                    node.getType());
         }
     }
 
@@ -117,7 +140,9 @@ public class NodeOperationsTest {
         int count = 100;
         for (int i = 0; i < count; i++) {
             ScNode node = scContext.createNode(NodeType.NODE);
-            assertEquals(NodeType.NODE, node.getType());
+            assertEquals(
+                    NodeType.NODE,
+                    node.getType());
         }
     }
 

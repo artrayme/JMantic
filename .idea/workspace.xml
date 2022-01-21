@@ -8,52 +8,8 @@
       <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/EdgeOperationsTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/NodeOperationsTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScLinkOperationsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/LinkContentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/LinkContentType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/event/EventType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/event/EventType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/exception/ScMemoryConfigurationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/exception/ScMemoryConfigurationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/exception/ScMemoryException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/exception/ScMemoryException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/PatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/PatternElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern3Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern3Factory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern5Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/DefaultScPattern5Factory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern3FactoryWithNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern3FactoryWithNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern5FactoryWithNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/factory/ScPattern5FactoryWithNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/EdgeEndpointType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEdgeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEdgeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkFloatImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkFloatImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkIntegerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkIntegerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkStringImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScNodeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScNodeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/ExceptionMessages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisClientConfigurationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisClientConfigurationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisConnectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisConnectionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/AbstractScRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/AbstractScRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/GetLinkContentRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/GetLinkContentRequestImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/KeynodeRequestImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/SetLinkContentRequestImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/request/SetLinkContentRequestImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/FindByPatternResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/FindByPatternResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/SearchingPatternTriple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/SearchingPatternTriple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/pattern/element/AliasPatternElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/ScConstruction5Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/RequestType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/RequestType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/ScRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/message/request/ScRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/ScTypesMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/ScTypesMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/KeynodesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" afterDir="false" />
@@ -70,7 +26,7 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/ScLinkOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/ScLinkOperationsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/SearchByTemplateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/SearchByTemplateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindKeynodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindKeynodeTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3WithNamesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern3WithNamesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" afterDir="false" />
@@ -385,7 +341,7 @@
       <workItem from="1642023544293" duration="3474000" />
       <workItem from="1642193694817" duration="31357000" />
       <workItem from="1642623372769" duration="16460000" />
-      <workItem from="1642781199975" duration="12792000" />
+      <workItem from="1642781199975" duration="13285000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -590,7 +546,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642683955808</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="build: add comment with a jvm key">
+      <created>1642794533373</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1642794533374</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactor!: cleanup code, new formatting strategy, add checks and exceptions">
+      <created>1642794755433</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1642794755433</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,8 +578,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add type for searching unknown ScElements" />
-    <MESSAGE value="feat: add request for checking ScElements types" />
     <MESSAGE value="feat: add map with all sc-types for faster casting from element type code to library element type" />
     <MESSAGE value="feat: implement n-ary searching patterns in ScMemory" />
     <MESSAGE value="refactor!: change packages structure" />
@@ -633,7 +601,9 @@
     <MESSAGE value="test: add test for construction of 7 elements and add some explanation" />
     <MESSAGE value="feat: implement constructions by pattern generation" />
     <MESSAGE value="test: add test for pattern generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add test for pattern generation" />
+    <MESSAGE value="build: add comment with a jvm key" />
+    <MESSAGE value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

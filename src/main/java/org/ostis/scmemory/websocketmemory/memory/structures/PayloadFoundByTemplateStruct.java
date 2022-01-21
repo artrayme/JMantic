@@ -12,7 +12,6 @@ import java.util.List;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class PayloadFoundByTemplateStruct {
 
-    //    ToDo aliases
     @JsonProperty("aliases")
     private AliasesStruct aliases = new AliasesStruct();
 

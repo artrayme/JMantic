@@ -1,13 +1,13 @@
-package context.unchecked;
+package scmemory;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import org.ostis.api.context.UncheckedScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 
 import java.net.URI;
@@ -22,30 +22,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
- * @since 0.0.1
+ * @since 0.6.0
  */
-public class NodeOperationsTest {
-    ScMemory memory;
 
-    private UncheckedScContext scContext;
+public class NodeOperationsTest {
+    private ScMemory scMemory;
 
     @BeforeEach
-    public void setUp() throws Exception {
-        memory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
-        scContext = new UncheckedScContext(memory);
-        memory.open();
+    public void init() throws Exception {
+        scMemory = new SyncOstisScMemory(new URI("ws://localhost:8090/ws_json"));
+        scMemory.open();
     }
 
     @AfterEach
-    public void closeScMemory() throws Exception {
-        memory.close();
+    public void shutdown() throws Exception {
+        scMemory.close();
     }
 
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleNode() {
-        ScNode node = scContext.createNode(NodeType.NODE);
+    void createSingleNode() throws ScMemoryException {
+        ScNode node = scMemory.createNodes(Stream.of(NodeType.NODE))
+                              .findFirst()
+                              .get();
         assertEquals(
                 NodeType.NODE,
                 node.getType());
@@ -53,13 +53,13 @@ public class NodeOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createMultipleNodesWithOneType() {
+    void createMultipleNodesWithOneType() throws ScMemoryException {
         long size = 10;
         var types = Stream.iterate(
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types);
+        Stream<? extends ScNode> nodes = scMemory.createNodes(types);
         nodes.forEach(e -> {
             assertEquals(
                     e.getType(),
@@ -69,9 +69,9 @@ public class NodeOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createNodesWithAllAvailableTypes() {
-        Stream<ScNode> nodes = scContext.createNodes(Arrays.stream(NodeType.values()));
-        Iterator<ScNode> iter1 = nodes.iterator();
+    void createNodesWithAllAvailableTypes() throws ScMemoryException {
+        Stream<? extends ScNode> nodes = scMemory.createNodes(Arrays.stream(NodeType.values()));
+        Iterator<? extends ScNode> iter1 = nodes.iterator();
         Iterator<NodeType> iter2 = Arrays.stream(NodeType.values())
                                          .iterator();
         while (iter1.hasNext() && iter2.hasNext()) assertEquals(
@@ -85,9 +85,13 @@ public class NodeOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createTwoNodesOneByOne() {
-        ScNode firstNode = scContext.createNode(NodeType.NODE);
-        ScNode secondNode = scContext.createNode(NodeType.ABSTRACT);
+    void createTwoNodesOneByOne() throws ScMemoryException {
+        ScNode firstNode = scMemory.createNodes(Stream.of(NodeType.NODE))
+                                   .findFirst()
+                                   .get();
+        ScNode secondNode = scMemory.createNodes(Stream.of(NodeType.ABSTRACT))
+                                    .findFirst()
+                                    .get();
         assertEquals(
                 NodeType.NODE,
                 firstNode.getType());
@@ -98,31 +102,35 @@ public class NodeOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void deleteNode() {
-        ScNode node = scContext.createNode(NodeType.NODE);
-        boolean result = scContext.deleteElement(node);
+    void deleteNode() throws ScMemoryException {
+        ScNode node = scMemory.createNodes(Stream.of(NodeType.NODE))
+                              .findFirst()
+                              .get();
+        boolean result = scMemory.deleteElements(Stream.of(node));
         assertTrue(result);
     }
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void deleteMultipleNodesWithOneType() {
+    void deleteMultipleNodesWithOneType() throws ScMemoryException {
         long size = 10;
         var types = Stream.iterate(
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types);
-        boolean result = scContext.deleteElements(nodes);
+        Stream<? extends ScNode> nodes = scMemory.createNodes(types);
+        boolean result = scMemory.deleteElements(nodes);
         assertTrue(result);
     }
 
     @Test
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
-    void benchmarkingWithPausesNodes() throws InterruptedException {
+    void benchmarkingWithPausesNodes() throws InterruptedException, ScMemoryException {
         int count = 100;
         for (int i = 0; i < count; i++) {
-            ScNode node = scContext.createNode(NodeType.NODE);
+            ScNode node = scMemory.createNodes(Stream.of(NodeType.NODE))
+                                  .findFirst()
+                                  .get();
             Thread.sleep(ThreadLocalRandom.current()
                                           .nextInt(
                                                   0,
@@ -135,10 +143,12 @@ public class NodeOperationsTest {
 
     @Test
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
-    void benchmarkingNodes() {
+    void benchmarkingNodes() throws ScMemoryException {
         int count = 100;
         for (int i = 0; i < count; i++) {
-            ScNode node = scContext.createNode(NodeType.NODE);
+            ScNode node = scMemory.createNodes(Stream.of(NodeType.NODE))
+                                  .findFirst()
+                                  .get();
             assertEquals(
                     NodeType.NODE,
                     node.getType());

@@ -26,7 +26,6 @@ import java.util.stream.Stream;
  * <ul>
  *     <li>Elements generator by template</li>
  *     <li>Sc-machine events</li>
- *     <li>Keynodes finder and resolver</li>
  *     <li>Method for creating sc-link with binary content (and get/set methods)</li>
  *
  * </ul>

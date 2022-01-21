@@ -653,7 +653,6 @@ public class SyncOstisScMemory implements ScMemory {
      */
     private Stream<?> getLinkContent(Stream<? extends ScLink> elements) throws ScMemoryException {
         GetLinkContentRequest request = new GetLinkContentRequestImpl();
-        //        todo change peek to something else (cause peek is used only for debugging)
         List<? extends ScLink> links = elements.peek(l -> request.addAddressToRequest(l.getAddress()))
                                                .toList();
 

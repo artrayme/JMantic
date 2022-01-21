@@ -1,5 +1,9 @@
 package context.asyncunchecked;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.ostis.api.context.AsyncUncheckedScContext;
 import org.ostis.api.context.UncheckedScContext;
 import org.ostis.scmemory.model.ScMemory;
@@ -8,10 +12,6 @@ import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -52,12 +52,24 @@ public class EdgeOperationsTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createSingleEdge() throws ExecutionException, InterruptedException {
-        ScNode source = scContext.createNode(NodeType.NODE).get();
-        ScNode target = scContext.createNode(NodeType.NODE).get();
-        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-        assertEquals(edge.getType(), EdgeType.ACCESS);
-        assertEquals(edge.getSource(), source);
-        assertEquals(edge.getTarget(), target);
+        ScNode source = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScNode target = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScEdge edge = scContext.createEdge(
+                                       EdgeType.ACCESS,
+                                       source,
+                                       target)
+                               .get();
+        assertEquals(
+                edge.getType(),
+                EdgeType.ACCESS);
+        assertEquals(
+                edge.getSource(),
+                source);
+        assertEquals(
+                edge.getTarget(),
+                target);
     }
 
     @Test
@@ -67,27 +79,50 @@ public class EdgeOperationsTest {
         EdgeType expectedEdgeType = EdgeType.ACCESS;
         int count = 10;
 
-        var sources = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count))
-                .get()
-                .collect(Collectors.toList());
-        var targets = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count))
-                .get()
-                .collect(Collectors.toList());
-        var types = Stream.iterate(expectedEdgeType, e -> expectedEdgeType).limit(count);
-        var edges = scContext.createEdges(types, sources.stream(), targets.stream()).get();
+        var sources = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(count))
+                               .get()
+                               .collect(Collectors.toList());
+        var targets = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(count))
+                               .get()
+                               .collect(Collectors.toList());
+        var types = Stream.iterate(
+                                  expectedEdgeType,
+                                  e -> expectedEdgeType)
+                          .limit(count);
+        var edges = scContext.createEdges(
+                                     types,
+                                     sources.stream(),
+                                     targets.stream())
+                             .get();
 
         Iterator<ScEdge> edgeIterator = edges.iterator();
         Iterator<ScNode> sourceNodeIterator = sources.iterator();
         Iterator<ScNode> targetNodeIterator = targets.iterator();
         while (edgeIterator.hasNext() && sourceNodeIterator.hasNext() && targetNodeIterator.hasNext()) {
             var currentEdge = edgeIterator.next();
-            assertEquals(currentEdge.getType(), expectedEdgeType);
-            assertEquals(currentEdge.getSource(), sourceNodeIterator.next());
-            assertEquals(currentEdge.getTarget(), targetNodeIterator.next());
+            assertEquals(
+                    currentEdge.getType(),
+                    expectedEdgeType);
+            assertEquals(
+                    currentEdge.getSource(),
+                    sourceNodeIterator.next());
+            assertEquals(
+                    currentEdge.getTarget(),
+                    targetNodeIterator.next());
         }
 
-        assertEquals(edgeIterator.hasNext(), sourceNodeIterator.hasNext());
-        assertEquals(sourceNodeIterator.hasNext(), targetNodeIterator.hasNext());
+        assertEquals(
+                edgeIterator.hasNext(),
+                sourceNodeIterator.hasNext());
+        assertEquals(
+                sourceNodeIterator.hasNext(),
+                targetNodeIterator.hasNext());
 
     }
 
@@ -96,16 +131,25 @@ public class EdgeOperationsTest {
     void createNodesWithAllAvailableTypes() throws ExecutionException, InterruptedException {
         NodeType expectedNodeType = NodeType.NODE;
 
-        var types = Arrays.stream(EdgeType.values()).collect(Collectors.toList());
-        var sources = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType)
-                        .limit(types.size()))
-                .get()
-                .collect(Collectors.toList());
-        var targets = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType)
-                        .limit(types.size()))
-                .get()
-                .collect(Collectors.toList());
-        var edges = scContext.createEdges(types.stream(), sources.stream(), targets.stream()).get();
+        var types = Arrays.stream(EdgeType.values())
+                          .collect(Collectors.toList());
+        var sources = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(types.size()))
+                               .get()
+                               .collect(Collectors.toList());
+        var targets = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(types.size()))
+                               .get()
+                               .collect(Collectors.toList());
+        var edges = scContext.createEdges(
+                                     types.stream(),
+                                     sources.stream(),
+                                     targets.stream())
+                             .get();
 
         Iterator<ScEdge> edgeIterator = edges.iterator();
         Iterator<EdgeType> edgeTypeIterator = types.iterator();
@@ -113,28 +157,60 @@ public class EdgeOperationsTest {
         Iterator<ScNode> targetNodeIterator = targets.iterator();
         while (edgeIterator.hasNext() && sourceNodeIterator.hasNext() && targetNodeIterator.hasNext()) {
             var currentEdge = edgeIterator.next();
-            assertEquals(currentEdge.getType(), edgeTypeIterator.next());
-            assertEquals(currentEdge.getSource(), sourceNodeIterator.next());
-            assertEquals(currentEdge.getTarget(), targetNodeIterator.next());
+            assertEquals(
+                    currentEdge.getType(),
+                    edgeTypeIterator.next());
+            assertEquals(
+                    currentEdge.getSource(),
+                    sourceNodeIterator.next());
+            assertEquals(
+                    currentEdge.getTarget(),
+                    targetNodeIterator.next());
         }
 
-        assertEquals(edgeIterator.hasNext(), sourceNodeIterator.hasNext());
-        assertEquals(sourceNodeIterator.hasNext(), targetNodeIterator.hasNext());
+        assertEquals(
+                edgeIterator.hasNext(),
+                sourceNodeIterator.hasNext());
+        assertEquals(
+                sourceNodeIterator.hasNext(),
+                targetNodeIterator.hasNext());
     }
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createTwoEdgesOneByOne() throws ExecutionException, InterruptedException {
-        ScNode source = scContext.createNode(NodeType.NODE).get();
-        ScNode target = scContext.createNode(NodeType.NODE).get();
-        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-        ScEdge edge2 = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-        assertEquals(edge.getType(), EdgeType.ACCESS);
-        assertEquals(edge.getSource(), source);
-        assertEquals(edge.getTarget(), target);
-        assertEquals(edge2.getType(), EdgeType.ACCESS);
-        assertEquals(edge2.getSource(), source);
-        assertEquals(edge2.getTarget(), target);
+        ScNode source = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScNode target = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScEdge edge = scContext.createEdge(
+                                       EdgeType.ACCESS,
+                                       source,
+                                       target)
+                               .get();
+        ScEdge edge2 = scContext.createEdge(
+                                        EdgeType.ACCESS,
+                                        source,
+                                        target)
+                                .get();
+        assertEquals(
+                edge.getType(),
+                EdgeType.ACCESS);
+        assertEquals(
+                edge.getSource(),
+                source);
+        assertEquals(
+                edge.getTarget(),
+                target);
+        assertEquals(
+                edge2.getType(),
+                EdgeType.ACCESS);
+        assertEquals(
+                edge2.getSource(),
+                source);
+        assertEquals(
+                edge2.getTarget(),
+                target);
     }
 
     @Test
@@ -144,14 +220,27 @@ public class EdgeOperationsTest {
         EdgeType expectedEdgeType = EdgeType.ACCESS;
         int count = 10;
 
-        var sources = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count))
-                .get()
-                .collect(Collectors.toList());
-        var targets = scContext.createNodes(Stream.iterate(expectedNodeType, e -> expectedNodeType).limit(count))
-                .get()
-                .collect(Collectors.toList());
-        var types = Stream.iterate(expectedEdgeType, e -> expectedEdgeType).limit(count);
-        var edges = scContext.createEdges(types, sources.stream(), targets.stream()).get();
+        var sources = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(count))
+                               .get()
+                               .collect(Collectors.toList());
+        var targets = scContext.createNodes(Stream.iterate(
+                                                          expectedNodeType,
+                                                          e -> expectedNodeType)
+                                                  .limit(count))
+                               .get()
+                               .collect(Collectors.toList());
+        var types = Stream.iterate(
+                                  expectedEdgeType,
+                                  e -> expectedEdgeType)
+                          .limit(count);
+        var edges = scContext.createEdges(
+                                     types,
+                                     sources.stream(),
+                                     targets.stream())
+                             .get();
 
         scContext.deleteElements(edges);
     }
@@ -159,10 +248,17 @@ public class EdgeOperationsTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void deleteEdge() throws ExecutionException, InterruptedException {
-        ScNode source = scContext.createNode(NodeType.NODE).get();
-        ScNode target = scContext.createNode(NodeType.NODE).get();
-        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-        boolean result = scContext.deleteElement(edge).get();
+        ScNode source = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScNode target = scContext.createNode(NodeType.NODE)
+                                 .get();
+        ScEdge edge = scContext.createEdge(
+                                       EdgeType.ACCESS,
+                                       source,
+                                       target)
+                               .get();
+        boolean result = scContext.deleteElement(edge)
+                                  .get();
         assertTrue(result);
     }
 
@@ -171,13 +267,28 @@ public class EdgeOperationsTest {
     void benchmarkingWithPausesEdges() throws InterruptedException, ExecutionException {
         int count = 100;
         for (int i = 0; i < count; i++) {
-            ScNode source = scContext.createNode(NodeType.NODE).get();
-            ScNode target = scContext.createNode(NodeType.NODE).get();
-            ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-            Thread.sleep(ThreadLocalRandom.current().nextInt(0, 10));
-            assertEquals(edge.getType(), EdgeType.ACCESS);
-            assertEquals(edge.getSource(), source);
-            assertEquals(edge.getTarget(), target);
+            ScNode source = scContext.createNode(NodeType.NODE)
+                                     .get();
+            ScNode target = scContext.createNode(NodeType.NODE)
+                                     .get();
+            ScEdge edge = scContext.createEdge(
+                                           EdgeType.ACCESS,
+                                           source,
+                                           target)
+                                   .get();
+            Thread.sleep(ThreadLocalRandom.current()
+                                          .nextInt(
+                                                  0,
+                                                  10));
+            assertEquals(
+                    edge.getType(),
+                    EdgeType.ACCESS);
+            assertEquals(
+                    edge.getSource(),
+                    source);
+            assertEquals(
+                    edge.getTarget(),
+                    target);
         }
     }
 
@@ -186,12 +297,24 @@ public class EdgeOperationsTest {
     void benchmarkingEdges() throws ExecutionException, InterruptedException {
         int count = 100;
         for (int i = 0; i < count; i++) {
-            ScNode source = scContext.createNode(NodeType.NODE).get();
-            ScNode target = scContext.createNode(NodeType.NODE).get();
-            ScEdge edge = scContext.createEdge(EdgeType.ACCESS, source, target).get();
-            assertEquals(edge.getType(), EdgeType.ACCESS);
-            assertEquals(edge.getSource(), source);
-            assertEquals(edge.getTarget(), target);
+            ScNode source = scContext.createNode(NodeType.NODE)
+                                     .get();
+            ScNode target = scContext.createNode(NodeType.NODE)
+                                     .get();
+            ScEdge edge = scContext.createEdge(
+                                           EdgeType.ACCESS,
+                                           source,
+                                           target)
+                                   .get();
+            assertEquals(
+                    edge.getType(),
+                    EdgeType.ACCESS);
+            assertEquals(
+                    edge.getSource(),
+                    source);
+            assertEquals(
+                    edge.getTarget(),
+                    target);
         }
     }
 }

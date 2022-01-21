@@ -1,22 +1,20 @@
 package context.defaultcontext;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.ostis.api.context.DefaultScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.net.URI;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KeynodesTest {
     ScMemory memory;
@@ -38,9 +36,13 @@ public class KeynodesTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void findExistedKeynodes() throws ScMemoryException {
-        var first = scContext.findKeynode("nrel_main_idtf").get();
-        var second = scContext.findKeynode("nrel_main_idtf").get();
-        assertEquals(first, second);
+        var first = scContext.findKeynode("nrel_main_idtf")
+                             .get();
+        var second = scContext.findKeynode("nrel_main_idtf")
+                              .get();
+        assertEquals(
+                first,
+                second);
     }
 
     @Test
@@ -53,8 +55,14 @@ public class KeynodesTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void resolveKeynode() throws ScMemoryException {
-        var keynode1 = scContext.resolveKeynode("some_keynode", NodeType.NODE);
-        var keynode2 = scContext.resolveKeynode("some_keynode", NodeType.NODE);
-        assertEquals(keynode1, keynode2);
+        var keynode1 = scContext.resolveKeynode(
+                "some_keynode",
+                NodeType.NODE);
+        var keynode2 = scContext.resolveKeynode(
+                "some_keynode",
+                NodeType.NODE);
+        assertEquals(
+                keynode1,
+                keynode2);
     }
 }
