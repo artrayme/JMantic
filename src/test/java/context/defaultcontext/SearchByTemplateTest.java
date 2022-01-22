@@ -12,9 +12,15 @@ import org.ostis.scmemory.model.element.link.*;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
+import org.ostis.scmemory.websocketmemory.memory.pattern.DefaultWebsocketScPattern;
+import org.ostis.scmemory.websocketmemory.memory.pattern.SearchingPatternTriple;
+import org.ostis.scmemory.websocketmemory.memory.pattern.element.AliasPatternElement;
+import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement;
+import org.ostis.scmemory.websocketmemory.memory.pattern.element.TypePatternElement;
 
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
@@ -64,152 +70,6 @@ public class SearchByTemplateTest {
                 target1,
                 result.get(0)
                       .getTarget());
-        assertEquals(
-                edge1,
-                result.get(0));
-    }
-
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleNodeEdgeStringLink() throws ScMemoryException {
-        ScNode source = scContext.createNode(NodeType.NODE);
-        ScLinkString link = scContext.createStringLink(
-                LinkType.LINK,
-                "Hello");
-        ScEdge edge1 = scContext.createEdge(
-                EdgeType.ACCESS,
-                source,
-                link);
-        var result = scContext.findAllConstructionsNodeEdgeLink(
-                                      source,
-                                      EdgeType.ACCESS,
-                                      LinkType.LINK_VAR,
-                                      LinkContentType.STRING)
-                              .toList();
-        assertEquals(
-                source,
-                result.get(0)
-                      .getSource());
-        assertEquals(
-                link,
-                result.get(0)
-                      .getTarget());
-        assertEquals(
-                link.getContent(),
-                ((ScLinkString) result.get(0)
-                                      .getTarget()).getContent());
-        assertEquals(
-                edge1,
-                result.get(0));
-    }
-
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleNodeIntegerLink() throws ScMemoryException {
-        ScNode source = scContext.createNode(NodeType.NODE);
-        ScLinkInteger link = scContext.createIntegerLink(
-                LinkType.LINK,
-                5);
-        ScEdge edge1 = scContext.createEdge(
-                EdgeType.ACCESS,
-                source,
-                link);
-        var result = scContext.findAllConstructionsNodeEdgeLink(
-                                      source,
-                                      EdgeType.ACCESS,
-                                      LinkType.LINK_VAR,
-                                      LinkContentType.INT)
-                              .toList();
-        assertEquals(
-                source,
-                result.get(0)
-                      .getSource());
-        assertEquals(
-                link,
-                result.get(0)
-                      .getTarget());
-        assertEquals(
-                link.getContent(),
-                ((ScLinkInteger) result.get(0)
-                                       .getTarget()).getContent());
-        assertEquals(
-                edge1,
-                result.get(0));
-    }
-
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleNodeFloatLink() throws ScMemoryException {
-        ScNode source = scContext.createNode(NodeType.NODE);
-        ScLinkFloat link = scContext.createFloatLink(
-                LinkType.LINK,
-                5f);
-        ScEdge edge1 = scContext.createEdge(
-                EdgeType.ACCESS,
-                source,
-                link);
-        var result = scContext.findAllConstructionsNodeEdgeLink(
-                                      source,
-                                      EdgeType.ACCESS,
-                                      LinkType.LINK_VAR,
-                                      LinkContentType.FLOAT)
-                              .toList();
-        assertEquals(
-                source,
-                result.get(0)
-                      .getSource());
-        assertEquals(
-                link,
-                result.get(0)
-                      .getTarget());
-        assertEquals(
-                link.getContent(),
-                ((ScLinkFloat) result.get(0)
-                                     .getTarget()).getContent());
-        assertEquals(
-                edge1,
-                result.get(0));
-    }
-
-
-    @Test
-    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
-    void createSingleTripleNodeEdgeLinkWithRelation() throws ScMemoryException {
-        ScNode source = scContext.createNode(NodeType.NODE);
-        ScLinkString link = scContext.createStringLink(
-                LinkType.LINK,
-                "Hello");
-        ScEdge edge1 = scContext.createEdge(
-                EdgeType.ACCESS,
-                source,
-                link);
-
-        ScNode rel = scContext.createNode(NodeType.NODE);
-        ScEdge edge2 = scContext.createEdge(
-                EdgeType.ACCESS,
-                rel,
-                edge1);
-
-        var result = scContext.findAllConstructionsNodeEdgeLinkWithRelation(
-                                      source,
-                                      EdgeType.ACCESS,
-                                      LinkType.LINK_VAR,
-                                      LinkContentType.STRING,
-                                      rel,
-                                      EdgeType.ACCESS)
-                              .toList();
-        assertEquals(
-                source,
-                result.get(0)
-                      .getSource());
-        assertEquals(
-                link,
-                result.get(0)
-                      .getTarget());
-        assertEquals(
-                link.getContent(),
-                ((ScLinkString) result.get(0)
-                                      .getTarget()).getContent());
         assertEquals(
                 edge1,
                 result.get(0));
@@ -287,6 +147,89 @@ public class SearchByTemplateTest {
         assertEquals(
                 relNode,
                 result.get5());
+    }
+
+
+    /**
+     * <pre>
+     *     {@code
+     *
+     *
+     *     ?target1                      ?target2
+     *         ^                             ^
+     *         |                             |
+     *         |             edge3           |
+     *  ?edge1 |---------------------------->| ?edge2
+     *         |                             |
+     *         |                             |
+     *         |                             |
+     *         |                             |
+     *     ?source1                       ?source2
+     *
+     *
+     *     }
+     * </pre>
+     * <p>
+     * Only edge3 is fixed, but all the elements will be found.
+     * It because in JMantic each edge MUST have known source and target elements.
+     */
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void findPatternOf3Edges() throws ScMemoryException {
+        ScNode source1 = scContext.createNode(NodeType.NODE);
+        ScNode target1 = scContext.createNode(NodeType.NODE);
+        ScEdge edge1 = scContext.createEdge(
+                (EdgeType.ACCESS),
+                (source1),
+                (target1));
+
+        ScNode source2 = scContext.createNode(NodeType.NODE);
+        ScNode target2 = scContext.createNode(NodeType.NODE);
+        ScEdge edge2 = scContext.createEdge(
+                (EdgeType.D_COMMON),
+                (source2),
+                (target2));
+
+        ScEdge edge3 = scContext.createEdge(
+                (EdgeType.ACCESS),
+                (edge1),
+                (edge2));
+
+        ScPattern pattern = new DefaultWebsocketScPattern();
+        pattern.addElement(new SearchingPatternTriple(
+                new TypePatternElement<>(
+                        EdgeType.ACCESS,
+                        new AliasPatternElement("edge1")),
+                new FixedPatternElement(edge3),
+                new TypePatternElement<>(
+                        EdgeType.D_COMMON,
+                        new AliasPatternElement("edge2"))));
+
+        var result = scContext.find(pattern)
+                              .findFirst()
+                              .get()
+                              .toList();
+
+        var resultEdge1 = ((ScEdge) result.get(0));
+        var resultEdge2 = ((ScEdge) result.get(2));
+        assertEquals(
+                edge1,
+                resultEdge1);
+        assertEquals(
+                edge2,
+                resultEdge2);
+        assertEquals(
+                source1,
+                resultEdge1.getSource());
+        assertEquals(
+                target1,
+                resultEdge1.getTarget());
+        assertEquals(
+                source2,
+                resultEdge2.getSource());
+        assertEquals(
+                target2,
+                resultEdge2.getTarget());
     }
 
 }
