@@ -11,6 +11,7 @@ import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
 import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
@@ -33,6 +34,13 @@ public class UncheckedScContext {
         this.memory = memory;
     }
 
+    /**
+     * Node creating.
+     * This method creates a node in sc-memory with the specified type.
+     *
+     * @param type type of the node.
+     * @return Some implementation of ScNode, which is linked with the corresponding sc-memory.
+     */
     public ScNode createNode(NodeType type) {
         Optional<? extends ScElement> result;
         try {
@@ -47,6 +55,14 @@ public class UncheckedScContext {
         return (ScNode) result.get();
     }
 
+    /**
+     * Nodes creating.
+     * This method creates multiple nodes in sc-memory with the specified types.
+     * If you want to create multiple nodes, this method will be more efficient than {@link #createNode(NodeType)}.
+     *
+     * @param types stream of node types.
+     * @return Stream of some implementation of ScNode, which is linked with the corresponding sc-memory.
+     */
     public Stream<ScNode> createNodes(Stream<NodeType> types) {
         Stream<? extends ScElement> result;
         try {
@@ -60,6 +76,15 @@ public class UncheckedScContext {
         return result.map(e -> (ScNode) e);
     }
 
+    /**
+     * Edge creating.
+     * This method creates an edge in sc-memory with the specified type and between two non-null nodes
+     *
+     * @param type   type of the edge.
+     * @param source edge source.
+     * @param target edge target.
+     * @return Some implementation of ScEdge, which is linked with the corresponding sc-memory.
+     */
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
         Optional<? extends ScElement> edge;
         try {
@@ -77,15 +102,27 @@ public class UncheckedScContext {
         return (ScEdge) edge.get();
     }
 
+    /**
+     * Edges creating.
+     * This method creates multiple edges in sc-memory with the specified types, sources and targets.
+     * If you want to create multiple edges, this method will be more efficient than {@link #createEdges(Stream, Stream, Stream)}.
+     * <p>
+     * Edge[n] will be created between sources[n] and targets[n] with types[n].
+     *
+     * @param types   type of the edge.
+     * @param sources edge sources.
+     * @param targets edge targets.
+     * @return Stream of some implementation of ScEdge, which is linked with the corresponding sc-memory.
+     */
     public Stream<ScEdge> createEdges(Stream<EdgeType> types,
-                                      Stream<? extends ScElement> source,
-                                      Stream<? extends ScElement> target) {
+                                      Stream<? extends ScElement> sources,
+                                      Stream<? extends ScElement> targets) {
         Stream<ScEdge> scEdgeStream;
         try {
             scEdgeStream = memory.createEdges(
                                          types,
-                                         source,
-                                         target)
+                                         sources,
+                                         targets)
                                  .map(e -> (ScEdge) e);
         } catch (ScMemoryException e) {
             logger.error(
@@ -96,6 +133,14 @@ public class UncheckedScContext {
         return scEdgeStream;
     }
 
+    /**
+     * Link with integer content creating.
+     * This method creates a link in sc-memory with the specified type and integer content.
+     *
+     * @param type    type of the link.
+     * @param content integer content of the link.
+     * @return Some implementation of ScLinkInteger, that is linked with the corresponding sc-memory.
+     */
     public ScLinkInteger createIntegerLink(LinkType type, Integer content) {
         Optional<? extends ScLinkInteger> result;
         try {
@@ -112,6 +157,14 @@ public class UncheckedScContext {
         return result.get();
     }
 
+    /**
+     * Link with float content creating.
+     * This method creates a link in sc-memory with the specified type and float content.
+     *
+     * @param type    type of the link.
+     * @param content float content of the link.
+     * @return Some implementation of ScLinkFloat, which is linked with the corresponding sc-memory.
+     */
     public ScLinkFloat createFloatLink(LinkType type, Float content) {
         Optional<? extends ScLinkFloat> result;
         try {
@@ -128,6 +181,14 @@ public class UncheckedScContext {
         return result.get();
     }
 
+    /**
+     * Link with string content creating.
+     * This method creates a link in sc-memory with the specified type and string content.
+     *
+     * @param type    type of the link.
+     * @param content string content of the link.
+     * @return Some implementation of ScLinkString, which is linked with the corresponding sc-memory.
+     */
     public ScLinkString createStringLink(LinkType type, String content) {
         Optional<? extends ScLinkString> result;
         try {
@@ -144,6 +205,13 @@ public class UncheckedScContext {
         return result.get();
     }
 
+    /**
+     * Element deleting
+     * This method removes the sc-element from the sc-memory.
+     *
+     * @param element is the item you want to delete.
+     * @return true when executed successfully
+     */
     public Boolean deleteElement(ScElement element) {
         boolean result;
         try {
@@ -157,6 +225,13 @@ public class UncheckedScContext {
         return result;
     }
 
+    /**
+     * Elements deleting
+     * This method remove the sc-elements from the sc-memory.
+     *
+     * @param elements stream of items to be deleted.
+     * @return true when executed successfully.
+     */
     public Boolean deleteElements(Stream<? extends ScElement> elements) {
         boolean result;
         try {
@@ -170,7 +245,15 @@ public class UncheckedScContext {
         return result;
     }
 
-    public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
+    /**
+     * Construction search.
+     * This method searches for all 3-element constructions by pattern.
+     * Also, you can use {@link #find(ScPattern)} if more complex or not standard pattens needed.
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions.
+     */
+    public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) {
         Stream<? extends ScConstruction3<t1, T3>> result;
         try {
             result = memory.findByPattern3(pattern);
@@ -183,6 +266,14 @@ public class UncheckedScContext {
         return result;
     }
 
+    /**
+     * Construction search.
+     * This method searches for all 5-element constructions by pattern.
+     * Also, you can use {@link #find(ScPattern)} if more complex or not standard pattens needed.
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions.
+     */
     public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(
             ScPattern5<t1, t2, t3, T2, T3> pattern) {
         Stream<? extends ScConstruction5<t1, T2, T3>> result;
@@ -197,6 +288,39 @@ public class UncheckedScContext {
         return result;
     }
 
+    /**
+     * Construction search.
+     * This method searches for all constructions by pattern.
+     * This method is universal and can be used for all types of constructions.
+     * But, abstract patterns are hard to create.
+     * If you want
+     * to use some common pattern, these methods can help you:
+     * {@link  #find(ScPattern3)}, {@link #find(ScPattern5)}
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions. Each inner stream represents one found construction.
+     */
+    public Stream<Stream<? extends ScElement>> find(ScPattern pattern) {
+        Stream<Stream<? extends ScElement>> result;
+        try {
+            result = memory.find(pattern);
+        } catch (ScMemoryException e) {
+            logger.error(
+                    "It's really bad",
+                    e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    /**
+     * Link integer content setting.
+     * This method sets the content to sc-link.
+     *
+     * @param link    target link.
+     * @param content integer content.
+     * @return true when executed successfully.
+     */
     public Boolean setIntegerLinkContent(ScLinkInteger link, Integer content) {
         Stream<Boolean> result;
         try {
@@ -213,6 +337,14 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * Link float content setting.
+     * This method sets the content to sc-link.
+     *
+     * @param link    target link.
+     * @param content float content.
+     * @return true when executed successfully.
+     */
     public Boolean setFloatLinkContent(ScLinkFloat link, Float content) {
         Stream<Boolean> result;
         try {
@@ -229,6 +361,14 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * Link string content setting.
+     * This method sets the content to sc-link.
+     *
+     * @param link    target link.
+     * @param content string content.
+     * @return true when executed successfully.
+     */
     public Boolean setStringLinkContent(ScLinkString link, String content) {
         Stream<Boolean> result;
         try {
@@ -272,6 +412,13 @@ public class UncheckedScContext {
     //        return result.findFirst().get();
     //    }
 
+    /**
+     * Integer link content getter.
+     * This method gets the link content from sc-memory.
+     *
+     * @param link target link.
+     * @return link content
+     */
     public Integer getIntegerLinkContent(ScLinkInteger link) {
         Stream<Integer> result;
         try {
@@ -286,6 +433,13 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * Float link content getter.
+     * This method gets the link content from sc-memory.
+     *
+     * @param link target link.
+     * @return link content
+     */
     public Float getFloatLinkContent(ScLinkFloat link) {
         Stream<Float> result;
         try {
@@ -300,6 +454,13 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * String link content getter.
+     * This method gets the link content from sc-memory.
+     *
+     * @param link - target link.
+     * @return link content
+     */
     public String getStringLinkContent(ScLinkString link) {
         Stream<String> result;
         try {
@@ -314,6 +475,13 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * Keynodes finder.
+     * This method finds keynode with a specific identifier.
+     *
+     * @param idtf identifier of node.
+     * @return Optional of node. If node with a passed identifier exists - optional will be present.
+     */
     public Optional<? extends ScNode> findKeynode(String idtf) {
         Optional<? extends ScNode> result;
         try {
@@ -329,6 +497,14 @@ public class UncheckedScContext {
         return result;
     }
 
+    /**
+     * Keynodes resolver.
+     * This method resolves keynode with a specific identifier.
+     *
+     * @param idtf identifier of node.
+     * @param type type of node that will be created
+     * @return resolved node. If node with identifier does not exist - a new node will be created.
+     */
     public ScNode resolveKeynode(String idtf, NodeType type) {
         ScNode result;
         try {

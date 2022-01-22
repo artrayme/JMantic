@@ -9,6 +9,7 @@ import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
 import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
@@ -89,6 +90,10 @@ public class AsyncUncheckedScContext {
 
     public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Future<Stream<? extends ScConstruction5<t1, T2, T3>>> find(
             ScPattern5<t1, t2, t3, T2, T3> pattern) {
+        return executorService.submit(() -> context.find(pattern));
+    }
+
+    public Future<Stream<Stream<? extends ScElement>>> find(ScPattern pattern) {
         return executorService.submit(() -> context.find(pattern));
     }
 

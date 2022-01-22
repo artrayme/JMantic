@@ -4,12 +4,15 @@ import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
-import org.ostis.scmemory.model.element.link.*;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkFloat;
+import org.ostis.scmemory.model.element.link.ScLinkInteger;
+import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
-import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
 import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
@@ -37,10 +40,10 @@ public class DefaultScContext {
 
     /**
      * Node creating.
-     * This method create a node in sc-memory with the specified type.
+     * This method creates a node in sc-memory with the specified type.
      *
-     * @param type - type of the node.
-     * @return Some implementation of ScNode, that is linked with the corresponding sc-memory.
+     * @param type type of the node.
+     * @return Some implementation of ScNode, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScNode createNode(NodeType type) throws ScMemoryException {
@@ -51,11 +54,11 @@ public class DefaultScContext {
 
     /**
      * Nodes creating.
-     * This method create multiple nodes in sc-memory with the specified types.
-     * If you want to create multiple nodes, this method will be more efficient than {@link #createNode)}.
+     * This method creates multiple nodes in sc-memory with the specified types.
+     * If you want to create multiple nodes, this method will be more efficient than {@link #createNode(NodeType)}.
      *
-     * @param types - stream of node types.
-     * @return Stream of some implementation of ScNode, that is linked with the corresponding sc-memory.
+     * @param types stream of node types.
+     * @return Stream of some implementation of ScNode, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Stream<? extends ScNode> createNodes(Stream<NodeType> types) throws ScMemoryException {
@@ -64,12 +67,12 @@ public class DefaultScContext {
 
     /**
      * Edge creating.
-     * This method create an edge in sc-memory with the specified type and between two non-null nodes
+     * This method creates an edge in sc-memory with the specified type and between two non-null nodes
      *
-     * @param type   - type of the edge.
-     * @param source - edge source.
-     * @param target - edge target.
-     * @return Some implementation of ScEdge, that is linked with the corresponding sc-memory.
+     * @param type   type of the edge.
+     * @param source edge source.
+     * @param target edge target.
+     * @return Some implementation of ScEdge, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) throws ScMemoryException {
@@ -83,15 +86,15 @@ public class DefaultScContext {
 
     /**
      * Edges creating.
-     * This method create multiple edges in sc-memory with the specified types, sources and targets.
-     * If you want to create multiple edges, this method will be more efficient than {@link #createEdge)}.
+     * This method creates multiple edges in sc-memory with the specified types, sources and targets.
+     * If you want to create multiple edges, this method will be more efficient than {@link #createEdges(Stream, Stream, Stream)}.
      * <p>
      * Edge[n] will be created between sources[n] and targets[n] with types[n].
      *
-     * @param types   - type of the edge.
-     * @param sources - edge sources.
-     * @param targets - edge targets.
-     * @return Stream of some implementation of ScEdge, that is linked with the corresponding sc-memory.
+     * @param types   type of the edge.
+     * @param sources edge sources.
+     * @param targets edge targets.
+     * @return Stream of some implementation of ScEdge, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public Stream<ScEdge> createEdges(Stream<EdgeType> types,
@@ -106,10 +109,10 @@ public class DefaultScContext {
 
     /**
      * Link with integer content creating.
-     * This method create a link in sc-memory with the specified type and integer content.
+     * This method creates a link in sc-memory with the specified type and integer content.
      *
-     * @param type    - type of the link.
-     * @param content - integer content of the link.
+     * @param type    type of the link.
+     * @param content integer content of the link.
      * @return Some implementation of ScLinkInteger, that is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -123,11 +126,11 @@ public class DefaultScContext {
 
     /**
      * Link with float content creating.
-     * This method create a link in sc-memory with the specified type and float content.
+     * This method creates a link in sc-memory with the specified type and float content.
      *
-     * @param type    - type of the link.
-     * @param content - float content of the link.
-     * @return Some implementation of ScLinkFloat, that is linked with the corresponding sc-memory.
+     * @param type    type of the link.
+     * @param content float content of the link.
+     * @return Some implementation of ScLinkFloat, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkFloat createFloatLink(LinkType type, Float content) throws ScMemoryException {
@@ -140,11 +143,11 @@ public class DefaultScContext {
 
     /**
      * Link with string content creating.
-     * This method create a link in sc-memory with the specified type and string content.
+     * This method creates a link in sc-memory with the specified type and string content.
      *
-     * @param type    - type of the link.
-     * @param content - string content of the link.
-     * @return Some implementation of ScLinkString, that is linked with the corresponding sc-memory.
+     * @param type    type of the link.
+     * @param content string content of the link.
+     * @return Some implementation of ScLinkString, which is linked with the corresponding sc-memory.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
     public ScLinkString createStringLink(LinkType type, String content) throws ScMemoryException {
@@ -159,7 +162,7 @@ public class DefaultScContext {
      * Element deleting
      * This method removes the sc-element from the sc-memory.
      *
-     * @param element - is the item you want to delete.
+     * @param element is the item you want to delete.
      * @return true when executed successfully
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -169,9 +172,9 @@ public class DefaultScContext {
 
     /**
      * Elements deleting
-     * This method removes the sc-elements from the sc-memory.
+     * This method remove the sc-elements from the sc-memory.
      *
-     * @param elements - stream of items to be deleted.
+     * @param elements stream of items to be deleted.
      * @return true when executed successfully.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -181,11 +184,13 @@ public class DefaultScContext {
 
     /**
      * Construction search.
-     * This method searches for all node-edge-node constructions with specified types relative to a fixed node
+     * This method searches for all node-edge-node constructions with specified types relative to a fixed node.
+     * This method is a special case of a searching pattern and exists only because it is most useful and popular.
+     * Also, you can use {@link #find(ScPattern)} if more complex or not standard pattens needed.
      *
-     * @param fixedNode - the fixed node with respect to which the searching will take place.
-     * @param edge      - type of edge you are looking for.
-     * @param node      - type of node you are looking for.
+     * @param fixedNode the fixed node with respect to which the search will take place.
+     * @param edge      type of edge you are looking for.
+     * @param node      type of node you are looking for.
      * @return stream of found constructions.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -199,49 +204,57 @@ public class DefaultScContext {
                      .map(ScConstruction3::getEdge);
     }
 
-    @Deprecated
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLink(ScNode fixedNode,
-                                                                     EdgeType edge,
-                                                                     LinkType link,
-                                                                     LinkContentType linkContent) throws ScMemoryException {
-        return memory.findByPattern3(DefaultScPattern3Factory.get(
-                             fixedNode,
-                             edge,
-                             link))
-                     .map(ScConstruction3::getEdge);
-    }
-
-    @Deprecated
-    public Stream<? extends ScEdge> findAllConstructionsNodeEdgeLinkWithRelation(ScNode fixedNode,
-                                                                                 EdgeType edge,
-                                                                                 LinkType link,
-                                                                                 LinkContentType linkContent,
-                                                                                 ScNode relation,
-                                                                                 EdgeType relationEdgeType) throws ScMemoryException {
-        return memory.findByPattern5(DefaultScPattern5Factory.get(
-                             fixedNode,
-                             edge,
-                             link,
-                             relationEdgeType,
-                             relation))
-                     .map(ScConstruction5::get2);
-    }
-
+    /**
+     * Construction search.
+     * This method searches for all 3-element constructions by pattern.
+     * Also, you can use {@link #find(ScPattern)} if more complex or not standard pattens needed.
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
     public <t1 extends ScElement, t2, T3 extends ScElement> Stream<? extends ScConstruction3<t1, T3>> find(ScPattern3<t1, t2, T3> pattern) throws ScMemoryException {
         return memory.findByPattern3(pattern);
     }
 
+    /**
+     * Construction search.
+     * This method searches for all 5-element constructions by pattern.
+     * Also, you can use {@link #find(ScPattern)} if more complex or not standard pattens needed.
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
     public <t1 extends ScElement, t2, t3, T2 extends ScElement, T3 extends ScElement> Stream<? extends ScConstruction5<t1, T2, T3>> find(
             ScPattern5<t1, t2, t3, T2, T3> pattern) throws ScMemoryException {
         return memory.findByPattern5(pattern);
     }
 
     /**
+     * Construction search.
+     * This method searches for all constructions by pattern.
+     * This method is universal and can be used for all types of constructions.
+     * But, abstract patterns are hard to create.
+     * If you want
+     * to use some common pattern, these methods can help you:
+     * {@link #findAllConstructionsNodeEdgeNode(ScNode, EdgeType, NodeType)},
+     * {@link  #find(ScPattern3)}, {@link #find(ScPattern5)}
+     *
+     * @param pattern the pattern to be searched for
+     * @return stream of found constructions. Each inner stream represents one found construction.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
+    public Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException {
+        return memory.find(pattern);
+    }
+
+    /**
      * Link integer content setting.
      * This method sets the content to sc-link.
      *
-     * @param link    - target link.
-     * @param content - integer content.
+     * @param link    target link.
+     * @param content integer content.
      * @return true when executed successfully.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -257,8 +270,8 @@ public class DefaultScContext {
      * Link float content setting.
      * This method sets the content to sc-link.
      *
-     * @param link    - target link.
-     * @param content - float content.
+     * @param link    target link.
+     * @param content float content.
      * @return true when executed successfully.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -274,8 +287,8 @@ public class DefaultScContext {
      * Link string content setting.
      * This method sets the content to sc-link.
      *
-     * @param link    - target link.
-     * @param content - string content.
+     * @param link    target link.
+     * @param content string content.
      * @return true when executed successfully.
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -291,7 +304,7 @@ public class DefaultScContext {
      * Integer link content getter.
      * This method gets the link content from sc-memory.
      *
-     * @param link - target link.
+     * @param link target link.
      * @return link content
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -305,7 +318,7 @@ public class DefaultScContext {
      * Float link content getter.
      * This method gets the link content from sc-memory.
      *
-     * @param link - target link.
+     * @param link target link.
      * @return link content
      * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
      */
@@ -329,12 +342,29 @@ public class DefaultScContext {
                      .get();
     }
 
+    /**
+     * Keynodes finder.
+     * This method finds keynode with a specific identifier.
+     *
+     * @param idtf identifier of node.
+     * @return Optional of node. If node with a passed identifier exists - optional will be present.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
     public Optional<? extends ScNode> findKeynode(String idtf) throws ScMemoryException {
         return memory.findKeynodes(Stream.of(idtf))
                      .findFirst()
                      .get();
     }
 
+    /**
+     * Keynodes resolver.
+     * This method resolves keynode with a specific identifier.
+     *
+     * @param idtf identifier of node.
+     * @param type type of node that will be created
+     * @return resolved node. If node with identifier does not exist - a new node will be created.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
     public ScNode resolveKeynode(String idtf, NodeType type) throws ScMemoryException {
         return memory.resolveKeynodes(
                              Stream.of(idtf),
@@ -342,4 +372,6 @@ public class DefaultScContext {
                      .findFirst()
                      .get();
     }
+
+
 }
