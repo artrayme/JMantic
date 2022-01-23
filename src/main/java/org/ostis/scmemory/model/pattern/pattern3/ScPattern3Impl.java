@@ -9,6 +9,19 @@ import org.ostis.scmemory.model.element.edge.EdgeType;
  * It is not recommended creating this class manually. Yau should use one of the factories:
  * {@link org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory},
  * {@link org.ostis.scmemory.model.pattern.factory.ScPattern3FactoryWithNames},
+ * <p>
+ * Generics magic:
+ * <ul>
+ *     <li>
+ *      T1 - expected and actual type of the first sc-element (and it fixed in any case)
+ *     </li>
+ *     <li>
+ *       T3 - actual element type. It can be NodeType or LinkType.
+ *     </li>
+ *     <li>
+ *         expectedT3 - expected ScElement type for 3-rd element in pattern. Can be ScNode or ScLink.
+ *     </li>
+ * </ul>
  *
  * @author artrayme
  * @since 0.3.2

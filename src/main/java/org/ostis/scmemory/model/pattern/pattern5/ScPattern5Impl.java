@@ -10,6 +10,26 @@ import org.ostis.scmemory.model.element.edge.EdgeType;
  * {@link org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory},
  * {@link org.ostis.scmemory.model.pattern.factory.ScPattern5FactoryWithNames}.
  *
+ * <p>
+ * Generics magic:
+ * <ul>
+ *     <li>
+ *      T1 - expected and actual type of the first sc-element (and it fixed in any case)
+ *     </li>
+ *     <li>
+ *       T3 - actual 3-rd element type. It can be NodeType or LinkType.
+ *     </li>
+ *     <li>
+ *       T3 - actual 5-th element type. It can be NodeType or LinkType.
+ *     </li>
+ *     <li>
+ *         expectedT3 - expected ScElement type for 3-rd element in pattern. Can be ScNode or ScLink.
+ *     </li>
+ *     <li>
+ *         expectedT5 - expected ScElement type for 3-rd element in pattern. Can be ScNode or ScLink.
+ *     </li>
+ * </ul>
+ *
  * @author artrayme
  * @since 0.3.2
  */

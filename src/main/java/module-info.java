@@ -15,6 +15,7 @@ module JMantic.main {
     exports org.ostis.scmemory.model.element.link;
     exports org.ostis.scmemory.model.element.edge;
     exports org.ostis.scmemory.model.pattern;
+    exports org.ostis.scmemory.model.pattern.element;
     exports org.ostis.scmemory.model.pattern.factory;
     exports org.ostis.scmemory.model.pattern.pattern3;
     exports org.ostis.scmemory.model.pattern.pattern5;
@@ -23,6 +24,5 @@ module JMantic.main {
     exports org.ostis.scmemory.websocketmemory.memory;
     exports org.ostis.scmemory.websocketmemory.memory.pattern;
     exports org.ostis.scmemory.websocketmemory.memory.pattern.element;
-    exports org.ostis.scmemory.model.pattern.element;
 
 }

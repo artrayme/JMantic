@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build:">
-      <change afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/OtherTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/OtherTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/OtherTests.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +348,7 @@
       <workItem from="1642781199975" duration="26739000" />
       <workItem from="1642871707619" duration="38000" />
       <workItem from="1642871785669" duration="18940000" />
-      <workItem from="1642943568786" duration="733000" />
+      <workItem from="1642943568786" duration="6371000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -610,7 +609,28 @@
       <option name="project" value="LOCAL" />
       <updated>1642944294391</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="test: add some small tests to improve coverage">
+      <created>1642944341362</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1642944341362</updated>
+    </task>
+    <task id="LOCAL-00039" summary="conf: remove built-id logger configuration">
+      <created>1642944393618</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1642944393618</updated>
+    </task>
+    <task id="LOCAL-00040" summary="build: change JMantic version in the gradle config">
+      <created>1642944470135</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1642944470135</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,9 +648,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: fix unsafe code and add small improvements" />
-    <MESSAGE value="refactor!: rewrite all internal find mechanisms for universal find" />
-    <MESSAGE value="docs: remove bad recommendations" />
     <MESSAGE value="refactor: remove toString methods from internal classes" />
     <MESSAGE value="test: add tests for pattern5" />
     <MESSAGE value="test: add tests for pattern5 and universal pattern" />
@@ -653,7 +670,10 @@
     <MESSAGE value="test: add test for new methods in contexts" />
     <MESSAGE value="feat: add getter for connected sc-memory object in sc-contexts" />
     <MESSAGE value="test: add first benchmarking test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add first benchmarking test" />
+    <MESSAGE value="test: add some small tests to improve coverage" />
+    <MESSAGE value="conf: remove built-id logger configuration" />
+    <MESSAGE value="build: change JMantic version in the gradle config" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: change JMantic version in the gradle config" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
