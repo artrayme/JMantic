@@ -34,6 +34,10 @@ public class UncheckedScContext {
         this.memory = memory;
     }
 
+    public ScMemory getMemory() {
+        return memory;
+    }
+
     /**
      * Node creating.
      * This method creates a node in sc-memory with the specified type.

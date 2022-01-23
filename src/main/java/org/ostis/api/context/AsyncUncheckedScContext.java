@@ -33,6 +33,10 @@ public class AsyncUncheckedScContext {
         this.context = context;
     }
 
+    public UncheckedScContext getContext() {
+        return context;
+    }
+
     public Future<ScNode> createNode(NodeType type) {
         return executorService.submit(() -> context.createNode(type));
     }
