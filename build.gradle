@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'org.ostis'
-version '0.5.0'
+version '0.6.0'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -31,7 +31,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
 }
 
 compileJava {
@@ -54,7 +53,7 @@ publishing {
         gpr(MavenPublication) {
             groupId 'org.ostis'
             artifactId 'jmantic'
-            version '0.5.0'
+            version '0.6.0'
             from(components.java)
         }
     }

@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="refactor: remove toString methods from internal classes">
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build:">
+      <change afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/OtherTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/context/defaultcontext/OtherTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/OtherTests.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/ExceptionsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +61,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
@@ -71,6 +79,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="PROJECT_2PANELS_PROPORTION" value="0.33051297" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -82,18 +91,18 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="context.asyncunchecked" />
+      <recent name="context.unchecked" />
       <recent name="scmemory" />
       <recent name="org.ostis.scmemory.websocketmemory.memory.message.response" />
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
-      <recent name="org.ostis.scmemory.websocketmemory.message.request" />
-      <recent name="org.ostis.scmemory.websocketmemory.memory.message.request" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Coverage">
@@ -139,7 +148,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExceptionsTest.exceptionAtMultipleElementsDeleting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DeepSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -152,7 +161,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtMultipleElementsDeleting&quot;" />
+            <option value="&quot;algo.DeepSearching&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -162,7 +171,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExceptionsTest.exceptionAtPattern3Searching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ExceptionsTest.exceptionAtPatternSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -175,7 +184,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtPattern3Searching&quot;" />
+            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtPatternSearching&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -185,7 +194,28 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExceptionsTest.exceptionAtPattern5Searching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Jar" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="OtherTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -198,7 +228,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtPattern5Searching&quot;" />
+            <option value="&quot;context.defaultcontext.OtherTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -208,7 +238,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScLinkOperationsTest.exceptionAtLinkContentSetting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="OtherTests (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -221,7 +251,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScLinkOperationsTest.exceptionAtLinkContentSetting&quot;" />
+            <option value="&quot;context.unchecked.OtherTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -231,7 +261,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryKeynodeTest.exceptionAtNodeResolving" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="OtherTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -244,7 +274,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryKeynodeTest.exceptionAtNodeResolving&quot;" />
+            <option value="&quot;context.asyncunchecked.OtherTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -277,21 +307,22 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.Build" />
-      <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.Coverage" />
-      <item itemvalue="Gradle.ScMemoryKeynodeTest.exceptionAtNodeResolving" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtPattern5Searching" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtPattern3Searching" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtMultipleElementsDeleting" />
-      <item itemvalue="Gradle.ScLinkOperationsTest.exceptionAtLinkContentSetting" />
+      <item itemvalue="Gradle.Jar" />
+      <item itemvalue="Gradle.Test" />
+      <item itemvalue="Gradle.DeepSearching" />
+      <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
+      <item itemvalue="Gradle.OtherTests" />
+      <item itemvalue="Gradle.OtherTests (1)" />
+      <item itemvalue="Gradle.OtherTests (2)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ScLinkOperationsTest.exceptionAtLinkContentSetting" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtMultipleElementsDeleting" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtPattern3Searching" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtPattern5Searching" />
-        <item itemvalue="Gradle.ScMemoryKeynodeTest.exceptionAtNodeResolving" />
+        <item itemvalue="Gradle.OtherTests (2)" />
+        <item itemvalue="Gradle.OtherTests (1)" />
+        <item itemvalue="Gradle.OtherTests" />
+        <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
+        <item itemvalue="Gradle.DeepSearching" />
       </list>
     </recent_temporary>
   </component>
@@ -315,7 +346,10 @@
       <workItem from="1642023544293" duration="3474000" />
       <workItem from="1642193694817" duration="31357000" />
       <workItem from="1642623372769" duration="16460000" />
-      <workItem from="1642781199975" duration="13639000" />
+      <workItem from="1642781199975" duration="26739000" />
+      <workItem from="1642871707619" duration="38000" />
+      <workItem from="1642871785669" duration="18940000" />
+      <workItem from="1642943568786" duration="733000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -541,7 +575,42 @@
       <option name="project" value="LOCAL" />
       <updated>1642795111839</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="refactor: add new formatting rules config for Intellij IDEA">
+      <created>1642795218505</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1642795218505</updated>
+    </task>
+    <task id="LOCAL-00034" summary="refactor(api.context)!: add documentation, add new methods, remove deprecated methods">
+      <created>1642873730378</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1642873730378</updated>
+    </task>
+    <task id="LOCAL-00035" summary="test: add test for new methods in contexts">
+      <created>1642873782974</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1642873782974</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat: add getter for connected sc-memory object in sc-contexts">
+      <created>1642944071714</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1642944071714</updated>
+    </task>
+    <task id="LOCAL-00037" summary="test: add first benchmarking test">
+      <created>1642944294391</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1642944294391</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,11 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: implement n-ary searching patterns in ScMemory" />
-    <MESSAGE value="refactor!: change packages structure" />
-    <MESSAGE value="feat!: add method for getting address of connected server in ostis clients" />
-    <MESSAGE value="refactor: fix bugs in searching by pattern functionality" />
-    <MESSAGE value="test: add basic tests for searching by pattern method" />
     <MESSAGE value="refactor: fix unsafe code and add small improvements" />
     <MESSAGE value="refactor!: rewrite all internal find mechanisms for universal find" />
     <MESSAGE value="docs: remove bad recommendations" />
@@ -584,7 +648,12 @@
     <MESSAGE value="build: add comment with a jvm key" />
     <MESSAGE value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
     <MESSAGE value="test: add sc-memory tests and change formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: add sc-memory tests and change formatting" />
+    <MESSAGE value="refactor: add new formatting rules config for Intellij IDEA" />
+    <MESSAGE value="refactor(api.context)!: add documentation, add new methods, remove deprecated methods" />
+    <MESSAGE value="test: add test for new methods in contexts" />
+    <MESSAGE value="feat: add getter for connected sc-memory object in sc-contexts" />
+    <MESSAGE value="test: add first benchmarking test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test: add first benchmarking test" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
