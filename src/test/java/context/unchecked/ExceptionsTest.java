@@ -9,15 +9,19 @@ import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern3Factory;
 import org.ostis.scmemory.model.pattern.factory.DefaultScPattern5Factory;
 import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
-import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
+import org.ostis.scmemory.websocketmemory.memory.pattern.DefaultWebsocketScPattern;
+import org.ostis.scmemory.websocketmemory.memory.pattern.SearchingPatternTriple;
+import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement;
 
 import java.net.URI;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -25,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * 12/7/21
  */
 public class ExceptionsTest {
-    ScMemory memory;
+    private ScMemory memory;
 
     private UncheckedScContext scContext;
 
@@ -210,7 +214,7 @@ public class ExceptionsTest {
     }
 
     @Test
-    void exceptionAtKeynodeFinding() throws Exception {
+    void exceptionAtKeynodeFinding() {
         assertThrows(
                 RuntimeException.class,
                 () -> {
@@ -219,7 +223,7 @@ public class ExceptionsTest {
     }
 
     @Test
-    void exceptionAtKeynodeResolving() throws Exception {
+    void exceptionAtKeynodeResolving() {
         assertThrows(
                 RuntimeException.class,
                 () -> {
@@ -250,17 +254,22 @@ public class ExceptionsTest {
         assertThrows(
                 RuntimeException.class,
                 () -> {
-                    scContext.deleteElements(Stream.of(node1, node2));
+                    scContext.deleteElements(Stream.of(
+                            node1,
+                            node2));
                 });
     }
-    
+
     @Test
     void exceptionAtPattern3Searching() throws Exception {
-        
+
         memory.open();
         ScNode node1 = scContext.createNode(NodeType.NODE);
         ScNode node2 = scContext.createNode(NodeType.NODE);
-        ScEdge edge = scContext.createEdge(EdgeType.ACCESS, node1, node2);
+        ScEdge edge = scContext.createEdge(
+                EdgeType.ACCESS,
+                node1,
+                node2);
         ScPattern3<ScNode, NodeType, ScNode> pattern = DefaultScPattern3Factory.get(
                 node1,
                 EdgeType.ACCESS,
@@ -280,15 +289,20 @@ public class ExceptionsTest {
         ScNode node1 = scContext.createNode(NodeType.NODE);
         ScNode node2 = scContext.createNode(NodeType.NODE);
         ScNode node3 = scContext.createNode(NodeType.NODE);
-        ScEdge edge1 = scContext.createEdge(EdgeType.ACCESS, node1, node2);
-        ScEdge edge2 = scContext.createEdge(EdgeType.ACCESS, node3, edge1);
+        ScEdge edge1 = scContext.createEdge(
+                EdgeType.ACCESS,
+                node1,
+                node2);
+        ScEdge edge2 = scContext.createEdge(
+                EdgeType.ACCESS,
+                node3,
+                edge1);
         var pattern = DefaultScPattern5Factory.get(
                 node1,
                 EdgeType.ACCESS,
                 NodeType.NODE,
                 EdgeType.ACCESS,
-                node3
-        );
+                node3);
         memory.close();
         assertThrows(
                 RuntimeException.class,
@@ -296,4 +310,27 @@ public class ExceptionsTest {
                     scContext.find(pattern);
                 });
     }
+
+    @Test
+    void exceptionAtPatternSearching() throws Exception {
+        memory.open();
+        ScNode node1 = scContext.createNode(NodeType.NODE);
+        ScNode node2 = scContext.createNode(NodeType.NODE);
+        ScEdge edge = scContext.createEdge(
+                EdgeType.ACCESS,
+                node1,
+                node2);
+        ScPattern pattern = new DefaultWebsocketScPattern();
+        pattern.addElement(new SearchingPatternTriple(
+                new FixedPatternElement(node1),
+                new FixedPatternElement(node2),
+                new FixedPatternElement(edge)));
+        memory.close();
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    scContext.find(pattern);
+                });
+    }
+
 }
