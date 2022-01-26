@@ -164,7 +164,7 @@ More information about dockerized ostis - [GitHub repository](https://github.com
 ## Conventions 
 
 ### JMantic versioning 
-In thr project, semantic versioning is used but with a couple of improvisations.
+In this project, semantic versioning is used but with a couple of improvisations.
 
 Version has the format: x.y.z 
 
