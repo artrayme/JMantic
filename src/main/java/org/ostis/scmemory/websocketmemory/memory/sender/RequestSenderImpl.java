@@ -66,6 +66,13 @@ public class RequestSenderImpl implements RequestSender {
     }
 
     @Override
+    public GenerateByPatternResponse sendGenerateByPatternRequest(GenerateByPatternRequest request) throws ScMemoryException {
+        return send(
+                request,
+                GenerateByPatternResponseImpl.class);
+    }
+
+    @Override
     public SetLinkContentResponse sendSetLinkContentRequest(SetLinkContentRequest request) throws ScMemoryException {
         return send(
                 request,
@@ -80,7 +87,7 @@ public class RequestSenderImpl implements RequestSender {
     }
 
     @Override
-    public KeynodeResponse sendFindKeynodeRequest(KeynodeRequest request) throws ScMemoryException {
+    public KeynodeResponse sendKeynodeRequest(KeynodeRequest request) throws ScMemoryException {
         return send(
                 request,
                 KeynodeResponseImpl.class);
