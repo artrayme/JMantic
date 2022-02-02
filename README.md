@@ -24,6 +24,7 @@ But for a current moment,
 the goal of this project is
 to create a java-library for connecting to a sc-machine via a WebSocket interface by using json format.
 
+[Documentation in Russian](docs/documentation/ru/JMantic_Documentation_Ru_0.6.0.pdf)
 ****
 
 ## Main project priorities:
@@ -72,7 +73,7 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.ostis:jmantic:0.5.0'
+implementation 'org.ostis:jmantic:0.6.0'
 ```
 
 ### Maven
@@ -135,7 +136,7 @@ Dependency
 <dependency>
     <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
@@ -164,7 +165,7 @@ More information about dockerized ostis - [GitHub repository](https://github.com
 ## Conventions 
 
 ### JMantic versioning 
-In this project, semantic versioning is used but with a couple of improvisations.
+In this project, the semantic version is used but with a couple of improvisations.
 
 Version has the format: x.y.z 
 
