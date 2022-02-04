@@ -1,4 +1,4 @@
-package org.ostis.scmemory.websocketmemory.util;
+package org.ostis.scmemory.websocketmemory.util.internal;
 
 import java.util.concurrent.atomic.AtomicLong;
 
