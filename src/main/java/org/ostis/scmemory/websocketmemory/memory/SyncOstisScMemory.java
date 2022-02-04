@@ -73,6 +73,10 @@ public class SyncOstisScMemory implements ScMemory {
         requestSender = new RequestSenderImpl(ostisClient);
     }
 
+    public URI getURI() {
+        return ostisClient.getAddress();
+    }
+
     @Override
     public Stream<? extends ScNode> createNodes(Stream<NodeType> elements) throws ScMemoryException {
         List<ScNodeImpl> nodesToCreate = elements.map(ScNodeImpl::new)
