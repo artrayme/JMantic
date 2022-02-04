@@ -341,7 +341,7 @@
       <workItem from="1642871707619" duration="38000" />
       <workItem from="1642871785669" duration="18940000" />
       <workItem from="1642943568786" duration="6371000" />
-      <workItem from="1643985379765" duration="13359000" />
+      <workItem from="1643985379765" duration="13709000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -679,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644010402140</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="refactor: change project code style and reformat code according it">
+      <created>1644010661122</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010661122</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: fix api according to the json format" />
     <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
     <MESSAGE value="test: add tests for searching by universal pattern" />
     <MESSAGE value="test: add test for construction of 7 elements and add some explanation" />
@@ -722,7 +728,8 @@
     <MESSAGE value="feat: add test for utility-class" />
     <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
     <MESSAGE value="build: remove sl4j dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: remove sl4j dependency" />
+    <MESSAGE value="refactor: change project code style and reformat code according it" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: change project code style and reformat code according it" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

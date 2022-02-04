@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'org.ostis'
-version '0.6.0'
+version '0.6.1'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -49,7 +49,7 @@ publishing {
         gpr(MavenPublication) {
             groupId 'org.ostis'
             artifactId 'jmantic'
-            version '0.6.0'
+            version '0.6.1'
             from(components.java)
         }
     }
