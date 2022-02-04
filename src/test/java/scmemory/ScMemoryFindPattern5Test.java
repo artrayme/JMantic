@@ -380,9 +380,6 @@ public class ScMemoryFindPattern5Test {
                              .findFirst()
                              .get();
 
-        System.out.println(relEdge);
-        System.out.println(result.get4());
-
         assertEquals(
                 source,
                 result.get1());

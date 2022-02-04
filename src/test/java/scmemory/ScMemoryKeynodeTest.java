@@ -11,6 +11,7 @@ import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 
 import java.net.URI;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -37,12 +38,12 @@ public class ScMemoryKeynodeTest {
 
     @Test
     public void findKeynode() throws ScMemoryException {
-        var first = scMemory.findKeynodes(Stream.of("identifier*"))
+        var first = scMemory.findKeynodes(Stream.of("nrel_main_idtf"))
                             .findFirst()
-                            .get();
-        var second = scMemory.findKeynodes(Stream.of("identifier*"))
+                            .get().get();
+        var second = scMemory.findKeynodes(Stream.of("nrel_main_idtf"))
                              .findFirst()
-                             .get();
+                             .get().get();
         assertEquals(
                 first,
                 second);
@@ -51,13 +52,13 @@ public class ScMemoryKeynodeTest {
     @Test
     public void findMultipleKeynode() throws ScMemoryException {
         var first = scMemory.findKeynodes(Stream.of(
-                                    "identifier*",
-                                    "identifier*"))
-                            .toList();
+                                    "nrel_main_idtf",
+                                    "nrel_main_idtf"))
+                            .map(Optional::get).toList();
         var second = scMemory.findKeynodes(Stream.of(
-                                     "identifier*",
-                                     "identifier*"))
-                             .toList();
+                                     "nrel_main_idtf",
+                                     "nrel_main_idtf"))
+                             .map(Optional::get).toList();
         assertEquals(
                 first,
                 second);
