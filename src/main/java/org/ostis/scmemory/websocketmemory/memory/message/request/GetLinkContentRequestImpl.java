@@ -8,7 +8,6 @@ import org.ostis.scmemory.websocketmemory.message.request.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Implementation of the {@link GetLinkContentRequest}. The payload part consists

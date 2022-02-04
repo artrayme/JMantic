@@ -37,11 +37,11 @@ public class TimeExtension implements BeforeTestExecutionCallback, AfterTestExec
                 long.class);
         long duration = System.currentTimeMillis() - startTime;
         long requestCount = RequestIdGenerator.getId() - startRequestCount;
-        logger.info(() -> String.format(
-                "Method [%s]: time = %s ms; requests count = %s, ops = %s",
-                testMethod.getName(),
-                duration, requestCount, (long)(requestCount/(((double)duration/1000)))
-                ));
+        logger.info(() -> String.format("Method [%s]: time = %s ms; requests count = %s, ops = %s",
+                                        testMethod.getName(),
+                                        duration,
+                                        requestCount,
+                                        (long) (requestCount / (((double) duration / 1000)))));
     }
 
     private ExtensionContext.Store getStore(ExtensionContext context) {

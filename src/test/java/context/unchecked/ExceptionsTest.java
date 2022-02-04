@@ -21,7 +21,6 @@ import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternEle
 import java.net.URI;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**

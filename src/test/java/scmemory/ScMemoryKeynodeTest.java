@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.ostis.scmemory.model.ScMemory;
-import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
@@ -40,10 +39,12 @@ public class ScMemoryKeynodeTest {
     public void findKeynode() throws ScMemoryException {
         var first = scMemory.findKeynodes(Stream.of("nrel_main_idtf"))
                             .findFirst()
-                            .get().get();
+                            .get()
+                            .get();
         var second = scMemory.findKeynodes(Stream.of("nrel_main_idtf"))
                              .findFirst()
-                             .get().get();
+                             .get()
+                             .get();
         assertEquals(
                 first,
                 second);
@@ -54,11 +55,13 @@ public class ScMemoryKeynodeTest {
         var first = scMemory.findKeynodes(Stream.of(
                                     "nrel_main_idtf",
                                     "nrel_main_idtf"))
-                            .map(Optional::get).toList();
+                            .map(Optional::get)
+                            .toList();
         var second = scMemory.findKeynodes(Stream.of(
                                      "nrel_main_idtf",
                                      "nrel_main_idtf"))
-                             .map(Optional::get).toList();
+                             .map(Optional::get)
+                             .toList();
         assertEquals(
                 first,
                 second);

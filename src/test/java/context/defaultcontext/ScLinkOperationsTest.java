@@ -6,7 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.ostis.api.context.DefaultScContext;
 import org.ostis.scmemory.model.ScMemory;
-import org.ostis.scmemory.model.element.link.*;
+import org.ostis.scmemory.model.element.link.LinkContentType;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkFloat;
+import org.ostis.scmemory.model.element.link.ScLinkInteger;
+import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 

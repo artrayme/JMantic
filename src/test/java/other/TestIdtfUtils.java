@@ -10,7 +10,6 @@ import org.ostis.scmemory.websocketmemory.util.api.IdtfUtils;
 import util.TimeExtension;
 
 import java.net.URI;
-import java.util.List;
 
 @ExtendWith(TimeExtension.class)
 public class TestIdtfUtils {
@@ -29,6 +28,6 @@ public class TestIdtfUtils {
 
     @Test
     public void testOptimizedVersion() throws Exception {
-       IdtfUtils.getAllIdtfFast((SyncOstisScMemory) scMemory);
+        IdtfUtils.getAllIdtfFast((SyncOstisScMemory) scMemory);
     }
 }

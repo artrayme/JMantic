@@ -29,6 +29,8 @@ public class OtherTests {
 
     @Test
     public void testScMemoryGetterLol() {
-        assertEquals(memory, scContext.getMemory());
+        assertEquals(
+                memory,
+                scContext.getMemory());
     }
 }

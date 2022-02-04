@@ -8,7 +8,6 @@ import org.ostis.api.context.DefaultScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
-import org.ostis.scmemory.model.element.link.*;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;

@@ -5,7 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.ostis.scmemory.model.ScMemory;
-import org.ostis.scmemory.model.element.link.*;
+import org.ostis.scmemory.model.element.link.LinkContentType;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkFloat;
+import org.ostis.scmemory.model.element.link.ScLinkInteger;
+import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 
@@ -14,7 +18,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author artrayme
@@ -354,19 +360,23 @@ public class ScLinkOperationsTest {
     void exceptionAtLinkContentSetting() throws ScMemoryException {
         Integer content = 123;
         ScLinkInteger link = scMemory.createIntegerLinks(
-                                                      Stream.of(LinkType.LINK),
-                                                      Stream.of(content))
-                                              .findFirst()
-                                              .get();
+                                             Stream.of(LinkType.LINK),
+                                             Stream.of(content))
+                                     .findFirst()
+                                     .get();
         assertThrows(
                 IllegalArgumentException.class,
                 () -> {
-                    scMemory.setIntegerLinkContent(Stream.of(), Stream.of(content));
+                    scMemory.setIntegerLinkContent(
+                            Stream.of(),
+                            Stream.of(content));
                 });
         assertThrows(
                 IllegalArgumentException.class,
                 () -> {
-                    scMemory.setIntegerLinkContent(Stream.of(link), Stream.of());
+                    scMemory.setIntegerLinkContent(
+                            Stream.of(link),
+                            Stream.of());
                 });
     }
 

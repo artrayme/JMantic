@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build:">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +82,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -348,7 +341,7 @@
       <workItem from="1642871707619" duration="38000" />
       <workItem from="1642871785669" duration="18940000" />
       <workItem from="1642943568786" duration="6371000" />
-      <workItem from="1643985379765" duration="13162000" />
+      <workItem from="1643985379765" duration="13359000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -679,7 +672,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644010324717</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="build: remove sl4j dependency">
+      <created>1644010402140</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010402140</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +697,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
     <MESSAGE value="fix: fix api according to the json format" />
     <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
     <MESSAGE value="test: add tests for searching by universal pattern" />
@@ -722,7 +721,8 @@
     <MESSAGE value="feat: add util-class for working with idtf-s" />
     <MESSAGE value="feat: add test for utility-class" />
     <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: remove unused sout-s from tests and some other small fixes" />
+    <MESSAGE value="build: remove sl4j dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: remove sl4j dependency" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

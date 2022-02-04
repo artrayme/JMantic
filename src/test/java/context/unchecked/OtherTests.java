@@ -3,7 +3,6 @@ package context.unchecked;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ostis.api.context.DefaultScContext;
 import org.ostis.api.context.UncheckedScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;

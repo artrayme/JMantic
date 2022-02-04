@@ -1,8 +1,22 @@
 package org.ostis.scmemory.websocketmemory.sender;
 
 import org.ostis.scmemory.model.exception.ScMemoryException;
-import org.ostis.scmemory.websocketmemory.message.request.*;
-import org.ostis.scmemory.websocketmemory.message.response.*;
+import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
+import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
+import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
+import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
+import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
+import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
+import org.ostis.scmemory.websocketmemory.message.request.SetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
+import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
+import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
+import org.ostis.scmemory.websocketmemory.message.response.FindByPatternResponse;
+import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
+import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
+import org.ostis.scmemory.websocketmemory.message.response.ScResponse;
+import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 
 import java.net.URI;
 
