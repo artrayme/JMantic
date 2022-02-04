@@ -1,3 +1,5 @@
+[//]: # (404 not found)
+
 <p align="center">
   <img src="./docs/logo/project_logo.png" alt="drawing" width="400"/>
 </p>
