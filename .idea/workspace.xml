@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build:">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPattern5WithNamesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryKeynodeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,52 +146,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeepSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;algo.DeepSearching&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ExceptionsTest.exceptionAtPatternSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtPatternSearching&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="Jar" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -210,29 +163,6 @@
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="OtherTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.defaultcontext.OtherTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -260,7 +190,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="OtherTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryKeynodeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -273,7 +203,30 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.asyncunchecked.OtherTests&quot;" />
+            <option value="&quot;scmemory.ScMemoryKeynodeTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryKeynodeTest.findKeynode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryKeynodeTest.findKeynode&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -304,24 +257,70 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestEdgeIdtf.testOptimizedVersion (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.TestEdgeIdtf.testOptimizedVersion&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestEdgeIdtf.whatTheFuckWithEdges" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.TestEdgeIdtf.whatTheFuckWithEdges&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
-      <item itemvalue="Gradle.DeepSearching" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
-      <item itemvalue="Gradle.OtherTests" />
-      <item itemvalue="Gradle.OtherTests (1)" />
       <item itemvalue="Gradle.OtherTests (2)" />
+      <item itemvalue="Gradle.ScMemoryKeynodeTest" />
+      <item itemvalue="Gradle.TestEdgeIdtf.whatTheFuckWithEdges" />
+      <item itemvalue="Gradle.ScMemoryKeynodeTest.findKeynode" />
+      <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
+        <item itemvalue="Gradle.TestEdgeIdtf.whatTheFuckWithEdges" />
+        <item itemvalue="Gradle.ScMemoryKeynodeTest.findKeynode" />
+        <item itemvalue="Gradle.ScMemoryKeynodeTest" />
         <item itemvalue="Gradle.OtherTests (2)" />
-        <item itemvalue="Gradle.OtherTests (1)" />
-        <item itemvalue="Gradle.OtherTests" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
-        <item itemvalue="Gradle.DeepSearching" />
       </list>
     </recent_temporary>
   </component>
@@ -349,6 +348,7 @@
       <workItem from="1642871707619" duration="38000" />
       <workItem from="1642871785669" duration="18940000" />
       <workItem from="1642943568786" duration="6371000" />
+      <workItem from="1643985379765" duration="13162000" />
     </task>
     <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
       <created>1641512873177</created>
@@ -630,7 +630,56 @@
       <option name="project" value="LOCAL" />
       <updated>1642944470135</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="docs: update JMantic version and add a link to the documentation in russian">
+      <created>1643807835483</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1643807835483</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: add method that returns URI to which websocket-memory is connected">
+      <created>1644009680026</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009680026</updated>
+    </task>
+    <task id="LOCAL-00043" summary="refactor: split util-classes to internal and api">
+      <created>1644009803333</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009803333</updated>
+    </task>
+    <task id="LOCAL-00044" summary="refactor: change package paths at the internal classes corresponding to new packages with utils">
+      <created>1644009938150</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009938150</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat: add util-class for working with idtf-s">
+      <created>1644010009849</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010009849</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: add test for utility-class">
+      <created>1644010243464</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010243464</updated>
+    </task>
+    <task id="LOCAL-00047" summary="refactor: remove unused sout-s from tests and some other small fixes">
+      <created>1644010324716</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010324717</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,13 +697,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: remove toString methods from internal classes" />
-    <MESSAGE value="test: add tests for pattern5" />
-    <MESSAGE value="test: add tests for pattern5 and universal pattern" />
-    <MESSAGE value="build: change waiting time while ostis starts" />
-    <MESSAGE value="fix: fix some issues from sonar report" />
-    <MESSAGE value="refactor: move classes that are connected with searching patterns and add documentation for they" />
-    <MESSAGE value="refactor: add central id generator for requests id" />
     <MESSAGE value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
     <MESSAGE value="fix: fix api according to the json format" />
     <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
@@ -673,7 +715,14 @@
     <MESSAGE value="test: add some small tests to improve coverage" />
     <MESSAGE value="conf: remove built-id logger configuration" />
     <MESSAGE value="build: change JMantic version in the gradle config" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: change JMantic version in the gradle config" />
+    <MESSAGE value="docs: update JMantic version and add a link to the documentation in russian" />
+    <MESSAGE value="feat: add method that returns URI to which websocket-memory is connected" />
+    <MESSAGE value="refactor: split util-classes to internal and api" />
+    <MESSAGE value="refactor: change package paths at the internal classes corresponding to new packages with utils" />
+    <MESSAGE value="feat: add util-class for working with idtf-s" />
+    <MESSAGE value="feat: add test for utility-class" />
+    <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: remove unused sout-s from tests and some other small fixes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

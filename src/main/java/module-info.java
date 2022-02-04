@@ -1,6 +1,5 @@
 module JMantic.main {
     requires com.fasterxml.jackson.annotation;
-    requires org.slf4j;
     requires com.fasterxml.jackson.databind;
 
     //    exporting usable public api
