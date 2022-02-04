@@ -5,6 +5,7 @@ module JMantic.main {
 
     //    exporting usable public api
     exports org.ostis.api.context;
+    exports org.ostis.scmemory.websocketmemory.util.api;
 
     //    exporting main interfaces and abstractions
     exports org.ostis.scmemory.model;
