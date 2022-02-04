@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.websocketmemory.message.request.RequestType;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
-import org.ostis.scmemory.websocketmemory.util.RequestIdGenerator;
+import org.ostis.scmemory.websocketmemory.util.internal.RequestIdGenerator;
 
 /**
  * An abstract request class that contains information that is inherent in all system requests.

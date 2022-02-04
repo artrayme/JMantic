@@ -3,7 +3,7 @@ package util;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.ostis.scmemory.websocketmemory.util.RequestIdGenerator;
+import org.ostis.scmemory.websocketmemory.util.internal.RequestIdGenerator;
 
 import java.lang.reflect.Method;
 import java.util.logging.Logger;
