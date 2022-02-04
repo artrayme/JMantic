@@ -75,7 +75,7 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.ostis:jmantic:0.6.0'
+implementation 'org.ostis:jmantic:0.6.1'
 ```
 
 ### Maven
@@ -138,7 +138,7 @@ Dependency
 <dependency>
     <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.6.0</version>
+    <version>0.6.1</version>
 </dependency>
 ```
 
