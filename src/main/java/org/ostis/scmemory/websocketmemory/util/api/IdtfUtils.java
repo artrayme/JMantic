@@ -21,6 +21,10 @@ import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * @author artrayme
+ * @since 0.6.1
+ */
 public class IdtfUtils {
 
     private IdtfUtils() {

@@ -8,6 +8,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author artrayme
+ * @since 0.5.0
+ */
 public enum ScTypesMap {
     INSTANCE;
 

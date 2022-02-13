@@ -8,6 +8,10 @@ import org.ostis.scmemory.websocketmemory.util.internal.RequestIdGenerator;
 import java.lang.reflect.Method;
 import java.util.logging.Logger;
 
+/**
+ * @author artrayme
+ * @since 0.6.1
+ */
 public class TimeExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
     private static final Logger logger = Logger.getLogger(TimeExtension.class.getName());

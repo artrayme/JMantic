@@ -11,6 +11,10 @@ import util.TimeExtension;
 
 import java.net.URI;
 
+/**
+ * @author artrayme
+ * @since 0.6.1
+ */
 @ExtendWith(TimeExtension.class)
 public class TestIdtfUtils {
     private ScMemory scMemory;
