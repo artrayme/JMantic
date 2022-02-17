@@ -3,10 +3,11 @@ plugins {
     id 'maven-publish'
     id 'jacoco'
     id "org.sonarqube" version "3.3"
+    id 'signing'
 }
 
-group 'org.ostis'
-version '0.6.1'
+group 'io.github.artrayme'
+version '0.6.2'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -16,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.slf4j:slf4j-simple:2.0.0-alpha5'
 //  https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 
@@ -29,32 +31,11 @@ test {
     useJUnitPlatform()
 }
 
-compileJava {
-    options.compilerArgs += ['--add-reads', 'JMantic.main=ALL-UNNAMED']
+// For java9 modules
+//compileJava {
+//    options.compilerArgs += ['--add-reads', 'JMantic.main=ALL-UNNAMED']
 //    options.compilerArgs += ['-Xlint:unchecked'] // use to see more information about compiler warnings
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/artrayme/jmantic")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            groupId 'org.ostis'
-            artifactId 'jmantic'
-            version '0.6.1'
-            from(components.java)
-        }
-    }
-}
-
+//}
 
 // Create jar archive with dependencies
 jar {
@@ -81,5 +62,106 @@ sonarqube {
         property "sonar.projectKey", "artrayme_JMantic"
         property "sonar.organization", "artrayme"
         property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+
+    publications {
+        gpr(MavenPublication) {
+            groupId 'io.github.artrayme'
+            artifactId 'jmantic'
+            version '0.6.2'
+            from components.java
+            pom {
+                name = 'JMantic'
+                description = 'JMantic is a java library for working with the sc-memory of the OSTIS project over the websocket protocol Options';
+                url = 'https://github.com/artrayme/JMantic'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'artrayme'
+                        name = 'Artemy V'
+                        email = 'artrayme@protonmail.com'
+                    }
+                }
+                scm {
+                    developerConnection = 'scm:git:https://github.com/artrayme/JMantic.git'
+                    url = 'https://github.com/artrayme/JMantic'
+                }
+            }
+        }
+
+        mavenJava(MavenPublication) {
+            groupId 'io.github.artrayme'
+            artifactId = 'jmantic'
+            version '0.6.2'
+            from components.java
+            pom {
+                name = 'JMantic'
+                description = 'JMantic is a java library for working with the sc-memory of the OSTIS project over the websocket protocol Options';
+                url = 'https://github.com/artrayme/JMantic'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'artrayme'
+                        name = 'Artemy V'
+                        email = 'artrayme@protonmail.com'
+                    }
+                }
+                scm {
+                    developerConnection = 'scm:git:https://github.com/artrayme/JMantic.git'
+                    url = 'https://github.com/artrayme/JMantic'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/artrayme/jmantic")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        maven {
+            name = "Sonatype"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = System.getenv("SONATYPE_ACTOR")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = System.getenv("GPG_KEY")
+    def signingPassword = System.getenv("GPG_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+    sign publishing.publications.gpr
+}
+
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
 }

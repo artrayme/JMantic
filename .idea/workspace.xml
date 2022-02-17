@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/other/TestIdtfUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/other/TestIdtfUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publish-to-maven-central.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish-to-maven-central.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +55,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/extension/ExtendWith.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
@@ -77,17 +77,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/build/jacocoHtml/index.html&#10;/home/artrayme/IdeaProjects/JMantic/.idea/codeStyles/codeStyleConfig.xml&#10;/home/artrayme/IdeaProjects/JMantic/.idea/uiDesigner.xml" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/build/jacocoHtml/index.html&#10;/home/artrayme/IdeaProjects/JMantic/.idea/codeStyles/codeStyleConfig.xml&#10;/home/artrayme/IdeaProjects/JMantic/.idea/uiDesigner.xml&#10;/home/artrayme/IdeaProjects/JMantic/gradle.properties" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/workflows" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -99,7 +103,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TestIdtfUtils.testOptimizedVersion">
+  <component name="RunManager" selected="Gradle.SonatypePublishing">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -142,6 +146,48 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="JMantic [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="JMantic [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="javadoc" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Jar" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -163,7 +209,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryKeynodeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SonatypePublishing" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -174,37 +220,12 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryKeynodeTest&quot;" />
+            <option value="publishMavenJavaPublicationToSonatypeRepository" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ScMemoryKeynodeTest.findKeynode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryKeynodeTest.findKeynode&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -304,19 +325,20 @@
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
-      <item itemvalue="Gradle.ScMemoryKeynodeTest" />
+      <item itemvalue="Gradle.SonatypePublishing" />
       <item itemvalue="Gradle.TestEdgeIdtf.whatTheFuckWithEdges" />
-      <item itemvalue="Gradle.ScMemoryKeynodeTest.findKeynode" />
       <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
       <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
+      <item itemvalue="Gradle.JMantic [dependencies]" />
+      <item itemvalue="Gradle.JMantic [javadoc]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.JMantic [javadoc]" />
+        <item itemvalue="Gradle.JMantic [dependencies]" />
         <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
         <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
         <item itemvalue="Gradle.TestEdgeIdtf.whatTheFuckWithEdges" />
-        <item itemvalue="Gradle.ScMemoryKeynodeTest.findKeynode" />
-        <item itemvalue="Gradle.ScMemoryKeynodeTest" />
       </list>
     </recent_temporary>
   </component>
@@ -346,70 +368,9 @@
       <workItem from="1642943568786" duration="6371000" />
       <workItem from="1643985379765" duration="18605000" />
       <workItem from="1644071325363" duration="114000" />
-      <workItem from="1644762622922" duration="27000" />
-    </task>
-    <task id="LOCAL-00003" summary="feat: make enum serializable for jackson-json">
-      <created>1641515295712</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1641515295712</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat: implement internal mechanisms according to the new api for patterns">
-      <created>1641516577310</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1641516577310</updated>
-    </task>
-    <task id="LOCAL-00005" summary="feat: make some classes for ScPatterns public api">
-      <created>1641519035531</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1641519035531</updated>
-    </task>
-    <task id="LOCAL-00006" summary="feat: add type for searching unknown ScElements">
-      <created>1641591172647</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591172647</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat: add request for checking ScElements types">
-      <created>1641591315754</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591315754</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat: add map with all sc-types for faster casting from element type code to library element type">
-      <created>1641591451165</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591451165</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat: implement n-ary searching patterns in ScMemory">
-      <created>1641591523520</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591523520</updated>
-    </task>
-    <task id="LOCAL-00010" summary="refactor!: change packages structure">
-      <created>1641596625158</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1641596625158</updated>
-    </task>
-    <task id="LOCAL-00011" summary="feat!: add method for getting address of connected server in ostis clients">
-      <created>1642025400660</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1642025400660</updated>
+      <workItem from="1644762622922" duration="807000" />
+      <workItem from="1644778057204" duration="34000" />
+      <workItem from="1645033716903" duration="26083000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
@@ -691,7 +652,70 @@
       <option name="project" value="LOCAL" />
       <updated>1644011104604</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="docs: add tag 'author'">
+      <created>1644762796727</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1644762796727</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix!: remove java module (temporary)">
+      <created>1645095229944</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1645095229945</updated>
+    </task>
+    <task id="LOCAL-00054" summary="build: add publication to Nexus">
+      <created>1645095258350</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1645095258350</updated>
+    </task>
+    <task id="LOCAL-00055" summary="build: add debug information for github actions">
+      <created>1645097157723</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1645097157723</updated>
+    </task>
+    <task id="LOCAL-00056" summary="ci: add environment variables">
+      <created>1645100164134</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1645100164134</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ci: fix old github-packages publication system">
+      <created>1645101819737</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1645101819737</updated>
+    </task>
+    <task id="LOCAL-00058" summary="ci: add new package publishing action">
+      <created>1645102813883</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1645102813883</updated>
+    </task>
+    <task id="LOCAL-00059" summary="build: add signing for gpr package">
+      <created>1645103163629</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1645103163629</updated>
+    </task>
+    <task id="LOCAL-00060" summary="build: fix package signing">
+      <created>1645103837268</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1645103837268</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,15 +733,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test: add test for construction of 7 elements and add some explanation" />
-    <MESSAGE value="feat: implement constructions by pattern generation" />
-    <MESSAGE value="test: add test for pattern generation" />
-    <MESSAGE value="build: add comment with a jvm key" />
-    <MESSAGE value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
-    <MESSAGE value="test: add sc-memory tests and change formatting" />
-    <MESSAGE value="refactor: add new formatting rules config for Intellij IDEA" />
-    <MESSAGE value="refactor(api.context)!: add documentation, add new methods, remove deprecated methods" />
-    <MESSAGE value="test: add test for new methods in contexts" />
     <MESSAGE value="feat: add getter for connected sc-memory object in sc-contexts" />
     <MESSAGE value="test: add first benchmarking test" />
     <MESSAGE value="test: add some small tests to improve coverage" />
@@ -734,7 +749,16 @@
     <MESSAGE value="refactor: change project code style and reformat code according it" />
     <MESSAGE value="build: change version to 0.6.1" />
     <MESSAGE value="docs: update version to 0.6.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs: update version to 0.6.1" />
+    <MESSAGE value="docs: add tag 'author'" />
+    <MESSAGE value="fix!: remove java module (temporary)" />
+    <MESSAGE value="build: add publication to Nexus" />
+    <MESSAGE value="build: add debug information for github actions" />
+    <MESSAGE value="ci: add environment variables" />
+    <MESSAGE value="ci: fix old github-packages publication system" />
+    <MESSAGE value="ci: add new package publishing action" />
+    <MESSAGE value="build: add signing for gpr package" />
+    <MESSAGE value="build: fix package signing" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: fix package signing" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: Publish package to Nexus
 on:
   release:
     types: [ created ]
@@ -16,7 +16,11 @@ jobs:
           java-version: '17'
       - name: Publish artifact
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
+          SONATYPE_ACTOR: ${{secrets.SONATYPE_ACTOR}}
+          SONATYPE_PASSWORD: ${{secrets.SONATYPE_PASSWORD}}
+          GPG_KEY: ${{secrets.GPG_KEY}}
+          GPG_PASSWORD: ${{secrets.GPG_PASSWORD}}
 
         # The GITHUB_REF tag comes in the format 'refs/tags/xxx'.
         # If we split on '/' and take the 3rd value,
@@ -25,4 +29,5 @@ jobs:
           NEW_VERSION=$(echo "${GITHUB_REF}" | cut -d "/" -f3)
           echo "New version: ${NEW_VERSION}"
           echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew publish
+          echo "Sonatype username: ${SONATYPE_ACTOR}"
+          ./gradlew publishMavenJavaPublicationToSonatypeRepository
