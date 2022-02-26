@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/DefaultScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/UncheckedScContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -377,7 +379,7 @@
       <workItem from="1645033716903" duration="26083000" />
       <workItem from="1645768778221" duration="4495000" />
       <workItem from="1645854860562" duration="79000" />
-      <workItem from="1645855119774" duration="2256000" />
+      <workItem from="1645855119774" duration="4019000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>

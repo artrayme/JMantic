@@ -5,6 +5,7 @@ import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -19,6 +20,7 @@ import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -197,6 +199,30 @@ public class UncheckedScContext {
         Optional<? extends ScLinkString> result;
         try {
             result = memory.createStringLinks(
+                                   Stream.of(type),
+                                   Stream.of(content))
+                           .findFirst();
+        } catch (ScMemoryException e) {
+            logger.error(
+                    "It's really bad",
+                    e);
+            throw new RuntimeException(e);
+        }
+        return result.get();
+    }
+
+    /**
+     * Link with binary content creating.
+     * This method creates a link in sc-memory with the specified type and binary (ByteArrayOutputStream) content.
+     *
+     * @param type    type of the link.
+     * @param content content of the link.
+     * @return Some implementation of ScLinkBinary, which is linked with the corresponding sc-memory.
+     */
+    public ScLinkBinary createBinaryLink(LinkType type, ByteArrayOutputStream content){
+        Optional<? extends ScLinkBinary> result;
+        try {
+            result = memory.createBinaryLinks(
                                    Stream.of(type),
                                    Stream.of(content))
                            .findFirst();
@@ -389,6 +415,30 @@ public class UncheckedScContext {
                      .get();
     }
 
+    /**
+     * Link binary content setting.
+     * This method sets the content to sc-link.
+     *
+     * @param link    target link.
+     * @param content binary (ByteArrayOutputStream) content.
+     * @return true when executed successfully.
+     */
+    public Boolean setBinaryLinkContent(ScLinkBinary link, ByteArrayOutputStream content){
+        Stream<Boolean> result;
+        try {
+            result = memory.setBinaryLinkContent(
+                    Stream.of(link),
+                    Stream.of(content));
+        } catch (ScMemoryException e) {
+            logger.error(
+                    "It's really bad",
+                    e);
+            throw new RuntimeException(e);
+        }
+        return result.findFirst()
+                     .get();
+    }
+
     //    Uncomment when the project updated to java with a pattern matching(((
     //    public <T> Boolean setAnyLinkContent(ScLink link, T content) {
     //        Stream<Boolean> result = Stream.empty();
@@ -469,6 +519,27 @@ public class UncheckedScContext {
         Stream<String> result;
         try {
             result = memory.getStringLinkContent(Stream.of(link));
+        } catch (ScMemoryException e) {
+            logger.error(
+                    "It's really bad",
+                    e);
+            throw new RuntimeException(e);
+        }
+        return result.findFirst()
+                     .get();
+    }
+
+    /**
+     * Binary link content getter.
+     * This method gets the link content from sc-memory.
+     *
+     * @param link - target link.
+     * @return link content
+     */
+    public ByteArrayOutputStream getBinaryLinkContent(ScLinkBinary link){
+        Stream<ByteArrayOutputStream> result;
+        try {
+            result = memory.getBinaryLinkContent(Stream.of(link));
         } catch (ScMemoryException e) {
             logger.error(
                     "It's really bad",

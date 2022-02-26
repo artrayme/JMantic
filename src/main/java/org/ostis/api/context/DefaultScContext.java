@@ -5,6 +5,7 @@ import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -18,6 +19,7 @@ import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -163,6 +165,23 @@ public class DefaultScContext {
     }
 
     /**
+     * Link with binary content creating.
+     * This method creates a link in sc-memory with the specified type and ByteArrayOutputStream (binary) content.
+     *
+     * @param type    type of the link.
+     * @param content binary content of the link.
+     * @return Some implementation of ScLinkBinary, which is linked with the corresponding sc-memory.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
+    public ScLinkBinary createBinaryLink(LinkType type, ByteArrayOutputStream content) throws ScMemoryException {
+        return memory.createBinaryLinks(
+                Stream.of(type),
+                Stream.of(content))
+                .findFirst()
+                .get();
+    }
+
+    /**
      * Element deleting
      * This method removes the sc-element from the sc-memory.
      *
@@ -305,6 +324,23 @@ public class DefaultScContext {
     }
 
     /**
+     * Link binary content setting.
+     * This method sets the content to sc-link.
+     *
+     * @param link    target link.
+     * @param content binary (ByteArrayOutputStream) content.
+     * @return true when executed successfully.
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
+    public Boolean setBinaryLinkContent(ScLinkBinary link, ByteArrayOutputStream content) throws ScMemoryException{
+        return memory.setBinaryLinkContent(
+                Stream.of(link),
+                Stream.of(content))
+                .findFirst()
+                .get();
+    }
+
+    /**
      * Integer link content getter.
      * This method gets the link content from sc-memory.
      *
@@ -344,6 +380,20 @@ public class DefaultScContext {
         return memory.getStringLinkContent(Stream.of(link))
                      .findFirst()
                      .get();
+    }
+
+    /**
+     * Binary link content getter.
+     * This method gets the link content from sc-memory.
+     *
+     * @param link - target link.
+     * @return link content
+     * @throws ScMemoryException if an internal sc-memory error has occurred. You can find more information in cause exception
+     */
+    public ByteArrayOutputStream getBinaryLinkContent(ScLinkBinary link) throws ScMemoryException{
+        return memory.getBinaryLinkContent(Stream.of(link))
+                .findFirst()
+                .get();
     }
 
     /**

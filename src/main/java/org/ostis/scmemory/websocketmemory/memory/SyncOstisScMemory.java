@@ -626,6 +626,7 @@ public class SyncOstisScMemory implements ScMemory {
                     yield l;
                 }
                 case BINARY -> {
+                    // TODO: 26.02.22
                     throw new IllegalArgumentException("Binary links are not implemented yet");
                 }
             };
@@ -695,6 +696,7 @@ public class SyncOstisScMemory implements ScMemory {
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
                     case BINARY -> {
+                        // TODO: 26.02.22
                         throw new UnsupportedOperationException("Binary links are not implemented yet");
                     }
                 }
@@ -740,7 +742,7 @@ public class SyncOstisScMemory implements ScMemory {
                         ((ScLinkStringImpl) link).setContent(content);
                     }
                     case BINARY -> {
-                        throw new UnsupportedOperationException("Binary links are not implemented yet");
+                        // TODO: 26.02.22
                     }
                     default -> throw new IllegalArgumentException("unknown type of content");
                 }
@@ -795,6 +797,7 @@ public class SyncOstisScMemory implements ScMemory {
                     result.add(scLinkInteger);
                 }
                 case BINARY -> {
+                    // TODO: 26.02.22
                     throw new UnsupportedOperationException("Binary links are not implemented yet");
                 }
                 default -> throw new IllegalArgumentException("unknown type of content");
