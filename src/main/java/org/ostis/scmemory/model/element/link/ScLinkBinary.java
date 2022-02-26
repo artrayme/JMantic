@@ -1,16 +1,18 @@
 package org.ostis.scmemory.model.element.link;
 
+import java.io.ByteArrayOutputStream;
+
 /**
  * ScLink for storing serialized java-class
  *
  * @author artrayme
  * @since 0.0.1
  */
-public interface ScLinkBinary<T> extends ScLink {
+public interface ScLinkBinary extends ScLink {
     /**
      * @return content of this ScLink
      */
-    T getContent();
+    ByteArrayOutputStream getContent();
 
     @Override
     default LinkContentType getContentType() {

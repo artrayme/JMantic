@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/publish-to-maven-central.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish-to-maven-central.yml" afterDir="false" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/ScLinkBinary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/ScLinkBinary.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,15 +54,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/extension/ExtendWith.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -82,6 +81,10 @@
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/workflows" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -371,6 +374,9 @@
       <workItem from="1644762622922" duration="807000" />
       <workItem from="1644778057204" duration="34000" />
       <workItem from="1645033716903" duration="26083000" />
+      <workItem from="1645768778221" duration="4495000" />
+      <workItem from="1645854860562" duration="79000" />
+      <workItem from="1645855119774" duration="915000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
