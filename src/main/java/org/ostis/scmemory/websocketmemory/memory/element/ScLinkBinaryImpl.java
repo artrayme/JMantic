@@ -1,5 +1,7 @@
 package org.ostis.scmemory.websocketmemory.memory.element;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLinkBinary;
 

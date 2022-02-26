@@ -29,6 +29,7 @@ import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.core.OstisClientSync;
 import org.ostis.scmemory.websocketmemory.memory.element.ScEdgeImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScEntity;
+import org.ostis.scmemory.websocketmemory.memory.element.ScLinkBinaryImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkFloatImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkIntegerImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkStringImpl;
@@ -197,10 +198,13 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<? extends ScLinkBinary> createBinaryLinks(Stream<LinkType> elements,
                                                             Stream<ByteArrayOutputStream> content) throws ScMemoryException {
-        /// TODO: 26.02.22
-        return null;
+        return (Stream<? extends ScLinkBinary>) createLink(
+                elements,
+                content,
+                LinkContentType.BINARY);
     }
 
     @Override
@@ -473,8 +477,9 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links,
                                                 Stream<ByteArrayOutputStream> content) throws ScMemoryException {
-        /// TODO: 26.02.22
-        return null;
+        return setLinkContent(
+                links,
+                content);
     }
 
     @Override
@@ -496,9 +501,9 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Stream<ByteArrayOutputStream> getBinaryLinkContent(Stream<? extends ScLinkBinary> links) throws ScMemoryException {
-        // TODO: 26.02.22
-        return null;
+        return (Stream<ByteArrayOutputStream>) getLinkContent(links);
     }
 
     @Override
@@ -626,8 +631,9 @@ public class SyncOstisScMemory implements ScMemory {
                     yield l;
                 }
                 case BINARY -> {
-                    // TODO: 26.02.22
-                    throw new IllegalArgumentException("Binary links are not implemented yet");
+                    ScLinkBinaryImpl l = new ScLinkBinaryImpl(type);
+                    l.setContent((ByteArrayOutputStream) linkContentIter.next());
+                    yield l;
                 }
             };
             result.add(link);
@@ -695,10 +701,7 @@ public class SyncOstisScMemory implements ScMemory {
                     case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
-                    case BINARY -> {
-                        // TODO: 26.02.22
-                        throw new UnsupportedOperationException("Binary links are not implemented yet");
-                    }
+                    case BINARY -> ((ScLinkBinaryImpl) link).setContent((ByteArrayOutputStream) data);
                 }
             }
         }
@@ -742,9 +745,10 @@ public class SyncOstisScMemory implements ScMemory {
                         ((ScLinkStringImpl) link).setContent(content);
                     }
                     case BINARY -> {
-                        // TODO: 26.02.22
+                        ByteArrayOutputStream content = (ByteArrayOutputStream) value;
+                        result.add(content);
+                        ((ScLinkBinaryImpl) link).setContent(content);
                     }
-                    default -> throw new IllegalArgumentException("unknown type of content");
                 }
             }
         }
@@ -782,23 +786,27 @@ public class SyncOstisScMemory implements ScMemory {
                 }
                 case FLOAT -> {
                     float content = ((Double) values.get(i)).floatValue();
-                    ScLinkFloatImpl scLinkInteger = new ScLinkFloatImpl(
+                    ScLinkFloatImpl scLinkFloat = new ScLinkFloatImpl(
                             type,
                             links.get(i));
-                    scLinkInteger.setContent(content);
-                    result.add(scLinkInteger);
+                    scLinkFloat.setContent(content);
+                    result.add(scLinkFloat);
                 }
                 case STRING -> {
                     String content = (String) values.get(i);
-                    ScLinkStringImpl scLinkInteger = new ScLinkStringImpl(
+                    ScLinkStringImpl scLinkString = new ScLinkStringImpl(
                             type,
                             links.get(i));
-                    scLinkInteger.setContent(content);
-                    result.add(scLinkInteger);
+                    scLinkString.setContent(content);
+                    result.add(scLinkString);
                 }
                 case BINARY -> {
-                    // TODO: 26.02.22
-                    throw new UnsupportedOperationException("Binary links are not implemented yet");
+                    ByteArrayOutputStream content = (ByteArrayOutputStream) values.get(i);
+                    ScLinkBinaryImpl scLinkBinary = new ScLinkBinaryImpl(
+                            type,
+                            links.get(i));
+                    scLinkBinary.setContent(content);
+                    result.add(scLinkBinary);
                 }
                 default -> throw new IllegalArgumentException("unknown type of content");
             }
