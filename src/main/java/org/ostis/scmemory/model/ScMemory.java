@@ -4,6 +4,7 @@ import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -16,6 +17,7 @@ import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -98,6 +100,19 @@ public interface ScMemory {
                                                      Stream<String> content) throws ScMemoryException;
 
     /**
+     * Method to create sc-link with specified type and binary content in sc-machine.
+     * You should pass a stream of sc-link types that you want to create.
+     * Also, you should pass a stream of ByteArrayOutputStream content.
+     * Sc-link with corresponding type and content will be created.
+     * All passed streams must have the same length.
+     *
+     * @return stream of created binary sc-links
+     * @since 0.6.2
+     */
+    Stream<? extends ScLinkBinary> createBinaryLinks(Stream<LinkType> elements,
+                                                     Stream<ByteArrayOutputStream> content) throws ScMemoryException;
+
+    /**
      * Method to remove any sc-element in sc-machine.
      * You should pass a stream of sc-elements that you want to remove.
      *
@@ -172,6 +187,19 @@ public interface ScMemory {
                                          Stream<String> content) throws ScMemoryException;
 
     /**
+     * Methods for changing the content of {@link ScLinkBinary}
+     * All passed streams must have the same length.
+     *
+     * @param links   links that need to change content
+     * @param content new link content
+     * @return a stream of values that reflect the result of an operation.
+     * True, there was a successful operation on the link, or a lie, if something went wrong.
+     * @since 0.6.2
+     */
+    Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links,
+                                         Stream<ByteArrayOutputStream> content) throws ScMemoryException;
+
+    /**
      * Method for getting the content of {@link ScLinkInteger}
      *
      * @param links links whose content you need to get
@@ -197,6 +225,15 @@ public interface ScMemory {
      * @since 0.3.0
      */
     Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException;
+
+    /**
+     * Method for getting the content of {@link ScLinkBinary}
+     *
+     * @param links links whose content you need to get
+     * @return stream of received sc-link values
+     * @since 0.6.2
+     */
+    Stream<ByteArrayOutputStream> getBinaryLinkContent(Stream<? extends ScLinkBinary> links) throws ScMemoryException;
 
     /**
      * Method for getting the sc-link by content

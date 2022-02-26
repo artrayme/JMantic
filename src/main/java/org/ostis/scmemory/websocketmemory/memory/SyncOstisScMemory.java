@@ -8,6 +8,7 @@ import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLink;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -65,6 +66,7 @@ import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -192,6 +194,13 @@ public class SyncOstisScMemory implements ScMemory {
                 elements,
                 content,
                 LinkContentType.STRING);
+    }
+
+    @Override
+    public Stream<? extends ScLinkBinary> createBinaryLinks(Stream<LinkType> elements,
+                                                            Stream<ByteArrayOutputStream> content) throws ScMemoryException {
+        /// TODO: 26.02.22
+        return null;
     }
 
     @Override
@@ -462,6 +471,13 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links,
+                                                Stream<ByteArrayOutputStream> content) throws ScMemoryException {
+        /// TODO: 26.02.22
+        return null;
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException {
         return (Stream<Integer>) getLinkContent(links);
@@ -477,6 +493,12 @@ public class SyncOstisScMemory implements ScMemory {
     @SuppressWarnings("unchecked")
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException {
         return (Stream<String>) getLinkContent(links);
+    }
+
+    @Override
+    public Stream<ByteArrayOutputStream> getBinaryLinkContent(Stream<? extends ScLinkBinary> links) throws ScMemoryException {
+        // TODO: 26.02.22
+        return null;
     }
 
     @Override
