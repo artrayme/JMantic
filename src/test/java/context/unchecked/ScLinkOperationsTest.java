@@ -8,11 +8,14 @@ import org.ostis.api.context.UncheckedScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -95,6 +98,29 @@ public class ScLinkOperationsTest {
         assertEquals(
                 content,
                 link.getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleBinaryLink() throws IOException {
+        String str = "Hello unchecked context";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+
+        ScLinkBinary link = scContext.createBinaryLink(
+                LinkType.LINK,
+                content);
+
+        assertEquals(
+                LinkType.LINK,
+                link.getType());
+        assertEquals(
+                LinkContentType.BINARY,
+                link.getContentType());
+        assertEquals(
+                content.toString(),
+                link.getContent()
+                    .toString());
     }
 
     @Test
@@ -185,6 +211,23 @@ public class ScLinkOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromBinaryLink() throws IOException {
+        String str = "Hello from getContent method!";
+        ByteArrayOutputStream expected = new ByteArrayOutputStream();
+        expected.write(str.getBytes());
+        ScLinkBinary linkBinary = scContext.createBinaryLink(
+                LinkType.LINK,
+                expected);
+
+        ByteArrayOutputStream actual = scContext.getBinaryLinkContent(linkBinary);
+
+        assertEquals(
+                actual.toString(),
+                expected.toString());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void setContentToIntegerLink() {
         int oldContent = 5;
         int newContent = 13;
@@ -238,6 +281,35 @@ public class ScLinkOperationsTest {
         assertEquals(
                 newContent,
                 scContext.getStringLinkContent(link));
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToBinaryString() throws IOException {
+        String oldStr = "Hello";
+        String newStr = "Bye";
+        ByteArrayOutputStream oldContent = new ByteArrayOutputStream();
+        oldContent.write(oldStr.getBytes());
+        ByteArrayOutputStream newContent = new ByteArrayOutputStream();
+        newContent.write(newStr.getBytes());
+        ScLinkBinary linkBinary = scContext.createBinaryLink(
+                LinkType.LINK,
+                oldContent);
+
+        Boolean resultOfSetContentOperation = scContext.setBinaryLinkContent(
+                linkBinary,
+                newContent);
+
+        ByteArrayOutputStream fromOstis = scContext.getBinaryLinkContent(linkBinary);
+
+        assertTrue(resultOfSetContentOperation);
+        assertEquals(
+                newContent.toString(),
+                linkBinary.getContent()
+                          .toString());
+        assertEquals(
+                newContent.toString(),
+                fromOstis.toString());
     }
 
     @Test
