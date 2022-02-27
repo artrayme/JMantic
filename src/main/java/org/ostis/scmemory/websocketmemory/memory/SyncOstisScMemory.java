@@ -701,7 +701,7 @@ public class SyncOstisScMemory implements ScMemory {
                     case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
-                    case BINARY -> ((ScLinkBinaryImpl) link).setContent((ByteArrayOutputStream) data);
+                    case BINARY -> ((ScLinkBinaryImpl) link).setContent((String) data);
                 }
             }
         }
@@ -745,7 +745,7 @@ public class SyncOstisScMemory implements ScMemory {
                         ((ScLinkStringImpl) link).setContent(content);
                     }
                     case BINARY -> {
-                        ByteArrayOutputStream content = (ByteArrayOutputStream) value;
+                        String content = (String) value;
                         result.add(content);
                         ((ScLinkBinaryImpl) link).setContent(content);
                     }
@@ -801,7 +801,7 @@ public class SyncOstisScMemory implements ScMemory {
                     result.add(scLinkString);
                 }
                 case BINARY -> {
-                    ByteArrayOutputStream content = (ByteArrayOutputStream) values.get(i);
+                    String content = (String) values.get(i);
                     ScLinkBinaryImpl scLinkBinary = new ScLinkBinaryImpl(
                             type,
                             links.get(i));

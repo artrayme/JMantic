@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/ScLinkBinary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/element/link/ScLinkBinary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkBinaryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScLinkBinaryImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -363,7 +359,7 @@
       <workItem from="1645854860562" duration="79000" />
       <workItem from="1645855119774" duration="5185000" />
       <workItem from="1645860527099" duration="2767000" />
-      <workItem from="1645947898646" duration="2117000" />
+      <workItem from="1645947898646" duration="2674000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
