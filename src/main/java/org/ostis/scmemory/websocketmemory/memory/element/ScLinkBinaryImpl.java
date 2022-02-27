@@ -60,7 +60,13 @@ public class ScLinkBinaryImpl extends ScEntity implements ScLinkBinary {
     }
 
     @JsonIgnore
-    public void setContent(String content) {
+    public void setContent(String content) throws IOException {
         this.content = content;
+        if (content != null) {
+            byte[] bytes = Base64.getDecoder()
+                                 .decode(content);
+            byteStream = new ByteArrayOutputStream();
+            byteStream.write(bytes);
+        }
     }
 }
