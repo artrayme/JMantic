@@ -9,11 +9,14 @@ import org.ostis.api.context.UncheckedScContext;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
@@ -82,6 +85,30 @@ public class ScLinkOperationsTest {
         assertEquals(
                 content,
                 link.getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleBinaryLink() throws IOException, ExecutionException, InterruptedException {
+        String str = "Hello unchecked context";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+
+        ScLinkBinary link = scContext.createBinaryLink(
+                                             LinkType.LINK,
+                                             content)
+                                     .get();
+
+        assertEquals(
+                LinkType.LINK,
+                link.getType());
+        assertEquals(
+                LinkContentType.BINARY,
+                link.getContentType());
+        assertEquals(
+                content.toString(),
+                link.getContent()
+                    .toString());
     }
 
     @Test
@@ -185,6 +212,25 @@ public class ScLinkOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromBinaryLink() throws IOException, ExecutionException, InterruptedException {
+        String str = "Hello from getContent method!";
+        ByteArrayOutputStream expected = new ByteArrayOutputStream();
+        expected.write(str.getBytes());
+        ScLinkBinary linkBinary = scContext.createBinaryLink(
+                                                   LinkType.LINK,
+                                                   expected)
+                                           .get();
+
+        ByteArrayOutputStream actual = scContext.getBinaryLinkContent(linkBinary)
+                                                .get();
+
+        assertEquals(
+                actual.toString(),
+                expected.toString());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void setContentToIntegerLink() throws ExecutionException, InterruptedException {
         int oldContent = 5;
         int newContent = 13;
@@ -247,6 +293,38 @@ public class ScLinkOperationsTest {
                 newContent,
                 scContext.getStringLinkContent(link)
                          .get());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToBinaryString() throws IOException, ExecutionException, InterruptedException {
+        String oldStr = "Hello";
+        String newStr = "Bye";
+        ByteArrayOutputStream oldContent = new ByteArrayOutputStream();
+        oldContent.write(oldStr.getBytes());
+        ByteArrayOutputStream newContent = new ByteArrayOutputStream();
+        newContent.write(newStr.getBytes());
+        ScLinkBinary linkBinary = scContext.createBinaryLink(
+                                                   LinkType.LINK,
+                                                   oldContent)
+                                           .get();
+
+        Boolean resultOfSetContentOperation = scContext.setBinaryLinkContent(
+                                                               linkBinary,
+                                                               newContent)
+                                                       .get();
+
+        ByteArrayOutputStream fromOstis = scContext.getBinaryLinkContent(linkBinary)
+                                                   .get();
+
+        assertTrue(resultOfSetContentOperation);
+        assertEquals(
+                newContent.toString(),
+                linkBinary.getContent()
+                          .toString());
+        assertEquals(
+                newContent.toString(),
+                fromOstis.toString());
     }
 
     @Test
