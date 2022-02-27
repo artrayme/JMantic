@@ -7,12 +7,16 @@ import org.junit.jupiter.api.Timeout;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.websocketmemory.memory.SyncOstisScMemory;
+import org.ostis.scmemory.websocketmemory.memory.element.ScLinkBinaryImpl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -100,6 +104,29 @@ public class ScLinkOperationsTest {
         assertEquals(
                 content,
                 link.getContent());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void createSingleBinaryLink() throws ScMemoryException, IOException {
+        String str = "Hello World!";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+        ScLinkBinary binaryLink = scMemory.createBinaryLinks(
+                                                  Stream.of(LinkType.LINK),
+                                                  Stream.of(content))
+                                          .findFirst()
+                                          .get();
+
+        assertEquals(
+                LinkType.LINK,
+                binaryLink.getType());
+        assertEquals(
+                LinkContentType.BINARY,
+                binaryLink.getContentType());
+        assertEquals(
+                content,
+                binaryLink.getContent());
     }
 
     @Test
@@ -212,6 +239,28 @@ public class ScLinkOperationsTest {
 
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void getContentFromBinaryLink() throws ScMemoryException, IOException {
+        String str = "Image!";
+        ByteArrayOutputStream expected = new ByteArrayOutputStream();
+        expected.write(str.getBytes());
+
+        ScLinkBinary binaryLink = scMemory.createBinaryLinks(
+                                                  Stream.of(LinkType.LINK),
+                                                  Stream.of(expected))
+                                          .findFirst()
+                                          .get();
+
+        ByteArrayOutputStream actual = scMemory.getBinaryLinkContent(Stream.of(binaryLink))
+                                               .findFirst()
+                                               .get();
+
+        assertEquals(
+                actual.toString(),
+                expected.toString());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void setContentToIntegerLink() throws ScMemoryException {
         int oldContent = 5;
         int newContent = 13;
@@ -283,6 +332,43 @@ public class ScLinkOperationsTest {
                 scMemory.getStringLinkContent(Stream.of(link))
                         .findFirst()
                         .get());
+    }
+
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+    void setContentToBinaryLink() throws ScMemoryException, IOException {
+        String oldImage = "Image one!";
+        String newImage = "!Image two!";
+        ByteArrayOutputStream oldContent = new ByteArrayOutputStream();
+        oldContent.write(oldImage.getBytes());
+        ByteArrayOutputStream newContent = new ByteArrayOutputStream();
+        newContent.write(newImage.getBytes());
+
+        ScLinkBinary link = scMemory.createBinaryLinks(
+                                            Stream.of(LinkType.LINK),
+                                            Stream.of(oldContent))
+                                    .findFirst()
+                                    .get();
+
+        Boolean resultOfSetContentOperation = scMemory.setBinaryLinkContent(
+                                                              Stream.of(link),
+                                                              Stream.of(newContent))
+                                                      .findFirst()
+                                                      .get();
+
+        ByteArrayOutputStream actual = scMemory.getBinaryLinkContent(Stream.of(link))
+                                               .findFirst()
+                                               .get();
+
+
+        assertTrue(resultOfSetContentOperation);
+        assertEquals(
+                newContent.toString(),
+                link.getContent()
+                    .toString());
+        assertEquals(
+                newContent.toString(),
+                actual.toString());
     }
 
     @Test

@@ -4,6 +4,7 @@ import org.ostis.scmemory.model.element.ScElement;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -15,6 +16,7 @@ import org.ostis.scmemory.model.pattern.pattern3.ScPattern3;
 import org.ostis.scmemory.model.pattern.pattern5.ScConstruction5;
 import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -79,6 +81,12 @@ public class AsyncUncheckedScContext {
                 content));
     }
 
+    public Future<ScLinkBinary> createBinaryLink(LinkType type, ByteArrayOutputStream content){
+        return executorService.submit(() -> context.createBinaryLink(
+                type,
+                content));
+    }
+
     public Future<Boolean> deleteElement(ScElement element) {
         return executorService.submit(() -> context.deleteElement(element));
     }
@@ -119,6 +127,12 @@ public class AsyncUncheckedScContext {
                 content));
     }
 
+    public Future<Boolean> setBinaryLinkContent(ScLinkBinary link, ByteArrayOutputStream content){
+        return executorService.submit(() -> context.setBinaryLinkContent(
+                link,
+                content));
+    }
+
     public Future<Integer> getIntegerLinkContent(ScLinkInteger link) {
         return executorService.submit(() -> context.getIntegerLinkContent(link));
     }
@@ -129,6 +143,10 @@ public class AsyncUncheckedScContext {
 
     public Future<String> getStringLinkContent(ScLinkString link) {
         return executorService.submit(() -> context.getStringLinkContent(link));
+    }
+
+    public Future<ByteArrayOutputStream> getBinaryLinkContent(ScLinkBinary link){
+        return executorService.submit(() -> context.getBinaryLinkContent(link));
     }
 
     public Future<Optional<? extends ScNode>> findKeynode(String idtf) {

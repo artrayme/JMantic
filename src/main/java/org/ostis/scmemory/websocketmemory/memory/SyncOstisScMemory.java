@@ -8,6 +8,7 @@ import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLink;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.link.ScLinkFloat;
 import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
@@ -28,6 +29,7 @@ import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.core.OstisClientSync;
 import org.ostis.scmemory.websocketmemory.memory.element.ScEdgeImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScEntity;
+import org.ostis.scmemory.websocketmemory.memory.element.ScLinkBinaryImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkFloatImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkIntegerImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkStringImpl;
@@ -65,8 +67,11 @@ import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -192,6 +197,16 @@ public class SyncOstisScMemory implements ScMemory {
                 elements,
                 content,
                 LinkContentType.STRING);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Stream<? extends ScLinkBinary> createBinaryLinks(Stream<LinkType> elements,
+                                                            Stream<ByteArrayOutputStream> content) throws ScMemoryException {
+        return (Stream<? extends ScLinkBinary>) createLink(
+                elements,
+                content,
+                LinkContentType.BINARY);
     }
 
     @Override
@@ -462,6 +477,54 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links,
+                                                Stream<ByteArrayOutputStream> content) throws ScMemoryException {
+        SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
+        List<? extends ScLinkBinary> linksList = links.toList();
+        List<ByteArrayOutputStream> contentList = content.toList();
+        if (linksList.size() != contentList.size()) {
+            throw new IllegalArgumentException("The length of the passed lists are not the same." + "linksList.size = " + linksList.size() + ", contentList.size = " + contentList.size());
+        }
+        Iterator<? extends ScLinkBinary> linksIter = linksList.iterator();
+        Iterator<ByteArrayOutputStream> contentIter = contentList.iterator();
+        List<ScLinkBinary> linksWithoutContent = new ArrayList<>();
+        List<String> contentWithoutLink = new ArrayList<>();
+        while (linksIter.hasNext()) {
+            ScLinkBinary link = linksIter.next();
+            linksWithoutContent.add(link);
+            String data = Base64.getEncoder()
+                                .encodeToString(contentIter.next()
+                                                           .toByteArray());
+            contentWithoutLink.add(data);
+            request.addToRequest(
+                    link,
+                    data);
+        }
+
+        SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
+
+        if (!response.getResponseStatus()) {
+            throw new ScMemoryException("the response status is FALSE");
+        }
+        List<Boolean> statusOfOperation = response.getOperationStatus();
+        for (int i = 0; i < statusOfOperation.size(); i++) {
+            boolean status = statusOfOperation.get(i);
+            if (status) {
+                ScLinkBinary link = linksWithoutContent.get(i);
+                String data = contentWithoutLink.get(i);
+                try {
+                    ((ScLinkBinaryImpl) link).setContent(data);
+                } catch (IOException e) {
+                    throw new ScMemoryException(
+                            "Unable to parse string to binary representation",
+                            e);
+                }
+            }
+        }
+        return statusOfOperation.stream();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public Stream<Integer> getIntegerLinkContent(Stream<? extends ScLinkInteger> links) throws ScMemoryException {
         return (Stream<Integer>) getLinkContent(links);
@@ -477,6 +540,12 @@ public class SyncOstisScMemory implements ScMemory {
     @SuppressWarnings("unchecked")
     public Stream<String> getStringLinkContent(Stream<? extends ScLinkString> links) throws ScMemoryException {
         return (Stream<String>) getLinkContent(links);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Stream<ByteArrayOutputStream> getBinaryLinkContent(Stream<? extends ScLinkBinary> links) throws ScMemoryException {
+        return (Stream<ByteArrayOutputStream>) getLinkContent(links);
     }
 
     @Override
@@ -604,7 +673,9 @@ public class SyncOstisScMemory implements ScMemory {
                     yield l;
                 }
                 case BINARY -> {
-                    throw new IllegalArgumentException("Binary links are not implemented yet");
+                    ScLinkBinaryImpl l = new ScLinkBinaryImpl(type);
+                    l.setContent((ByteArrayOutputStream) linkContentIter.next());
+                    yield l;
                 }
             };
             result.add(link);
@@ -673,7 +744,13 @@ public class SyncOstisScMemory implements ScMemory {
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
                     case BINARY -> {
-                        throw new UnsupportedOperationException("Binary links are not implemented yet");
+                        try {
+                            ((ScLinkBinaryImpl) link).setContent((String) data);
+                        } catch (IOException e) {
+                            throw new ScMemoryException(
+                                    "Unable to parse string to binary representation",
+                                    e);
+                        }
                     }
                 }
             }
@@ -718,9 +795,16 @@ public class SyncOstisScMemory implements ScMemory {
                         ((ScLinkStringImpl) link).setContent(content);
                     }
                     case BINARY -> {
-                        throw new UnsupportedOperationException("Binary links are not implemented yet");
+                        String content = (String) value;
+                        try {
+                            ((ScLinkBinaryImpl) link).setContent(content);
+                            result.add(((ScLinkBinaryImpl) link).getContent());
+                        } catch (IOException e) {
+                            throw new ScMemoryException(
+                                    "Unable to parse string to binary representation",
+                                    e);
+                        }
                     }
-                    default -> throw new IllegalArgumentException("unknown type of content");
                 }
             }
         }
@@ -758,22 +842,33 @@ public class SyncOstisScMemory implements ScMemory {
                 }
                 case FLOAT -> {
                     float content = ((Double) values.get(i)).floatValue();
-                    ScLinkFloatImpl scLinkInteger = new ScLinkFloatImpl(
+                    ScLinkFloatImpl scLinkFloat = new ScLinkFloatImpl(
                             type,
                             links.get(i));
-                    scLinkInteger.setContent(content);
-                    result.add(scLinkInteger);
+                    scLinkFloat.setContent(content);
+                    result.add(scLinkFloat);
                 }
                 case STRING -> {
                     String content = (String) values.get(i);
-                    ScLinkStringImpl scLinkInteger = new ScLinkStringImpl(
+                    ScLinkStringImpl scLinkString = new ScLinkStringImpl(
                             type,
                             links.get(i));
-                    scLinkInteger.setContent(content);
-                    result.add(scLinkInteger);
+                    scLinkString.setContent(content);
+                    result.add(scLinkString);
                 }
                 case BINARY -> {
-                    throw new UnsupportedOperationException("Binary links are not implemented yet");
+                    String content = (String) values.get(i);
+                    ScLinkBinaryImpl scLinkBinary = new ScLinkBinaryImpl(
+                            type,
+                            links.get(i));
+                    try {
+                        scLinkBinary.setContent(content);
+                    } catch (IOException e) {
+                        throw new ScMemoryException(
+                                "Unable to parse string to binary representation",
+                                e);
+                    }
+                    result.add(scLinkBinary);
                 }
                 default -> throw new IllegalArgumentException("unknown type of content");
             }
