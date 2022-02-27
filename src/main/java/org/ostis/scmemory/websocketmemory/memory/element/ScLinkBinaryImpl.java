@@ -6,6 +6,8 @@ import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.link.ScLinkBinary;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 
 public class ScLinkBinaryImpl extends ScEntity implements ScLinkBinary {
     @JsonProperty("type")
@@ -13,14 +15,16 @@ public class ScLinkBinaryImpl extends ScEntity implements ScLinkBinary {
     @JsonProperty("content_type")
     private final String contentType = "binary";
     @JsonProperty("content")
-    private ByteArrayOutputStream content;
+    private String content;
+    @JsonIgnore
+    private ByteArrayOutputStream byteStream;
 
-    public ScLinkBinaryImpl(LinkType linkType){
+    public ScLinkBinaryImpl(LinkType linkType) {
         super("link");
         this.linkType = linkType;
     }
 
-    public ScLinkBinaryImpl(LinkType linkType, Long address){
+    public ScLinkBinaryImpl(LinkType linkType, Long address) {
         super(
                 "link",
                 address);
@@ -35,12 +39,28 @@ public class ScLinkBinaryImpl extends ScEntity implements ScLinkBinary {
 
     @JsonIgnore
     @Override
-    public ByteArrayOutputStream getContent() {
-        return content;
+    public ByteArrayOutputStream getContent() throws IOException {
+        if (byteStream == null) {
+            byteStream = new ByteArrayOutputStream();
+            if (content != null) {
+                byte[] bytes = Base64.getDecoder()
+                                     .decode(content);
+                byteStream.write(bytes);
+            }
+        }
+        return byteStream;
     }
 
     @JsonIgnore
     public void setContent(ByteArrayOutputStream content) {
+        this.byteStream = content;
+        byte[] bytes = byteStream.toByteArray();
+        this.content = Base64.getEncoder()
+                             .encodeToString(bytes);
+    }
+
+    @JsonIgnore
+    public void setContent(String content) {
         this.content = content;
     }
 }
