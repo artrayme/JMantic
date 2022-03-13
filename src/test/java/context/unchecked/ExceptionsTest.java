@@ -7,6 +7,7 @@ import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLinkBinary;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.pattern.ScPattern;
@@ -18,6 +19,8 @@ import org.ostis.scmemory.websocketmemory.memory.pattern.DefaultWebsocketScPatte
 import org.ostis.scmemory.websocketmemory.memory.pattern.SearchingPatternTriple;
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.stream.Stream;
 
@@ -123,6 +126,20 @@ public class ExceptionsTest {
     }
 
     @Test
+    void exceptionAtBinaryLinkCreating() throws IOException {
+        String str = "Hello!";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    scContext.createBinaryLink(
+                            LinkType.LINK,
+                            content);
+                });
+    }
+
+    @Test
     void exceptionAtIntegerLinkContentSetting() throws Exception {
         memory.open();
         var link = scContext.createIntegerLink(
@@ -171,6 +188,25 @@ public class ExceptionsTest {
     }
 
     @Test
+    void exceptionAtBinaryLinkSetting() throws Exception {
+        memory.open();
+        String str = "Hello!";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+        ScLinkBinary link = scContext.createBinaryLink(
+                LinkType.LINK,
+                content);
+        memory.close();
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    scContext.setBinaryLinkContent(
+                            link,
+                            content);
+                });
+    }
+
+    @Test
     void exceptionAtIntegerLinkContentGetting() throws Exception {
         memory.open();
         var link = scContext.createIntegerLink(
@@ -210,6 +246,24 @@ public class ExceptionsTest {
                 () -> {
                     scContext.getStringLinkContent(link);
                 });
+    }
+
+    @Test
+    void exceptionAtBinaryLinkGetting() throws Exception {
+        memory.open();
+        String str = "Hello!";
+        ByteArrayOutputStream content = new ByteArrayOutputStream();
+        content.write(str.getBytes());
+        ScLinkBinary link = scContext.createBinaryLink(
+                LinkType.LINK,
+                content);
+        memory.close();
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    scContext.getBinaryLinkContent(link);
+                });
+
     }
 
     @Test
