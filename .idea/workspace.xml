@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +106,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ScLInkBinaryImplTest.getContentFromEmptyLink (1)">
+  <component name="RunManager" selected="Gradle.ScLinkOperationsTest.getContentFromBinaryLink">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -148,29 +149,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExceptionsTest.exceptionAtBinaryLinkCreating" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtBinaryLinkCreating&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="ExceptionsTest.exceptionAtBinaryLinkGetting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -185,29 +163,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtBinaryLinkGetting&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ExceptionsTest.exceptionAtBinaryLinkSetting" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtBinaryLinkSetting&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -261,7 +216,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScLinkOperationsTest.setContentToBinaryString" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScLinkOperationsTest.getContentFromBinaryLink" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -274,7 +229,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.asyncunchecked.ScLinkOperationsTest.setContentToBinaryString&quot;" />
+            <option value="&quot;scmemory.ScLinkOperationsTest.getContentFromBinaryLink&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScLinkOperationsTest.setContentToBinaryLink" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScLinkOperationsTest.setContentToBinaryLink&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScLinkOperationsTest.setContentToStringLink" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScLinkOperationsTest.setContentToStringLink&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -332,19 +333,19 @@
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.SonatypePublishing" />
-      <item itemvalue="Gradle.ScLinkOperationsTest.setContentToBinaryString" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkCreating" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkSetting" />
       <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkGetting" />
       <item itemvalue="Gradle.ScLInkBinaryImplTest.getContentFromEmptyLink (1)" />
+      <item itemvalue="Gradle.ScLinkOperationsTest.setContentToBinaryLink" />
+      <item itemvalue="Gradle.ScLinkOperationsTest.setContentToStringLink" />
+      <item itemvalue="Gradle.ScLinkOperationsTest.getContentFromBinaryLink" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ScLinkOperationsTest.getContentFromBinaryLink" />
+        <item itemvalue="Gradle.ScLinkOperationsTest.setContentToStringLink" />
+        <item itemvalue="Gradle.ScLinkOperationsTest.setContentToBinaryLink" />
         <item itemvalue="Gradle.ScLInkBinaryImplTest.getContentFromEmptyLink (1)" />
         <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkGetting" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkSetting" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtBinaryLinkCreating" />
-        <item itemvalue="Gradle.ScLinkOperationsTest.setContentToBinaryString" />
       </list>
     </recent_temporary>
   </component>
@@ -383,7 +384,8 @@
       <workItem from="1645860527099" duration="2767000" />
       <workItem from="1645947898646" duration="8129000" />
       <workItem from="1646979053057" duration="865000" />
-      <workItem from="1647160264481" duration="6085000" />
+      <workItem from="1647160264481" duration="6355000" />
+      <workItem from="1647253388792" duration="1339000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>

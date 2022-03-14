@@ -479,49 +479,9 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public Stream<Boolean> setBinaryLinkContent(Stream<? extends ScLinkBinary> links,
                                                 Stream<ByteArrayOutputStream> content) throws ScMemoryException {
-        SetLinkContentRequestImpl request = new SetLinkContentRequestImpl();
-        List<? extends ScLinkBinary> linksList = links.toList();
-        List<ByteArrayOutputStream> contentList = content.toList();
-        if (linksList.size() != contentList.size()) {
-            throw new IllegalArgumentException("The length of the passed lists are not the same." + "linksList.size = " + linksList.size() + ", contentList.size = " + contentList.size());
-        }
-        Iterator<? extends ScLinkBinary> linksIter = linksList.iterator();
-        Iterator<ByteArrayOutputStream> contentIter = contentList.iterator();
-        List<ScLinkBinary> linksWithoutContent = new ArrayList<>();
-        List<String> contentWithoutLink = new ArrayList<>();
-        while (linksIter.hasNext()) {
-            ScLinkBinary link = linksIter.next();
-            linksWithoutContent.add(link);
-            String data = Base64.getEncoder()
-                                .encodeToString(contentIter.next()
-                                                           .toByteArray());
-            contentWithoutLink.add(data);
-            request.addToRequest(
-                    link,
-                    data);
-        }
-
-        SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
-
-        if (!response.getResponseStatus()) {
-            throw new ScMemoryException("the response status is FALSE");
-        }
-        List<Boolean> statusOfOperation = response.getOperationStatus();
-        for (int i = 0; i < statusOfOperation.size(); i++) {
-            boolean status = statusOfOperation.get(i);
-            if (status) {
-                ScLinkBinary link = linksWithoutContent.get(i);
-                String data = contentWithoutLink.get(i);
-                try {
-                    ((ScLinkBinaryImpl) link).setContent(data);
-                } catch (IOException e) {
-                    throw new ScMemoryException(
-                            "Unable to parse string to binary representation",
-                            e);
-                }
-            }
-        }
-        return statusOfOperation.stream();
+        return setLinkContent(
+                links,
+                content);
     }
 
     @Override
@@ -723,9 +683,17 @@ public class SyncOstisScMemory implements ScMemory {
             linksWithoutContent.add(link);
             C data = contentIter.next();
             contentWithoutLink.add(data);
-            request.addToRequest(
-                    link,
-                    data);
+            if (link instanceof ScLinkBinary) {
+                String byteArrayString = Base64.getEncoder()
+                                               .encodeToString(((ByteArrayOutputStream) data).toByteArray());
+                request.addToRequest(
+                        link,
+                        byteArrayString);
+            } else {
+                request.addToRequest(
+                        link,
+                        data);
+            }
         }
 
         SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
@@ -743,15 +711,7 @@ public class SyncOstisScMemory implements ScMemory {
                     case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
                     case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
                     case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
-                    case BINARY -> {
-                        try {
-                            ((ScLinkBinaryImpl) link).setContent((String) data);
-                        } catch (IOException e) {
-                            throw new ScMemoryException(
-                                    "Unable to parse string to binary representation",
-                                    e);
-                        }
-                    }
+                    case BINARY -> ((ScLinkBinaryImpl) link).setContent((ByteArrayOutputStream) data);
                 }
             }
         }
