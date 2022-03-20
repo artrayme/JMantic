@@ -384,12 +384,9 @@ public class SyncOstisScMemory implements ScMemory {
                    .forEach(request::addComponent);
             List<? extends ScElement> triplet;
             Optional<Stream<? extends ScElement>> first = findPattern(pattern).findFirst();
-            if (first.isPresent()) {
-                triplet = first.get()
-                               .toList();
-            } else {
-                throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
-            }
+            triplet = first.get()
+                           .toList();
+
             ScElement sourceElement = searchedScElements.get(triplet.get(0)
                                                                     .getAddress());
             ScElement targetElement = searchedScElements.get(triplet.get(2)
@@ -407,12 +404,9 @@ public class SyncOstisScMemory implements ScMemory {
             Optional<? extends ScLink> first = createLinksByAddresses(
                     Stream.of(addr),
                     linkType).findFirst();
-            if (first.isPresent()) {
-                return first.get();
-            } else {
-                throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
-            }
-        } else if (type instanceof UnknownScElement) {
+            return first.get();
+
+        } else {
             Object o = checkElementType(addr);
             ScElement element = createScElementByType(
                     o,
@@ -422,7 +416,6 @@ public class SyncOstisScMemory implements ScMemory {
                     element);
             return element;
         }
-        throw new IllegalArgumentException(ExceptionMessages.functionalityNotImplementedYet);
     }
 
     private Object checkElementType(Long addr) throws ScMemoryException {
@@ -445,11 +438,7 @@ public class SyncOstisScMemory implements ScMemory {
         }
         Optional<Object> first = result.getTypes()
                                        .findFirst();
-        if (first.isPresent()) {
-            return first.get();
-        } else {
-            throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
-        }
+        return first.get();
     }
 
     @Override
@@ -580,13 +569,12 @@ public class SyncOstisScMemory implements ScMemory {
             return new TypePatternElement<>(
                     type,
                     alias);
-        } else if (object instanceof LinkType type) {
+        } else {
             return new TypePatternElement<>(
-                    type,
+                    (LinkType) object,
                     alias);
         }
 
-        throw new IllegalArgumentException("You should path in ScPatterns only objects of type ScElement or of type NodeType|EdgeType|LinkType");
     }
 
     /**
@@ -644,9 +632,10 @@ public class SyncOstisScMemory implements ScMemory {
 
         CreateScElResponse response = requestSender.sendCreateElRequest(request);
 
-        if (!response.getResponseStatus()) {
-            throw new ScMemoryException("the response status is FALSE");
-        }
+        //        sc-mechine never send false status in current realisation
+        //        if (!response.getResponseStatus()) {
+        //            throw new ScMemoryException("the response status is FALSE");
+        //        }
         List<Long> addresses = response.getAddresses()
                                        .toList();
         for (int i = 0; i < addresses.size(); i++) {
@@ -698,21 +687,19 @@ public class SyncOstisScMemory implements ScMemory {
 
         SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
 
-        if (!response.getResponseStatus()) {
-            throw new ScMemoryException("the response status is FALSE");
-        }
+        //        sc-mechine never send false status in current realisation
+        //        if (!response.getResponseStatus()) {
+        //            throw new ScMemoryException("the response status is FALSE");
+        //        }
         List<Boolean> statusOfOperation = response.getOperationStatus();
         for (int i = 0; i < statusOfOperation.size(); i++) {
-            boolean status = statusOfOperation.get(i);
-            if (status) {
-                ScLink link = linksWithoutContent.get(i);
-                C data = contentWithoutLink.get(i);
-                switch (link.getContentType()) {
-                    case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
-                    case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
-                    case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
-                    case BINARY -> ((ScLinkBinaryImpl) link).setContent((ByteArrayOutputStream) data);
-                }
+            ScLink link = linksWithoutContent.get(i);
+            C data = contentWithoutLink.get(i);
+            switch (link.getContentType()) {
+                case FLOAT -> ((ScLinkFloatImpl) link).setContent((float) data);
+                case INT -> ((ScLinkIntegerImpl) link).setContent((int) data);
+                case STRING -> ((ScLinkStringImpl) link).setContent((String) data);
+                case BINARY -> ((ScLinkBinaryImpl) link).setContent((ByteArrayOutputStream) data);
             }
         }
         return statusOfOperation.stream();
@@ -736,34 +723,32 @@ public class SyncOstisScMemory implements ScMemory {
         List<Object> result = new ArrayList<>();
         for (int i = 0; i < links.size(); i++) {
             Object value = values.get(i);
-            if (value != null) {
-                ScLink link = links.get(i);
-                switch (link.getContentType()) {
-                    case INT -> {
-                        Integer content = (Integer) value;
-                        result.add(content);
-                        ((ScLinkIntegerImpl) link).setContent(content);
-                    }
-                    case FLOAT -> {
-                        float content = ((Double) value).floatValue();
-                        result.add(content);
-                        ((ScLinkFloatImpl) link).setContent(content);
-                    }
-                    case STRING -> {
-                        String content = (String) value;
-                        result.add(content);
-                        ((ScLinkStringImpl) link).setContent(content);
-                    }
-                    case BINARY -> {
-                        String content = (String) value;
-                        try {
-                            ((ScLinkBinaryImpl) link).setContent(content);
-                            result.add(((ScLinkBinaryImpl) link).getContent());
-                        } catch (IOException e) {
-                            throw new ScMemoryException(
-                                    "Unable to parse string to binary representation",
-                                    e);
-                        }
+            ScLink link = links.get(i);
+            switch (link.getContentType()) {
+                case INT -> {
+                    Integer content = (Integer) value;
+                    result.add(content);
+                    ((ScLinkIntegerImpl) link).setContent(content);
+                }
+                case FLOAT -> {
+                    float content = ((Double) value).floatValue();
+                    result.add(content);
+                    ((ScLinkFloatImpl) link).setContent(content);
+                }
+                case STRING -> {
+                    String content = (String) value;
+                    result.add(content);
+                    ((ScLinkStringImpl) link).setContent(content);
+                }
+                case BINARY -> {
+                    String content = (String) value;
+                    try {
+                        ((ScLinkBinaryImpl) link).setContent(content);
+                        result.add(((ScLinkBinaryImpl) link).getContent());
+                    } catch (IOException e) {
+                        throw new ScMemoryException(
+                                "Unable to parse string to binary representation",
+                                e);
                     }
                 }
             }
@@ -817,17 +802,11 @@ public class SyncOstisScMemory implements ScMemory {
                     result.add(scLinkString);
                 }
                 case BINARY -> {
-                    String content = (String) values.get(i);
+                    ByteArrayOutputStream content = (ByteArrayOutputStream) values.get(i);
                     ScLinkBinaryImpl scLinkBinary = new ScLinkBinaryImpl(
                             type,
                             links.get(i));
-                    try {
-                        scLinkBinary.setContent(content);
-                    } catch (IOException e) {
-                        throw new ScMemoryException(
-                                "Unable to parse string to binary representation",
-                                e);
-                    }
+                    scLinkBinary.setContent(content);
                     result.add(scLinkBinary);
                 }
                 default -> throw new IllegalArgumentException("unknown type of content");

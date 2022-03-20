@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
-import org.ostis.scmemory.websocketmemory.util.internal.ScTypesMap;
+import org.ostis.scmemory.websocketmemory.util.api.ScTypesMap;
 
 import java.util.ArrayList;
 import java.util.List;

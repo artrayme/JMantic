@@ -1,4 +1,4 @@
-package org.ostis.scmemory.websocketmemory.util.internal;
+package org.ostis.scmemory.websocketmemory.util.api;
 
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.link.LinkType;

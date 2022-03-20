@@ -9,6 +9,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class RequestIdGenerator {
     private static final AtomicLong atomicInteger = new AtomicLong(1);
 
+    private RequestIdGenerator() {
+    }
+
     public static long getId() {
         return atomicInteger.getAndIncrement();
     }

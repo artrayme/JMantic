@@ -7,9 +7,6 @@ package org.ostis.scmemory.websocketmemory.memory.exception;
  * @since 0.2.0
  */
 public class OstisClientConfigurationException extends RuntimeException {
-    public OstisClientConfigurationException(String message) {
-        super(message);
-    }
 
     public OstisClientConfigurationException(String message, Throwable cause) {
         super(
@@ -17,7 +14,4 @@ public class OstisClientConfigurationException extends RuntimeException {
                 cause);
     }
 
-    public OstisClientConfigurationException(Throwable cause) {
-        super(cause);
-    }
 }

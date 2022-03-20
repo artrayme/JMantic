@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Timeout;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.edge.EdgeType;
 import org.ostis.scmemory.model.element.edge.ScEdge;
+import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLink;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.exception.ScMemoryException;
@@ -18,6 +20,7 @@ import org.ostis.scmemory.websocketmemory.memory.pattern.element.AliasPatternEle
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement;
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.TypePatternElement;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
@@ -266,4 +269,81 @@ public class ScMemoryFindPatternTest {
                 target2,
                 resultEdge2.getTarget());
     }
+
+    /**
+     * <pre>
+     *     {@code
+     *                         ?edge(Edge.Access)
+     *        ?source(Node)----------------------->?target(Node)
+     *                                 ^
+     *                                 |
+     *                                 | ?relEdge(Edge.Access)
+     *                                 |
+     *                                 |
+     *                            relNode(Node)
+     *
+     *     }
+     * </pre>
+     * <p>
+     * Source and targets node are not included in pattern, but should be found.
+     */
+//    @Test
+//    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
+//    void findPatternWithDeepness3LinksEdition() throws ScMemoryException {
+//        ByteArrayOutputStream binaryContent = new ByteArrayOutputStream(10);
+//        binaryContent.write(1);
+//        ScLink source = scMemory.createBinaryLinks(Stream.of(LinkType.LINK), Stream.of(binaryContent))
+//                                .findFirst()
+//                                .get();
+//        ScLink target = scMemory.createStringLinks(Stream.of(LinkType.LINK), Stream.of("a"))
+//                                .findFirst()
+//                                .get();
+//        ScEdge edge = scMemory.createEdges(
+//                                      Stream.of(EdgeType.ACCESS),
+//                                      Stream.of(source),
+//                                      Stream.of(target))
+//                              .findFirst()
+//                              .get();
+//
+//        ScLink relNode = scMemory.createFloatLinks(Stream.of(LinkType.LINK), Stream.of(5f))
+//                                 .findFirst()
+//                                 .get();
+//        ScEdge relEdge = scMemory.createEdges(
+//                                         Stream.of(EdgeType.ACCESS),
+//                                         Stream.of(relNode),
+//                                         Stream.of(edge))
+//                                 .findFirst()
+//                                 .get();
+//
+//        ScPattern pattern = new DefaultWebsocketScPattern();
+//        pattern.addElement(new SearchingPatternTriple(
+//                new FixedPatternElement(relNode),
+//                new TypePatternElement<>(
+//                        EdgeType.ACCESS,
+//                        new AliasPatternElement("edge1")),
+//                new TypePatternElement<>(
+//                        EdgeType.ACCESS,
+//                        new AliasPatternElement("edge2"))));
+//
+//        var result = scMemory.find(pattern)
+//                             .findFirst()
+//                             .get()
+//                             .toList();
+//
+//        assertEquals(
+//                relNode,
+//                result.get(0));
+//        assertEquals(
+//                relEdge,
+//                result.get(1));
+//        assertEquals(
+//                edge,
+//                result.get(2));
+//        assertEquals(
+//                edge.getSource(),
+//                ((ScEdge) result.get(2)).getSource());
+//        assertEquals(
+//                edge.getTarget(),
+//                ((ScEdge) result.get(2)).getTarget());
+//    }
 }
