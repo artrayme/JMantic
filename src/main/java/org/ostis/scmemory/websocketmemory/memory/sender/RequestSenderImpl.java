@@ -60,7 +60,7 @@ public class RequestSenderImpl implements RequestSender {
 
     @Override
     public URI getAddress() {
-        return client.getAddress();
+        return client.getConfiguration();
     }
 
     @Override

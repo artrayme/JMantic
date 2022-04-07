@@ -35,5 +35,5 @@ public interface OstisClient extends AutoCloseable {
      */
     String sendToOstis(String jsonRequest) throws OstisConnectionException;
 
-    URI getAddress();
+    URI getConfiguration();
 }
