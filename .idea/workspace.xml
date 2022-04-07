@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisClientConfigurationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisClientConfigurationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisConnectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/exception/OstisConnectionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/CheckScElTypeResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/internal/RequestIdGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/internal/RequestIdGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/internal/ScTypesMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/ScTypesMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,15 +58,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/extension/ExtendWith.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/extension/ExtendWith.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -89,6 +87,10 @@
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/workflows" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -110,7 +112,27 @@
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition">
+  <component name="RunManager" selected="Gradle.NodeOperationsTest (1)">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ostis.scmemory.websocketmemory.memory.core.Main" />
+      <module name="JMantic.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ostis.scmemory.websocketmemory.memory.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTemp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainTemp" />
+      <module name="JMantic.test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -144,27 +166,6 @@
         <option name="taskNames">
           <list>
             <option value="jacocoTestReport" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="JMantic [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -212,6 +213,29 @@
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="NodeOperationsTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.NodeOperationsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -281,71 +305,25 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestEdgeIdtf.testOptimizedVersion (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.TestEdgeIdtf.testOptimizedVersion&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TestIdtfUtils.testOptimizedVersion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;other.TestIdtfUtils.testOptimizedVersion&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.SonatypePublishing" />
-      <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
-      <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
-      <item itemvalue="Gradle.JMantic [dependencies]" />
       <item itemvalue="Gradle.JMantic [javadoc]" />
       <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
+      <item itemvalue="Gradle.NodeOperationsTest (1)" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MainTemp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.NodeOperationsTest (1)" />
+        <item itemvalue="Application.MainTemp" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
         <item itemvalue="Gradle.JMantic [javadoc]" />
-        <item itemvalue="Gradle.JMantic [dependencies]" />
-        <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
-        <item itemvalue="Gradle.TestEdgeIdtf.testOptimizedVersion (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -378,6 +356,7 @@
       <workItem from="1644762622922" duration="807000" />
       <workItem from="1644778057204" duration="34000" />
       <workItem from="1645033716903" duration="26083000" />
+      <workItem from="1649330808884" duration="10472000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
