@@ -1,5 +1,13 @@
 package org.ostis.scmemory.websocketmemory.memory.core;
 
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.DeploymentException;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
+import jakarta.websocket.Session;
+import jakarta.websocket.WebSocketContainer;
 import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.exception.OstisClientConfigurationException;
 import org.ostis.scmemory.websocketmemory.memory.exception.OstisConnectionException;
@@ -7,14 +15,6 @@ import org.ostis.scmemory.websocketmemory.memory.exception.OstisWebsocketClientE
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.DeploymentException;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
 import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
@@ -98,10 +98,15 @@ public class OstisClientSync implements OstisClient {
                 responseMassage);
         return responseMassage;
     }
-////    implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:2.0.2'
+
     @Override
     public URI getConfiguration() {
         return address;
+    }
+
+    @Override
+    public boolean isOpen() {
+        return webSocketClient.isOpen();
     }
 
 
@@ -133,9 +138,20 @@ public class OstisClientSync implements OstisClient {
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 
-            container.connectToServer(
+            session = container.connectToServer(
                     this,
                     address);
+
+            session.addMessageHandler(new MessageHandler.Whole<String>() {
+                @Override
+                public void onMessage(String message) {
+                    logger.info(
+                            "ostis client catch response {}",
+                            message);
+                    responseMassage = message;
+                    latch.countDown();
+                }
+            });
         }
 
         public void disconnect() throws IOException {
@@ -162,6 +178,7 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onClose(Session session, CloseReason closeReason) {
+            logger.debug("in OnClose method");
             super.onClose(
                     session,
                     closeReason);
@@ -169,6 +186,7 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onError(Session session, Throwable thr) {
+            logger.debug("in OnError method");
             super.onError(
                     session,
                     thr);
@@ -176,15 +194,11 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onOpen(Session session, EndpointConfig config) {
-            this.session = session;
 
-            session.addMessageHandler((MessageHandler.Whole<String>) message -> {
-                logger.info(
-                        "ostis client catch response {}",
-                        message);
-                responseMassage = message;
-                latch.countDown();
-            });
+        }
+
+        public boolean isOpen() {
+            return session.isOpen();
         }
 
         public URI getAddress() {
