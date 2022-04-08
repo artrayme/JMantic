@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * {@link OstisClient} implementation for sending requests in JSON format
@@ -29,6 +30,7 @@ public class OstisClientSync implements OstisClient {
 
     private final static Logger logger = LoggerFactory.getLogger(OstisClientSync.class);
     private final OstisWebsocketClient webSocketClient;
+    private final ReentrantLock lock = new ReentrantLock();
     private String responseMassage;
     private CountDownLatch latch;
     private URI address;
@@ -39,36 +41,42 @@ public class OstisClientSync implements OstisClient {
 
     public OstisClientSync(URI serverUri) {
         webSocketClient = new OstisWebsocketClient(serverUri);
+        address = serverUri;
     }
 
     @Override
-    public synchronized void configure(URI serverUri) {
+    public void configure(URI serverUri) {
+        lock.lock();
         address = serverUri;
-        webSocketClient.setAddress(address);
+        webSocketClient.setAddress(serverUri);
+        lock.unlock();
         logger.info(
-                "ostis client is configured to the uri {}",
+                "ostis client is configured to the URI: {}",
                 serverUri);
     }
 
     @Override
-    public synchronized void open() {
+    public void open() {
         try {
+            lock.lock();
             webSocketClient.connect();
             logger.info(
-                    "ostis client is connected to uri {}",
+                    "ostis client is connected to URI: {}",
                     webSocketClient.getAddress());
         } catch (DeploymentException | IOException | OstisWebsocketClientException e) {
-            logger.error(
-                    "cannot connect to uri {}",
-                    webSocketClient.getAddress());
+            String msg = "cannot connect to URI: " + webSocketClient.getAddress();
+            logger.error(msg);
             throw new OstisClientConfigurationException(
-                    "cannot connect to this uri",
+                    msg,
                     e);
+        } finally {
+            lock.unlock();
         }
     }
 
     @Override
-    public synchronized String sendToOstis(String jsonRequest) throws OstisConnectionException {
+    public String sendToOstis(String jsonRequest) throws OstisConnectionException {
+        lock.lock();
         latch = new CountDownLatch(1);
         try {
             logger.info(
@@ -92,9 +100,11 @@ public class OstisClientSync implements OstisClient {
             throw new OstisConnectionException(
                     msg,
                     e);
+        } finally {
+            lock.unlock();
         }
         logger.info(
-                "ostis client return response {}",
+                "ostis client return response: {}",
                 responseMassage);
         return responseMassage;
     }
@@ -112,7 +122,9 @@ public class OstisClientSync implements OstisClient {
 
     @Override
     public void close() throws Exception {
+        lock.lock();
         webSocketClient.disconnect();
+        lock.unlock();
         logger.info("ostis client closed");
     }
 
@@ -133,7 +145,7 @@ public class OstisClientSync implements OstisClient {
         public void connect() throws DeploymentException, IOException, OstisWebsocketClientException {
             disconnect();
             if (address == null) {
-                throw new OstisWebsocketClientException("address is null");
+                throw new OstisWebsocketClientException("address is not correct: null");
             }
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
@@ -142,15 +154,12 @@ public class OstisClientSync implements OstisClient {
                     this,
                     address);
 
-            session.addMessageHandler(new MessageHandler.Whole<String>() {
-                @Override
-                public void onMessage(String message) {
-                    logger.info(
-                            "ostis client catch response {}",
-                            message);
-                    responseMassage = message;
-                    latch.countDown();
-                }
+            session.addMessageHandler((MessageHandler.Whole<String>) message -> {
+                logger.info(
+                        "ostis websocket client catch response: {}",
+                        message);
+                responseMassage = message;
+                latch.countDown();
             });
         }
 
@@ -159,7 +168,7 @@ public class OstisClientSync implements OstisClient {
                 session.close();
                 session = null;
                 logger.info(
-                        "ostis client was disconnected from URI {}",
+                        "ostis websocket client was disconnected from URI: {}",
                         address);
             }
         }
@@ -172,13 +181,12 @@ public class OstisClientSync implements OstisClient {
             session.getAsyncRemote()
                    .sendText(message);
             logger.info(
-                    "ostis client send message {}",
+                    "ostis websocket client send message {}",
                     message);
         }
 
         @Override
         public void onClose(Session session, CloseReason closeReason) {
-            logger.debug("in OnClose method");
             super.onClose(
                     session,
                     closeReason);
@@ -186,7 +194,6 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onError(Session session, Throwable thr) {
-            logger.debug("in OnError method");
             super.onError(
                     session,
                     thr);

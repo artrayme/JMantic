@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,27 +109,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.NodeOperationsTest (1)">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ostis.scmemory.websocketmemory.memory.core.Main" />
-      <module name="JMantic.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ostis.scmemory.websocketmemory.memory.core.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTemp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainTemp" />
-      <module name="JMantic.test" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.ScMemoryFindPattern3WithNamesTest">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -194,7 +173,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="NodeOperationsTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPattern3WithNamesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -207,7 +186,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.NodeOperationsTest&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPattern3WithNamesTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -217,7 +196,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="NodeOperationsTest.createSingleNode (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPattern5WithNamesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -230,7 +209,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.NodeOperationsTest.createSingleNode&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPattern5WithNamesTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -240,7 +219,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPatternTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -253,7 +232,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SearchByTemplateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;context.asyncunchecked.SearchByTemplateTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -306,24 +331,24 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.MainTemp" />
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.SonatypePublishing" />
-      <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
-      <item itemvalue="Gradle.NodeOperationsTest (1)" />
-      <item itemvalue="Gradle.NodeOperationsTest.createSingleNode (1)" />
+      <item itemvalue="Gradle.SearchByTemplateTest" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
+      <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
+      <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.NodeOperationsTest (1)" />
-        <item itemvalue="Gradle.NodeOperationsTest.createSingleNode (1)" />
-        <item itemvalue="Application.MainTemp" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
+        <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest" />
+        <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
+        <item itemvalue="Gradle.SearchByTemplateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -358,7 +383,10 @@
       <workItem from="1645033716903" duration="26083000" />
       <workItem from="1649330808884" duration="10865000" />
       <workItem from="1649405779143" duration="136000" />
-      <workItem from="1649412797262" duration="2365000" />
+      <workItem from="1649412797262" duration="4494000" />
+      <workItem from="1649418291099" duration="131000" />
+      <workItem from="1649425184050" duration="2454000" />
+      <workItem from="1649427823826" duration="170000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
@@ -749,15 +777,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="build: fix package signing" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java</url>
-          <line>332</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement" memberName="element" />
