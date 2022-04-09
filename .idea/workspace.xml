@@ -7,7 +7,6 @@
     <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ScMemoryFindPattern3WithNamesTest">
+  <component name="RunManager" selected="Gradle.NodeOperationsTest">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -152,6 +151,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="EdgeOperationsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;context.asyncunchecked.EdgeOperationsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Jar" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -173,7 +195,53 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryFindPattern3WithNamesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="KeynodesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;context.unchecked.KeynodesTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="NodeOperationsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;context.defaultcontext.NodeOperationsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScMemoryFindPattern3WithNamesTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -196,7 +264,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryFindPattern5WithNamesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPattern3WithNamesTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -209,76 +277,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPattern5WithNamesTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ScMemoryFindPatternTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPatternTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="SearchByTemplateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.asyncunchecked.SearchByTemplateTest&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPattern3WithNamesTest.findSingleTripleFNodeEdgeNode&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -336,19 +335,19 @@
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.SonatypePublishing" />
-      <item itemvalue="Gradle.SearchByTemplateTest" />
-      <item itemvalue="Gradle.ScMemoryFindPatternTest" />
-      <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
-      <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
-      <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest" />
+      <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest.findSingleTripleFNodeEdgeNode" />
+      <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest (1)" />
+      <item itemvalue="Gradle.KeynodesTest" />
+      <item itemvalue="Gradle.EdgeOperationsTest" />
+      <item itemvalue="Gradle.NodeOperationsTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest" />
-        <item itemvalue="Gradle.ScMemoryFindPattern5WithNamesTest" />
-        <item itemvalue="Gradle.ScMemoryFindPatternTest" />
-        <item itemvalue="Gradle.ScMemoryFindPatternTest.findSingleTripleFNodeEdgeNode" />
-        <item itemvalue="Gradle.SearchByTemplateTest" />
+        <item itemvalue="Gradle.NodeOperationsTest" />
+        <item itemvalue="Gradle.EdgeOperationsTest" />
+        <item itemvalue="Gradle.KeynodesTest" />
+        <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest (1)" />
+        <item itemvalue="Gradle.ScMemoryFindPattern3WithNamesTest.findSingleTripleFNodeEdgeNode" />
       </list>
     </recent_temporary>
   </component>
@@ -386,7 +385,9 @@
       <workItem from="1649412797262" duration="4494000" />
       <workItem from="1649418291099" duration="131000" />
       <workItem from="1649425184050" duration="2454000" />
-      <workItem from="1649427823826" duration="170000" />
+      <workItem from="1649427823826" duration="582000" />
+      <workItem from="1649492060949" duration="2302000" />
+      <workItem from="1649497887464" duration="1155000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>

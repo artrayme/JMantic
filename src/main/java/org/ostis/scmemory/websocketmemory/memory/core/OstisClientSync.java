@@ -76,6 +76,7 @@ public class OstisClientSync implements OstisClient {
 
     @Override
     public String sendToOstis(String jsonRequest) throws OstisConnectionException {
+        String response;
         lock.lock();
         latch = new CountDownLatch(1);
         try {
@@ -84,6 +85,7 @@ public class OstisClientSync implements OstisClient {
                     jsonRequest);
             webSocketClient.sendMessage(jsonRequest);
             latch.await();
+            response = responseMassage;
         } catch (InterruptedException e) {
             String msg = "some exception in concurrency";
             logger.error(
@@ -105,8 +107,8 @@ public class OstisClientSync implements OstisClient {
         }
         logger.info(
                 "ostis client return response: {}",
-                responseMassage);
-        return responseMassage;
+                response);
+        return response;
     }
 
     @Override
@@ -150,17 +152,9 @@ public class OstisClientSync implements OstisClient {
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 
-            session = container.connectToServer(
+            container.connectToServer(
                     this,
                     address);
-
-            session.addMessageHandler((MessageHandler.Whole<String>) message -> {
-                logger.info(
-                        "ostis websocket client catch response: {}",
-                        message);
-                responseMassage = message;
-                latch.countDown();
-            });
         }
 
         public void disconnect() throws IOException {
@@ -187,21 +181,30 @@ public class OstisClientSync implements OstisClient {
 
         @Override
         public void onClose(Session session, CloseReason closeReason) {
-            super.onClose(
-                    session,
-                    closeReason);
+            logger.info("websocket client closed");
         }
 
         @Override
         public void onError(Session session, Throwable thr) {
-            super.onError(
-                    session,
-                    thr);
+            logger.info(
+                    "something went wrong in ostisWebsocketClient {}",
+                    thr.getMessage());
         }
 
         @Override
         public void onOpen(Session session, EndpointConfig config) {
-
+            session.addMessageHandler(new MessageHandler.Whole<String>() {
+                @Override
+                public void onMessage(String message) {
+                    logger.info(
+                            "ostis websocket client catch response: {}",
+                            message);
+                    responseMassage = message;
+                    latch.countDown();
+                }
+            });
+            this.session = session;
+            logger.info("websocket client session has been started");
         }
 
         public boolean isOpen() {
