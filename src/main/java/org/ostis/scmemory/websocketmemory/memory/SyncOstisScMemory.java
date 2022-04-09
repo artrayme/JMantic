@@ -112,7 +112,7 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     public URI getURI() {
-        return ostisClient.getAddress();
+        return ostisClient.getConfiguration();
     }
 
     @Override

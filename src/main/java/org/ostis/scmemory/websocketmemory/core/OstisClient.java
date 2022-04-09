@@ -26,6 +26,12 @@ public interface OstisClient extends AutoCloseable {
      */
     void open();
 
+
+    /**
+     * Method to check if a connection is open
+     */
+    boolean isOpen();
+
     /**
      * Method for sending a request to the database and getting the result.
      *
@@ -35,5 +41,5 @@ public interface OstisClient extends AutoCloseable {
      */
     String sendToOstis(String jsonRequest) throws OstisConnectionException;
 
-    URI getAddress();
+    URI getConfiguration();
 }
