@@ -23,8 +23,8 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * {@link OstisClient} implementation for sending requests in JSON format
  *
- * @author artrayme
- * @since 0.2.0
+ * @author Michael
+ * @since 0.7.0
  */
 public class OstisClientSync implements OstisClient {
 
@@ -33,26 +33,11 @@ public class OstisClientSync implements OstisClient {
     private final ReentrantLock lock = new ReentrantLock();
     private String responseMassage;
     private CountDownLatch latch;
-    private URI address;
-
-    public OstisClientSync() {
-        webSocketClient = new OstisWebsocketClient();
-    }
+    private final URI address;
 
     public OstisClientSync(URI serverUri) {
         webSocketClient = new OstisWebsocketClient(serverUri);
         address = serverUri;
-    }
-
-    @Override
-    public void configure(URI serverUri) {
-        lock.lock();
-        address = serverUri;
-        webSocketClient.setAddress(serverUri);
-        lock.unlock();
-        logger.info(
-                "ostis client is configured to the URI: {}",
-                serverUri);
     }
 
     @Override
@@ -136,9 +121,6 @@ public class OstisClientSync implements OstisClient {
     private class OstisWebsocketClient extends Endpoint {
         private URI address;
         private Session session;
-
-        public OstisWebsocketClient() {
-        }
 
         public OstisWebsocketClient(URI address) {
             this.address = address;

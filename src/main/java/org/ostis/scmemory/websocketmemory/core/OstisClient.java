@@ -15,13 +15,6 @@ import java.net.URI;
 public interface OstisClient extends AutoCloseable {
 
     /**
-     * Method for configuring the URI address to the server
-     *
-     * @param uriToServer URI address to the server
-     */
-    void configure(URI uriToServer);
-
-    /**
      * Method for opening a database connection
      */
     void open();
