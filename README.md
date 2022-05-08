@@ -49,7 +49,7 @@ If you want to use JMantic in your programs, follow these steps:
 New way since 0.6.2:
 
 ``` groovy
-  implementation 'io.github.artrayme:jmantic:0.6.2'
+  implementation 'io.github.artrayme:jmantic:0.6.3'
 ```
 
 Old way:
@@ -83,7 +83,7 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.ostis:jmantic:0.6.2'
+implementation 'org.ostis:jmantic:0.6.1'
 ```
 
 ### Maven
@@ -94,7 +94,7 @@ New way since 0.6.2:
 <dependency>
     <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.6.2</version>
+    <version>0.6.3</version>
 </dependency>
 ```
 
@@ -157,7 +157,7 @@ Dependency
 <dependency>
     <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.6.2</version>
+    <version>0.6.1</version>
 </dependency>
 ```
 
