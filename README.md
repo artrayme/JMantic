@@ -46,6 +46,14 @@ If you want to use JMantic in your programs, follow these steps:
 
 ### Gradle
 
+New way since 0.6.2:
+
+``` groovy
+  implementation 'io.github.artrayme:jmantic:0.6.2'
+```
+
+Old way:
+
 First, you should add repo to the repositories section.
 
 For example:
@@ -75,10 +83,22 @@ More information about PAT
 Dependency:
 
 ```groovy
-implementation 'org.ostis:jmantic:0.6.1'
+implementation 'org.ostis:jmantic:0.6.2'
 ```
 
 ### Maven
+
+New way since 0.6.2:
+
+```xml
+<dependency>
+    <groupId>org.ostis</groupId>
+    <artifactId>jmantic</artifactId>
+    <version>0.6.2</version>
+</dependency>
+```
+
+Old way:
 
 The first step is to change the settings.xml file in the ~/.m2 folder
 
@@ -134,11 +154,10 @@ More information about PAT
 Dependency
 
 ```xml
-
 <dependency>
     <groupId>org.ostis</groupId>
     <artifactId>jmantic</artifactId>
-    <version>0.6.1</version>
+    <version>0.6.2</version>
 </dependency>
 ```
 
@@ -186,7 +205,8 @@ ToDo
 
 ## Used libraries
 
-* [Java-WebSocket](https://github.com/TooTallNate/Java-WebSocket)
+* [Jakarta.websocket-api](https://github.com/jakartaee/websocket)
+* [Tyrus-standalone-client](https://github.com/eclipse-ee4j/tyrus)
 * [JUnit5](https://github.com/junit-team/junit5)
 * [Jackson-databind](https://github.com/FasterXML/jackson-databind)
 
