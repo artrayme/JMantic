@@ -5,6 +5,7 @@ import org.ostis.scmemory.model.element.link.LinkType;
 import org.ostis.scmemory.model.element.node.NodeType;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +39,11 @@ public enum ScTypesMap {
               });
     }
 
+    public Object getType(Integer code) {
+        return types.get(code);
+    }
+
     public Map<Integer, Object> getTypes() {
-        return types;
+        return Collections.unmodifiableMap(types);
     }
 }
