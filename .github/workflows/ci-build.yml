@@ -33,6 +33,6 @@ jobs:
 
       - name: "Run Tests"
         run: |
-          sudo docker run --rm -it -v sc-machine_kb:/kb.bin -p 8090:8090 ostis/sc-machine:latest serve &
+          sudo docker run --rm -v sc-machine_kb:/kb.bin -p 8090:8090 ostis/sc-machine:latest serve &
           sleep 80
           ./gradlew jacocoTestReport
