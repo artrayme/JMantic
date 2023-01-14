@@ -27,5 +27,6 @@ public class PayloadFoundByTemplateStruct {
     }
 
     private static class AliasesStruct {
+        //        ToDo: implement logic for aliases
     }
 }
