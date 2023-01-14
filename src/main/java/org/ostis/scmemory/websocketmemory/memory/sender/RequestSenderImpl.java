@@ -11,6 +11,7 @@ import org.ostis.scmemory.websocketmemory.memory.message.response.CheckScElTypeR
 import org.ostis.scmemory.websocketmemory.memory.message.response.CreateScElResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.DeleteScElResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.FindByPatternResponseImpl;
+import org.ostis.scmemory.websocketmemory.memory.message.response.GenerateByPatternResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.GetLinkContentResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.KeynodeResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.SetLinkContentResponseImpl;
@@ -18,6 +19,7 @@ import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
+import org.ostis.scmemory.websocketmemory.message.request.GenerateByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
@@ -26,6 +28,7 @@ import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.FindByPatternResponse;
+import org.ostis.scmemory.websocketmemory.message.response.GenerateByPatternResponse;
 import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;

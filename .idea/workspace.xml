@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build:">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/my2.json" afterDir="false" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/ScPatternTriplet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/element/ScPatternElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern3/ScPattern3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/pattern/pattern5/ScPattern5Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GenerateByPatternResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GenerateByPatternResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/sender/RequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/sender/RequestSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +35,22 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JMantic" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JMantic" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -39,6 +60,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="module-info" />
       </list>
     </option>
   </component>
@@ -58,15 +80,8 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/Object.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.8.1/a3e13f34a2a47fb2c0d7385c5e6e0e8623194061/junit-jupiter-api-5.8.1-sources.jar!/org/junit/jupiter/api/Test.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/ReferenceQueue.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/jdk/internal/misc/Unsafe.java" root0="SKIP_INSPECTION" />
-    <setting file="jar://$USER_HOME$/.jdks/openjdk-17.0.1/lib/src.zip!/java.base/java/lang/ref/Finalizer.java" root0="SKIP_INSPECTION" />
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="pdrrs3sn" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -76,35 +91,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
-    <property name="PROJECT_2PANELS_PROPORTION" value="0.33051297" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/build/jacocoHtml/index.html&#10;/home/artrayme/IdeaProjects/JMantic/.idea/codeStyles/codeStyleConfig.xml&#10;/home/artrayme/IdeaProjects/JMantic/.idea/uiDesigner.xml" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="js.buildTools.grunt.grunt-cli.package" value="" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/believe/IdeaProjects/JMantic&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.ostis.scmemory.websocketmemory.memory.structures" />
       <recent name="context.asyncunchecked" />
       <recent name="context.unchecked" />
       <recent name="scmemory" />
       <recent name="org.ostis.scmemory.websocketmemory.memory.message.response" />
-      <recent name="org.ostis.scmemory.websocketmemory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Coverage">
+  <component name="RunManager" selected="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -147,48 +164,44 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DeepSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="JMantic [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;algo.DeepSearching&quot;" />
+            <option value="dependencies" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExceptionsTest.exceptionAtPatternSearching" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="JMantic [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;context.unchecked.ExceptionsTest.exceptionAtPatternSearching&quot;" />
+            <option value="javadoc" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -214,7 +227,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="OtherTests (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -227,7 +240,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.defaultcontext.OtherTests&quot;" />
+            <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -237,7 +250,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="OtherTests (2)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryGeneratePatternTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -250,7 +263,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.unchecked.OtherTests&quot;" />
+            <option value="&quot;scmemory.ScMemoryGeneratePatternTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -260,7 +273,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="OtherTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -273,12 +286,33 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;context.asyncunchecked.OtherTests&quot;" />
+            <option value="&quot;scmemory.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SonatypePublishing" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="publishMavenJavaPublicationToSonatypeRepository" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -309,19 +343,20 @@
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
-      <item itemvalue="Gradle.DeepSearching" />
-      <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
-      <item itemvalue="Gradle.OtherTests" />
-      <item itemvalue="Gradle.OtherTests (1)" />
-      <item itemvalue="Gradle.OtherTests (2)" />
+      <item itemvalue="Gradle.SonatypePublishing" />
+      <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
+      <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
+      <item itemvalue="Gradle.JMantic [dependencies]" />
+      <item itemvalue="Gradle.JMantic [javadoc]" />
+      <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.OtherTests (2)" />
-        <item itemvalue="Gradle.OtherTests (1)" />
-        <item itemvalue="Gradle.OtherTests" />
-        <item itemvalue="Gradle.ExceptionsTest.exceptionAtPatternSearching" />
-        <item itemvalue="Gradle.DeepSearching" />
+        <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
+        <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
+        <item itemvalue="Gradle.JMantic [javadoc]" />
+        <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
+        <item itemvalue="Gradle.JMantic [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -349,83 +384,20 @@
       <workItem from="1642871707619" duration="38000" />
       <workItem from="1642871785669" duration="18940000" />
       <workItem from="1642943568786" duration="6371000" />
-    </task>
-    <task id="LOCAL-00001" summary="docs(readme): fix typos and add section about versioning">
-      <created>1641512873177</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1641512873177</updated>
-    </task>
-    <task id="LOCAL-00002" summary="feat: add interfaces for n-ary sc-patterns">
-      <created>1641515161253</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1641515161253</updated>
-    </task>
-    <task id="LOCAL-00003" summary="feat: make enum serializable for jackson-json">
-      <created>1641515295712</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1641515295712</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat: implement internal mechanisms according to the new api for patterns">
-      <created>1641516577310</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1641516577310</updated>
-    </task>
-    <task id="LOCAL-00005" summary="feat: make some classes for ScPatterns public api">
-      <created>1641519035531</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1641519035531</updated>
-    </task>
-    <task id="LOCAL-00006" summary="feat: add type for searching unknown ScElements">
-      <created>1641591172647</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591172647</updated>
-    </task>
-    <task id="LOCAL-00007" summary="feat: add request for checking ScElements types">
-      <created>1641591315754</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591315754</updated>
-    </task>
-    <task id="LOCAL-00008" summary="feat: add map with all sc-types for faster casting from element type code to library element type">
-      <created>1641591451165</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591451165</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat: implement n-ary searching patterns in ScMemory">
-      <created>1641591523520</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1641591523520</updated>
-    </task>
-    <task id="LOCAL-00010" summary="refactor!: change packages structure">
-      <created>1641596625158</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1641596625158</updated>
-    </task>
-    <task id="LOCAL-00011" summary="feat!: add method for getting address of connected server in ostis clients">
-      <created>1642025400660</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1642025400660</updated>
+      <workItem from="1643985379765" duration="18605000" />
+      <workItem from="1644071325363" duration="114000" />
+      <workItem from="1644762622922" duration="807000" />
+      <workItem from="1644778057204" duration="34000" />
+      <workItem from="1645033716903" duration="26083000" />
+      <workItem from="1671748017642" duration="2319000" />
+      <workItem from="1671753142151" duration="135000" />
+      <workItem from="1671753480606" duration="110000" />
+      <workItem from="1671753601980" duration="24000" />
+      <workItem from="1671759321372" duration="755000" />
+      <workItem from="1671843242983" duration="912000" />
+      <workItem from="1671885916077" duration="599000" />
+      <workItem from="1672271325489" duration="299000" />
+      <workItem from="1673726735945" duration="370000" />
     </task>
     <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
       <created>1642025482745</created>
@@ -630,7 +602,147 @@
       <option name="project" value="LOCAL" />
       <updated>1642944470135</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="docs: update JMantic version and add a link to the documentation in russian">
+      <created>1643807835483</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1643807835483</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: add method that returns URI to which websocket-memory is connected">
+      <created>1644009680026</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009680026</updated>
+    </task>
+    <task id="LOCAL-00043" summary="refactor: split util-classes to internal and api">
+      <created>1644009803333</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009803333</updated>
+    </task>
+    <task id="LOCAL-00044" summary="refactor: change package paths at the internal classes corresponding to new packages with utils">
+      <created>1644009938150</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009938150</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat: add util-class for working with idtf-s">
+      <created>1644010009849</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010009849</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: add test for utility-class">
+      <created>1644010243464</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010243464</updated>
+    </task>
+    <task id="LOCAL-00047" summary="refactor: remove unused sout-s from tests and some other small fixes">
+      <created>1644010324716</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010324717</updated>
+    </task>
+    <task id="LOCAL-00048" summary="build: remove sl4j dependency">
+      <created>1644010402140</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010402140</updated>
+    </task>
+    <task id="LOCAL-00049" summary="refactor: change project code style and reformat code according it">
+      <created>1644010661122</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1644010661122</updated>
+    </task>
+    <task id="LOCAL-00050" summary="build: change version to 0.6.1">
+      <created>1644011031597</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1644011031598</updated>
+    </task>
+    <task id="LOCAL-00051" summary="docs: update version to 0.6.1">
+      <created>1644011104604</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1644011104604</updated>
+    </task>
+    <task id="LOCAL-00052" summary="docs: add tag 'author'">
+      <created>1644762796727</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1644762796727</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fix!: remove java module (temporary)">
+      <created>1645095229944</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1645095229945</updated>
+    </task>
+    <task id="LOCAL-00054" summary="build: add publication to Nexus">
+      <created>1645095258350</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1645095258350</updated>
+    </task>
+    <task id="LOCAL-00055" summary="build: add debug information for github actions">
+      <created>1645097157723</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1645097157723</updated>
+    </task>
+    <task id="LOCAL-00056" summary="ci: add environment variables">
+      <created>1645100164134</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1645100164134</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ci: fix old github-packages publication system">
+      <created>1645101819737</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1645101819737</updated>
+    </task>
+    <task id="LOCAL-00058" summary="ci: add new package publishing action">
+      <created>1645102813883</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1645102813883</updated>
+    </task>
+    <task id="LOCAL-00059" summary="build: add signing for gpr package">
+      <created>1645103163629</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1645103163629</updated>
+    </task>
+    <task id="LOCAL-00060" summary="build: fix package signing">
+      <created>1645103837268</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1645103837268</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,34 +760,43 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: remove toString methods from internal classes" />
-    <MESSAGE value="test: add tests for pattern5" />
-    <MESSAGE value="test: add tests for pattern5 and universal pattern" />
-    <MESSAGE value="build: change waiting time while ostis starts" />
-    <MESSAGE value="fix: fix some issues from sonar report" />
-    <MESSAGE value="refactor: move classes that are connected with searching patterns and add documentation for they" />
-    <MESSAGE value="refactor: add central id generator for requests id" />
-    <MESSAGE value="feat: add functionality for resolving keynodes and fix bug with keynodes finding" />
-    <MESSAGE value="fix: fix api according to the json format" />
-    <MESSAGE value="test: add tests for finding and resolving keynodes methods" />
-    <MESSAGE value="test: add tests for searching by universal pattern" />
-    <MESSAGE value="test: add test for construction of 7 elements and add some explanation" />
-    <MESSAGE value="feat: implement constructions by pattern generation" />
-    <MESSAGE value="test: add test for pattern generation" />
-    <MESSAGE value="build: add comment with a jvm key" />
-    <MESSAGE value="refactor!: cleanup code, new formatting strategy, add checks and exceptions" />
-    <MESSAGE value="test: add sc-memory tests and change formatting" />
-    <MESSAGE value="refactor: add new formatting rules config for Intellij IDEA" />
-    <MESSAGE value="refactor(api.context)!: add documentation, add new methods, remove deprecated methods" />
-    <MESSAGE value="test: add test for new methods in contexts" />
     <MESSAGE value="feat: add getter for connected sc-memory object in sc-contexts" />
     <MESSAGE value="test: add first benchmarking test" />
     <MESSAGE value="test: add some small tests to improve coverage" />
     <MESSAGE value="conf: remove built-id logger configuration" />
     <MESSAGE value="build: change JMantic version in the gradle config" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: change JMantic version in the gradle config" />
+    <MESSAGE value="docs: update JMantic version and add a link to the documentation in russian" />
+    <MESSAGE value="feat: add method that returns URI to which websocket-memory is connected" />
+    <MESSAGE value="refactor: split util-classes to internal and api" />
+    <MESSAGE value="refactor: change package paths at the internal classes corresponding to new packages with utils" />
+    <MESSAGE value="feat: add util-class for working with idtf-s" />
+    <MESSAGE value="feat: add test for utility-class" />
+    <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
+    <MESSAGE value="build: remove sl4j dependency" />
+    <MESSAGE value="refactor: change project code style and reformat code according it" />
+    <MESSAGE value="build: change version to 0.6.1" />
+    <MESSAGE value="docs: update version to 0.6.1" />
+    <MESSAGE value="docs: add tag 'author'" />
+    <MESSAGE value="fix!: remove java module (temporary)" />
+    <MESSAGE value="build: add publication to Nexus" />
+    <MESSAGE value="build: add debug information for github actions" />
+    <MESSAGE value="ci: add environment variables" />
+    <MESSAGE value="ci: fix old github-packages publication system" />
+    <MESSAGE value="ci: add new package publishing action" />
+    <MESSAGE value="build: add signing for gpr package" />
+    <MESSAGE value="build: fix package signing" />
+    <option name="LAST_COMMIT_MESSAGE" value="build: fix package signing" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/scmemory/ScMemoryFindPatternTest.java</url>
+          <line>332</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement" memberName="element" />

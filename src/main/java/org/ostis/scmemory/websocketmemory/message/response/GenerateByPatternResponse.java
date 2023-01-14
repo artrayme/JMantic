@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 /**
  * @author artrayme
- * @since 0.6.1
+ * @since 0.7.0
  */
 public interface GenerateByPatternResponse extends ScResponse {
     /**

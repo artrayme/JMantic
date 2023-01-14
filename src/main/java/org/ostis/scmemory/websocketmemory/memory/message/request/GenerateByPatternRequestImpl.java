@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author artrayme
- * @since 0.6.1
+ * @since 0.7.0
  */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class GenerateByPatternRequestImpl extends AbstractScRequest implements GenerateByPatternRequest {

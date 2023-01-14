@@ -10,6 +10,7 @@ import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.event.EventType;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
@@ -19,6 +20,7 @@ import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 /**
@@ -26,9 +28,7 @@ import java.util.stream.Stream;
  * <p>
  * ToDo:
  * <ul>
- *     <li>Elements generator by template</li>
  *     <li>Sc-machine events</li>
- *     <li>Method for creating sc-link with binary content (and get/set methods)</li>
  *
  * </ul>
  *
@@ -149,7 +149,7 @@ public interface ScMemory {
     Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException;
 
     /**
-     * @since 0.6.1
+     * @since 0.7.0
      */
     Stream<? extends ScElement> generate(ScPattern pattern) throws ScMemoryException;
 

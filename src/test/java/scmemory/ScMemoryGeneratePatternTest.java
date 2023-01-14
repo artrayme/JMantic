@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.ostis.scmemory.model.ScMemory;
 import org.ostis.scmemory.model.element.edge.EdgeType;
+import org.ostis.scmemory.model.element.edge.ScEdge;
 import org.ostis.scmemory.model.element.link.LinkType;
+import org.ostis.scmemory.model.element.link.ScLink;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
 import org.ostis.scmemory.model.pattern.ScPattern;
@@ -49,12 +51,6 @@ public class ScMemoryGeneratePatternTest {
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void findSingleTripleFNodeEdgeNode() throws Exception {
         ScNode source = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
-        //        ScNode target = scMemory.createNodes(Stream.of(NodeType.NODE)).findFirst().get();
-        //        ScEdge edge = scMemory.createEdges(
-        //                Stream.of(EdgeType.ACCESS),
-        //                Stream.of(source),
-        //                Stream.of(target)
-        //        ).findFirst().get();
 
         ScPattern pattern = new DefaultWebsocketScPattern();
         pattern.addElement(new GeneratingPatternTriple(
@@ -69,12 +65,18 @@ public class ScMemoryGeneratePatternTest {
                 )
         ));
 
-        var result = scMemory.generate(pattern).toList();
+        var generated = scMemory.generate(pattern).toList();
 
-        assertEquals(source, result.get(0));
-        //        assertEquals(target, result.get(2));
-        //        assertEquals(target, edge.getTarget());
-        //        assertEquals(source, edge.getSource());
-        //        assertEquals(edge, result.get(1));
+        assertEquals(source, generated.get(0));
+
+        var found = scMemory.find(pattern)
+                             .findFirst()
+                             .get()
+                             .toList();
+
+        assertEquals(((ScEdge) found.get(1)).getType(), EdgeType.ACCESS_VAR_POS_PERM);
+        assertEquals(found.get(1), generated.get(1));
+        assertEquals(((ScLink) found.get(2)).getType(), LinkType.LINK);
+        assertEquals(found.get(2), generated.get(2));
     }
 }
