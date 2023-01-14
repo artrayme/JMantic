@@ -90,9 +90,9 @@ public class EdgeOperationsTest {
                 sources.stream(),
                 targets.stream());
 
-        Iterator<ScEdge> edgeIterator = edges.iterator();
-        Iterator<ScNode> sourceNodeIterator = sources.iterator();
-        Iterator<ScNode> targetNodeIterator = targets.iterator();
+        var edgeIterator = edges.iterator();
+        var sourceNodeIterator = sources.iterator();
+        var targetNodeIterator = targets.iterator();
         while (edgeIterator.hasNext() && sourceNodeIterator.hasNext() && targetNodeIterator.hasNext()) {
             var currentEdge = edgeIterator.next();
             assertEquals(
@@ -137,10 +137,10 @@ public class EdgeOperationsTest {
                 sources.stream(),
                 targets.stream());
 
-        Iterator<ScEdge> edgeIterator = edges.iterator();
+        var edgeIterator = edges.iterator();
         Iterator<EdgeType> edgeTypeIterator = types.iterator();
-        Iterator<ScNode> sourceNodeIterator = sources.iterator();
-        Iterator<ScNode> targetNodeIterator = targets.iterator();
+        var sourceNodeIterator = sources.iterator();
+        var targetNodeIterator = targets.iterator();
         while (edgeIterator.hasNext() && sourceNodeIterator.hasNext() && targetNodeIterator.hasNext()) {
             var currentEdge = edgeIterator.next();
             assertEquals(

@@ -59,7 +59,7 @@ public class NodeOperationsTest {
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types);
+        var nodes = scContext.createNodes(types);
         nodes.forEach(e -> {
             assertEquals(
                     e.getType(),
@@ -70,8 +70,8 @@ public class NodeOperationsTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createNodesWithAllAvailableTypes() {
-        Stream<ScNode> nodes = scContext.createNodes(Arrays.stream(NodeType.values()));
-        Iterator<ScNode> iter1 = nodes.iterator();
+        var nodes = scContext.createNodes(Arrays.stream(NodeType.values()));
+        var iter1 = nodes.iterator();
         Iterator<NodeType> iter2 = Arrays.stream(NodeType.values())
                                          .iterator();
         while (iter1.hasNext() && iter2.hasNext()) assertEquals(
@@ -112,7 +112,7 @@ public class NodeOperationsTest {
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types);
+        var nodes = scContext.createNodes(types);
         boolean result = scContext.deleteElements(nodes);
         assertTrue(result);
     }

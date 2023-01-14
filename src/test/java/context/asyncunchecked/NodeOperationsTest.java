@@ -63,7 +63,7 @@ public class NodeOperationsTest {
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types)
+        var nodes = scContext.createNodes(types)
                                         .get();
         nodes.forEach(e -> {
             assertEquals(
@@ -75,9 +75,9 @@ public class NodeOperationsTest {
     @Test
     @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     void createNodesWithAllAvailableTypes() throws ExecutionException, InterruptedException {
-        Stream<ScNode> nodes = scContext.createNodes(Arrays.stream(NodeType.values()))
+        var  nodes = scContext.createNodes(Arrays.stream(NodeType.values()))
                                         .get();
-        Iterator<ScNode> iter1 = nodes.iterator();
+        var iter1 = nodes.iterator();
         Iterator<NodeType> iter2 = Arrays.stream(NodeType.values())
                                          .iterator();
         while (iter1.hasNext() && iter2.hasNext()) assertEquals(
@@ -122,7 +122,7 @@ public class NodeOperationsTest {
                                   NodeType.NODE,
                                   e -> NodeType.NODE)
                           .limit(size);
-        Stream<ScNode> nodes = scContext.createNodes(types)
+        var nodes = scContext.createNodes(types)
                                         .get();
         boolean result = scContext.deleteElements(nodes)
                                   .get();
