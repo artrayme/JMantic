@@ -25,9 +25,6 @@ jobs:
       - name: "Build JMantic"
         run: ./gradlew assemble
 
-#      - name: "Install Docker"
-#        uses: docker-practice/actions-setup-docker@master
-
       - name: "Pull Ostis docker-image"
         run: sudo docker pull ostis/sc-machine:latest
 

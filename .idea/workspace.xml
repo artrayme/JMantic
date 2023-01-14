@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="fix: remove redundant sleep in ci">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="dummy: check if github actions have preinstalled docker" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -391,27 +387,6 @@
       <workItem from="1672271325489" duration="299000" />
       <workItem from="1673726735945" duration="370000" />
     </task>
-    <task id="LOCAL-00019" summary="build: change waiting time while ostis starts">
-      <created>1642204395900</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1642204395900</updated>
-    </task>
-    <task id="LOCAL-00020" summary="fix: fix some issues from sonar report">
-      <created>1642205469643</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1642205469643</updated>
-    </task>
-    <task id="LOCAL-00021" summary="refactor: move classes that are connected with searching patterns and add documentation for they">
-      <created>1642268506003</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1642268506003</updated>
-    </task>
     <task id="LOCAL-00022" summary="refactor: add central id generator for requests id">
       <created>1642273102919</created>
       <option name="number" value="00022" />
@@ -734,7 +709,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673735294919</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="doc: add ToDo tags about logic for aliases">
+      <created>1673735808734</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1673735808734</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fix: swap actual and expected">
+      <created>1673735839723</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1673735839723</updated>
+    </task>
+    <task id="LOCAL-00070" summary="dummy: check if github actions have preinstalled docker">
+      <created>1673736020954</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1673736020954</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -752,9 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: split util-classes to internal and api" />
-    <MESSAGE value="refactor: change package paths at the internal classes corresponding to new packages with utils" />
-    <MESSAGE value="feat: add util-class for working with idtf-s" />
     <MESSAGE value="feat: add test for utility-class" />
     <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
     <MESSAGE value="build: remove sl4j dependency" />
@@ -777,7 +770,10 @@
     <MESSAGE value="ci: update sc-machine version" />
     <MESSAGE value="fix: remove -it parameter" />
     <MESSAGE value="fix: remove redundant sleep in ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: remove redundant sleep in ci" />
+    <MESSAGE value="doc: add ToDo tags about logic for aliases" />
+    <MESSAGE value="fix: swap actual and expected" />
+    <MESSAGE value="dummy: check if github actions have preinstalled docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="dummy: check if github actions have preinstalled docker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
