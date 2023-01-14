@@ -149,6 +149,11 @@ public interface ScMemory {
     Stream<Stream<? extends ScElement>> find(ScPattern pattern) throws ScMemoryException;
 
     /**
+     * @since 0.6.1
+     */
+    Stream<? extends ScElement> generate(ScPattern pattern) throws ScMemoryException;
+
+    /**
      * Methods for changing the content of {@link ScLinkInteger}
      * All passed streams must have the same length.
      *

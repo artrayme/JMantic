@@ -304,65 +304,74 @@ public class SyncOstisScMemory implements ScMemory {
         return findPattern(pattern);
     }
 
+    @Override
+    public Stream<? extends ScElement> generate(ScPattern pattern) throws ScMemoryException {
+        GenerateByPatternRequest request = new GenerateByPatternRequestImpl();
+        pattern.getElements().forEach(request::addComponent);
+        GenerateByPatternResponse response = requestSender.sendGenerateByPatternRequest(request);
+        List<ScPatternElement> patternElements = pattern.getElements().
+                flatMap(e -> Stream.of(e.get1(), e.get2(), e.get3())).
+                                                                toList();
+        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
+
+        return mapPatternElementsToScElements(response.getFoundAddresses().toList(), patternElements, aliases).stream();
+    }
+
+    private List<ScElement> mapPatternElementsToScElements(List<Long> adresses,
+                                                           List<ScPatternElement> patternElements,
+                                                           Map<ScAliasedElement, ScElement> aliases) throws ScMemoryException {
+        Iterator<Long> addressesIterator = adresses.iterator();
+        Iterator<ScPatternElement> patternElementIterator = patternElements.iterator();
+        List<ScElement> result = new ArrayList<>();
+        while (patternElementIterator.hasNext()) {
+            var el = patternElementIterator.next();
+            switch (el.getType()) {
+                case ALIAS -> {
+                    result.add(aliases.get((ScAliasedElement) el));
+                    addressesIterator.next();
+                }
+                case TYPE -> {
+                    var element = createScElementByType(((ScTypedElement<?>) el).getValue(), addressesIterator.next());
+                    result.add(element);
+                    aliases.put(((ScTypedElement<?>) el).getAlias(), element);
+                    searchedScElements.put(element.getAddress(), element);
+                }
+                case ADDR -> {
+                    ScFixedElement fixedElement = (ScFixedElement) el;
+                    result.add(fixedElement.getElement());
+                    searchedScElements.put(fixedElement.getElement().getAddress(), fixedElement.getElement());
+                    addressesIterator.next();
+                }
+                default -> throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
+            }
+        }
+        return result;
+    }
+
     private Stream<Stream<? extends ScElement>> findPattern(ScPattern pattern) throws ScMemoryException {
         FindByPatternRequest request = new FindByPatternRequestImpl();
-        pattern.getElements()
-               .forEach(request::addComponent);
+        pattern.getElements().forEach(request::addComponent);
 
         FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
         List<List<ScElement>> result = new ArrayList<>();
 
-        List<ScPatternElement> patternElements = pattern.getElements()
-                                                        .flatMap(e -> Stream.of(
-                                                                e.get1(),
-                                                                e.get2(),
-                                                                e.get3()))
-                                                        .toList();
-        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(
-                patternElements.size(),
-                1);
+        List<ScPatternElement> patternElements = pattern.getElements().flatMap(e -> Stream.of(
+                e.get1(),
+                e.get2(),
+                e.get3()
+        )).toList();
+        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
 
-        for (Stream<Long> triplet : response.getFoundAddresses()
-                                            .toList()) {
-            Iterator<ScPatternElement> patternElementIterator = patternElements.iterator();
-            List<ScElement> tempResult = new ArrayList<>(patternElements.size());
-            Iterator<Long> addressesIterator = triplet.iterator();
-            while (patternElementIterator.hasNext()) {
-                var el = patternElementIterator.next();
-                switch (el.getType()) {
-                    case ALIAS -> {
-                        tempResult.add(aliases.get((ScAliasedElement) el));
-                        addressesIterator.next();
-                    }
-                    case TYPE -> {
-                        var element = createScElementByType(
-                                ((ScTypedElement<?>) el).getValue(),
-                                addressesIterator.next());
-                        tempResult.add(element);
-                        aliases.put(
-                                ((ScTypedElement<?>) el).getAlias(),
-                                element);
-                        searchedScElements.put(
-                                element.getAddress(),
-                                element);
-                    }
-                    case ADDR -> {
-                        ScFixedElement fixedElement = (ScFixedElement) el;
-                        tempResult.add(fixedElement.getElement());
-                        searchedScElements.put(
-                                fixedElement.getElement()
-                                            .getAddress(),
-                                fixedElement.getElement());
-                        addressesIterator.next();
-                    }
-                    default -> throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
-                }
-            }
+        for (Stream<Long> addressesSet : response.getFoundAddresses().toList()) {
+            List<ScElement> tempResult = mapPatternElementsToScElements(
+                    addressesSet.toList(),
+                    patternElements,
+                    aliases
+            );
             result.add(tempResult);
         }
 
-        return result.stream()
-                     .map(Collection::stream);
+        return result.stream().map(Collection::stream);
     }
 
     private ScElement createScElementByType(Object type, Long addr) throws ScMemoryException {
@@ -504,7 +513,7 @@ public class SyncOstisScMemory implements ScMemory {
         request.addAllIdtf(content.stream()
                                   .map(FindKeynodeStruct::new)
                                   .toList());
-        KeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
+        KeynodeResponse response = requestSender.sendKeynodeRequest(request);
 
         List<Optional<? extends ScNode>> result = new ArrayList<>(content.size());
         for (Long e : response.getFindAddresses()
@@ -538,7 +547,7 @@ public class SyncOstisScMemory implements ScMemory {
                     typeIterator.next()));
         }
         request.addAllIdtf(addToRequest);
-        KeynodeResponse response = requestSender.sendFindKeynodeRequest(request);
+        KeynodeResponse response = requestSender.sendKeynodeRequest(request);
 
         Iterator<NodeType> nodeTypeIterator = nodeTypes.iterator();
         List<ScNode> result = new ArrayList<>(content.size());
