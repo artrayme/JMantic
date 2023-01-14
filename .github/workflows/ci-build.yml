@@ -29,10 +29,10 @@ jobs:
         uses: docker-practice/actions-setup-docker@master
 
       - name: "Pull Ostis docker-image"
-        run: sudo docker pull ostis/ostis:0.6.0
+        run: sudo docker pull ostis/sc-machine:latest
 
       - name: "Run Tests"
         run: |
-          sudo docker run -p 8000:8000 -p 8090:8090 ostis/ostis:0.6.0 sh ostis --all &
+          sudo docker run --rm -it -v sc-machine_kb:/kb.bin -p 8090:8090 ostis/sc-machine:latest serve &
           sleep 80
           ./gradlew jacocoTestReport
