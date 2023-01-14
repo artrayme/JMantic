@@ -43,7 +43,7 @@ public class AsyncUncheckedScContext {
         return executorService.submit(() -> context.createNode(type));
     }
 
-    public Future<Stream<ScNode>> createNodes(Stream<NodeType> types) {
+    public Future<Stream<? extends ScNode>> createNodes(Stream<NodeType> types) {
         return executorService.submit(() -> context.createNodes(types));
     }
 
@@ -54,7 +54,7 @@ public class AsyncUncheckedScContext {
                 target));
     }
 
-    public Future<Stream<ScEdge>> createEdges(Stream<EdgeType> types,
+    public Future<Stream<? extends ScEdge>> createEdges(Stream<EdgeType> types,
                                               Stream<? extends ScElement> source,
                                               Stream<? extends ScElement> target) {
         return executorService.submit(() -> context.createEdges(
