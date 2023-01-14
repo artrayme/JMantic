@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="feat: full implementation of construction generation mechanism">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" afterDir="false" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="ci: update sc-machine version">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/sonarcoud-analysis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/sonarcoud-analysis.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,20 +390,6 @@
       <workItem from="1672271325489" duration="299000" />
       <workItem from="1673726735945" duration="370000" />
     </task>
-    <task id="LOCAL-00015" summary="refactor!: rewrite all internal find mechanisms for universal find">
-      <created>1642203488025</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1642203488025</updated>
-    </task>
-    <task id="LOCAL-00016" summary="docs: remove bad recommendations">
-      <created>1642203527335</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1642203527335</updated>
-    </task>
     <task id="LOCAL-00017" summary="refactor: remove toString methods from internal classes">
       <created>1642203726113</created>
       <option name="number" value="00017" />
@@ -734,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673732248947</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="fix: add check for null payload (looks like a bug in sc-machine)">
+      <created>1673734478766</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1673734478766</updated>
+    </task>
+    <task id="LOCAL-00065" summary="ci: update sc-machine version">
+      <created>1673734800356</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1673734800356</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -752,8 +751,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="conf: remove built-id logger configuration" />
-    <MESSAGE value="build: change JMantic version in the gradle config" />
     <MESSAGE value="docs: update JMantic version and add a link to the documentation in russian" />
     <MESSAGE value="feat: add method that returns URI to which websocket-memory is connected" />
     <MESSAGE value="refactor: split util-classes to internal and api" />
@@ -777,7 +774,9 @@
     <MESSAGE value="refactor: add pecs" />
     <MESSAGE value="test: update variable types according to pecs" />
     <MESSAGE value="feat: full implementation of construction generation mechanism" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: full implementation of construction generation mechanism" />
+    <MESSAGE value="fix: add check for null payload (looks like a bug in sc-machine)" />
+    <MESSAGE value="ci: update sc-machine version" />
+    <option name="LAST_COMMIT_MESSAGE" value="ci: update sc-machine version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
