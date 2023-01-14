@@ -48,7 +48,7 @@ public class UncheckedScContext {
      * @return Some implementation of ScNode, which is linked with the corresponding sc-memory.
      */
     public ScNode createNode(NodeType type) {
-        Optional<? extends ScElement> result;
+        Optional<? extends ScNode> result;
         try {
             result = memory.createNodes(Stream.of(type))
                            .findFirst();
@@ -58,7 +58,7 @@ public class UncheckedScContext {
                     e);
             throw new RuntimeException(e);
         }
-        return (ScNode) result.get();
+        return result.get();
     }
 
     /**
@@ -69,8 +69,8 @@ public class UncheckedScContext {
      * @param types stream of node types.
      * @return Stream of some implementation of ScNode, which is linked with the corresponding sc-memory.
      */
-    public Stream<ScNode> createNodes(Stream<NodeType> types) {
-        Stream<? extends ScElement> result;
+    public Stream<? extends ScNode> createNodes(Stream<NodeType> types) {
+        Stream<? extends ScNode> result;
         try {
             result = memory.createNodes(types);
         } catch (ScMemoryException e) {
@@ -79,7 +79,7 @@ public class UncheckedScContext {
                     e);
             throw new RuntimeException(e);
         }
-        return result.map(e -> (ScNode) e);
+        return result;
     }
 
     /**
@@ -92,7 +92,7 @@ public class UncheckedScContext {
      * @return Some implementation of ScEdge, which is linked with the corresponding sc-memory.
      */
     public ScEdge createEdge(EdgeType type, ScElement source, ScElement target) {
-        Optional<? extends ScElement> edge;
+        Optional<? extends ScEdge> edge;
         try {
             edge = memory.createEdges(
                                  Stream.of(type),
@@ -105,7 +105,7 @@ public class UncheckedScContext {
                     e);
             throw new RuntimeException(e);
         }
-        return (ScEdge) edge.get();
+        return edge.get();
     }
 
     /**
@@ -120,16 +120,15 @@ public class UncheckedScContext {
      * @param targets edge targets.
      * @return Stream of some implementation of ScEdge, which is linked with the corresponding sc-memory.
      */
-    public Stream<ScEdge> createEdges(Stream<EdgeType> types,
+    public Stream<? extends ScEdge> createEdges(Stream<EdgeType> types,
                                       Stream<? extends ScElement> sources,
                                       Stream<? extends ScElement> targets) {
-        Stream<ScEdge> scEdgeStream;
+        Stream<? extends ScEdge> scEdgeStream;
         try {
             scEdgeStream = memory.createEdges(
                                          types,
                                          sources,
-                                         targets)
-                                 .map(e -> (ScEdge) e);
+                                         targets);
         } catch (ScMemoryException e) {
             logger.error(
                     "It's really bad",
