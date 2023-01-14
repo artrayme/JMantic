@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.ostis.scmemory.model.element.link.LinkContentType;
 import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,8 @@ public class GetLinkContentResponseImpl extends AbstractScResponse implements Ge
 
     @Override
     public List<Object> getContent() {
+//        ToDo: sometimes sc-machine returns null in payload. It should be fixed on ostis side
+        if (linkContent == null) return new ArrayList<>();
         return linkContent.stream()
                           .map(s -> s.value)
                           .toList();

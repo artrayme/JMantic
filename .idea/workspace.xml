@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="build: fix package signing">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" afterDir="false" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="feat: full implementation of construction generation mechanism">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/api/context/AsyncUncheckedScContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GenerateByPatternResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GenerateByPatternResponseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/sender/RequestSenderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/sender/RequestSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/sender/RequestSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/EdgeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/asyncunchecked/NodeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/EdgeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/context/unchecked/NodeOperationsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/message/response/GetLinkContentResponseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +111,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.memory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode">
+  <component name="RunManager" selected="Gradle.Test">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -155,27 +145,6 @@
         <option name="taskNames">
           <list>
             <option value="jacocoTestReport" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="JMantic [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="dependencies" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -338,6 +307,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="TestIdtfUtils.testOptimizedVersion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;other.TestIdtfUtils.testOptimizedVersion&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Coverage" />
@@ -346,17 +338,17 @@
       <item itemvalue="Gradle.SonatypePublishing" />
       <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
       <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
-      <item itemvalue="Gradle.JMantic [dependencies]" />
+      <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
       <item itemvalue="Gradle.JMantic [javadoc]" />
       <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
         <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
         <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
         <item itemvalue="Gradle.JMantic [javadoc]" />
         <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
-        <item itemvalue="Gradle.JMantic [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -398,27 +390,6 @@
       <workItem from="1671885916077" duration="599000" />
       <workItem from="1672271325489" duration="299000" />
       <workItem from="1673726735945" duration="370000" />
-    </task>
-    <task id="LOCAL-00012" summary="refactor: fix bugs in searching by pattern functionality">
-      <created>1642025482745</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1642025482745</updated>
-    </task>
-    <task id="LOCAL-00013" summary="test: add basic tests for searching by pattern method">
-      <created>1642025549712</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1642025549712</updated>
-    </task>
-    <task id="LOCAL-00014" summary="refactor: fix unsafe code and add small improvements">
-      <created>1642197317320</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1642197317320</updated>
     </task>
     <task id="LOCAL-00015" summary="refactor!: rewrite all internal find mechanisms for universal find">
       <created>1642203488025</created>
@@ -742,7 +713,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645103837268</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="refactor: add pecs">
+      <created>1673731386907</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1673731386907</updated>
+    </task>
+    <task id="LOCAL-00062" summary="test: update variable types according to pecs">
+      <created>1673731461810</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1673731461810</updated>
+    </task>
+    <task id="LOCAL-00063" summary="feat: full implementation of construction generation mechanism">
+      <created>1673732248947</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1673732248947</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,9 +752,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add getter for connected sc-memory object in sc-contexts" />
-    <MESSAGE value="test: add first benchmarking test" />
-    <MESSAGE value="test: add some small tests to improve coverage" />
     <MESSAGE value="conf: remove built-id logger configuration" />
     <MESSAGE value="build: change JMantic version in the gradle config" />
     <MESSAGE value="docs: update JMantic version and add a link to the documentation in russian" />
@@ -785,7 +774,10 @@
     <MESSAGE value="ci: add new package publishing action" />
     <MESSAGE value="build: add signing for gpr package" />
     <MESSAGE value="build: fix package signing" />
-    <option name="LAST_COMMIT_MESSAGE" value="build: fix package signing" />
+    <MESSAGE value="refactor: add pecs" />
+    <MESSAGE value="test: update variable types according to pecs" />
+    <MESSAGE value="feat: full implementation of construction generation mechanism" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: full implementation of construction generation mechanism" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
