@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="ci: update sc-machine version">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ci-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci-build.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/sonarcoud-analysis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/sonarcoud-analysis.yml" afterDir="false" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="fix: remove redundant sleep in ci">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadFoundByTemplateStruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/structures/PayloadGeneratedByTemplateStruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryGeneratePatternTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,20 +391,6 @@
       <workItem from="1672271325489" duration="299000" />
       <workItem from="1673726735945" duration="370000" />
     </task>
-    <task id="LOCAL-00017" summary="refactor: remove toString methods from internal classes">
-      <created>1642203726113</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1642203726113</updated>
-    </task>
-    <task id="LOCAL-00018" summary="test: add tests for pattern5 and universal pattern">
-      <created>1642203804258</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1642203804258</updated>
-    </task>
     <task id="LOCAL-00019" summary="build: change waiting time while ostis starts">
       <created>1642204395900</created>
       <option name="number" value="00019" />
@@ -733,7 +720,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673734800356</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="fix: remove -it parameter">
+      <created>1673735061814</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1673735061814</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix: remove redundant sleep in ci">
+      <created>1673735294919</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1673735294919</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -751,8 +752,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docs: update JMantic version and add a link to the documentation in russian" />
-    <MESSAGE value="feat: add method that returns URI to which websocket-memory is connected" />
     <MESSAGE value="refactor: split util-classes to internal and api" />
     <MESSAGE value="refactor: change package paths at the internal classes corresponding to new packages with utils" />
     <MESSAGE value="feat: add util-class for working with idtf-s" />
@@ -776,7 +775,9 @@
     <MESSAGE value="feat: full implementation of construction generation mechanism" />
     <MESSAGE value="fix: add check for null payload (looks like a bug in sc-machine)" />
     <MESSAGE value="ci: update sc-machine version" />
-    <option name="LAST_COMMIT_MESSAGE" value="ci: update sc-machine version" />
+    <MESSAGE value="fix: remove -it parameter" />
+    <MESSAGE value="fix: remove redundant sleep in ci" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: remove redundant sleep in ci" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -74,9 +74,9 @@ public class ScMemoryGeneratePatternTest {
                              .get()
                              .toList();
 
-        assertEquals(((ScEdge) found.get(1)).getType(), EdgeType.ACCESS_VAR_POS_PERM);
-        assertEquals(found.get(1), generated.get(1));
-        assertEquals(((ScLink) found.get(2)).getType(), LinkType.LINK);
-        assertEquals(found.get(2), generated.get(2));
+        assertEquals(EdgeType.ACCESS_VAR_POS_PERM, ((ScEdge) found.get(1)).getType());
+        assertEquals(generated.get(1), found.get(1));
+        assertEquals(LinkType.LINK, ((ScLink) found.get(2)).getType());
+        assertEquals(generated.get(2), found.get(2));
     }
 }
