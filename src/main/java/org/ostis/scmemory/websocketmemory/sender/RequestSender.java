@@ -10,6 +10,7 @@ import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
 import org.ostis.scmemory.websocketmemory.message.request.SetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.request.EventRequest;
 import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
@@ -19,6 +20,7 @@ import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentRespons
 import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.ScResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
+import org.ostis.scmemory.websocketmemory.message.response.EventResponse;
 
 import java.net.URI;
 
@@ -105,4 +107,6 @@ public interface RequestSender {
      * @throws ScMemoryException if something went wrong with the connection to the base
      */
     CheckScElTypeResponse sendCheckScElTypeRequest(CheckScElTypeRequest request) throws ScMemoryException;
+
+    EventResponse sendEventRequest(EventRequest request) throws ScMemoryException;
 }

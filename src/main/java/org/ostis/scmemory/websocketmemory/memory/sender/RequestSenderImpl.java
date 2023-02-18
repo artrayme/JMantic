@@ -15,6 +15,7 @@ import org.ostis.scmemory.websocketmemory.memory.message.response.GenerateByPatt
 import org.ostis.scmemory.websocketmemory.memory.message.response.GetLinkContentResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.KeynodeResponseImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.response.SetLinkContentResponseImpl;
+import org.ostis.scmemory.websocketmemory.memory.message.response.EventResponseImpl;
 import org.ostis.scmemory.websocketmemory.message.request.CheckScElTypeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.CreateScElRequest;
 import org.ostis.scmemory.websocketmemory.message.request.DeleteScElRequest;
@@ -24,6 +25,7 @@ import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
 import org.ostis.scmemory.websocketmemory.message.request.ScRequest;
 import org.ostis.scmemory.websocketmemory.message.request.SetLinkContentRequest;
+import org.ostis.scmemory.websocketmemory.message.request.EventRequest;
 import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
@@ -32,6 +34,7 @@ import org.ostis.scmemory.websocketmemory.message.response.GenerateByPatternResp
 import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
+import org.ostis.scmemory.websocketmemory.message.response.EventResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,6 +123,11 @@ public class RequestSenderImpl implements RequestSender {
         return send(
                 request,
                 CheckScElTypeResponseImpl.class);
+    }
+
+    @Override
+    public EventResponse sendEventRequest(EventRequest request) throws ScMemoryException {
+        return send(request, EventResponseImpl.class);
     }
 
     /**
