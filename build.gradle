@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'io.github.artrayme'
-version '0.6.3'
+version '0.7.0'
 
 sourceCompatibility = 17
 targetCompatibility = 17
@@ -74,7 +74,7 @@ publishing {
         gpr(MavenPublication) {
             groupId 'io.github.artrayme'
             artifactId 'jmantic'
-            version '0.6.3'
+            version '0.7.0'
             from components.java
             pom {
                 name = 'JMantic'
@@ -103,7 +103,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId 'io.github.artrayme'
             artifactId = 'jmantic'
-            version '0.6.3'
+            version '0.7.0'
             from components.java
             pom {
                 name = 'JMantic'
