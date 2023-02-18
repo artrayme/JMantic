@@ -1,5 +1,8 @@
 package org.ostis.scmemory.websocketmemory.memory.core;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.DeploymentException;
@@ -12,6 +15,7 @@ import org.ostis.scmemory.websocketmemory.core.OstisClient;
 import org.ostis.scmemory.websocketmemory.memory.exception.OstisClientConfigurationException;
 import org.ostis.scmemory.websocketmemory.memory.exception.OstisConnectionException;
 import org.ostis.scmemory.websocketmemory.memory.exception.OstisWebsocketClientException;
+import org.ostis.scmemory.websocketmemory.memory.message.response.EventMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +23,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Consumer;
 
 /**
  * {@link OstisClient} implementation for sending requests in JSON format
@@ -34,10 +39,19 @@ public class OstisClientSync implements OstisClient {
     private String responseMassage;
     private CountDownLatch latch;
     private final URI address;
+    private final ObjectMapper mapper = new ObjectMapper();
 
-    public OstisClientSync(URI serverUri) {
+    private final Consumer<EventMessage> eventCallback;
+    private final String clientName;
+
+    public OstisClientSync(URI serverUri, Consumer<EventMessage> eventCallback, String clientName) {
         webSocketClient = new OstisWebsocketClient(serverUri);
         address = serverUri;
+        this.eventCallback = eventCallback;
+        this.clientName = clientName;
+        mapper.configure(
+                DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                false);
     }
 
     @Override
@@ -181,8 +195,20 @@ public class OstisClientSync implements OstisClient {
                     logger.info(
                             "ostis websocket client catch response: {}",
                             message);
-                    responseMassage = message;
-                    latch.countDown();
+                    try {
+                        EventMessage eventResponse = mapper.readValue(
+                                message,
+                                EventMessage.class);
+                        if (eventResponse.getEvent()) {
+                            eventCallback.accept(eventResponse);
+                        } else {
+                            responseMassage = message;
+                            latch.countDown();
+                        }
+                    } catch (JsonProcessingException e) {
+                        responseMassage = message;
+                        latch.countDown();
+                    }
                 }
             });
             this.session = session;
