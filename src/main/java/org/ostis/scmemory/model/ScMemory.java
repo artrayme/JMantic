@@ -10,7 +10,7 @@ import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
-import org.ostis.scmemory.model.event.EventType;
+import org.ostis.scmemory.model.event.ScEventConsumer;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.pattern3.ScConstruction3;
@@ -20,17 +20,11 @@ import org.ostis.scmemory.model.pattern.pattern5.ScPattern5;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
 /**
  * This interface represents global contract between java-code and the sc-machine
  * <p>
- * ToDo:
- * <ul>
- *     <li>Sc-machine events</li>
- *
- * </ul>
  *
  * @author artrayme
  * @since 0.0.1
@@ -253,6 +247,10 @@ public interface ScMemory {
      * @since 0.6.0
      */
     Stream<? extends ScNode> resolveKeynodes(Stream<String> idtf, Stream<NodeType> type) throws ScMemoryException;
+
+    Optional<Long> subscribeOnEvent(ScElement element, ScEventConsumer event) throws ScMemoryException;
+
+    void unsubscribeEvent(Stream<Long> eventId) throws ScMemoryException;
 
     /**
      * Implementation specific!
