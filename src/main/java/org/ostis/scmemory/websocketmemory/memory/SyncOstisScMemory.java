@@ -365,14 +365,24 @@ public class SyncOstisScMemory implements ScMemory {
     @Override
     public Stream<? extends ScElement> generate(ScPattern pattern) throws ScMemoryException {
         GenerateByPatternRequest request = new GenerateByPatternRequestImpl();
-        pattern.getElements().forEach(request::addComponent);
+        pattern.getElements()
+               .forEach(request::addComponent);
         GenerateByPatternResponse response = requestSender.sendGenerateByPatternRequest(request);
-        List<ScPatternElement> patternElements = pattern.getElements().
-                flatMap(e -> Stream.of(e.get1(), e.get2(), e.get3())).
-                                                                toList();
-        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
+        List<ScPatternElement> patternElements = pattern.getElements()
+                                                        .flatMap(e -> Stream.of(
+                                                                e.get1(),
+                                                                e.get2(),
+                                                                e.get3()))
+                                                        .toList();
+        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(
+                patternElements.size(),
+                1);
 
-        return mapPatternElementsToScElements(response.getFoundAddresses().toList(), patternElements, aliases).stream();
+        return mapPatternElementsToScElements(
+                response.getFoundAddresses()
+                        .toList(),
+                patternElements,
+                aliases).stream();
     }
 
     private List<ScElement> mapPatternElementsToScElements(List<Long> adresses,
@@ -389,15 +399,24 @@ public class SyncOstisScMemory implements ScMemory {
                     addressesIterator.next();
                 }
                 case TYPE -> {
-                    var element = createScElementByType(((ScTypedElement<?>) el).getValue(), addressesIterator.next());
+                    var element = createScElementByType(
+                            ((ScTypedElement<?>) el).getValue(),
+                            addressesIterator.next());
                     result.add(element);
-                    aliases.put(((ScTypedElement<?>) el).getAlias(), element);
-                    searchedScElements.put(element.getAddress(), element);
+                    aliases.put(
+                            ((ScTypedElement<?>) el).getAlias(),
+                            element);
+                    searchedScElements.put(
+                            element.getAddress(),
+                            element);
                 }
                 case ADDR -> {
                     ScFixedElement fixedElement = (ScFixedElement) el;
                     result.add(fixedElement.getElement());
-                    searchedScElements.put(fixedElement.getElement().getAddress(), fixedElement.getElement());
+                    searchedScElements.put(
+                            fixedElement.getElement()
+                                        .getAddress(),
+                            fixedElement.getElement());
                     addressesIterator.next();
                 }
                 default -> throw new IllegalStateException(ExceptionMessages.sendReportToDeveloper);
@@ -408,28 +427,33 @@ public class SyncOstisScMemory implements ScMemory {
 
     private Stream<Stream<? extends ScElement>> findPattern(ScPattern pattern) throws ScMemoryException {
         FindByPatternRequest request = new FindByPatternRequestImpl();
-        pattern.getElements().forEach(request::addComponent);
+        pattern.getElements()
+               .forEach(request::addComponent);
 
         FindByPatternResponse response = requestSender.sendFindByPatternRequest(request);
         List<List<ScElement>> result = new ArrayList<>();
 
-        List<ScPatternElement> patternElements = pattern.getElements().flatMap(e -> Stream.of(
-                e.get1(),
-                e.get2(),
-                e.get3()
-        )).toList();
-        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(patternElements.size(), 1);
+        List<ScPatternElement> patternElements = pattern.getElements()
+                                                        .flatMap(e -> Stream.of(
+                                                                e.get1(),
+                                                                e.get2(),
+                                                                e.get3()))
+                                                        .toList();
+        Map<ScAliasedElement, ScElement> aliases = new HashMap<>(
+                patternElements.size(),
+                1);
 
-        for (Stream<Long> addressesSet : response.getFoundAddresses().toList()) {
+        for (Stream<Long> addressesSet : response.getFoundAddresses()
+                                                 .toList()) {
             List<ScElement> tempResult = mapPatternElementsToScElements(
                     addressesSet.toList(),
                     patternElements,
-                    aliases
-            );
+                    aliases);
             result.add(tempResult);
         }
 
-        return result.stream().map(Collection::stream);
+        return result.stream()
+                     .map(Collection::stream);
     }
 
     private ScElement createScElementByType(Object type, Long addr) throws ScMemoryException {
@@ -782,7 +806,7 @@ public class SyncOstisScMemory implements ScMemory {
 
         SetLinkContentResponse response = requestSender.sendSetLinkContentRequest(request);
 
-        //        sc-mechine never send false status in current realisation
+        //        sc-machine does not send False status (bug in sc-machine)
         //        if (!response.getResponseStatus()) {
         //            throw new ScMemoryException("the response status is FALSE");
         //        }
