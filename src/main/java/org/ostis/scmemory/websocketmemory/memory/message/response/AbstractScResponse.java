@@ -15,8 +15,10 @@ import org.ostis.scmemory.websocketmemory.message.response.ScResponse;
 public abstract class AbstractScResponse implements ScResponse {
     @JsonProperty("id")
     private long responseId;
-    private boolean status;
-    private boolean event;
+    @JsonProperty("status")
+    private short status;
+    @JsonProperty("event")
+    private short event;
 
     @Override
     public long getResponseId() {
@@ -25,11 +27,11 @@ public abstract class AbstractScResponse implements ScResponse {
 
     @Override
     public boolean getResponseStatus() {
-        return status;
+        return status==1;
     }
 
     @Override
     public boolean getEvent() {
-        return event;
+        return event==1;
     }
 }
