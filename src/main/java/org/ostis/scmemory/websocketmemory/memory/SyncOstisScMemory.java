@@ -14,6 +14,9 @@ import org.ostis.scmemory.model.element.link.ScLinkInteger;
 import org.ostis.scmemory.model.element.link.ScLinkString;
 import org.ostis.scmemory.model.element.node.NodeType;
 import org.ostis.scmemory.model.element.node.ScNode;
+import org.ostis.scmemory.model.event.OnDeleteEvent;
+import org.ostis.scmemory.model.event.OnEdgeEvent;
+import org.ostis.scmemory.model.event.ScEventConsumer;
 import org.ostis.scmemory.model.exception.ScMemoryException;
 import org.ostis.scmemory.model.pattern.ScPattern;
 import org.ostis.scmemory.model.pattern.ScPatternTriplet;
@@ -34,6 +37,7 @@ import org.ostis.scmemory.websocketmemory.memory.element.ScLinkFloatImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkIntegerImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScLinkStringImpl;
 import org.ostis.scmemory.websocketmemory.memory.element.ScNodeImpl;
+import org.ostis.scmemory.websocketmemory.memory.event.ScEventWebsocketImpl;
 import org.ostis.scmemory.websocketmemory.memory.exception.ExceptionMessages;
 import org.ostis.scmemory.websocketmemory.memory.message.request.CheckScElTypeRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.CreateScElRequestImpl;
@@ -43,6 +47,8 @@ import org.ostis.scmemory.websocketmemory.memory.message.request.GenerateByPatte
 import org.ostis.scmemory.websocketmemory.memory.message.request.GetLinkContentRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.KeynodeRequestImpl;
 import org.ostis.scmemory.websocketmemory.memory.message.request.SetLinkContentRequestImpl;
+import org.ostis.scmemory.websocketmemory.memory.message.request.EventRequestImpl;
+import org.ostis.scmemory.websocketmemory.memory.message.response.EventMessage;
 import org.ostis.scmemory.websocketmemory.memory.pattern.DefaultWebsocketScPattern;
 import org.ostis.scmemory.websocketmemory.memory.pattern.SearchingPatternTriple;
 import org.ostis.scmemory.websocketmemory.memory.pattern.element.AliasPatternElement;
@@ -60,6 +66,7 @@ import org.ostis.scmemory.websocketmemory.message.request.FindByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GenerateByPatternRequest;
 import org.ostis.scmemory.websocketmemory.message.request.GetLinkContentRequest;
 import org.ostis.scmemory.websocketmemory.message.request.KeynodeRequest;
+import org.ostis.scmemory.websocketmemory.message.request.EventRequest;
 import org.ostis.scmemory.websocketmemory.message.response.CheckScElTypeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.CreateScElResponse;
 import org.ostis.scmemory.websocketmemory.message.response.DeleteScElResponse;
@@ -68,6 +75,7 @@ import org.ostis.scmemory.websocketmemory.message.response.GenerateByPatternResp
 import org.ostis.scmemory.websocketmemory.message.response.GetLinkContentResponse;
 import org.ostis.scmemory.websocketmemory.message.response.KeynodeResponse;
 import org.ostis.scmemory.websocketmemory.message.response.SetLinkContentResponse;
+import org.ostis.scmemory.websocketmemory.message.response.EventResponse;
 import org.ostis.scmemory.websocketmemory.sender.RequestSender;
 
 import java.io.ByteArrayOutputStream;
@@ -105,12 +113,21 @@ import java.util.stream.Stream;
  */
 public class SyncOstisScMemory implements ScMemory {
     private final RequestSender requestSender;
+    private final RequestSender eventSender;
     private final OstisClient ostisClient;
+    private final OstisClient eventOstisClient;
     private final Map<Long, ScElement> searchedScElements = new HashMap<>();
     private final ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
     public SyncOstisScMemory(URI serverURI) {
-        ostisClient = new OstisClientSync(serverURI);
+        ostisClient = new OstisClientSync(
+                serverURI,
+                e->{throw new RuntimeException("Unexpected event: " + e);},
+                "Main client");
+        eventOstisClient = new OstisClientSync(
+                serverURI,
+                this::runEvent,
+                "Client for events");
         requestSender = new RequestSenderImpl(ostisClient);
     }
 
@@ -432,7 +449,10 @@ public class SyncOstisScMemory implements ScMemory {
 
     private Object checkElementType(Long addr) throws ScMemoryException {
         Callable<CheckScElTypeResponse> task = () -> {
-            OstisClient client = new OstisClientSync(requestSender.getAddress());
+            OstisClient client = new OstisClientSync(
+                    requestSender.getAddress(),
+                    e->{throw new RuntimeException("Unexpected event: " + e);},
+                    "Client for resolving types");
             RequestSender sender = new RequestSenderImpl(client);
             client.open();
             CheckScElTypeRequest request = new CheckScElTypeRequestImpl();

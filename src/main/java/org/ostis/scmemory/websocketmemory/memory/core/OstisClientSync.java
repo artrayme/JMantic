@@ -60,7 +60,8 @@ public class OstisClientSync implements OstisClient {
             lock.lock();
             webSocketClient.connect();
             logger.info(
-                    "ostis client is connected to URI: {}",
+                    "ostis client \"{}\" is connected to URI: {}",
+                    clientName,
                     webSocketClient.getAddress());
         } catch (DeploymentException | IOException | OstisWebsocketClientException e) {
             String msg = "cannot connect to URI: " + webSocketClient.getAddress();
@@ -105,7 +106,8 @@ public class OstisClientSync implements OstisClient {
             lock.unlock();
         }
         logger.info(
-                "ostis client return response: {}",
+                "ostis client \"{}\" return response: {}",
+                clientName,
                 response);
         return response;
     }
@@ -113,6 +115,11 @@ public class OstisClientSync implements OstisClient {
     @Override
     public URI getConfiguration() {
         return address;
+    }
+
+    @Override
+    public String getName() {
+        return clientName;
     }
 
     @Override
@@ -126,7 +133,7 @@ public class OstisClientSync implements OstisClient {
         lock.lock();
         webSocketClient.disconnect();
         lock.unlock();
-        logger.info("ostis client closed");
+        logger.info("ostis client \"{}\" is closed", clientName);
     }
 
     /**
@@ -158,7 +165,8 @@ public class OstisClientSync implements OstisClient {
                 session.close();
                 session = null;
                 logger.info(
-                        "ostis websocket client was disconnected from URI: {}",
+                        "ostis websocket client \"{}\" was disconnected from URI: {}",
+                        clientName,
                         address);
             }
         }
@@ -171,19 +179,21 @@ public class OstisClientSync implements OstisClient {
             session.getAsyncRemote()
                    .sendText(message);
             logger.info(
-                    "ostis websocket client send message {}",
+                    "ostis websocket \"{}\" client send message {}",
+                    clientName,
                     message);
         }
 
         @Override
         public void onClose(Session session, CloseReason closeReason) {
-            logger.info("websocket client closed");
+            logger.info("websocket client \"{}\" is closed", clientName);
         }
 
         @Override
         public void onError(Session session, Throwable thr) {
             logger.info(
-                    "something went wrong in ostisWebsocketClient {}",
+                    "something went wrong in ostisWebsocketClient \"{}\": {}",
+                    clientName,
                     thr.getMessage());
         }
 
@@ -193,7 +203,8 @@ public class OstisClientSync implements OstisClient {
                 @Override
                 public void onMessage(String message) {
                     logger.info(
-                            "ostis websocket client catch response: {}",
+                            "ostis websocket client \"{}\" catch response: {}",
+                            clientName,
                             message);
                     try {
                         EventMessage eventResponse = mapper.readValue(
@@ -212,9 +223,8 @@ public class OstisClientSync implements OstisClient {
                 }
             });
             this.session = session;
-            logger.info("websocket client session has been started");
+            logger.info("websocket client \"{}\" session has been started", clientName);
         }
-
         public boolean isOpen() {
             return session.isOpen();
         }

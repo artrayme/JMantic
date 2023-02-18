@@ -31,7 +31,9 @@ public class IdtfUtils {
     }
 
     public static List<String> getAllIdtfFast(SyncOstisScMemory memory) throws Exception {
-        OstisClientSync client = new OstisClientSync(memory.getURI());
+        OstisClientSync client = new OstisClientSync(memory.getURI(),
+                                                     e->{},
+                                                     "Client for idtfs");
         RequestSender sender = new RequestSenderImpl(client);
         client.open();
 
