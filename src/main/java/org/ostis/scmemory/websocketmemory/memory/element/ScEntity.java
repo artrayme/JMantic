@@ -29,11 +29,6 @@ public abstract class ScEntity implements ScElement {
     }
 
     @JsonIgnore
-    public String getElement() {
-        return element;
-    }
-
-    @JsonIgnore
     @Override
     public Long getAddress() {
         return address;
