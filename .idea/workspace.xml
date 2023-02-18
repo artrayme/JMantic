@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="dummy: check if github actions have preinstalled docker" />
+    <list default="true" id="4762acc8-a986-4cfb-9f34-d806b8cfd71e" name="Changes" comment="feat: change request sender to add events request">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/event/ScEventWebsocketImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScMemoryEventsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/scmemory/ScTypesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/model/ScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/core/OstisClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/SyncOstisScMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/core/OstisClientSync.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/memory/element/ScEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ostis/scmemory/websocketmemory/util/api/IdtfUtils.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,9 +55,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="module-info" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="module-info" />
       </list>
     </option>
   </component>
@@ -82,7 +93,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/believe/IdeaProjects/JMantic&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/artrayme/IdeaProjects/JMantic&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -107,7 +118,7 @@
       <recent name="org.ostis.scmemory.websocketmemory.memory.message.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Test">
+  <component name="RunManager" selected="Gradle.Coverage">
     <configuration name="Build" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -150,27 +161,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="JMantic [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="javadoc" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="Jar" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -192,7 +182,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScMemoryEventsTest.unsubscribeEvent" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -205,7 +195,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition&quot;" />
+            <option value="&quot;scmemory.ScMemoryEventsTest.unsubscribeEvent&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -215,7 +205,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryGeneratePatternTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScTypesTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -228,7 +218,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryGeneratePatternTest&quot;" />
+            <option value="&quot;scmemory.ScTypesTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -238,7 +228,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ScTypesTest.edgeEqualityWithLinkRule" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -251,7 +241,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;scmemory.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode&quot;" />
+            <option value="&quot;scmemory.ScTypesTest.edgeEqualityWithLinkRule&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScTypesTest.nodeEqualityBasicRuleFail" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScTypesTest.nodeEqualityBasicRuleFail&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ScTypesTest.nodeEqualityWithLink" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;scmemory.ScTypesTest.nodeEqualityWithLink&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -303,48 +339,25 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestIdtfUtils.testOptimizedVersion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;other.TestIdtfUtils.testOptimizedVersion&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Gradle.Build" />
       <item itemvalue="Gradle.Coverage" />
       <item itemvalue="Gradle.Jar" />
       <item itemvalue="Gradle.Test" />
       <item itemvalue="Gradle.SonatypePublishing" />
-      <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
-      <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
-      <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
-      <item itemvalue="Gradle.JMantic [javadoc]" />
-      <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
+      <item itemvalue="Gradle.ScMemoryEventsTest.unsubscribeEvent" />
+      <item itemvalue="Gradle.ScTypesTest" />
+      <item itemvalue="Gradle.ScTypesTest.edgeEqualityWithLinkRule" />
+      <item itemvalue="Gradle.ScTypesTest.nodeEqualityBasicRuleFail" />
+      <item itemvalue="Gradle.ScTypesTest.nodeEqualityWithLink" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TestIdtfUtils.testOptimizedVersion" />
-        <item itemvalue="Gradle.ScMemoryGeneratePatternTest.findSingleTripleFNodeEdgeNode" />
-        <item itemvalue="Gradle.ScMemoryGeneratePatternTest" />
-        <item itemvalue="Gradle.JMantic [javadoc]" />
-        <item itemvalue="Gradle.ScMemoryFindPatternTest.findPatternWithDeepness3LinksEdition" />
+        <item itemvalue="Gradle.ScMemoryEventsTest.unsubscribeEvent" />
+        <item itemvalue="Gradle.ScTypesTest" />
+        <item itemvalue="Gradle.ScTypesTest.edgeEqualityWithLinkRule" />
+        <item itemvalue="Gradle.ScTypesTest.nodeEqualityWithLink" />
+        <item itemvalue="Gradle.ScTypesTest.nodeEqualityBasicRuleFail" />
       </list>
     </recent_temporary>
   </component>
@@ -386,41 +399,10 @@
       <workItem from="1671885916077" duration="599000" />
       <workItem from="1672271325489" duration="299000" />
       <workItem from="1673726735945" duration="370000" />
-    </task>
-    <task id="LOCAL-00022" summary="refactor: add central id generator for requests id">
-      <created>1642273102919</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1642273102919</updated>
-    </task>
-    <task id="LOCAL-00023" summary="feat: add functionality for resolving keynodes and fix bug with keynodes finding">
-      <created>1642273210503</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1642273210504</updated>
-    </task>
-    <task id="LOCAL-00024" summary="fix: fix api according to the json format">
-      <created>1642274877531</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1642274877531</updated>
-    </task>
-    <task id="LOCAL-00025" summary="test: add tests for finding and resolving keynodes methods">
-      <created>1642274912157</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1642274912157</updated>
-    </task>
-    <task id="LOCAL-00026" summary="test: add tests for searching by universal pattern">
-      <created>1642283634782</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1642283634782</updated>
+      <workItem from="1676716049790" duration="2459000" />
+      <workItem from="1676718517115" duration="32000" />
+      <workItem from="1676718558622" duration="22758000" />
+      <workItem from="1676745340150" duration="7494000" />
     </task>
     <task id="LOCAL-00027" summary="test: add test for construction of 7 elements and add some explanation">
       <created>1642683483673</created>
@@ -730,7 +712,42 @@
       <option name="project" value="LOCAL" />
       <updated>1673736020954</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="feat: create functional interfaces for events">
+      <created>1676752392541</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1676752392541</updated>
+    </task>
+    <task id="LOCAL-00072" summary="fix: change types according to new sc-machine api">
+      <created>1676753596932</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1676753596932</updated>
+    </task>
+    <task id="LOCAL-00073" summary="feat: add messages for sc-events">
+      <created>1676753637542</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1676753637542</updated>
+    </task>
+    <task id="LOCAL-00074" summary="feat: add logic for handling events in websocket client">
+      <created>1676753751428</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1676753751428</updated>
+    </task>
+    <task id="LOCAL-00075" summary="feat: change request sender to add events request">
+      <created>1676753821445</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1676753821445</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -748,11 +765,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add test for utility-class" />
-    <MESSAGE value="refactor: remove unused sout-s from tests and some other small fixes" />
-    <MESSAGE value="build: remove sl4j dependency" />
-    <MESSAGE value="refactor: change project code style and reformat code according it" />
-    <MESSAGE value="build: change version to 0.6.1" />
     <MESSAGE value="docs: update version to 0.6.1" />
     <MESSAGE value="docs: add tag 'author'" />
     <MESSAGE value="fix!: remove java module (temporary)" />
@@ -773,7 +785,12 @@
     <MESSAGE value="doc: add ToDo tags about logic for aliases" />
     <MESSAGE value="fix: swap actual and expected" />
     <MESSAGE value="dummy: check if github actions have preinstalled docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="dummy: check if github actions have preinstalled docker" />
+    <MESSAGE value="feat: create functional interfaces for events" />
+    <MESSAGE value="fix: change types according to new sc-machine api" />
+    <MESSAGE value="feat: add messages for sc-events" />
+    <MESSAGE value="feat: add logic for handling events in websocket client" />
+    <MESSAGE value="feat: change request sender to add events request" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: change request sender to add events request" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -790,6 +807,11 @@
         <PinnedItemInfo parentTag="org.ostis.scmemory.websocketmemory.memory.pattern.element.FixedPatternElement" memberName="element" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="scMemory" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
