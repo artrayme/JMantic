@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation 'org.slf4j:slf4j-simple:2.0.0-alpha5'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     implementation 'jakarta.websocket:jakarta.websocket-api:2.0.0'
     implementation 'org.glassfish.tyrus.bundles:tyrus-standalone-client:2.0.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
