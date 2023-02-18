@@ -118,6 +118,7 @@ public class SyncOstisScMemory implements ScMemory {
     private final OstisClient eventOstisClient;
     private final Map<Long, ScElement> searchedScElements = new HashMap<>();
     private final ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+    private final Map<Long, ScEventWebsocketImpl> eventConsumerMap = new HashMap<>();
 
     public SyncOstisScMemory(URI serverURI) {
         ostisClient = new OstisClientSync(
@@ -129,6 +130,43 @@ public class SyncOstisScMemory implements ScMemory {
                 this::runEvent,
                 "Client for events");
         requestSender = new RequestSenderImpl(ostisClient);
+        eventSender = new RequestSenderImpl(eventOstisClient);
+    }
+
+    private void runEvent(EventMessage eventMessage) {
+        var eventInfo = eventConsumerMap.get(eventMessage.getResponseId());
+        var addrs = eventMessage.getScAddrs();
+        switch (eventInfo.getEventConsumer()
+                         .getEventType()) {
+            case ON_ADD_OUTGOING_EDGE, ON_ADD_INGOING_EDGE -> {
+                runEdgeEvent(
+                        eventInfo,
+                        addrs);
+            }
+            case ON_DELETE_ELEMENT -> {
+                ((OnDeleteEvent) eventInfo.getEventConsumer()).onEvent(
+                        eventInfo.getTrackingElement());
+            }
+        }
+    }
+
+    private void runEdgeEvent(ScEventWebsocketImpl eventInfo, List<Long> addrs) {
+        try {
+            ScElement targetEdgeElement = createScElementByType(
+                    checkElementType(addrs.get(2)),
+                    addrs.get(2));
+            ScEdge edge = new ScEdgeImpl(
+                    (EdgeType) checkElementType(addrs.get(1)),
+                    eventInfo.getTrackingElement(),
+                    targetEdgeElement,
+                    addrs.get(1));
+            ((OnEdgeEvent) eventInfo.getEventConsumer()).onEvent(
+                    eventInfo.getTrackingElement(),
+                    edge,
+                    targetEdgeElement);
+        } catch (ScMemoryException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public URI getURI() {
@@ -585,13 +623,38 @@ public class SyncOstisScMemory implements ScMemory {
     }
 
     @Override
+    public Optional<Long> subscribeOnEvent(ScElement element, ScEventConsumer event) throws ScMemoryException {
+        EventRequest request = new EventRequestImpl();
+        request.subscribe(new ScEventWebsocketImpl(
+                element,
+                event));
+        EventResponse res = eventSender.sendEventRequest(request);
+        Optional<Long> result = res.getEventIds()
+                                  .findFirst();
+        eventConsumerMap.put(result.get(), new ScEventWebsocketImpl(element, event));
+        return result;
+    }
+
+    @Override
+    public void unsubscribeEvent(Stream<Long> eventId) throws ScMemoryException {
+        EventRequest request = new EventRequestImpl();
+        eventId.forEach(id -> {
+            request.unsubscribe(id);
+            eventConsumerMap.remove(id);
+        });
+        eventSender.sendEventRequest(request);
+    }
+
+    @Override
     public void open() throws Exception {
         ostisClient.open();
+        eventOstisClient.open();
     }
 
     @Override
     public void close() throws Exception {
         ostisClient.close();
+        eventOstisClient.close();
     }
 
     private ScPatternElement convertToPatternElement(Object object, ScAliasedElement alias) {
