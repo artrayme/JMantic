@@ -49,7 +49,7 @@ If you want to use JMantic in your programs, follow these steps:
 New way since 0.6.2:
 
 ``` groovy
-  implementation 'io.github.artrayme:jmantic:0.6.3'
+  implementation 'io.github.artrayme:jmantic:0.7.0'
 ```
 
 Old way:
